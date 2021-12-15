@@ -1,7 +1,7 @@
 {
   "scripts": {
     "serve": "gulp serve",
-    "build": "gulp clean && gulp dist"
+    "dist": "gulp clean && gulp dist"
   },
   "private": true,
   "devDependencies": {

@@ -4,9 +4,9 @@ status: Published
 
 # LAB 1
 
-## Agenda
+## Task 1
 
-This is a test
+This is a test 1
 
 ![This](img/agenda.png)
 
@@ -19,3 +19,12 @@ Some of the topics you will learn:
 ```bash
 source set_dt_variables.sh
 ```
+
+## Task 2
+
+This is a test 2
+
+## Task 3
+
+This is a test 3
+

@@ -1,18 +1,4 @@
-# claat-mockup
-
-## Commands
-
-* Run locally `npm run serve`
-* Build distribution `npm run build`
-* Build distribution and run locally `npm run serve:dist`
-
-## Reference
-
-* Google codelabs - https://github.com/googlecodelabs/tools
-* Other codelab projects
-  * https://github.com/dynatrace-perfclinics/codelabs   https://dynatrace-perfclinics.github.io/
-  * https://github.com/keptn/tutorials
-* structure of MD files and header - https://github.com/Dynatrace-APAC/dynatrace-apac.github.io/tree/master/workshops
+# Overview
 
 ## installation (mac)
 
@@ -45,6 +31,19 @@ gulp --version
   CLI version: 2.3.0
   Local version: 4.0.2
 ```
+
+## Commands
+
+* Run locally `npm run serve`
+* Build distribution `npm run dist`
+
+## Reference
+
+* Google codelabs - https://github.com/googlecodelabs/tools
+* Other codelab projects
+  * https://github.com/dynatrace-perfclinics/codelabs   https://dynatrace-perfclinics.github.io/
+  * https://github.com/keptn/tutorials
+* structure of MD files and header - https://github.com/Dynatrace-APAC/dynatrace-apac.github.io/tree/master/workshops
 
 ## Development notes
 
