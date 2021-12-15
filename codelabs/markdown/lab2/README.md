@@ -1,5 +1,5 @@
-id: lab-2
-categories: azure
+id: aws-lab2
+categories: 
 status: Published
 
 # Lab 2 - Modernization Containers

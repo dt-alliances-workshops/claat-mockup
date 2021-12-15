@@ -1,0 +1,19 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-193960361-1",
+  "updated": "2021-12-15T11:05:34-05:00",
+  "id": "aws-lab2",
+  "duration": 0,
+  "title": "Lab 2 - Modernization Containers",
+  "summary": "",
+  "source": "codelabs/markdown/lab2/README.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": null,
+  "tags": [],
+  "url": "aws-lab2"
+}

@@ -1,0 +1,19 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-193960361-1",
+  "updated": "2021-12-15T11:05:40-05:00",
+  "id": "aws-lab3",
+  "duration": 0,
+  "title": "Lab 3 - SLOs",
+  "summary": "",
+  "source": "codelabs/markdown/lab3/README.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": null,
+  "tags": [],
+  "url": "aws-lab3"
+}

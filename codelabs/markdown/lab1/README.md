@@ -1,5 +1,5 @@
-id: lab-1
-categories: david
+id: aws-lab1
+categories: 
 status: Published
 
 # Lab 1 - OneAgent Observability

@@ -1,4 +1,4 @@
-id: lab-3
+id: aws-lab3
 categories:
 status: Published
 

@@ -1,0 +1,354 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 1 - OneAgent Observability</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-193960361-1"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="aws-lab1"
+                  title="Lab 1 - OneAgent Observability"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Overview" duration="0">
+        <p>While choosing the right migration strategies, such as re-hosting or re-architecting, one must access the different risks, costs, and benefits. However, often the details of what is where and what is dependent on what within the technical stack is missing or poorly documented.  All that may exist is out of date diagrams and a mix of monitoring tool metrics that must be &#34;stitched&#34; together.</p>
+<p>Not having enough details about the current environment is hindering organization&#39;s ability to make the right decisions when planning what to migrate and when.</p>
+<p>To address this problem, Dynatrace&#39;s OneAgent can automatically discover the application, services, processes and to build a complete dependency mapping for the entire application environment. So, let&#39;s begin!</p>
+<h2 is-upgraded>Objectives of this Lab</h2>
+<p>🔷 Review Dynatrace OneAgent</p>
+<p>🔷 Review real-time data now available for the sample application</p>
+<p>🔷 Review how Dynatrace helps with modernization planning</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Lab Setup" duration="0">
+        <p>For this lab you are going to setup an EC2 instance that runs a Sample application that you can use to learn the Dynatrace web UI and to review how Dynatrace brings tremendous insights all through the OneAgent.</p>
+<p>Referring to the picture below, here are the components for lab 1.</p>
+<p class="image-container"><img alt="image" src="img/f25f6ca3a8fcf4e7.png"></p>
+<p><strong>#1 . Sample Application</strong></p>
+<p>Sample app representing a simple architecture of a frontend and backend implemented as Docker containers that we will review in this lab.</p>
+<p><strong>#2 . Dynatrace monitoring</strong></p>
+<p>The Dynatrace OneAgent has been installed by the workshop provisioning scripts and is communicating to your Dynatrace Tenant.</p>
+<h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
+<p><em>Learn more about the various ways the OneAgent can be installed, in the </em><a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-oneagent" target="_blank"><em>Dynatrace documentation</em></a></p>
+<p><strong>#3 . Load generator process</strong></p>
+<p>A <a href="https://github.com/dt-orders/load-traffic" target="_blank">JMeter</a> process sends simulated user traffic to the sample app running within a Docker container. You will not need to interact with this container, it just runs in the background.</p>
+<h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong>:</h2>
+<p><em>A real-world scenario would often start with the application components running on a physical or virtualized host on-prem and not &#34;Dockerized&#34;. To simplify the workshop, we &#34;Dockerized&#34; the application into a front-end and back-end. In Dynatrace, these Docker containers all show up as &#34;processes&#34; on a host just like a &#34;non-Dockerized&#34; application will.</em></p>
+<h2 is-upgraded>Sample app</h2>
+<p>The sample application is called Dynatrace Orders.  A more detailed overview can be found <a href="https://github.com/dt-orders/overview" target="_blank">here</a>.  All the source code can be found <a href="https://github.com/dt-orders" target="_blank">here</a>.</p>
+<h2 is-upgraded>Get the Public IP to the frontend of the Sample Application.</h2>
+<p>To get the Public IP, open the <code>EC2 instances</code> page in the AWS console. On the newly created host <code>dt-orders-monolith</code> find the <code>Public IP</code> as shown below.</p>
+<p class="image-container"><img alt="image" src="img/5d05acb30bc6af33.png"></p>
+<h2 is-upgraded>View the Sample app in a Browser</h2>
+<p>To view the application, paste the public IP using <code>HTTP</code> NOT <code>HTTPS</code> into a browser that will look like this:</p>
+<p class="image-container"><img alt="image" src="img/b5f4aac5fdf1cff.png"></p>
+<p>Use the menu on the home page to navigate around the application and notice the URL for key functionality.  You will see these URLs later as we analyze the application.</p>
+<ul>
+<li>Customer List = <code>customer/list.html</code></li>
+<li>Customer Detail - Each customer has a unique page = <code>customer/5.html</code></li>
+<li>Catalog List = <code>catalog/list.html</code></li>
+<li>Catalog Search Form = <code>catalog/searchForm.html</code></li>
+<li>Order List = <code>order/list.html</code></li>
+<li>Order Form = <code>order/form.html</code></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Host view" duration="0">
+        <p>In the next few sections, you will review what the OneAgent automatically discovered for the host, services, processes, and the complete dependency mapping for the sample application.</p>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>As you plan your migration, each of these views will give insights into accessing the profile, consumption and dependencies to other systems and services.</p>
+<h2 is-upgraded>Review OneAgent Deployment Status</h2>
+<p>The host running the sample application were all created using scripts that installed the sample application and to install the Dynatrace OneAgent.  Since we don&#39;t have to install the OneAgent now, let&#39;s just review its status.</p>
+<ol type="1">
+<li>Login into Dynatrace</li>
+<li>Choose the <code>Deployment status</code> option from the left side menu to open the OneAgent deployment page.</li>
+</ol>
+<p class="image-container"><img alt="image" src="img/88732e842c3d0350.png"></p>
+<h2 is-upgraded>Review Hosts</h2>
+<p>From the left-side menu in Dynatrace choose <code>Hosts</code> then click on the host with the name <code>dt-orders-monolith</code>.</p>
+<p class="image-container"><img alt="image" src="img/3f16a6f50691eb9a.png"></p>
+<p>On host page, you will see basic infrastructure information for the host.</p>
+<ol type="1">
+<li>Now expand the <code>Properties</code> section to see data about the host:</li>
+<li>Host resource metrics (CPU, memory)</li>
+<li>Host availability</li>
+<li>Discovered processes. The sample app is Node and Java based</li>
+</ol>
+<p class="image-container"><img alt="image" src="img/1de0c01e5ffdb961.png"></p>
+<h2 is-upgraded>About Smartscape</h2>
+<p>Enterprises have many hosts, services, and application that are ever changing. The ability to automatically discover and change as the environment changes is a key feature that Smartscape delivers.</p>
+<p>Dynatrace&#39;s near real-time environment-topology visualization tool, Smartscape, is where Dynatrace&#39;s auto-discovery is delivered into a quick and efficient visualization of all the topological dependencies in your infrastructure, processes, and services.</p>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>Smartscape shows all the dependencies of a given service. Those include connections to queues, web servers, app servers, and a native process. The host view shows historical and live time-series data for usage as well as the consuming processes. This information allows us to better plan the migration, as all depending services must be considered during the migration.</p>
+<p class="image-container"><img alt="image" src="img/63ace4b7f49d4dfc.png"></p>
+<p>Referring to the picture above:</p>
+<ul>
+<li>On the horizontal axis, it visualizes all ingoing and outgoing call relationships within each tier</li>
+<li>On the vertical axis, it displays full-stack dependencies across all tiers  <ul>
+<li>Data center</li>
+<li>Hosts</li>
+<li>Process</li>
+<li>Service</li>
+<li>Application</li>
+</ul>
+</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Review Smartscape" duration="0">
+        <p>Let&#39;s see how Dynatrace can visualize these processes using Smartscape.</p>
+<ol type="1">
+<li>Be sure you are on the <code>dt-orders-monolith</code> host page</li>
+<li>Just click on the <code>...</code> box on the to the right of the host name</li>
+<li>pick <code>Smartscape view</code> menu option</li>
+<li>this will open Smartscape filtered to this Host Instance</li>
+</ol>
+<p class="image-container"><img alt="image" src="img/6a0a552200ba485c.png"></p>
+<p>Feel free to explore the Smartscape.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Process" duration="0">
+        <p>In the Smartscape view, we saw the visualizations of the relationships in vertical stack and as well as the relationships spatially. Now let&#39;s view the processes and services running on the host.</p>
+<p>As you plan your migration, you need more than just host level metrics.  Knowing the details for each service, <strong>BEFORE</strong> you change it, will lower the risk of impacting the business.</p>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>Very quickly we have seen what processes and services are running on a host AND more importantly, what processes and services call (outbound) and are being called (inbound).  Having a real-time picture is certainly more accurate that out of date documentation.</p>
+<h2 is-upgraded>Lets Review!</h2>
+<p>Return back to the host view for the host with the prefix of <code>dt-orders-monolith</code> and locate the <code>Processes and Containers</code> section.</p>
+<p>Click on the <code>monolith-frontend</code> process to open the process detail view.</p>
+<p class="image-container"><img alt="image" src="img/9dda2b711413925.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Process view" duration="0">
+        <p>You should be on the process page where you will see information for this process.  Follow the picture below to locate the following:</p>
+<ol type="1">
+<li>Click on the <code>Properties</code> line to toggle on/off to see additional data. Did you notice Docker?</li>
+<li>On the info graphic, click to view the processes that call this process (Inbound)</li>
+<li>On the info graphic, click to view the services that are served by this process. In this case there are multiple</li>
+<li>On the info graphic, click to view the processes that this process calls (Outbound)</li>
+</ol>
+<p class="image-container"><img alt="image" src="img/a7f1c02fab5a9146.png"></p>
+<h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
+<p>_Dynatrace automatically recognizes many common processes like Tomcat and will capture process specific metrics such as JVM garbage collection. See a list of supported technologies, languages and containers in the <a href="https://www.dynatrace.com/support/help/technology-support/supported-technologies-and-versions" target="_blank">Dynatrace documentation</a>_</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Dynatrace and containers" duration="0">
+        <p>In the picture above, the arrow shows the properties for Docker.</p>
+<p>Our sample app was built as a Docker container and Dynatrace hooks into containers and provides code for injecting OneAgent into containerized process.</p>
+<h2 is-upgraded>How Dynatrace monitors containers</h2>
+<p class="image-container"><img alt="image" src="img/1a4f9a2e56588abd.png"></p>
+<p>Dynatrace hooks into containers and provides code for injecting OneAgent into containerized processes.</p>
+<p>There&#39;s no need to modify your Docker images, modify run commands, or create additional containers to enable Docker monitoring. Simply install OneAgent on your hosts that serve containerized applications and services. Dynatrace automatically detects the creation and termination of containers and monitors the applications and services contained within those containers.</p>
+<h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
+<p>_You can read more about Dynatrace Docker Monitoring <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/basic-concepts/how-dynatrace-monitors-containers/" target="_blank">here</a> and technical details <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/monitoring/monitor-docker-containers" target="_blank">here</a>_</p>
+<h2 is-upgraded>View a Service</h2>
+<p>Now Let&#39;s review a specific service.</p>
+<ol type="1">
+<li>Click the <code>services</code> square above the host infographic to open the list of services</li>
+<li>From the list of services, choose the <code>frontend</code></li>
+</ol>
+<p class="image-container"><img alt="image" src="img/69b6f7e56180251b.png"></p>
+<h2 is-upgraded>Service View</h2>
+<p>You should be on the service page where you will see information for this specific service.  Follow the picture below to locate the following:</p>
+<ol type="1">
+<li>Click on the <code>Properties</code> line to toggle on/off to see additional data</li>
+<li>Click to view the services that call this service (Inbound)</li>
+<li>Click to view the services that this service calls (Outbound)</li>
+</ol>
+<p class="image-container"><img alt="image" src="img/c9c28a97359447a0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Services" duration="0">
+        <p>Web applications consist of web pages that are served by web servers and web application processes, for example Tomcat. Web and mobile applications are built upon services that process requests like web requests, web service calls, and messaging.</p>
+<p>Such &#34;server-side services&#34; can take the form of web services, web containers, database requests, custom services, and more. Services may in turn call other services such as web services, remote services, and databases services.</p>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>As you plan your migration, it is important to gain a complete picture of interdependency to the rest of the environment architecture at host, processes, services, application perspectives. Since time is always scarce, being able to do this in a single place can shorten assessment timelines.</p>
+<h2 is-upgraded>Services</h2>
+<p>Let&#39;s now take a look at all the services being monitored by clicking on the <code>Services</code> left side Dynatrace menu.</p>
+<p>The filtered list should now look like this:</p>
+<p class="image-container"><img alt="image" src="img/7738253487748307.png"></p>
+<p>Choose the <code>frontend</code> service.</p>
+<p>On the <code>frontend</code> service page, find the <code>Dynamic Web Requests</code> section on the right and click the <code>view Dynamic Requests</code> button to see what it calls.</p>
+<p class="image-container"><img alt="image" src="img/e261ea9ef563b6a6.png"></p>
+<p>On this page you can view the transactions as time-series charts.</p>
+<p class="image-container"><img alt="image" src="img/6e2911af546ce8c1.png"></p>
+<p>On this page you can view the &#34;top requests&#34; and their response time consumption.  You should recognize the URLs from the sample app!</p>
+<p class="image-container"><img alt="image" src="img/e6a82a27e764b970.png"></p>
+<p>By clicking on one of the requests, the time-series charts are filtered to just that one request.</p>
+<p class="image-container"><img alt="image" src="img/b9f9d754835c9ad9.png"></p>
+<h2 is-upgraded>Analysis View</h2>
+<p>On the top if the page on the right is a button labeled <code>Create Analysis view</code>, click that.</p>
+<p class="image-container"><img alt="image" src="img/2eb175c2217bde32.png"></p>
+<p>Tryout the options available to view, filter and analyze data.</p>
+<p class="image-container"><img alt="image" src="img/3a2760f2338fd6ee.png"></p>
+<h2 is-upgraded>Analyze Service Flow</h2>
+<p>We just saw one way to review process and service communication, but let&#39;s look at how Dynatrace understands and visualizes your applications&#39; transactions from end-to-end using S<code>Service Backtraces</code> and <code>Service flows</code></p>
+<ul>
+<li>With <code>Service flow</code>, you see the flow of service calls <strong>FROM</strong> a service, request, or their filtered subset. Along with the specific services that are triggered, you can also see how each component of a request contributes to the overall response time.</li>
+<li>With <code>Service backtrace</code>, you see the calls <strong>TO</strong> a service.</li>
+</ul>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>As you plan your migration, it is important to gain a complete picture of interdependency to the rest of the environment architecture at host, processes, services, and application perspectives. Since time is always scarce, being able to do this in a single place can shorten assessment timelines.</p>
+<p>Knowing the type of access, executed statements, and amount of data transferred during regular hours of operation allows for better planning and prioritization of the move groups. In some cases, you may decide to not migrate this database in favor of other services or databases that are less complex to migrate due to fewer dependencies.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Review Service Flow" duration="0">
+        <ol type="1">
+<li>Return to the <code>frontend</code> service.  You can use the <code>breadcrumb</code> menu as shown below.  <img alt="image" src="img/9e4a9e8cc6a5b7aa.png"></li>
+<li>On the <code>frontend</code> service page, locate the Understand dependencies<code>section on the right, and then click the</code>view Service flow` button.  <img alt="image" src="img/383c3108823a2dc3.png"></li>
+</ol>
+<h2 is-upgraded>Response time perspective</h2>
+<p>You should now be on the <strong>Service flow</strong> page.</p>
+<p>Right away, we can see how this application is structured:</p>
+<ul>
+<li>Frontend calls backend</li>
+<li>Backend calls database</li>
+</ul>
+<p class="image-container"><img alt="image" src="img/39d7f5bae6af286a.png"></p>
+<p>Refer to the numbers in the picture above:</p>
+<ol type="1">
+<li>The timeframe defaults to whatever you have your global timeframe selector set to, up to a maximum of 24 hours.</li>
+<li>We are viewing the data from a <strong>Response time perspective</strong>. Shortly, we will review the <strong>Throughput perspective</strong>.</li>
+<li>Click on the boxes to expand the response time metrics. We can see that most of the response time, most of the time is spent in the backend service.</li>
+<li>Even though there are a few calls to the database for every backend service request, only a very small amount of the response time is spent in the database.</li>
+</ol>
+<h2 is-upgraded>Throughput perspective</h2>
+<p class="image-container"><img alt="image" src="img/970d530dcf011087.png"></p>
+<p>Refer to the numbers in the picture above:</p>
+<ol type="1">
+<li>The timeframe defaults to 10 minutes but can be adjusted</li>
+<li>Change to the <strong>Throughput</strong> perspective by clicking on the box</li>
+<li>Click on the boxes to expand the metrics to see the number of requests and average response times going to the backend sevice</li>
+<li>We can see the number of requests to <code>backend</code> database</li>
+</ol>
+<h2 is-upgraded>Analyze service backtrace</h2>
+<p>Dynatrace understands your applications transactions from end to end. This transactional insight is visualized several ways like the backtrace.</p>
+<p>The backtrace tree view represents the sequence of services that led to this service call, beginning with the page load or user action in the browser.</p>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>Using the service flow and service backtrace, these two tools give you a complete picture of interdependency to the rest of the environment architecture at host, processes, services, and application perspectives.</p>
+<h2 is-upgraded>Review Service backtrace</h2>
+<p>Let&#39;s now take a look at the Services by clicking on the <code>Services</code> left side Dynatrace menu.</p>
+<p>Pick the <code>backend</code> service.</p>
+<p class="image-container"><img alt="image" src="img/bc56cf5964540025.png"></p>
+<p>On the <code>backend</code> service, click on the <code>Analyze Backtrace</code> button.</p>
+<p class="image-container"><img alt="image" src="img/d70cc9d2e63d49f4.png"></p>
+<p>You should be on the service backtrace page where you will see information for this specific service.</p>
+<p>This will get more interesting in the next lab, but for the monolith backend, we can see that the backtrace is as follows:</p>
+<ol type="1">
+<li>The starting point is the <code>backend</code></li>
+<li><code>backend</code> is called by the <code>frontend</code> service</li>
+<li><code>ApacheJMeter</code> traffic from the load generator script</li>
+<li>You may also see browser traffic to the <strong>frontend</strong> from the <code>My web application</code>.  If you don&#39;t that is OK.</li>
+</ol>
+<p><strong><em>If you click on any of the rows in the backtrace, the bottom portion of the page will expand.</em></strong></p>
+<p class="image-container"><img alt="image" src="img/25938250212e664a.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Databases" duration="0">
+        <p>As you plan your migration, Database observability is critical to a successful plan. Knowing the type of access, executed statements, and amount of data transferred during regular hours of operation allows for better migration planning and prioritization of the move groups. In some cases, you may decide to not migrate this database in favor of other services or databases that are less complex to migrate due to fewer dependencies.</p>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>When monitoring database activity, Dynatrace shows you which database statements are executed most often and which statements take up the most time. You can also see which services execute the database statements what will be direct input to migration planning and prioritization of the move groups.</p>
+<p>Dynatrace monitors all the popular database SQL Server, Oracle, MongoDB to name a few. See <a href="https://www.dynatrace.com/platform/database-monitoring/" target="_blank">Dynatrace documentation</a> for more details on platform support.</p>
+<h2 is-upgraded>Navigate to the Database</h2>
+<p>To learn some out-of-the-box features of Dynatrace. Let&#39;s do a quick review of the database that exists for the sample application.</p>
+<ol type="1">
+<li>Lets get back to the <code>backend</code> service. One way is to go back to the <code>Services</code> left side Dynatrace menu and then pick the <code>backend</code> service.</li>
+<li>On the <code>backend</code> service page, click on the <code>[embedded]</code> database to open the database service page.</li>
+</ol>
+<p class="image-container"><img alt="image" src="img/39756ddcb295eabc.png"></p>
+<h2 is-upgraded>Database Review</h2>
+<p>The sample application uses an <a href="http://hsqldb.org/)" target="_blank">In memory Java relational database</a>.  On this page you can explore the database process like</p>
+<ol type="1">
+<li>What services call this database</li>
+<li>Database availability</li>
+<li>View individual SQL statements</li>
+<li>Custom metric analysis</li>
+</ol>
+<p class="image-container"><img alt="image" src="img/9b1589b6ee5bd981.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Technologies and processes" duration="0">
+        <p>By default, Dynatrace gives you FullStack horizontal (who talks to whom) and vertical (what runs on what) dependency visibility as part of Dynatrace Smartscape! All without a single line of code or configuration change – just by installing the OneAgent.</p>
+<p>Seeing which processes make up the monolith has been an eye-opener for many teams that have done this exercise. &#34;Oh – we completely forgot about the dependency to this legacy process we introduced 5 years ago!&#34; – that&#39;s a common thing you hear!</p>
+<p>As you plan your migration, knowing what technologies make up your eco-system is key so what you can decide whether to migrate, refactor or replace certain services.</p>
+<p>The workshop is somewhat limited, so here is an example from another environment.</p>
+<p class="image-container"><img alt="image" src="img/ea0fd76211c38433.png"></p>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>This is another out-of-the-box feature that helps you understand what technologies are in your environment with a heat map presentation to what degree they exist.</p>
+<h2 is-upgraded>Review Technologies and processes View</h2>
+<ol type="1">
+<li>Click on the <strong>Technologies and processes</strong> link on the left side menu within Dynatrace to view the technologies that OneAgent was able to automatically discover and instrument.  <img alt="image" src="img/866704502c175f1f.png"></li>
+<li>In the filter box, type <code>tag</code>, choose <code>stage</code>, and the value of <code>production</code>. It should look like this:  <img alt="image" src="img/8eb633e828445c6e.png"></li>
+</ol>
+<h2 is-upgraded>Planning Ahead</h2>
+<p>You can always click into the <code>Hub</code> menu within Dynatrace to learn about the many technologies that Dynatrace supports.  This list is in sync and constantly updated in conjunction with the <a href="https://www.dynatrace.com/hub" target="_blank">Dynatrace website hub page</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Summary" duration="0">
+        <p>By just installing the OneAgent, we have now gained a detailed topological view of sample application from the both the infrastructure and application tiers and we are now ready to tackle our adoption to the cloud armed with the answers we need.</p>
+<ul>
+<li><strong>Right Priority</strong> - We now understand the complexity and interdependency of services and components to the rest of the environment architecture</li>
+<li><strong>Right-Sizing the environment</strong> - We now understanding which resources are required to move along with their required resource consumption patterns</li>
+<li><strong>Best Migration Strategy</strong> - We now understand the current end-to-end transactions through architecture and can choose the best migration strategy (rehost, refactor, rearchitect, rebuild)</li>
+</ul>
+<h2 is-upgraded>One more resource to review</h2>
+<p>1 . Choose the <code>Dynatrace Hub</code> option from the left side menu to open the OneAgent deployment page.</p>
+<p class="image-container"><img alt="image" src="img/64fb0b50047898e0.png"></p>
+<p>2 . Explore all the integration options of Dynatrace while you are in the Hub</p>
+<h2 is-upgraded>Checklist</h2>
+<p>In this section, you should have completed the following:</p>
+<p>✅ Review Dynatrace OneAgent</p>
+<p>✅ Review real-time data now available for the sample application</p>
+<p>✅ Review how Dynatrace helps with modernization planning</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

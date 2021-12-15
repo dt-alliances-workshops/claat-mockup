@@ -1,0 +1,94 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 7 - Cleanup</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-193960361-1"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="aws-lab7"
+                  title="Lab 7 - Cleanup"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Overview" duration="0">
+        <p>If you plan to keep things running so you can examine the workshop a bit more please remember to do the cleanup when you are done. Depending on what you provisioned there maybe a few things to cleanup.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Remove Dynatrace config" duration="0">
+        <p>Run this command to remove Dynatrace configuration:</p>
+<pre><code>cd ~/aws-modernization-dt-orders-setup/workshop-config
+./cleanup-workshop-config.sh
+</code></pre>
+<p>The start of the script output will look like this:</p>
+<pre><code>===================================================================
+About to Delete Workshop Dynatrace configuration
+===================================================================
+Proceed? (y/n) : y
+
+...
+...
+Done Removing Dynatrace config
+</code></pre>
+<p>When you are back at the command prompt, then continue to the next step.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Delete AWS resources" duration="0">
+        <p>To remove the resources created earlier with CloudFormation, just navigate to the CloudFormation page in the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">AWS console</a>, highlight a stack, and click the <code>Delete</code> button.</p>
+<p>Plan for a few minutes for the EC2 instances, and 20-30 minutes for the EKS Cluster to be completely removed.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Remove AWS Monitor Policy" duration="0">
+        <p>If you created a IAM policy for the AWS monitor integration lab, then follow these steps.</p>
+<p>1 . Navigate to IAM policies and delete the policy named <code>dynatrace_monitoring_policy</code> that you created earlier.</p>
+<p>2 . Navigate to IAM role and delete the role named <code>dynatrace_monitoring_role</code> that you created earlier.</p>
+<p>3 . Within Dynatrace, navigate to <code>Settings -> CLoud and Virtualization -> AWS</code> and remove the <code>dynatrace-modernize-workshop</code> connection created earlier.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Next Steps" duration="0">
+        <p>You have a fully feature enabled 15 day Dynatrace trial, so keep using it to monitor and manage your infrastructure and applications!!</p>
+<p>Here are resources to get your started:</p>
+<ul>
+<li><a href="https://www.dynatrace.com/support/help/get-started/get-started-with-dynatrace-saas/" target="_blank">Learn more about your tenant and install more OneAgents</a></li>
+<li><a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/user-management-and-sso/manage-groups-and-permissions/" target="_blank">Add other users to your tenant</a></li>
+<li><a href="https://www.youtube.com/channel/UCcYJ-5q_AfmjQ4XTjTS0o3g" target="_blank">YouTube Videos</a></li>
+<li><a href="https://www.dynatrace.com/services-support/#support-resources-section" target="_blank">More Support resources</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
