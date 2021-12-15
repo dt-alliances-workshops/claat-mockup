@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>LAB 2</title>
+  <title>Lab 2 - Modernization Containers</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
@@ -23,13 +23,130 @@
   <google-codelab-analytics gaid="UA-193960361-1"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
                   id="lab-2"
-                  title="LAB 2"
+                  title="Lab 2 - Modernization Containers"
                   environment="web"
                   feedback-link="">
     
-      <google-codelab-step label="Agenda" duration="0">
-        <p>This is a test</p>
-<p class="image-container"><img alt="This" src="img/14e4bb246218db81.png"></p>
+      <google-codelab-step label="Overview" duration="0">
+        <p>For this lab you are going to use an updated version of the application on a second EC2 instance.  This makes it easy for you to see the transformation of the Sample Application in Lab 1.</p>
+<p>If you would rather provision Kubernetes on AWS to interact with the sames transformed application, then please follow <code>Lab 2 - Modernization Kubernetes</code> workshop guide.</p>
+<h2 is-upgraded>Objectives of this Lab</h2>
+<p>🔷 Review how the sample app went to multiple services</p>
+<p>🔷 Examine the transformed application using service flows and back traces</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Lab 2 Overview" duration="0">
+        <p>As we saw earlier, the sample application is a <code>three-tiered application --> frontend, backend, database</code></p>
+<p>Re-hosting (also referred to as lift and shift) is a common migration use case. Re-architecture and Re-platform are steps that break the traditional architectures and replace individual components with cloud services and microservices.</p>
+<p>We just learned how we can get great information on services, processes and user requests using Dynatrace and OneAgent. This helps us now decide what individual features or complete applications based on business benefits we need to migrate and modernize. The idea here is to focus on feature-based business benefit with functional migration.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Lab 2 Design" duration="0">
+        <p>For this lab, another version of the application exists that breaks out each of these backend services into separate services. By putting these services into Docker images, we gain the ability to deploy the service into modern platforms like Kubernetes and Cloud managed services such as the ones shown below.</p>
+<p class="image-container"><img alt="image" src="img/842f0cabe019d9f5.png"></p>
+<p><strong>#1 . Sample Application</strong></p>
+<p>Sample app representing a &#34;services&#34; architecture of a frontend and multiple backend services implemented as Docker containers that we will review in this lab.</p>
+<p><strong>#2 . Load generator process</strong></p>
+<p>A <a href="https://github.com/dt-orders/load-traffic" target="_blank">JMeter</a> process sends simulated user traffic to the sample app running within a Docker container. You will not need to interact with this container, it just runs in the background.</p>
+<p><strong>#3 . Dynatrace monitoring</strong></p>
+<p>The Dynatrace OneAgent has been installed by the workshop provisioning scripts and is communicating to your Dynatrace Managed tenant.</p>
+<h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
+<p>_Learn more about the various ways the OneAgent can be installed, in the <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-oneagent" target="_blank">Dynatrace documentation</a>_</p>
+<p><strong>#4 . AWS monitoring</strong></p>
+<p>In addition to monitoring your AWS workloads using OneAgent, Dynatrace provides <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas/" target="_blank">integration</a> with AWS CloudWatch which adds infrastructure monitoring to gain insight even into serverless application scenarios.</p>
+<p>We will not have them configured for the lab, with Dynatrace you can also monitor other AWS services that influence the performance of your AWS-hosted applications. See the <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/amazon-web-services/supporting-services/" target="_blank">Dynatrace Docs</a> for complete list of AWS Supported services.</p>
+<p><strong>#5 . AWS Dashboard</strong></p>
+<p>This out-of-the-box dashboard gives insights on AWS CloudWatch metrics from each configured AWS account.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sample App" duration="0">
+        <p>To get the Public IP to the frontend of the Sample Application, open the <code>EC2 instances</code> page in the AWS console. On the newly created host <code>dt-orders-services</code> find the <code>Public IP</code> as shown below.</p>
+<p class="image-container"><img alt="image" src="img/ade8711b901f070.png"></p>
+<h2 is-upgraded>View the Sample app in a Browser</h2>
+<p>To view the application, copy the public IP into a browser that will look like this.</p>
+<h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
+<p>One difference you will see is the a dynamic list for the backend services versions.  We will refer to this again later in the labs.</p>
+<p class="image-container"><img alt="image" src="img/c280fc2314796265.png"></p>
+<h2 is-upgraded>Transactions and services</h2>
+<p>Let&#39;s now take a look at all the services being monitored by clicking on the <code>Transactions and services</code> left side Dynatrace menu.</p>
+<p>In the management zone drop down, choose <code>dt-orders-services</code>. The filtered list should now look like this:</p>
+<p class="image-container"><img alt="image" src="img/8c534fbcc8bd2397.png"></p>
+<p>Choose the <code>frontend</code> service.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Analyze Service Flow" duration="0">
+        <p>Now that we are back on the frontend service, lets look at the service flow to see whats different now.  Just click on the <code>View service flow</code> button to open this.</p>
+<p class="image-container"><img alt="image" src="img/383c3108823a2dc3.png"></p>
+<h2 is-upgraded>Response time perspective</h2>
+<p>You should now be on the <code>Service flow</code> page.</p>
+<p>Right away, we can see how this application is structured:</p>
+<ul>
+<li>Frontend calls order, customer, and catalog service</li>
+<li>Order service calls order and customer service</li>
+</ul>
+<p>Something you would never know from the application web UI !</p>
+<p class="image-container"><img alt="image" src="img/5a77652cb9cd505c.png"></p>
+<p>Refer to the picture above:</p>
+<ol type="1">
+<li>We are viewing the data from a <code>Response time perspective</code>. Shortly, we will review the <code>Throughput perspective</code>.</li>
+<li>Click on the boxes to expand the response time metrics. We can see that most of the response time, most of the time is spent in the <code>order</code> service and the least in the <code>customer</code> services.  And as in the monolith version of the application, a very small amount of the response time is spent in the databases.</li>
+</ol>
+<h2 is-upgraded>Throughput perspective</h2>
+<p class="image-container"><img alt="image" src="img/1c59a65ca4c36902.png"></p>
+<p>Refer to the picture above:</p>
+<ol type="1">
+<li>Change to the <code>Throughput perspective</code> by clicking on the box</li>
+<li>Click on the boxes to expand the metrics to see the number of requests and average response times going to each service</li>
+</ol>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>Review architecture before and after changes is now as easy as a few clicks!</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Analyze Service Backtrace" duration="0">
+        <p>Let&#39;s now take a look at the transactions and Services by clicking on the <code>Transactions and services</code> left side Dynatrace menu.</p>
+<p>In the management zone drop down, choose <code>dt-orders-services</code> and pick the <code>catalog</code> service.</p>
+<p class="image-container"><img alt="image" src="img/259d4cb235f258ec.png"></p>
+<h2 is-upgraded>Open Backtrace Page</h2>
+<p>To see the backtrace page, just click on the <code>Analyze Backtrace</code> button.</p>
+<p class="image-container"><img alt="image" src="img/d70cc9d2e63d49f4.png"></p>
+<p>You should be on the service backtrace page where you will see information for this specific service.</p>
+<p>This will get more interesting in the next lab, but for the modernized backend, we can see that the backtrace is as follows:</p>
+<ol type="1">
+<li>The starting point is the <code>catalog</code> service</li>
+<li><code>catalog</code> is called by the <code>order</code> service</li>
+<li><code>catalog</code> is called by the <code>frontend</code> service</li>
+<li>You may also see browser traffic to the <code>frontend</code> from the <code>My web application</code>.  If you don&#39;t that is OK.</li>
+</ol>
+<p class="image-container"><img alt="image" src="img/3640bd594654921d.png"></p>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>The <code>service flow</code> and <code>service backtrace</code> give you a complete picture of interdependency to the rest of the environment architecture at host, processes, services, application perspectives.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Summary" duration="0">
+        <p>While migrating to the cloud, you want to evaluate if your migration goes according to the plan, whether the services are still performing well or even better than before, and whether your new architecture is as efficient as the blueprint suggested. Dynatrace helps you validate all these steps automatically, which helps speed up the migration and validation process.</p>
+<p>Having the ability to understand service flows enables us to make smarter re-architecture and re-platforming decisions. With support for new technologies like Kubernetes, you can now have confidence modernizing with a platform that span the old and the new.</p>
+<p>Over time, you can imagine that this sample application will be further changed to add in other technologies like <a href="https://aws.amazon.com/lambda/" target="_blank">AWS Lambda</a> and other PaaS services like <a href="https://aws.amazon.com/rds/" target="_blank">AWS Relational Database Service (RDS)</a> or <a href="https://aws.amazon.com/rds/aurora" target="_blank">Amazon Aurora - MySQL and PostgreSQL-compatible relational database</a> databases and virtual networking <a href="https://aws.amazon.com/api-gateway/" target="_blank">Amazon API Gateway</a> as shown in the picture below.</p>
+<p class="image-container"><img alt="image" src="img/b392baca8c581584.png"></p>
+<h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
+<p><em>We will not cover this, but organizations are establishing DevOps approaches and establishing Continuous Integration (CI) pipelines to build and test each service independently. Then adding Continuous Deployment (CD) to the process too that vastly increase our ability to delivery features faster to our customers.  Dynatrace has a number of solutions to support DevOps that you can read about </em><a href="https://www.dynatrace.com/solutions/devops/" target="_blank"><em>here</em></a></p>
+<h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
+<p><em>Dynatrace sees a lot of demand for Lambda serverless compute service and a slew of new capabilities that you can read about in these </em><a href="https://www.dynatrace.com/news/tag/aws-lambda/" target="_blank"><em>Dynatrace blogs</em></a></p>
+<h2 is-upgraded>Checklist</h2>
+<p>In this section, you should have completed the following:</p>
+<p>✅ Review how the sample app went to multiple services</p>
+<p>✅ Examine the transformed application using service flows and back traces</p>
 
 
       </google-codelab-step>

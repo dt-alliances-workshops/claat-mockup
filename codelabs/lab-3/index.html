@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>LAB 3</title>
+  <title>Lab 3 - SLOs</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
@@ -23,13 +23,72 @@
   <google-codelab-analytics gaid="UA-193960361-1"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
                   id="lab-3"
-                  title="LAB 3"
+                  title="Lab 3 - SLOs"
                   environment="web"
                   feedback-link="">
     
-      <google-codelab-step label="Agenda" duration="0">
-        <p>This is a test</p>
-<p class="image-container"><img alt="This" src="img/14e4bb246218db81.png"></p>
+      <google-codelab-step label="Overview" duration="0">
+        <p>In order to do more with less and scale, organizations must transcend IT silos, foster collaboration and improve productivity. Automation and a common data model are key components of this, but it takes platforms that support operational teams and workflows.</p>
+<h2 is-upgraded>Objectives of this Lab</h2>
+<p>🔷 Examine Dynatrace Service Level Objectives (SLOs)</p>
+<p>🔷 Create a custom dashboard with SLOs</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="SLOs" duration="0">
+        <p>Dynatrace provides all the necessary real-time information that your Site-Reliability Engineering (SRE) teams need to monitor their defined objectives.</p>
+<p>An SRE team is responsible for finding good service-level indicators (SLIs) for a given service in order to closely monitor the reliable delivery of that service. SLIs can differ from one service to the other, as not all services are equally critical in terms of time and error constraints.</p>
+<p>Dynatrace offers more than 2000 different metrics that are ready for use as dedicated SLIs.</p>
+<p>Each SLO definition can be evaluated by following two result metrics:</p>
+<ul>
+<li><strong>SLO status:</strong> The current evaluation result of the SLO, expressed as a percentage. The semantics of this percentage (for example, 99.3% of all service requests are successful, or 99.99% of all website users are &#34;satisfied&#34; in terms of Apdex rating) and the target defined for this percentage are up to the SRE team.</li>
+<li><strong>SLO error budget:</strong> The remaining buffer until the defined SLO target is considered as failed. For example, if an SLO defines a 95% target and its current SLO status is evaluated as 98%, the remaining error budget is the difference between the SLO status and the SLO target. Two SLOs were created for you, so review those.</li>
+</ul>
+<p>Here is an example custom dashboard with SLO dashboard tiles.</p>
+<p>img/lab2-slo-dashboard.png)</p>
+<h2 is-upgraded>Review your environment</h2>
+<p>From the left menu in Dynatrace, click the <code>SLO</code> option to review the two SLOs that are already setup.  Edit one of them to review the configuration.</p>
+<p>img/lab2-slo-list.png)</p>
+<h2 is-upgraded>👍 How this helps</h2>
+<p>You can review the current health status, error budgets, target and warning, along with the timeframe of all your SLOs on the SLOs overview page.</p>
+<p>Davis provides quick notifications on anomalies detected, along with actionable root causes. If your SLO has turned red, this is most likely because Davis has already raised a problem for the underlying metrics, showing you the root cause.</p>
+<h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
+<p>See the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank">Dynatrace Docs</a> for more details on SLOs</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="View SLO Dashboard" duration="0">
+        <p>From the left side menu in Dynatrace, pick the <code>dashboard</code> menu.</p>
+<p>Click the <code>Cloud Migration Success</code> to open the dashboard</p>
+<p>You should now see the dashboard</p>
+<p>img/lab2-dashboard-view.png)</p>
+<h2 is-upgraded>Edit Dashboard</h2>
+<p>Now you need to edit the dashboard and adjust the tiles with the SLOs and databases in your environment.</p>
+<p>On the top right of the page, click the <code>edit</code> button and then follow these steps:</p>
+<h2 is-upgraded>Edit Dynamic requests tile</h2>
+<ol type="1">
+<li>Click on the title of the Dynamic requests tile to open the Service properties window on the right side</li>
+<li>On the Service properties window, pick the monolith <code>frontend (monolith-frontend)</code> service</li>
+<li>Click the <code>Done</code> button</li>
+</ol>
+<p>img/lab2-dashboard-edit-tile.png)</p>
+<h2 is-upgraded>Edit remaining tiles</h2>
+<ol type="1">
+<li>Repeat the same steps above for the Cloud services tile, but pick the <code>frontend (dev-frontend)</code> in the Service properties window</li>
+<li>Repeat for the two SLO tiles, but pick the associated SLO from the drop down list in the SLO properties window</li>
+<li>Repeat for the two database tiles. For Cloud services application there are 3 databases, so just pick one of the database of a demo.</li>
+<li>Click the <code>Done</code> button to save the dashboard</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Summary" duration="0">
+        <p>In this section, you should have completed the following:</p>
+<p>✅ Examine Dynatrace Service Level Objectives (SLOs)</p>
+<p>✅ Create a custom dashboard with SLOs</p>
 
 
       </google-codelab-step>
