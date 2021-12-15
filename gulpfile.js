@@ -61,6 +61,8 @@ const BASE_URL = args.baseUrl || 'https://dynatrace-perfclinics.github.io/';
 // Despite being a constant, this can be overridden with the --codelabs-dir
 // flag.
 const CODELABS_DIR = args.codelabsDir || 'codelabs';
+const CODELABS_DIR_GEN = args.codelabsDir || 'codelabs-gen';
+const CODELABS_BUILD_DIR = 'codelabs-build';
 
 // CODELABS_ENVIRONMENT is the environment for which to build codelabs.
 const CODELABS_ENVIRONMENT = args.codelabsEnv || 'web';
@@ -92,7 +94,7 @@ const VIEWS_FILTER = args.viewsFilter || '*';
 
 // clean:build removes the build directory
 gulp.task('clean:build', (callback) => {
-  return del('build')
+  return del(CODELABS_BUILD_DIR)
 });
 
 // clean:dist removes the dist directory
@@ -114,7 +116,7 @@ gulp.task('clean', gulp.parallel(
 
 // build:codelabs copies the codelabs from the directory into build.
 gulp.task('build:codelabs', (done) => {
-  copyFilteredCodelabs('build');
+  copyFilteredCodelabs(CODELABS_BUILD_DIR);
   done();
 });
 
@@ -122,7 +124,7 @@ gulp.task('build:codelabs', (done) => {
 gulp.task('build:scss', () => {
   return gulp.src('app/**/*.scss')
     .pipe(sass(opts.sass()))
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest(CODELABS_BUILD_DIR));
 });
 
 // build:css builds all the css files into the dist dir
@@ -132,7 +134,7 @@ gulp.task('build:css', () => {
   ];
 
   return gulp.src(srcs, { base: 'app/' })
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest(CODELABS_BUILD_DIR));
 });
 
 // build:html builds all the HTML files
@@ -143,12 +145,12 @@ gulp.task('build:html', () => {
     .pipe(generateView())
     .pipe(useref({ searchPath: ['app'] }))
     .pipe(gulpif('*.js', babel(opts.babel())))
-    .pipe(gulp.dest('build'))
+    .pipe(gulp.dest(CODELABS_BUILD_DIR))
     .pipe(gulpif(['*.html', '!index.html'], generateDirectoryIndex()))
   );
 
   streams.push(gulp.src(`app/views/${VIEWS_FILTER}/*.{css,gif,jpeg,jpg,png,svg,tff}`, { base: 'app/views' })
-    .pipe(gulp.dest('build')));
+    .pipe(gulp.dest(CODELABS_BUILD_DIR)));
 
   const otherSrcs = [
     'app/404.html',
@@ -156,7 +158,7 @@ gulp.task('build:html', () => {
     'app/site.webmanifest',
   ]
   streams.push(gulp.src(otherSrcs, { base: 'app/' })
-    .pipe(gulp.dest('build'))
+    .pipe(gulp.dest(CODELABS_BUILD_DIR))
   );
 
   return merge(...streams);
@@ -170,7 +172,7 @@ gulp.task('build:images', () => {
   ];
 
   return gulp.src(srcs, { base: 'app/' })
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest(CODELABS_BUILD_DIR));
 });
 
 // build:js builds all the javascript into the dest dir
@@ -199,7 +201,7 @@ gulp.task('build:js', (callback) => {
   ];
   streams.push(gulp.src(bowerSrcs, { base: 'app/' })
     .pipe(gulpif('*.js', babel(opts.babel())))
-    .pipe(gulp.dest('build'))
+    .pipe(gulp.dest(CODELABS_BUILD_DIR))
   );
 
   return merge(...streams);
@@ -211,7 +213,7 @@ gulp.task('build:elements_js', () => {
   ];
 
   return gulp.src(srcs, { base: 'app/' })
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest(CODELABS_BUILD_DIR));
 })
 
 // build:vulcanize vulcanizes html, js, and css
@@ -223,7 +225,7 @@ gulp.task('build:vulcanize', () => {
   return gulp.src(srcs, { base: 'app/' })
     .pipe(vulcanize(opts.vulcanize()))
     .pipe(crisper(opts.crisper()))
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest(CODELABS_BUILD_DIR));
 });
 
 //
@@ -240,7 +242,7 @@ gulp.task('build:vulcanize', () => {
 // builds all the README files to codelabs-build directory
 gulp.task('codelabs:export', (callback) => {
   const sources = glob.sync('codelabs/markdown/*/README.md');
-  claat.run('.', 'export', CODELABS_ENVIRONMENT, CODELABS_FORMAT, DEFAULT_GA, sources, CODELABS_DIR, callback);
+  claat.run('.', 'export', CODELABS_ENVIRONMENT, CODELABS_FORMAT, DEFAULT_GA, sources, CODELABS_DIR_GEN, callback);
   callback();
 });
 
@@ -261,7 +263,7 @@ gulp.task('build', gulp.series(
 // copy copies the built artifacts in build into dist/
 gulp.task('copy', (callback) => {
   // Explicitly do not use gulp here. It's too slow and messes up the symlinks
-  fs.rename('build', 'dist', callback);
+  fs.rename(CODELABS_BUILD_DIR, 'dist', callback);
 });
 
 // minify:css minifies the css
@@ -360,7 +362,7 @@ gulp.task('serve', gulp.series(
   gulp.parallel(
     'watch',
     () => {
-      return gulp.src('build')
+      return gulp.src(CODELABS_BUILD_DIR)
         .pipe(webserver(opts.webserver()));
     }
   )
@@ -479,7 +481,7 @@ const collectMetadata = () => {
       views[view.id] = view;
     }
 
-    const codelabFiles = glob.sync(`${CODELABS_DIR}/*/codelab.json`);
+    const codelabFiles = glob.sync(`${CODELABS_DIR_GEN}/*/codelab.json`);
     for (let i = 0; i < codelabFiles.length; i++) {
       const codelab = parseCodelabMetadata(codelabFiles[i]);
       codelabs.push(codelab);
@@ -856,7 +858,7 @@ const copyFilteredCodelabs = (dest) =>  {
 
   for(let i = 0; i < codelabs.length; i++) {
     const codelab = codelabs[i];
-    const source = path.join(CODELABS_DIR, codelab.id);
+    const source = path.join(CODELABS_DIR_GEN, codelab.id);
     const target = path.join(dest, CODELABS_NAMESPACE, codelab.id);
     fs.ensureSymlinkSync(source, target, 'dir');
   }
