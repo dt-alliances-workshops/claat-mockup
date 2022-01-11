@@ -1,0 +1,130 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 8 Openshift 4 101 w/Dynatrace Blue | Green Deployment (Optional)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-193960361-1"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="redhat-lab8"
+                  title="Lab 8 Openshift 4 101 w/Dynatrace Blue | Green Deployment (Optional)"
+                  environment="web"
+                  feedback-link="https://github.com/dt-alliances-workshops/claat-mockup">
+    
+      <google-codelab-step label="Blue | Green Deployments" duration="0">
+        <p>When implementing continuous delivery for your software one very useful technique is called Blue/Green deployments.  It addresses the desire to minimize downtime during the release of a new version of an application to production.  Essentially, it involves running two production versions of your app side-by-side and then switching the routing from the last stable version to the new version once it is verified.  Using OpenShift, this can be very seamless because using containers we can easily and rapidly deploy a duplicate infrastructure to support alternate versions and modify routes as a service.  In this lab, we will walk through a simple Blue/Green workflow on OpenShift.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Lets deploy an application" duration="0">
+        <p>To demonstrate Blue/Green deployments, we&#39;ll again use the DC Metro application and adjusting some of the text elements on the page. Using your GitHub account, please fork the following <a href="https://github.com/RedHatGov/openshift-workshops" target="_blank">https://github.com/RedHatGov/openshift-workshops</a> project.</p>
+<p>You should be comfortable deploying an app at this point, but here are the steps anyway, this lab uses the same forked project from lab 5</p>
+<ul>
+<li>Goto the terminal and type these commands:<pre><code language="language-bash" class="language-bash">$ oc new-project bluegreen-demo
+$ oc new-app --name=green https://github.com/your-github-uid-goes-here/openshift-workshops --context-dir=dc-metro-map
+$ oc expose service green
+</code></pre>
+<em>Note that we exposed this application using a route named &#34;green&#34;. Wait for the application to become available, then navigate to your application and validate it deployed correctly.</em></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Release a new version of our app and test it in the same environment" duration="0">
+        <p>What we&#39;ll do next is create a new version of the application called &#34;blue&#34;. The quickest way to make a change to the code is directly in the GitHub web interface. In GitHub, edit the dc-metro-map/views/dcmetro.jade file in your repo.</p>
+<p class="image-container"><img alt="image" src="img\\34cbc8aed79efc78.png"></p>
+<p>We can change the text labels indicated by name of a color. If you want to change the label for the &#34;Red Line&#34;, change line 22 from &#34;Red Line&#34; to  &#34;Silver Line&#34;. These changes will be easily viewable on the main screen on the upper right of the application.</p>
+<p>Use the same commands to deploy this new version of the app, but this time name the service &#34;blue&#34;. No need to expose a new route – we&#39;ll instead switch the &#34;green&#34; route to point to the &#34;blue&#34; service once we&#39;ve verified it.</p>
+<ul>
+<li>Goto the terminal and type these commands:<pre><code language="language-bash" class="language-bash">$ oc new-app --name=blue https://github.com/your-github-uid-goes-here/openshift-workshops --context-dir=dc-metro-map
+</code></pre>
+</li>
+</ul>
+<p>Wait for the &#34;blue&#34; application to become available before proceeding.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Switch from Green to Blue" duration="0">
+        <p>Now that we are satisfied with our change we can do the Green/Blue switch.  With OpenShift services and routes, this is super simple.  Follow the steps below to make the switch, since this is a short exercise both CLI and Web Console based methods are outlined below, choose the one you prefer.:</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="CLI Steps" duration="0">
+        <ol type="1">
+<li>Goto the terminal and type the following:<pre><code language="language-bash" class="language-bash">$ oc edit route green
+</code></pre>
+</li>
+<li>This will bring up the Route configuration yaml. Edit the element &#34;spec:&#34;. On the &#34;to:&#34; &#34;name:&#34; line, change its value from &#34;green&#34; to &#34;blue&#34;:<br><h3 is-upgraded>Example Before:</h3>
+<pre><code language="language-bash" class="language-bash">spec:
+    host: green-bluegreen-demo.apps.ocptest1.alliances.dynatracelabs.com
+    port:
+    targetPort: 8080-tcp
+    to:
+    kind: Service
+    name: green
+    weight: 100
+    wildcardPolicy: None
+</code></pre>
+<h3 is-upgraded>Example After:</h3>
+<pre><code language="language-bash" class="language-bash">spec:
+    host: blue-bluegreen-demo.apps.ocptest1.alliances.dynatracelabs.com
+    port:
+    targetPort: 8080-tcp
+    to:
+    kind: Service
+    name: blue
+    weight: 100
+    wildcardPolicy: None
+</code></pre>
+</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Web Console Steps" duration="0">
+        <ol type="1">
+<li>As &#34;Administrator&#34;, in the &#34;bluegreen-demo&#34; project, navigate to &#34;Routes&#34;, and select &#34;green&#34;<img alt="image" src="img\\7ee4903c6bb9537.png"></li>
+<li>In the Route detail page, click on Actions &gt; Edit:<br><img alt="image" src="img\\74e433a3d8610839.png"></li>
+<li>Edit the Route: change the &#34;spec:&#34; -&gt; &#34;to:&#34; section &#34;name:&#34; from &#34;green&#34; to &#34;blue&#34;, and click &#34;Save&#34;<img alt="image" src="img\\c990f0b06fd131a.png"></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Summary" duration="0">
+        <p>Pretty easy, right?</p>
+<p>If you want to read more about Blue/Green check out <a href="http://martinfowler.com/bliki/BlueGreenDeployment.html" target="_blank">this post</a> with a longer description as well as links to additional resources.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

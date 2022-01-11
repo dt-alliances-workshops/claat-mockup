@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-193960361-1",
+  "updated": "2021-12-23T11:09:18-06:00",
+  "id": "redhat-lab0",
+  "duration": 0,
+  "title": "Lab 0 Openshift 4 101 w/Dynatrace Introduction",
+  "authors": "Michael Villiger",
+  "summary": "Lab 0 Openshift 4 101 w/Dynatrace Introduction",
+  "source": "codelabs/markdown/redhat101-lab0/README.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "openshift"
+  ],
+  "tags": [
+    "openshift"
+  ],
+  "feedback": "https://github.com/dt-alliances-workshops/claat-mockup",
+  "url": "redhat-lab0"
+}

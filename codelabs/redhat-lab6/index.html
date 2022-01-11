@@ -1,0 +1,142 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 6 Openshift 4 101 w/Dynatrace Replication and Recovery (Optional)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-193960361-1"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="redhat-lab6"
+                  title="Lab 6 Openshift 4 101 w/Dynatrace Replication and Recovery (Optional)"
+                  environment="web"
+                  feedback-link="https://github.com/dt-alliances-workshops/claat-mockup">
+    
+      <google-codelab-step label="Replication and Recovery" duration="0">
+        <h2 is-upgraded>Things will go wrong, and that&#39;s why we have replication and recovery</h2>
+<p>Things will go wrong with your software, or your hardware, or from something out of your control.  But we can plan for that failure, and planning for it let&#39;s us minimize the impact.  OpenShift supports this via what we call replication and recovery.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="CLI Steps (Optional)" duration="0">
+        <h2 is-upgraded>Replication</h2>
+<p>Let&#39;s walk through a simple example of how the replication controller can keep your deployment at a desired state.  Assuming you still have the dc-metro-map project running we can manually scale up our replicas to handle increased user load.</p>
+<ol type="1">
+<li>Goto the terminal and try the following:<pre><code language="language-bash" class="language-bash">$ oc scale --replicas=4 dc/dc-metro-map
+</code></pre>
+</li>
+<li>Check out the new pods:<pre><code language="language-bash" class="language-bash">$ oc get pods
+</code></pre>
+<em>Notice that you now have 4 unique pods available to inspect.  If you want go ahead and inspect them, using </em><em><code>oc describe pod/<POD_NAME></code></em><em>. You can see that each has its own IP address and logs.</em></li>
+</ol>
+<p>So you&#39;ve told OpenShift that you&#39;d like to maintain 4 running, load-balanced, instances of our web app.</p>
+<h2 is-upgraded>Recovery</h2>
+<p>Okay, now that we have a slightly more interesting replication state, we can test a service outages scenario. In this scenario, the dc-metro-map replication controller will ensure that other pods are created to replace those that become unhealthy.  Let&#39;s forcibly inflict an issue and see how OpenShift responds.</p>
+<ul>
+<li>Choose a random pod and delete it:<pre><code language="language-bash" class="language-bash">$ oc get pods
+$ oc delete pod/PODNAME
+$ oc get pods -w
+</code></pre>
+</li>
+</ul>
+<p>If you&#39;re fast enough you&#39;ll see the pod you deleted go &#34;Terminating&#34; and you&#39;ll also see a new pod immediately get created and transition from &#34;Pending&#34; to &#34;Running&#34;.  If you weren&#39;t fast enough you can see that your old pod is gone and a new pod is in the list with an age of only a few seconds.</p>
+<ul>
+<li>You can see the more details about your deployment configuration with:<pre><code language="language-bash" class="language-bash">$ oc describe dc/dc-metro-map
+</code></pre>
+</li>
+</ul>
+<h2 is-upgraded>Application Health</h2>
+<p>In addition to the health of your application&#39;s pods, OpenShift will watch the containers inside those pods.  Let&#39;s forcibly inflict some issues and see how OpenShift responds.</p>
+<ul>
+<li>Choose a running pod and shell into it:<pre><code language="language-bash" class="language-bash">$ oc get pods
+$ oc exec PODNAME -it -- /bin/bash
+</code></pre>
+</li>
+</ul>
+<p>You are now executing a bash shell running in the container of the pod.  Let&#39;s kill our webapp and see what happens.</p>
+<h3 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h3>
+<p><em>If we had multiple containers in the pod we could use &#34;-c CONTAINER_NAME&#34; to select the right one</em></p>
+<ul>
+<li>Choose a running pod and shell into its container:<pre><code language="language-bash" class="language-bash">$ pkill -9 node
+</code></pre>
+</li>
+</ul>
+<p>This will kick you out off the container with an error like <code>Error executing command in container</code></p>
+<p>Do it again - shell in and execute the same command to kill node</p>
+<ul>
+<li>Watch for the container restart<pre><code language="language-bash" class="language-bash">$ oc get pods -w
+</code></pre>
+</li>
+</ul>
+<p>If a container dies multiple times quickly, OpenShift is going to put the pod in a CrashBackOff state.  This ensures the system doesn&#39;t waste resources trying to restart containers that are continuously crashing.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Web Console Steps (Optional)" duration="0">
+        <h2 is-upgraded>Replication</h2>
+<p>Let&#39;s walk through a simple example of how the replication controller can keep your deployment at a desired state.  Assuming you still have the dc-metro-map project running we can manually scale up our replicas to handle increased user load.</p>
+<ol type="1">
+<li>Click &#34;Workloads&#34;, then &#34;Deployment Configuration&#34;, and then &#34;dc-metro-map&#34;</li>
+<li>In the Deployment Config Details, click the up arrow 3 times.The deployment should indicate that it is scaling to 4 pods, and eventually you will have 4 running pods.  Keep in mind that each pod has it&#39;s own container which is an identical deployment of the webapp.  OpenShift is now (by default) round robin load-balancing traffic to each pod. <img alt="image" src="img\\d77245bb589ea06.png"></li>
+<li>Click the Pods tab, and select one of the pods (ex: dc-metro-map-X-XXXX)Notice that you now have 4 unique webapp pods available to inspect.  If you want go ahead and inspect them you can see that each has its own IP address and logs. <img alt="image" src="img\\bd456083f8411587.png"></li>
+</ol>
+<p>So you&#39;ve told OpenShift that you&#39;d like to maintain 4 running, load-balanced, instances of our web app.</p>
+<h2 is-upgraded>Recovery</h2>
+<p>Okay, now that we have a slightly more interesting replication state, we can test a service outages scenario. In this scenario, the dc-metro-map replication controller will ensure that other pods are created to replace those that become unhealthy.  Let&#39;s forcibly inflict an issue and see how OpenShift responds.</p>
+<p>From the browse pods list:</p>
+<ol type="1">
+<li>Click one of the running pods (not a build pod)</li>
+<li>Click the &#34;Actions&#34; button in the top right and then select &#34;Delete Pod&#34;<img alt="image" src="img\\c49dc37d5da1f73f.png"></li>
+<li>Now click the &#34;Delete&#34; button in the popup to confirm the pod deletion<img alt="image" src="img\\c498c8bfb0400293.png"></li>
+<li>Quickly switch back to the deployment configuration overview<img alt="image" src="img\\13b9edd22899f247.png"><em>If you&#39;re fast enough you&#39;ll see the pod you deleted unfill a portion of the deployment circle, and then a new pod fill it back up.</em></li>
+<li>You can browse the pods list again to see the old pod was deleted and a new pod with a recent age.<img alt="image" src="img\\1210414e253c6a8b.png"></li>
+</ol>
+<h2 is-upgraded>Application Health</h2>
+<p>In addition to the health of your application&#39;s pods, OpenShift will watch the containers inside those pods.  Let&#39;s forcibly inflict some issues and see how OpenShift responds.</p>
+<ol type="1">
+<li>Navigate to browse the pods list, and click on a running pod</li>
+<li>In the tab bar for this pod, click on &#34;Terminal&#34;</li>
+<li>Click inside the terminal view and type <code>$ pkill -9 node</code><img alt="image" src="img\\2c5c6e35c8ba90ad.png"></li>
+<li>This is going to kill the node.js web server, and kick you off of the container&#39;s terminal.<img alt="image" src="img\\73af28ab9b6be8bd.png"></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Clean Up and Summary" duration="0">
+        <h2 is-upgraded>Clean up</h2>
+<p>Let&#39;s scale back down to 1 replica.  If you are using the web console just click the down arrow from the Deployments Configs Overview page.  If you are using the command line use the <code>oc scale</code> command.</p>
+<p class="image-container"><img alt="image" src="img\\8a22af439171a1a6.png"><br></p>
+<h2 is-upgraded>Summary</h2>
+<p>In this lab we learned about replication controllers and how they can be used to scale your applications and services.  We also tried to break a few things and saw how OpenShift responded to heal the system and keep it running.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

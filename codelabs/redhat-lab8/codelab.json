@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-193960361-1",
+  "updated": "2022-01-11T12:24:33-06:00",
+  "id": "redhat-lab8",
+  "duration": 0,
+  "title": "Lab 8 Openshift 4 101 w/Dynatrace Blue | Green Deployment (Optional)",
+  "authors": "Michael Villiger",
+  "summary": "Lab 8 Openshift 4 101 w/Dynatrace Blue | Green Deployment (Optional)",
+  "source": "codelabs/markdown/redhat101-lab8/README.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "openshift"
+  ],
+  "tags": [
+    "openshift"
+  ],
+  "feedback": "https://github.com/dt-alliances-workshops/claat-mockup",
+  "url": "redhat-lab8"
+}

@@ -1,0 +1,107 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 7 Openshift 4 101 w/Dynatrace Labels (Optional)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-193960361-1"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="redhat-lab7"
+                  title="Lab 7 Openshift 4 101 w/Dynatrace Labels (Optional)"
+                  environment="web"
+                  feedback-link="https://github.com/dt-alliances-workshops/claat-mockup">
+    
+      <google-codelab-step label="Labels" duration="0">
+        <p>This is a pretty simple lab, we are going to explore labels.  You can use labels to organize, group, or select API objects.</p>
+<p>For example, pods are &#34;tagged&#34; with labels, and then services use label selectors to identify the pods they proxy to. This makes it possible for services to reference groups of pods, even treating pods with potentially different docker containers as related entities.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="CLI Steps (Optional)" duration="0">
+        <h2 is-upgraded>Labels on a pod</h2>
+<p>In a previous lab we added our web app using a S2I template.  When we did that, OpenShift labeled our objects for us.  Let&#39;s look at the labels on our running pod.</p>
+<ul>
+<li>Goto the terminal and try the following:<pre><code language="language-bash" class="language-bash">$ oc get pods
+$ oc describe pod/dc-metro-map-4-v427r | grep Labels: --context=4
+Namespace:    demo-0
+Priority:     0
+Node:         ip-10-0-186-15.us-east-2.compute.internal/10.0.186.15
+Start Time:   Thu, 29 Jul 2021 19:33:13 +0000
+Labels:       app=dc-metro-map
+            deployment=dc-metro-map-4
+            deploymentconfig=dc-metro-map
+Annotations:  k8s.v1.cni.cncf.io/network-status:
+                [{
+</code></pre>
+</li>
+</ul>
+<p>You can see the Labels automatically added contain the app, deployment, and deploymentconfig.  Let&#39;s add a new label to this pod.</p>
+<ol type="1">
+<li>Add a label<pre><code language="language-bash" class="language-bash">$ oc label pod/&lt;POD NAME&gt; testyear=2021 testedby=me
+</code></pre>
+</li>
+<li>Look at the labels<pre><code language="language-bash" class="language-bash">$ oc describe pod/&lt;POD NAME&gt; | grep Labels: --context=4
+Namespace:    demo-0
+Priority:     0
+Node:         ip-10-0-186-15.us-east-2.compute.internal/10.0.186.15
+Start Time:   Thu, 29 Jul 2021 19:33:13 +0000
+Labels:       app=dc-metro-map
+            deployment=dc-metro-map-4
+            deploymentconfig=dc-metro-map
+            testedby=me
+            testyear=2021
+</code></pre>
+</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Web Console Steps (Optional)" duration="0">
+        <h2 is-upgraded>Labels on a pod</h2>
+<p>In a previous lab we added our web app using a S2I template.  When we did that, OpenShift labeled our objects for us.  Let&#39;s look at the labels on our running pod.</p>
+<ol type="1">
+<li>Click &#34;Workloads&#34;, click on &#34;Pods&#34;, then click on the three vertical dots next to the &#34;Running&#34; pod.  Consider filtering for Status &#34;Running&#34;.<img alt="image" src="img\\b2433ba92a49903d.png"></li>
+<li>Click &#34;Edit Labels&#34;<img alt="image" src="img\\1cfa9b4811594c5.png"></li>
+<li>Here, at the top, you can see the labels on this pod</li>
+<li>Add ‘testedby=me&#39; and click &#34;Save&#34;<img alt="image" src="img\\e2df3ab12bf54339.png"></li>
+<li>Your updated label will show up in the running pods.</li>
+<li>Select Workloads -&gt; Pods -&gt; dc-metro-map (Running POD), then scroll down to &#34;Labels&#34;<img alt="image" src="img\\1ba2f4d253e510f8.png"></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Summary" duration="0">
+        <p>That&#39;s it for this lab. Now you know that all the objects in OpenShift can be labeled.  This is important because those labels can be used as part of your CI/CD process.  An upcoming lab will cover using labels for Blue/Green deployments. Labels can also be used for running your apps on specific nodes (e.g. just on SSD nodes or just on east coast nodes).</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
