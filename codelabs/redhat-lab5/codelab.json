@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-193960361-1",
+  "updated": "2022-01-11T12:24:12-06:00",
+  "id": "redhat-lab5",
+  "duration": 0,
+  "title": "Lab 5 Openshift 4 101 w/Dynatrace Webhooks and Rollbacks (Optional)",
+  "authors": "Michael Villiger",
+  "summary": "Lab 5 Openshift 4 101 w/Dynatrace Webhooks and Rollbacks (Optional)",
+  "source": "codelabs/markdown/redhat101-lab5/README.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "openshift"
+  ],
+  "tags": [
+    "openshift"
+  ],
+  "feedback": "https://github.com/dt-alliances-workshops/claat-mockup",
+  "url": "redhat-lab5"
+}

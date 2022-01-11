@@ -1,0 +1,181 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 4 Openshift 4 101 w/Dynatrace Developing and Managing Your Application</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-193960361-1"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="redhat-lab4"
+                  title="Lab 4 Openshift 4 101 w/Dynatrace Developing and Managing Your Application"
+                  environment="web"
+                  feedback-link="https://github.com/dt-alliances-workshops/claat-mockup">
+    
+      <google-codelab-step label="Developing and Managing Your Application" duration="0">
+        <h2 is-upgraded>Developing and managing an application in OpenShift</h2>
+<p>In this lab we will explore some of the common activities undertaken by developers working in OpenShift.  You will become familiar with how to use environment variables, secrets, build configurations, and more.  Let&#39;s look at some of the basic things a developer might care about for a deployed app.</p>
+<h2 is-upgraded>Setup</h2>
+<p>From the previous lab you should have the DC Metro Maps web app running in OpenShift.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="CLI Steps (Optional)" duration="0">
+        <h2 is-upgraded>See the app in action and inspect some details</h2>
+<p>OpenShift provides traceability for your running deployment, back to the container image, and the registry that it came from. Additionally, images built by OpenShift are traceable back to the exact <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-branches" target="_blank">branch</a> and <a href="https://help.github.com/en/github/getting-started-with-github/github-glossary#commit" target="_blank">commit</a>. Let&#39;s take a look at that!</p>
+<ul>
+<li>Goto the terminal and type the following:<pre><code language="language-bash" class="language-bash">$ oc status
+</code></pre>
+This is going to show the status of your current project.  In this case it will show the dc-metro-map service (svc) with a nested deployment config(also called a &#34;DC&#34;) along with some more info that you can ignore for now.<em>A deployment in OpenShift is a replication controller based on a user defined template called a deployment configuration</em></li>
+</ul>
+<p>The dc provides us details we care about to see where our application image comes from, so let&#39;s check it out in more detail.</p>
+<ul>
+<li>Type the following to find out more about our dc:<pre><code language="language-bash" class="language-bash">$ oc describe deploymentconfig/dc-metro-map
+</code></pre>
+<em>Notice under the template section it lists the containers it wants to deploy along with the path to the container image.</em></li>
+</ul>
+<p>There are a few other ways you could get to this information.  If you are feeling adventurous, you might also want to try to:</p>
+<ol type="1">
+<li>describe the replication controller <ul>
+<li><code>oc describe rc -l app=dc-metro-map</code></li>
+</ul>
+</li>
+<li>describe the image stream <ul>
+<li><code>oc describe is -l app=dc-metro-map</code></li>
+</ul>
+</li>
+<li>describe the running pods <ul>
+<li><code>oc describe pod</code></li>
+</ul>
+</li>
+</ol>
+<p>Because we built this app using S2I, we get to see the details about the build - including the container image that was used for building the source code.  So let&#39;s find out where the image came from.  Here are the steps to get more information about the build configuration (bc) and the builds themselves:</p>
+<ul>
+<li>Type the following to find out more about our bc:<pre><code language="language-bash" class="language-bash">$ oc describe bc/dc-metro-map
+</code></pre>
+<em>Notice the information about the configuration of how this app gets built.  In particular look at the github URL, the webhooks you can use to automatically trigger a new build, the docker image where the build runs inside of, and the builds that have been completed.</em></li>
+</ul>
+<p>New let&#39;s look at one of those builds:</p>
+<ul>
+<li>Type the following:<pre><code language="language-bash" class="language-bash">$ oc describe build/dc-metro-map-1
+</code></pre>
+This shows us even more about the deployed container&#39;s build and source code, including exact commit information, for this build.  We can also see the commit&#39;s author, and the commit message.  You can inspect the code by opening a web browser and pointing it to a specific commit, like this:https://github.com/RedHatGov/redhatgov.github.io/commit/2d5078cc5bbdf3cf63c5ab15e1628f30b3c89954</li>
+</ul>
+<h2 is-upgraded>Pod logs</h2>
+<p>In the S2I lab we looked at a build log to inspect the process of turning source code into an image.  Now let&#39;s inspect the log for a running pod - in particular let&#39;s see the web application&#39;s logs.</p>
+<ol type="1">
+<li>Goto the terminal and type the following:<pre><code language="language-bash" class="language-bash">$ oc get pods
+</code></pre>
+This is going to show basic details for all pods in this project (including the builders).  Let&#39;s look at the log for the pod running our application.  Look for the POD NAME that that is &#34;Running&#34; you will use it below.</li>
+<li>Goto the terminal and type the following (replacing the POD NAME with your pod&#39;s name):<pre><code language="language-bash" class="language-bash">$ oc logs [POD NAME]
+</code></pre>
+You will see in the output details of your app starting up and any status messages it has reported since it started.<em>You can see more details about the pod itself with </em><em><code>oc describe pod/<POD NAME></code></em></li>
+</ol>
+<h2 is-upgraded>How about we set some environment variables?</h2>
+<p>Whether it&#39;s a database name or a configuration variable, most applications make use of environment variables.  It&#39;s best not to bake these into your containers because they do change and you don&#39;t want to rebuild an image just to change an environment variable.  Good news!  You don&#39;t have to.  OpenShift let&#39;s you specify environment variables in your deployment configuration and they get passed along through the pod to the container.  Let&#39;s try doing that.</p>
+<p>Let&#39;s have a little fun.  The app has some easter eggs that get triggered when certain environment variables are set to ‘true&#39;.</p>
+<ol type="1">
+<li>Goto the terminal and type the following:<pre><code language="language-bash" class="language-bash">$ oc set env deploymentconfig/dc-metro-map -e BEERME=true
+</code></pre>
+</li>
+<li>and then<pre><code language="language-bash" class="language-bash">$ oc get pods -w
+</code></pre>
+</li>
+</ol>
+<p>Due to the deployment config strategy being set to &#34;Rolling&#34; and the &#34;ConfigChange&#34; trigger being set, OpenShift auto deployed a new pod as soon as you updated the environment variable.  If you were quick enough, you might have seen this happening, with the <code>oc get pods -w</code>  command</p>
+<ul>
+<li>Type Ctrl+C to stop watching the pods</li>
+</ul>
+<p><em>You can set environment variables, across all deployment configurations, with ‘dc –all&#39;, instead of specifying a specific DC.</em></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Web Console Steps (Optional)" duration="0">
+        <h2 is-upgraded>See the app in action and inspect some details</h2>
+<p>OpenShift provides traceability for your running deployment, back to the container image, and the registry that it came from. Additionally, images built by OpenShift are traceable back to the exact <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-branches" target="_blank">branch</a> and <a href="https://help.github.com/en/github/getting-started-with-github/github-glossary#commit" target="_blank">commit</a>. Let&#39;s take a look at that!</p>
+<ol type="1">
+<li>Change modes to &#34;Administrator&#34;, and then click on &#34;Workloads&#34;, and &#34;Deployment Configs&#34;.<img alt="image" src="img\\afa18c7b519b3992.png"></li>
+<li>Click on &#34;dc-metro-map&#34;, under &#34;Name&#34;, and check out the details of the deployment<img alt="image" src="img\\aedc7ac77c68d3b7.png"></li>
+<li>Within the deployment for the dc-metro-map is a container summary that shows the detailed registry, container reference, and hash information, for the container that was deployed.<img alt="image" src="img\\e73a1de3a0f08384.png"></li>
+<li>Click on &#34;Builds&#34;, and then &#34;Image Streams&#34;, in the left-side menu.<img alt="image" src="img\\1858ee1c2bc8616a.png"></li>
+<li>Click on the &#34;dc-metro-map&#34; image stream, to see its details.<img alt="image" src="img\\2bb6690f518f1373.png"></li>
+<li>You should see something like what is shown, below.<img alt="image" src="img\\a68a1e4c52c9b8e1.png"></li>
+<li>Click &#34;Builds&#34; and then &#34;Builds&#34;, in the left-side menu, to get back to the build summary<img alt="image" src="img\\9a808c8f9dc77ad3.png"></li>
+<li>Click &#34;dc-metro-map-1&#34; to see the build details<img alt="image" src="img\\e17993aa061a7759.png"></li>
+</ol>
+<p>Because we built this app using S2I, we get to see the details about the build - including the container image that was used for building the source code.  Note that you can kick-off a rebuild here if something went wrong with the initial build and you&#39;d like to attempt it again.</p>
+<p><em>Notice that, in the &#34;Git Commit&#34; section, you can see the comment from the last commit when the build was started, and you can see the that commit&#39;s author.</em></p>
+<p class="image-container"><img alt="image" src="img\\847ffa9d5847b51f.png"></p>
+<h2 is-upgraded>Pod logs</h2>
+<p>In the S2I lab we looked at a build log to inspect the process of turning source code into an image.  Now let&#39;s inspect the log for a running pod - in particular let&#39;s see the web application&#39;s logs.</p>
+<ul>
+<li>Click on &#34;Workloads&#34; and then click on &#34;Pods&#34;<img alt="image" src="img\\e92681a6201bc580.png">This is going to show basic details for all pods in this project (including the builders). If you had a build failure or something similar earlier, you might see a pod that is in a error or failed state with a pod in the running state as shown in the screenshot below.<img alt="image" src="img\\1dac678ef0014fb9.png"></li>
+</ul>
+<p>Next let&#39;s look at the log for the pod running our application.</p>
+<ol type="1">
+<li>Click the pod that starts with &#34;dc-metro-map-&#34;Here you see the status details of your pod as well as its configuration.  Take a minute here and look at what details are available.<img alt="image" src="img\\7e6ada4e804a414b.png"></li>
+<li>Click the &#34;Logs&#34; button<img alt="image" src="img\\dcb2b2de7a594477.png"> Now you can see, in the output window, the details of your app starting up, and any status messages that it has reported since it started.</li>
+</ol>
+<h2 is-upgraded>How about we set some environment variables?</h2>
+<p>Whether it&#39;s a database name or a configuration variable, most applications make use of environment variables.  It&#39;s best not to bake these into your containers because they do change and you don&#39;t want to rebuild an image just to change an environment variable.  Good news!  You don&#39;t have to.  OpenShift let&#39;s you specify environment variables in your deployment configuration and they get passed along through the pod to the container.  Let&#39;s try doing that.</p>
+<ol type="1">
+<li>Click on &#34;Workloads&#34;, and last, click on &#34;Deployment Configs&#34;, in the left-side menu. This is going to show basic details for all build configurations in this project</li>
+<li>Click the &#34;dc-metro-map&#34; build config.</li>
+<li>Click the &#34;Environment&#34; tab next to the &#34;Pods&#34; tab .<img alt="image" src="img\\4c4a9ec4d9bcf18f.png"> This opens up a tab with the environment variables for this deployment config.</li>
+<li>Add an environment variable with the name BEERME and a value of ‘true&#39;<img alt="image" src="img\\e44849aab3181a7d.png"></li>
+<li>Click &#34;Save&#34;</li>
+</ol>
+<p>If you are quick enough, you will see a new pod spin up, and the old pod spin down.  This is due to the deployment config strategy being set to &#34;Rolling&#34;, and having a &#34;ConfigChange&#34; trigger. Thus, OpenShift auto deployed a new pod as soon as you updated with the environment variable.</p>
+<p class="image-container"><img alt="image" src="img\\3e1da4b6bceadb6d.png"></p>
+<p>With the new environment variables set the app should look like this in your web browser (with beers instead of busses):</p>
+<p class="image-container"><img alt="image" src="img\\fd679180c5fc96bc.png"></p>
+<h2 is-upgraded>Getting into a pod</h2>
+<p>There are situations when you might want to jump into a running pod, and OpenShift lets you do that pretty easily.  We set some environment variables, in this lab, so let&#39;s jump onto our pod to inspect them.</p>
+<ol type="1">
+<li>Click on &#34;Workloads&#34; and then click on &#34;Pods&#34;</li>
+<li>Click the pod that starts with &#34;dc-metro-map-&#34; and has a status of Running</li>
+<li>Click the &#34;Terminal&#34; button<img alt="image" src="img\\e8252428fc71d4ee.png"></li>
+</ol>
+<h2 is-upgraded>Let&#39;s look for the environment variables we set</h2>
+<p>Inside the web page&#39;s terminal type this:</p>
+<pre><code language="language-bash" class="language-bash">$ env | grep BEER
+</code></pre>
+<p>That should return <strong>BEERME=true</strong>, matching the value that we set in the deployment config.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Cleanup and Summary" duration="0">
+        <h2 is-upgraded>Summary</h2>
+<p>In this lab you&#39;ve seen how to trace running software back to its roots, how to see details on the pods running your software, how to update deployment configurations, how to inspect logs files, how to set environment variables consistently across your environment, and how to interactively attach to running containers.  All these things should come in handy for any developer working in an OpenShift platform.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-193960361-1",
+  "updated": "2022-01-03T11:27:00-06:00",
+  "id": "redhat-lab7",
+  "duration": 0,
+  "title": "Lab 7 Openshift 4 101 w/Dynatrace Labels (Optional)",
+  "authors": "Michael Villiger",
+  "summary": "Lab 7 Openshift 4 101 w/Dynatrace Labels (Optional)",
+  "source": "codelabs/markdown/redhat101-lab7/README.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "openshift"
+  ],
+  "tags": [
+    "openshift"
+  ],
+  "feedback": "https://github.com/dt-alliances-workshops/claat-mockup",
+  "url": "redhat-lab7"
+}

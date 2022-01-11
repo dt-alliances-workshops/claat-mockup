@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-193960361-1",
+  "updated": "2022-01-11T12:23:52-06:00",
+  "id": "redhat-lab4",
+  "duration": 0,
+  "title": "Lab 4 Openshift 4 101 w/Dynatrace Developing and Managing Your Application",
+  "authors": "Michael Villiger",
+  "summary": "Lab 4 Openshift 4 101 w/Dynatrace Developing and Managing Your Application",
+  "source": "codelabs/markdown/redhat101-lab4/README.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "openshift"
+  ],
+  "tags": [
+    "openshift"
+  ],
+  "feedback": "https://github.com/dt-alliances-workshops/claat-mockup",
+  "url": "redhat-lab4"
+}

@@ -1,0 +1,141 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 3 Openshift 4 101 w/Dynatrace Deploying an App with Source-To-Image (S2I)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-193960361-1"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="redhat-lab3"
+                  title="Lab 3 Openshift 4 101 w/Dynatrace Deploying an App with Source-To-Image (S2I)"
+                  environment="web"
+                  feedback-link="https://github.com/dt-alliances-workshops/claat-mockup">
+    
+      <google-codelab-step label="Deploying an App with Source-To-Image (S2I)" duration="0">
+        <h2 is-upgraded>Source to Image (S2I)</h2>
+<p>One of the useful components of OpenShift is its source-to-image capability.  S2I is a framework that makes it easy to turn your source code into runnable images.  The main advantage of using S2I for building reproducible docker images is the ease of use for developers.  You&#39;ll see just how simple it can be in this lab.</p>
+<h2 is-upgraded>Let&#39;s build a node.js web app, using S2I</h2>
+<p>We can do this either via the command line or the web console.  You decide which you&#39;d rather do and follow the steps below.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="CLI Steps (Optional)" duration="0">
+        <ol type="1">
+<li>Goto the terminal and type the following:<pre><code language="language-bash" class="language-bash">$ oc new-project metro-map
+$ oc new-app --name=dc-metro-map https://github.com/RedHatGov/openshift-workshops.git --context-dir=dc-metro-map
+$ oc expose service dc-metro-map
+</code></pre>
+<h3 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h3>
+<em>When using the CLI, OpenShift automatically detects the source code type and select the nodejs builder image.</em></li>
+</ol>
+<h2 is-upgraded>Check out the build details</h2>
+<p>We can see the details of what the S2I builder did.  This can be helpful to diagnose issues if builds are failing.</p>
+<h3 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h3>
+<p><em>TIP: For a node.js app, running &#34;npm shrinkwrap&#34; is a good practice to perform on your branch before releasing changes that you plan to build/deploy as an image with S2I</em></p>
+<h2 is-upgraded>Viewing build details</h2>
+<ol type="1">
+<li>Goto the terminal and type the following:<pre><code language="language-bash" class="language-bash">$ oc get builds
+</code></pre>
+</li>
+<li>Note the name of your build from the above command output and use it to see the logs with:<pre><code language="language-bash" class="language-bash">$ oc logs builds/[BUILD_NAME]
+</code></pre>
+</li>
+</ol>
+<p>The console will print out the full log for your build.  Note, you could pipe this to more or less for easier viewing in the CLI.</p>
+<h2 is-upgraded>See the app in action</h2>
+<p>Let&#39;s see this app in action!</p>
+<ol type="1">
+<li>Goto the terminal and type the following:<pre><code language="language-bash" class="language-bash">$ oc get routes
+</code></pre>
+</li>
+<li>Copy the HOST/PORT and paste into your favorite web browser:</li>
+<li>The app should look like this in your web browser:<img alt="image" src="img\\1e49ecc1f7905713.png"></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Web Console Steps (Optional)" duration="0">
+        <ol type="1">
+<li>Switch to administrator mode, if you&#39;re not already there<img alt="image" src="img\\4c5b9bb99d0108f1.png"></li>
+<li>Click on &#34;Projects&#34; then the &#34;Create Project&#34; button and give it a name of metro-map<img alt="image" src="img\\24e000d26dc7f975.png"></li>
+<li>Switch to developer mode and select the project metro-map if it did not take you there automatically<img alt="image" src="img\\c3b0035b43605785.png"></li>
+<li>Click &#34;+Add&#34;<img alt="image" src="img\\c70235898eaee63b.png"></li>
+<li>Click &#34;From Git&#34;<img alt="image" src="img\\80f44d2aa59a89ad.png"></li>
+<li>Fill out the &#34;Git Repo URL&#34; field as follows:  <table>
+<tr><td colspan="1" rowspan="1"><p><strong>Git Repo URL</strong></p>
+</td><td colspan="1" rowspan="1"><p><a target="_blank">https://github.com/RedHatGov/openshift-workshops.git</a></p>
+</td></tr>
+</table>
+<img alt="image" src="img\\e276e767af63c2cd.png"></li>
+<li>Ensure that the repository is validated (as shown above)</li>
+<li>Click on the &#34;Show Advanced Git Options&#34; expender<img alt="image" src="img\\4d6d5a24363c5cc9.png"></li>
+<li>Fill out the &#34;Context Dir&#34; field as follows:  <table>
+<tr><td colspan="1" rowspan="1"><p><strong>Context Dir</strong></p>
+</td><td colspan="1" rowspan="1"><p>dc-metro-map</p>
+</td></tr>
+</table>
+  #### 💥 **TECHNICAL NOTE**  _Do NOT include a leading / or the build will fail!_ </li>
+<li>Under &#34;Builder&#34;, click click on the &#34;Node.js&#34; icon<img alt="image" src="img\\445293235433db0d.png"></li>
+<li>Select Node.js 12 UBI7 (12-ubi7) in the Builder Image version<img alt="image" src="img\\7c8586bc660165e3.png"></li>
+<li>Fill out the fields, under &#34;General&#34; as follows:  <table>
+<tr><td colspan="1" rowspan="1"><p><strong>Application</strong></p>
+</td><td colspan="1" rowspan="1"><p>Create Application</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Application Name</strong></p>
+</td><td colspan="1" rowspan="1"><p>dc-metro-map</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>Name</strong></p>
+</td><td colspan="1" rowspan="1"><p>dc-metro-map</p>
+</td></tr>
+</table>
+</li>
+<li>Choose &#34;Deployment Configuration&#34;<img alt="image" src="img\\c88c1e407fc9ed90.png"></li>
+<li>Scroll to the bottom and click &#34;Create&#34;</li>
+</ol>
+<h2 is-upgraded>Check out the build details</h2>
+<p>We can see the details of what the S2I builder did.  This can be helpful to diagnose issues if builds are failing.</p>
+<h3 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h3>
+<p><em>For a node.js app, running &#34;npm shrinkwrap&#34; is a good practice to perform on your branch before releasing changes that you plan to build/deploy as an image with S2I</em></p>
+<h2 is-upgraded>Viewing build details</h2>
+<ol type="1">
+<li>Click on &#34;Topology&#34;, the &#34;node&#34;/&#34;dc-metro-map&#34; icon, then Resources, and then on &#34;View logs&#34;<img alt="image" src="img\\842b85e518635239.png"></li>
+<li>You should see a log output similar to the one below:<img alt="image" src="img\\5f828ddc3ef0c0d6.png"></li>
+</ol>
+<h2 is-upgraded>See the app in action</h2>
+<p>Let&#39;s see this app in action!</p>
+<ol type="1">
+<li>Click on &#34;Topology&#34;<img alt="image" src="img\\9b1ca870f630af90.png"></li>
+<li>Click the arrow, at the top right corner of the &#34;dc-metro-map&#34; icon, to launch a new tab/window, with the running app<img alt="image" src="img\\e204b88658c390b2.png"></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

@@ -57,7 +57,7 @@
 </ul>
 <h2 is-upgraded>Lab components</h2>
 <p>Refer to the picture below, here are the components for lab 2.</p>
-<p class="image-container"><img alt="image" src="img/8859b2722d800782.png"></p>
+<p class="image-container"><img alt="image" src="img\\8859b2722d800782.png"></p>
 <p><strong>#1 . Sample Application</strong> Sample app representing a &#34;services&#34; architecture of a frontend and multiple backend services implemented as Docker containers that we will review in this lab.</p>
 <p><strong>#2 . Kubernetes</strong> Amazon Elastic Kubernetes Service (EKS) is hosting the application. The Kubernetes cluster had the Dynatrace OneAgent Operator installed. (see below for more details).  Two EKS nodes make up the Kubernetes cluster. The Dynatrace OneAgent was preinstalled by the OneAgent operator and is sending data to your Dynatrace SaaS environment. (see below for more details)</p>
 <p><strong>#3 . Dynatrace Operator</strong> Dynatrace OneAgent is container-aware and comes with built-in support for out-of-the-box monitoring of Kubernetes. Dynatrace supports full-stack monitoring for Kubernetes, from the application down to the infrastructure layer.</p>
@@ -86,8 +86,10 @@
 </code></pre>
 <p>2 . Install <code>kubectl</code>. Kubernetes uses this command line utility for communicating with the cluster API server. You can find out more by checking out the documentation</p>
 <ul>
-<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html" target="_blank">https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html</a><code><br>curl --silent -o $HOME/bin/kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl <br></code></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html" target="_blank">https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html</a></li>
 </ul>
+<pre><code>curl --silent -o $HOME/bin/kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl 
+</code></pre>
 <p>3 . Change the permissions of the new folder to make it executable</p>
 <pre><code>chmod +x $HOME/bin/kubectl 
 </code></pre>
@@ -179,15 +181,15 @@ End: Fri Oct  1 19:46:31 UTC 2021
 <p><em> console output. It that occurs, that is OK.  Just refresh your Cloud Shell connection to get back to the command prompt and just monitor the CloudFormation script progress from the AWS console as described next.</em></p>
 <h2 is-upgraded>Verify Cluster Creation</h2>
 <p>To verify completion status of the CloudFormation script within the AWS console.</p>
-<p>You can navigate to the CloudFormation page as shown below. <img alt="image" src="img/a7fb007948905dc2.png"></p>
+<p>You can navigate to the CloudFormation page as shown below. <img alt="image" src="img\\a7fb007948905dc2.png"></p>
 <p>Or use this link as shortcut to the CloudFormation page</p>
 <ul>
 <li><a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">https://console.aws.amazon.com/cloudformation/home</a></li>
 </ul>
 <p>On the CloudFormation page, click on the stack shown in this example below.</p>
-<p class="image-container"><img alt="image" src="img/54348668775e8901.png"></p>
+<p class="image-container"><img alt="image" src="img\\54348668775e8901.png"></p>
 <p>Then click on <code>Events</code> to see the provisioning steps. As it processes, the statuses will start to show <code>CREATE_COMPLETE</code></p>
-<p class="image-container"><img alt="image" src="img/8f0210fd0ab9bbe.png"></p>
+<p class="image-container"><img alt="image" src="img\\8f0210fd0ab9bbe.png"></p>
 <p>You can monitor this as it runs for about 30 minutes. When it&#39;s complete, all statuses will show <code>CREATE_COMPLETE</code></p>
 
 
@@ -195,37 +197,37 @@ End: Fri Oct  1 19:46:31 UTC 2021
     
       <google-codelab-step label="Verify Cluster" duration="0">
         <p>Only proceed with this next step once the CloudFormation stack shows <code>CREATE_COMPLETE</code> status.</p>
-<p class="image-container"><img alt="image" src="img/af07ecd886450b60.png"></p>
+<p class="image-container"><img alt="image" src="img\\af07ecd886450b60.png"></p>
 <h2 is-upgraded>1. Verify Cluster within AWS Console</h2>
 <p>With the AWS Console, search for the <code>Elastic Kubernetes Service</code> or click on the link below.</p>
 <ul>
 <li><a href="https://console.aws.amazon.com/eks/home#/clusters" target="_blank">https://console.aws.amazon.com/eks/home#/clusters</a></li>
 </ul>
-<p class="image-container"><img alt="image" src="img/a76d84252daaeea3.png"></p>
+<p class="image-container"><img alt="image" src="img\\a76d84252daaeea3.png"></p>
 <p>The cluster page, click on the new workshop cluster. You should see a few nodes as shown below.</p>
-<p class="image-container"><img alt="image" src="img/f5920f19b33ba998.png"></p>
+<p class="image-container"><img alt="image" src="img\\f5920f19b33ba998.png"></p>
 <p>Explore the configuration and view nodes details.</p>
 <h2 is-upgraded>2. Verify Cluster using kubectl</h2>
 <p>Using the CloudShell, you can verify the new cluster with the <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">kubectl</a> command line tool used to control Kubernetes clusters. content/99_cleanup/index.md</p>
 <ol type="1">
-<li>Run this command to display the command line options  <pre><code>kubectl
+<li>Run this command to display the command line options<pre><code>kubectl
 </code></pre>
 </li>
-<li>Run this command to configure <code>kubectl</code> to connect to the cluster  <pre><code>aws eks update-kubeconfig --name $(aws eks list-clusters | jq -r .clusters[0])
+<li>Run this command to configure <code>kubectl</code> to connect to the cluster<pre><code>aws eks update-kubeconfig --name $(aws eks list-clusters | jq -r .clusters[0])
 </code></pre>
 </li>
-<li>Verify you are connected. You should see <code>dynatrace-workshop</code> as part of the output.  <pre><code>kubectl config current-context
+<li>Verify you are connected. You should see <code>dynatrace-workshop</code> as part of the output.<pre><code>kubectl config current-context
 </code></pre>
-The output should look something like this:  <pre><code>[user-info]@dynatrace-workshop.us-west-2.eksctl.io
+The output should look something like this:<pre><code>[user-info]@dynatrace-workshop.us-west-2.eksctl.io
 </code></pre>
 </li>
-<li>List the nodes in the cluster  <pre><code>kubectl get nodes
+<li>List the nodes in the cluster<pre><code>kubectl get nodes
 </code></pre>
-The output should look like this:  <pre><code>NAME                                           STATUS   ROLES    AGE     VERSION
+The output should look like this:<pre><code>NAME                                           STATUS   ROLES    AGE     VERSION
 ip-192-168-31-207.us-west-2.compute.internal   Ready    &lt;none&gt;   5d23h   v1.21.2-eks-c1718fb
 ip-192-168-86-194.us-west-2.compute.internal   Ready    &lt;none&gt;   5d23h   v1.21.2-eks-c1718fb
 </code></pre>
-You can see even more detail with this command.  <pre><code>kubectl describe nodes
+You can see even more detail with this command.<pre><code>kubectl describe nodes
 </code></pre>
 </li>
 </ol>
@@ -239,20 +241,20 @@ You can see even more detail with this command.  <pre><code>kubectl describe nod
 <p>Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/monitor-kubernetes-environments/" target="_blank">Dynatrace docs</a> but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.</p>
 <h2 is-upgraded>Install Dynatrace Operator</h2>
 <ol type="1">
-<li>To navigate to Kubernetes page, follow these steps and refer to the picture below:  <ol type="1">
+<li>To navigate to Kubernetes page, follow these steps and refer to the picture below:<ol type="1">
 <li>Within Dynatrace, click on the <code>Deploy Dynatrace</code> menu</li>
 <li>Click on the <code>Start Installation</code> button</li>
 <li>Click on the <code>Kubernetes</code> button</li>
 </ol>
-  <img alt="image" src="img/2a4929c54deb482e.png"></li>
-<li>To get the Dynatrace Operator installation command, refer to the steps and pictures below:  <ol type="1">
+<img alt="image" src="img\\2a4929c54deb482e.png"></li>
+<li>To get the Dynatrace Operator installation command, refer to the steps and pictures below:<ol type="1">
 <li>On the Kubernetes configuration page, enter <code>dynatrace-workshop</code> for the name. This is not the cluster name, it will show up as the Kubernetes page name in Dynatrace</li>
 <li>Click the <code>Create tokens</code> button</li>
 <li>Select the <code>Skip SSL Certificate Check</code> to be ON</li>
 <li>Click the <code>Copy</code> button</li>
 </ol>
-  <img alt="image" src="img/3d1e4071bd77bdef.png"></li>
-<li>Paste the command in SSH Shell and run it.  When you run the command, it will do the following:  <ul>
+<img alt="image" src="img\\3d1e4071bd77bdef.png"></li>
+<li>Paste the command in SSH Shell and run it.  When you run the command, it will do the following:<ul>
 <li>Create a namespace called <code>dynatrace</code> in your cluster containing the Dynatrace Operator supporting pods</li>
 <li>Set the OneAgent on each of the cluster nodes as to provide full-stack Dynatrace monitoring</li>
 <li>Create a Kubernetes dashboard that will be populated with the Kubernetes data pulled from the API</li>
@@ -276,9 +278,9 @@ dynatrace-operator-f946fb4c6-q5k5g   1/1     Running   0          3m59s
 <h2 is-upgraded>Verify Dynatrace Monitoring</h2>
 <p>We will review more detail shortly, but quickly verify within Dynatrace that the hosts are now monitored.</p>
 <p>From the left-side menu in Dynatrace choose <code>Hosts</code>. Ensure the <code>management zone</code> filter is set to all <code>ALL</code></p>
-<p class="image-container"><img alt="image" src="img/81fdfcd3ad9e36e6.png"></p>
+<p class="image-container"><img alt="image" src="img\\81fdfcd3ad9e36e6.png"></p>
 <p>You should see the two hosts like the ones shown below in addition to the host with the name <code>dt-orders-monolith</code>.</p>
-<p class="image-container"><img alt="image" src="img/159f2b6204a63e87.png"></p>
+<p class="image-container"><img alt="image" src="img\\159f2b6204a63e87.png"></p>
 
 
       </google-codelab-step>
@@ -362,29 +364,29 @@ order-6d4cd477cb-9bvn4             1/1     Running   0          2d8h
 <h2 is-upgraded>Review Kubernetes Architecture</h2>
 <p>From the left-side menu in Dynatrace choose <code>Kubernetes</code> and navigate to the Kubernetes cluster page as shown below:</p>
 <p><strong>NOTE: Be sure that your management zone is NOT filtered!</strong></p>
-<p class="image-container"><img alt="image" src="img/274d6727e507f537.png"></p>
+<p class="image-container"><img alt="image" src="img\\274d6727e507f537.png"></p>
 <p><strong>1 - Kubernetes cluster</strong></p>
 <p>A summary the Kubernetes cluster is shown at the top of the Kubernetes dashboard.</p>
 <p><strong>2 - Nodes</strong></p>
-<p>The resources for the Cluster are summarized for the one-to-many hosts or Cluster nodes in this view. Explore specific node in the Node Analysis section, pick the analyze nodes button. <img alt="image" src="img/1d6b7bb233a31d4.png"></p>
+<p>The resources for the Cluster are summarized for the one-to-many hosts or Cluster nodes in this view. Explore specific node in the Node Analysis section, pick the analyze nodes button. <img alt="image" src="img\\1d6b7bb233a31d4.png"></p>
 <p><strong>3 - Namespaces</strong></p>
 <p>Note: Namespaces are ways to partition your cluster resources to run multiple workloads (for example <code>application A</code> and <code>application B</code> workloads) on same cluster</p>
 <ol type="1">
 <li>This workload section shows workloads over time</li>
 <li>In the Cluster workload section, pick the view all workloads button.</li>
 </ol>
-<p class="image-container"><img alt="image" src="img/98bf8e9317d03490.png"></p>
+<p class="image-container"><img alt="image" src="img\\98bf8e9317d03490.png"></p>
 <p>In the filter, pick namespace then staging</p>
-<p class="image-container"><img alt="image" src="img/b87e5c4269f30b27.png"></p>
+<p class="image-container"><img alt="image" src="img\\b87e5c4269f30b27.png"></p>
 <p><strong>4 - Kubernetes workload</strong></p>
 <p>Pick the <code>frontend</code> to drill into.</p>
-<p class="image-container"><img alt="image" src="img/b914f6ba335d9cc9.png"></p>
+<p class="image-container"><img alt="image" src="img\\b914f6ba335d9cc9.png"></p>
 <p>Review the workload overview page to look at various metrics related to the workload.</p>
 <p>Click on Kubernetes POD to look at POD utilization metrics.</p>
-<p class="image-container"><img alt="image" src="img/c611ea36b71391fb.png"></p>
+<p class="image-container"><img alt="image" src="img\\c611ea36b71391fb.png"></p>
 <p><strong>5 - POD</strong></p>
 <p>Review the POD overview page to look at various metrics related to the POD Click on Container next to look at container metrics</p>
-<p class="image-container"><img alt="image" src="img/8e0dab2a6b78f8c8.png"></p>
+<p class="image-container"><img alt="image" src="img\\8e0dab2a6b78f8c8.png"></p>
 <p><strong>6 - Containers</strong></p>
 <p>Referring to the diagram above, expand the properties and tags section to view:</p>
 <ol type="1">
@@ -393,18 +395,18 @@ order-6d4cd477cb-9bvn4             1/1     Running   0          2d8h
 <li>In the info graphic, pick the service to open the services list</li>
 <li>In the service list, click on k8-frontend service</li>
 </ol>
-<p class="image-container"><img alt="image" src="img/9a0fbf5deccec5ce.png"></p>
+<p class="image-container"><img alt="image" src="img\\9a0fbf5deccec5ce.png"></p>
 <p>Next click on 2 Services Icon to review the services running inside the container Select the active front-end service.</p>
 <p><strong>7 - Service</strong></p>
 <p>This view should now look familiar. In Lab 1, we looked at the service for the frontend and backend.  Notice how the Kubernetes information is also available in the service properties.</p>
-<p class="image-container"><img alt="image" src="img/4e0f10d6988020ce.png"></p>
+<p class="image-container"><img alt="image" src="img\\4e0f10d6988020ce.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Sample application Kubernetes details" duration="0">
         <p>Refer to this picture for a more detailed description of our setup.</p>
-<p class="image-container"><img alt="image" src="img/f534d2bc177b3d20.png"></p>
+<p class="image-container"><img alt="image" src="img\\f534d2bc177b3d20.png"></p>
 <p><strong>1 - Dynatrace Namespace</strong></p>
 <p>This <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/" target="_blank">Kubernetes Namespace</a> contains the pods and services that make up the Dynatrace Operator.</p>
 <p><strong>2 - Kubernetes nodes</strong></p>
@@ -457,12 +459,12 @@ order      ClusterIP      10.100.228.17    &lt;none&gt;
       <google-codelab-step label="Backtrace" duration="0">
         <h2 is-upgraded>Open Service Page</h2>
 <p>First filter by <code>dt-orders-k8 management</code> zone.</p>
-<p class="image-container"><img alt="image" src="img/8854d50c37f90d90.png"></p>
+<p class="image-container"><img alt="image" src="img\\8854d50c37f90d90.png"></p>
 <p>Pick the <code>order</code> service.</p>
-<p class="image-container"><img alt="image" src="img/df8103bed4e0a76c.png"></p>
+<p class="image-container"><img alt="image" src="img\\df8103bed4e0a76c.png"></p>
 <p>On this service, we can quickly review the inbound and outbound dependencies.</p>
 <p>Referring to the picture, within the services infographic, click on the &#34;services&#34; square to get a list of the services that the order service calls.</p>
-<p class="image-container"><img alt="image" src="img/1db4fc297e8349bc.png"></p>
+<p class="image-container"><img alt="image" src="img\\1db4fc297e8349bc.png"></p>
 <h2 is-upgraded>Open Backtrace Page</h2>
 <p>To see the backtrace page, just click on the Analyze Backtrace button.</p>
 <p>You should be on the service backtrace page where you will see information for this specific service.</p>
@@ -471,7 +473,7 @@ order      ClusterIP      10.100.228.17    &lt;none&gt;
 <p>2 . Backend service is called by the front-end</p>
 <p>3 . Front-end is a where end user requests start and the user sessions get captured</p>
 <p>4 . My web application is the default application that Dynatrace creates</p>
-<p class="image-container"><img alt="image" src="img/6e55d05df517bf1a.png"></p>
+<p class="image-container"><img alt="image" src="img\\6e55d05df517bf1a.png"></p>
 <h2 is-upgraded>👍 How this helps</h2>
 <p>The service flow and service backtrace give you a complete picture of interdependency to the rest of the environment architecture at host, processes, services, and application perspectives.</p>
 
@@ -481,7 +483,7 @@ order      ClusterIP      10.100.228.17    &lt;none&gt;
       <google-codelab-step label="Serviceflow" duration="0">
         <h2 is-upgraded>Analyze the Service Flow</h2>
 <p>Now that we are back on the frontend service, let&#39;s look at the service flow to see what&#39;s different now. Just click on the view service flow button to open this.</p>
-<p class="image-container"><img alt="image" src="img/d70f46d3ea242236.png"></p>
+<p class="image-container"><img alt="image" src="img\\d70f46d3ea242236.png"></p>
 <h2 is-upgraded>Response time perspective</h2>
 <p>You should now be on the Service flow page.</p>
 <p>Right away, we can see how this application is structured:</p>
@@ -490,14 +492,14 @@ order      ClusterIP      10.100.228.17    &lt;none&gt;
 <li>Order service calls order and customer service</li>
 </ul>
 <p>Something you would never know from the application web UI!</p>
-<p class="image-container"><img alt="image" src="img/3b0de8021a742b2d.png"></p>
+<p class="image-container"><img alt="image" src="img\\3b0de8021a742b2d.png"></p>
 <p>Refer to the picture above:</p>
 <ol type="1">
 <li>We are viewing the data from a Response time perspective. Shortly, we will review the Throughput perspective.</li>
 <li>Click on the boxes to expand the response time metrics. Most of the response time is spent in the order service and the least in the customer services. And as in the simple version of the application, a very small amount of the response time is spent in the databases.</li>
 </ol>
 <h2 is-upgraded>Throughput perspective</h2>
-<p class="image-container"><img alt="image" src="img/526b936c02877b2.png"></p>
+<p class="image-container"><img alt="image" src="img\\526b936c02877b2.png"></p>
 <p>Refer to the picture above:</p>
 <ol type="1">
 <li>Change to the Throughput perspective by clicking on the box</li>
@@ -513,7 +515,7 @@ order      ClusterIP      10.100.228.17    &lt;none&gt;
         <p>While migrating to the cloud, you want to evaluate if your migration goes according to the plan, whether the services are still performing well or even better than before, and whether your new architecture is as efficient as the blueprint suggested. Dynatrace helps you validate all these steps automatically, which helps speed up the migration and validation process.</p>
 <p>Having the ability to understand service flows enables us to make smarter re-architecture and re-platforming decisions.  With support for new technologies like Kubernetes, you have confidence to modernize with a platform that spans the old and the new.</p>
 <p>Over time, you can imagine that this sample application will be further changed to add in other technologies like <a href="https://aws.amazon.com/lambda/" target="_blank">AWS Lambda</a> and other PaaS services like <a href="https://aws.amazon.com/rds/" target="_blank">AWS Relational Database Service (RDS)</a> or <a href="https://aws.amazon.com/rds/aurora" target="_blank">Amazon Aurora - MySQL and PostgreSQL-compatible relational database</a> databases and virtual networking <a href="https://aws.amazon.com/api-gateway/" target="_blank">Amazon API Gateway</a> as shown in the picture below.</p>
-<p class="image-container"><img alt="image" src="img/b392baca8c581584.png"></p>
+<p class="image-container"><img alt="image" src="img\\b392baca8c581584.png"></p>
 <h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
 <p><em>We will not cover this, but organizations are establishing DevOps approaches and establishing Continuous Integration (CI) pipelines to build and test each service independently. Then adding Continuous Deployment (CD) to the process too that vastly increase our ability to delivery features faster to our customers.  Dynatrace has a number of solutions to support DevOps that you can read about </em><a href="https://www.dynatrace.com/solutions/devops/" target="_blank"><em>here</em></a></p>
 <h2 is-upgraded>💥 <strong>TECHNICAL NOTE</strong></h2>
