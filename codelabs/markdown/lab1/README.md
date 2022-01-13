@@ -1,7 +1,7 @@
 id: aws-lab1
 categories: 
 status: Published
-
+tags: modernization
 # Lab 1 - OneAgent Observability
 
 ## Overview

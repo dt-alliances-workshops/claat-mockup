@@ -1,7 +1,7 @@
 id: aws-lab2
 categories: 
 status: Published
-
+tags: infra
 # Lab 2 - Modernization Containers
 
 ## Overview
