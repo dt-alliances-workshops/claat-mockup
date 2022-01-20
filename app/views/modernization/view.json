@@ -1,0 +1,11 @@
+{
+    "title": "Modernization",
+    "description": "A collection of Workshops for DT Modernization Track",
+    "logoUrl": "",
+    "tags": ["modernization"],
+    "toolbarBgColor": "#006bb8",
+    "exclude": [
+      ".*-about$",
+      "^lang-.*"
+    ]
+  }

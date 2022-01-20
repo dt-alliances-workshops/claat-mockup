@@ -1,0 +1,11 @@
+{
+    "title": "infra",
+    "description": "A collection of Workshops for DT Infrastructure workshops",
+    "logoUrl": "",
+    "tags": ["infra"],
+    "toolbarBgColor": "#006bb8",
+    "exclude": [
+      ".*-about$",
+      "^lang-.*"
+    ]
+  }

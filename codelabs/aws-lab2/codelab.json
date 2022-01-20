@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-193960361-1",
-  "updated": "2022-01-11T12:11:26-06:00",
+  "updated": "2022-01-13T13:17:14-05:00",
   "id": "aws-lab2",
   "duration": 0,
   "title": "Lab 2 - Modernization Containers",
@@ -14,6 +14,8 @@
     "published"
   ],
   "category": null,
-  "tags": [],
+  "tags": [
+    "infra"
+  ],
   "url": "aws-lab2"
 }
