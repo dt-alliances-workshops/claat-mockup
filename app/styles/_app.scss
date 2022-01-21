@@ -17,7 +17,7 @@
 @import "_variables";
 @import "_material";
 
-html {
+html{
   font-family: 'bernina_sans', Open Sans, sans-serif;
 }
 
@@ -28,7 +28,7 @@ html {
 }
 
 body {
-  background: $backgroundColor;
+  background: #171b20;
   background-image: url(https://university.dynatrace.com/images/dtu_content_background.svg);
   background-position: top;
   background-size: cover;
@@ -38,8 +38,138 @@ body {
       padding-top: calc(6px + 24px); // "codelabs" topbar height
       padding-bottom: $keyline * 3;
       position: relative; // ensures bar renders below top toolbar on page load.
+
     }
   }
+
+  //banner btns
+  .banner-info a.button { 
+    border:none;
+    border-radius:5px;
+    display:inline-block;
+    font-size:16px;
+    line-height:1;
+    margin:2rem 0.3rem 1rem;
+    padding:12px 27px;
+    vertical-align:middle;
+    white-space:nowrap; 
+    color: #fff;
+    background:hsla(0,0%,100%,.2);
+    text-decoration: none;
+    background-size:200% 100%;
+    background-position:99%;   
+  }
+
+  .banner-info a.button:hover {
+    background: linear-gradient(90deg,#2583ee,#712f90);
+  }
+
+  // Events Header
+  .events-listing-header {
+    display: -webkit-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: none;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+    margin-top: 30px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -moz-justify-content: center;
+    justify-content: center;
+  }
+
+  .events-header-bar{
+    background: linear-gradient(90deg,#2583ee,#712f90);
+    margin-top: 5px;
+    height: 3px;
+  }
+
+// Events Title
+.event-listing-col-title {
+    font-size: 12px;
+    color: #F9F9F9;
+    letter-spacing: .86px;
+    line-height: 19.8px;
+    text-transform: uppercase;
+    width: 33%;
+    margin: 0 10px;
+}
+
+// Events Title
+.event-listing-col-title-region {
+  font-size: 12px;
+  color: #F9F9F9;
+  letter-spacing: .86px;
+  line-height: 19.8px;
+  text-transform: uppercase;
+  width: 20%;
+  margin: 0 10px;
+}
+
+.workshop {
+  width: 100%;
+}
+
+.workshop-row {
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  border-bottom: 1px solid #455a64;
+  color: #F9F9F9;
+  margin: 10px 0px;
+  flex-wrap: nowrap;
+  padding: 15px 0;
+}
+
+.region-col{
+  width: 20%;
+  margin-bottom: 0;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.date-col,.topic-col,.register-col, .presenter-col{
+  width: 33%;
+  margin-bottom: 0;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.presenter-col img.logo{
+ max-width: 80%;
+}
+
+.register-col a.btn {
+    background-color: #00a1b2;
+    background-position: 99%;
+    background-size: 200% 100%;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    line-height: 1;
+    padding: 12px 27px;
+    text-decoration: none;
+    transition: background-position .1s ease-out;
+    vertical-align: top;
+    white-space: nowrap;
+}
 
   #loading-placeholder {
     display: none;
@@ -72,34 +202,7 @@ a {
   color: currentcolor;
 }
 
-a.button {
-  text-decoration: none;
-  background-color: transparent;
-  background-image: linear-gradient(120deg, hsla(0, 0%, 100%, .4), hsla(0, 0%, 100%, .2) 50%);
-  background-position: 99%;
-  background-size: 200% 100%;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  display: inline-block;
-  font-size: 16px;
-  line-height: 1;
-  margin: 2rem .3rem 1rem;
-  padding: 12px 27px;
-  text-decoration: none;
-  transition: background-position .1s ease-out;
-  vertical-align: middle;
-  white-space: nowrap;
-  transition-duration: 0.4s;
-}
-
-a.button:hover {
-  background-color: #4CAF50; /* Green */
-  color: white;
-}
-
-ul,
-li {
+ul, li {
   list-style: none;
   padding: 0
 }
@@ -111,37 +214,29 @@ li {
 }
 
 #banner {
+  background-color: #171b20;
   color: #fff;
-  background-image: url($banner-itguymainframe);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-
   @include keyline-40();
   padding: 30px 0 20px 0;
   border-bottom: 3px solid #23282d;
-  //box-shadow: 0px 1px 4px -1px $blueGrey500;
-  box-shadow: inset 0 0 0 100vmax rgba(40, 172, 33, 0.4);
 
   &[down] {
     .banner-slider {
       transform: none;
     }
-
     .banner-title {
       visibility: hidden; // Just hide but keep layout.
     }
   }
 
-  h2,
-  h3 {
-    font-weight: 100;
-    text-shadow: 1px 1px black;
+  h2, h3 {
+    font-weight: 300;
   }
 
   #logo {
-    height: 125px;
+    height: 150px;
     width: auto;
-    max-width: 100%;
+    max-width: 40%;
   }
 
   .banner-slider {
@@ -150,11 +245,10 @@ li {
     max-width: 100%;
     width: 100%;
     background-color: $backgroundColor;
-    background-image: url(https://university.dynatrace.com/images/dtu_content_background.svg);
     color: $blueGrey600;
     padding: $keyline 0;
     transform: translateY(-100%);
-    transition: transform 400ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 400ms cubic-bezier(0,0,0.2,1);
     will-change: transform;
 
     h3 {
@@ -203,7 +297,7 @@ li {
   paper-tabs {
     text-transform: uppercase;
     color: #fff;
-
+    
     paper-tab {
       padding: 0 5px;
       margin: auto 7px;
@@ -212,25 +306,32 @@ li {
   }
 }
 
+#right-dropdown{
+  text-align:right;
+}
+
 .paper-tabs-0 #selectionBar.paper-tabs {
-  border-bottom: 1px solid transparent;
-  background: linear-gradient(90deg, #2583ee, #712f90);
-  padding: 1px;
+border-bottom: 1px solid transparent;
+background:linear-gradient(90deg,#2583ee,#712f90);
+padding:1px;
 }
 
 .paper-button-0,
 .paper-menu-button-0 {
-  border-radius: $radius !important;
-}
-
-.dropdown-filter {
-  background-color: #fff;
+  font-family: 'bernina_sans', Open Sans, sans-serif;
   border-radius: $radius;
 }
 
+.dropdown-filter {
+  background:none;
+}
+
 .dropdown-content {
-  border-radius: $radius !important;
-  text-transform: capitalize;
+  background-color: #23282d;
+  color: #FFFFFF;
+  border: 0.1px solid transparent;
+  border-color: #23282d;
+  box-sizing: border-box;
 
   paper-item:hover {
     background: #2c3035;
@@ -239,13 +340,15 @@ li {
   }
 }
 
-.paper-input-container-1 {
-  background: none;
-  color: #8f96a0;
+.paper-input-container-1{
+  background:none;
+  color: #FFFFFF;
+  text-align:right;
+  width:310px;
 }
 
-#dropdown.style-scope.paper-menu-button {
-  margin-top: 40px;
+#dropdown.style-scope.paper-menu-button{
+  margin-top:40px;
 }
 
 @media (max-width: $phone-breakpoint-max) {
@@ -271,28 +374,23 @@ li {
     align-self: flex-start;
     width: 100%;
   }
-
   .banner-description {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
   .banner-technologies {
     position: absolute;
     width: 100%;
     left: 0;
     z-index: 1;
   }
-
   .banner-title {
     font-size: 7vw;
   }
-
   .banner-meta {
     display: none;
   }
-
   #logo {
     margin-bottom: $keyline * 2;
   }
@@ -307,7 +405,6 @@ li {
     paper-button {
       margin-bottom: $keyline * 2;
     }
-
     .banner-title {
       margin-bottom: $keyline * 2;
     }
@@ -317,16 +414,14 @@ li {
     margin-right: $keyline * 4;
     line-height: $keyline * 4;
   }
-
-  //.banner-info a {
-    //text-decoration: underline;
- // }
-
+  .banner-info a {
+    text-decoration: underline;
+  }
   .banner-description {
     display: flex;
-
     .banner-info {
       flex: 1;
     }
   }
+
 }

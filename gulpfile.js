@@ -60,7 +60,7 @@ const BASE_URL = args.baseUrl || 'https://dynatrace-perfclinics.github.io/';
 // CODELABS_DIR is the directory where the actual codelabs exist on disk.
 // Despite being a constant, this can be overridden with the --codelabs-dir
 // flag.
-const CODELABS_DIR = args.codelabsDir || 'codelabs';
+const CODELABS_DIR = args.codelabsDir || 'codelabs-gen';
 
 // CODELABS_ENVIRONMENT is the environment for which to build codelabs.
 const CODELABS_ENVIRONMENT = args.codelabsEnv || 'web';
@@ -239,7 +239,7 @@ gulp.task('build:vulcanize', () => {
 //           |-----assets/
 // builds all the README files to codelabs-build directory
 gulp.task('codelabs:export', (callback) => {
-  const sources = glob.sync('codelabs/markdown/*/README.md');
+  const sources = glob.sync('workshop-markdown/*/README.md');
   claat.run('.', 'export', CODELABS_ENVIRONMENT, CODELABS_FORMAT, DEFAULT_GA, sources, CODELABS_DIR, callback);
   callback();
 });
