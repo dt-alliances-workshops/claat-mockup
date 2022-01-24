@@ -21,8 +21,6 @@ $card-width: 330px;
 $card-row-height: 250px; // normal mode
 $card-col-height: 200px; // column mode
 
-$card-default-color-scheme: $color-dynatrace-logo-green;
-
 #cards {
   display: flex;
   flex-wrap: wrap;
@@ -36,11 +34,11 @@ $card-default-color-scheme: $color-dynatrace-logo-green;
   flex-direction: column;
   flex: 1 0 $card-width;
   margin: 0 $keyline * 2 $keyline * 2 0;
-  background-color: $blueGrey50;
+  background-color: rgba(255, 255, 255, 0.1)!important;
   max-width: $card-width;
   border-radius: $radius;
-  border: 1px solid $card-default-color-scheme;
-  border-bottom: 2px solid $card-default-color-scheme;
+  border: 1px solid rgba(255,255,255,.25);
+  border-bottom: 2px solid transparent;
 
   &:nth-of-type(3n) {
     margin-right: 0;
@@ -60,7 +58,7 @@ $card-default-color-scheme: $color-dynatrace-logo-green;
   .card-duration {
     display: flex;
     align-items: center;
-    color: #aaaaaa;
+    color: #8f96a0;
     font-size: 11px;
     padding: 0 $keyline * 2;
     mix-blend-mode: initial;
@@ -74,17 +72,49 @@ $card-default-color-scheme: $color-dynatrace-logo-green;
   .card-author,
   .card-updated {
     font-size: 12px;
-    color: $grey400;
+    color: #8f96a0;
     line-height: 16px;
     text-align: right;
   }
 
-  .description {
+  .title {
     padding: $keyline * 2 $keyline * 2 0 $keyline * 2;
     flex: 1 0 auto;
-    color: #212121;
+    color: #f9f9f9;
     -webkit-font-smoothing: antialiased;
   }
+
+  .summary {
+    padding:8px 16px 8px 16px;
+    flex: 1 0 auto;
+    color: #8f96a0;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .BeginnerText{
+    color:#00b9cc;
+    font-size:1.1em;
+    font-weight:600;
+  }
+
+  .IntermediateText{
+    color:#006bba;
+    font-size:1.1em;
+    font-weight:600;
+  }
+
+  .AdvancedText{
+    color:#9355b7;
+    font-size:1.1em;
+    font-weight:600;
+  }
+
+}
+
+.codelab-card.category-davis, .codelab-card.category-infrastructure, .codelab-card.category-apps-microservices{
+  background-color: transparent;
+  background: linear-gradient(90deg,#2583ee40,#712f9040);
 }
 
 .card-footer {
@@ -99,27 +129,34 @@ $card-default-color-scheme: $color-dynatrace-logo-green;
     color: #fff;
     text-transform: none;
     padding: 13px 25px;
-    background-color: $card-default-color-scheme;
+    margin-right:0px;
   }
 
   .category-icon {
-    background-image: url('/images/icons/dynatrace-gray_900.svg');
     width: 42px;
     height: 42px;
     background-size: 32px;
     background-repeat: no-repeat;
     background-position: 0 50%;
   }
+
+  .category-icon2 {
+    margin-right:110px;
+  }
+
+  .category-icon3 {
+    margin-right:80px;
+  }
+
 }
 
 .card-pin {
+  height: 25px;
   position: absolute;
-  left: 7px;
-  bottom: 14px;
-  width: 15px;
-  height: 20px;
-  background-repeat: no-repeat;
-  background-image: url('data:image/svg+xml;utf8,<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h18v18H0"/><path fill="#888" d="M13 4V2H5v2h1v5l-1.5 1.5V12H8v4l1 1 1-1v-4h3.5v-1.5L12 9V4"/></g></svg>');
+  right: 7px;
+  top: 12px;
+  width: 25px;
+  color:#ffe11c;
 }
 
 /* ***** Responsive ***** */

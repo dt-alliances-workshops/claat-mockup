@@ -14,7 +14,9 @@ const spawn = childprocess.spawn;
 //   callback - an async task callback function
 //
 exports.run = (cwd, cmd, env, fmt, ga, args, odir, callback) => {
-  args.unshift(cmd, '-e', env, '-f', fmt, '-ga', ga, '-o', odir);
+  args.unshift(cmd, '-e', env, '-f', fmt, '-ga', ga, '-o', odir, '-prefix', '../../elements');
+
+  console.log(args)
   const proc = spawn('claat', args, { stdio: 'inherit', cwd: cwd, env: process.env });
 
   proc.on('close', (e) => {

@@ -20,6 +20,19 @@ $desktopKeyline: 32px;
 $desktopLargeKeyline: 40px;
 $largeKeyline: 72px;
 
+::-webkit-scrollbar{
+  width:8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  height:8px;
+  border-radius:8px;
+}
+
+::-webkit-scrollbar-thumb{
+  border-radius:8px;
+  background-color:rgba(255,255,255,.25);
+}
+
+
 @mixin keyline-72l() {
   padding-left: $largeKeyline;
 }

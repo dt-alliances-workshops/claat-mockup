@@ -157,8 +157,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-tabs>
         </div>
 
-        {%- if showcats -%}
-        <paper-dropdown-menu label="Choose a Type" class="dropdown-filter" no-label-float noink no-animations>
+        <!-- {%- if showcats -%} -->
+        {% if view.id == 'default' && views|length > 1 %}
+        <!-- this is the stuff hiding or showing the views dropdown -->
+        <paper-dropdown-menu label="Choose a Workshop" class="dropdown-filter" no-label-float noink no-animations>
           <paper-listbox id="eventlist" slot="dropdown-content" class="dropdown-content">
             {%- for view in views -%}
               {%- if view.id != 'default' && !view.hidden -%}
@@ -169,8 +171,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             {%- endfor %}
           </paper-listbox>
         </paper-dropdown-menu>
-   
-        <paper-dropdown-menu label="Filter by category" class="dropdown-filter" no-label-float noink no-animations>
+        {%- endif %}
+
+        {%- if showcats -%}
+        <paper-dropdown-menu label="Filter by Alliance" class="dropdown-filter" no-label-float noink no-animations>
           <paper-listbox id="categorylist" slot="dropdown-content" class="dropdown-content"
             on-iron-activate="onCategoryActivate" attr-for-selected="filter">
             {% for category in categories -%}
