@@ -1,12 +1,13 @@
 {
-  "title": "Dynatrace Technical Alliances Workshops",
-  "description": "Dynatrace Technical Alliances Workshop provide a guided, tutorial-based hands-on learning experience.",
+  "title": "Technical alliances workshops",
+  "description": "These workshops provide a guided, tutorial-based hands-on learning experience.",
+  "contact": "Email alliances@dynatrace.com for more questions and feedback.",
   "tags": [],
   "categories": [],
   "exclude": [
     "^lang-.*"
   ],
-  "logoUrl": "/images/logo.png",
+  "logoUrl": "/images/dynatrace-logo.png",
   "toolbarBgColor": "#1e6022",
   "sort": "mainCategory",
   "pins": []

@@ -42,6 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="/elements/elements.html">
 
   <style is="custom-style">
+
     :root {
       --paper-tabs-selection-bar-color: currentcolor;
 
@@ -68,13 +69,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="#455a64">
   <meta name="apple-mobile-web-app-title" content="{{view.title}}">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="194x194" href="/images/favicons/favicon-194x194.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+
+  <link rel="icon" type="image/png" href="/images/favicons/dynatrace-48x48-transparent.png">
+
   <link rel="manifest" href="site.webmanifest">
-  <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#455a64">
   <meta name="msapplication-TileColor" content="#455a64">
   <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
   <meta name="theme-color" content="#455a64">
@@ -102,11 +100,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <body id="app" is="body-bind" class="loading fullbleed {% if view.id != 'default' -%}view{%- endif -%}">
   <paper-header-panel id="main" mode="standard" main>
+    <!-- HIDE FOR NOW
     {% raw %}
     <div id="mainToolbar" class="paper-header">
       <div class="site-width layout horizontal">
         <a href="/">
-          <img src="/images/logo.png" class="logo-devs" alt="Codelabs Logo">
+          <img src="/images/dynatrace-logo.png" class="logo-devs" alt="Dynatrace Logo">
         </a>
         <div id="searchbar">
           <paper-input-container no-label-float>
@@ -118,20 +117,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </div>
     {% endraw %}
+    -->
 
     {# Event pages force down attribute. On homepage, it's applied dynamically. #}
-    <header id="banner" {% if view.id !='default' -%}down{%- else %}down$="[[_toBoolean(selectedFilter)]]" {%- endif %}>
+    <header class="custom-background" id="banner" {% if view.id !='default' -%}down{%- else %}down$="[[_toBoolean(selectedFilter)]]" {%- endif %}>
       <div class="site-width">
         {% if view.id == 'default' %}
-        <h2 class="banner-title">Welcome to {{view.title}}!</h2>
+        <img src="/images/dynatrace-logo.png" width="25%" class="logo-devs" alt="Dynatrace Logo">
+        <h2 class="banner-title">{{view.title}}</h2>
         <div class="banner-description" data-filter-selected$="{% raw %}[[_toBoolean(selectedFilter)]]{% endraw %}">
           <p class="banner-info">
             {{view.description}}
+            <BR>
+            {{view.contact}}
+            <!-- HIDE FOR NOW
             <br>
             <a href="https://github.com/dynatrace-perfclinics"  target="_blank" class="button">Dynatrace Perfclinics on Github</a>
             <a href="https://www.youtube.com/c/dynatrace"  target="_blank" class="button">Dynatrace on Youtube</a>
             <a href="https://www.dynatrace.com/request-demo/"   target="_blank" class="button">Request a Demo</a>
             <a href="https://www.dynatrace.com/trial/"  target="_blank" class="button">Free Trial</a>
+            -->
           </p>
           {%- else -%}
           <div class="banner-description">
@@ -148,7 +153,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </header>
 
     <main>
-      <div id="filters" class="site-width layout horizontal center justified">
+        <div><p>&nbsp;<BR></p></div>
+        <div id="filters" class="site-width layout horizontal center justified">
+        {% raw %}
+        <div id="searchbar">
+          <paper-input-container no-label-float>
+            <paper-icon-button prefix icon="search"></paper-icon-button>
+            <label>Search</label>
+            <input is="iron-input" bind-value="{{searchVal}}" on-keydown="onSearchKeyDown">
+          </paper-input-container>
+        </div>
+        {% endraw %}
+
+        <!-- HIDE FOR NOW
         <div id="sortby">
           <paper-tabs selected="0" noink on-iron-activate="sortBy">
             <paper-tab>A-Z</paper-tab>
@@ -156,8 +173,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-tab>Duration</paper-tab>
           </paper-tabs>
         </div>
+        -->
 
-        <!-- {%- if showcats -%} -->
         {% if view.id == 'default' && views|length > 1 %}
         <!-- this is the stuff hiding or showing the views dropdown -->
         <paper-dropdown-menu label="Choose a Workshop" class="dropdown-filter" no-label-float noink no-animations>
@@ -186,6 +203,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu>
         {%- endif -%}
       </div>
+      <div><p>&nbsp;<BR></p></div>
 
       <card-sorter id="cards" class="site-width">
         {% for codelab in codelabs -%}
@@ -202,10 +220,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="card-pin"></div>
           {%- endif -%}
           <div class="description">{{codelab.title}}</div>
-          <div class="card-duration">
+          <!-- HIDE THIS 
+            <div class="card-duration">
             <span>{%- if codelab.duration -%}{{codelab.duration}} min {%- endif -%}</span>
             <span>{%- if codelab.updated -%}Updated {{codePrettyDate(codelab.updated)}}{%- endif -%}</span>
           </div>
+          -->
           <div class="card-footer">
             <div class="category-icon {{categoryClass(codelab, cat.level)}}-icon"></div>
             <paper-button class="{{categoryClass(codelab, cat.level)}}-bg">Start</paper-button>
@@ -223,27 +243,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <footer id="footer">
       <div class="footer-wrapper site-width">
         <div class="link-list">
+          <label>Learn More</label>
+          <ul>
+            <li><a href="https://www.dynatrace.com/">Dynatrace</a></li>
+          </ul>
+        </div>
+        <div class="link-list">
+          <label>Dynatrace Resources</label>
+          <ul>
+            <li><a href="https://www.dynatrace.com/news/blog/">Blog</a></li>
+            <li><a href="https://www.dynatrace.com/news/webinar/">Webinars</a></li>
+          </ul>
+        </div>
+        <div class="link-list">
           <label>Dynatrace Community</label>
           <ul>
             <li><a href="https://help.dynatrace.com/">Documentation</a></li>
             <li><a href="https://university.dynatrace.com/">University</a></li>
             <li><a href="https://answers.dynatrace.com/">Forums</a></li>
             <li><a href="https://www.youtube.com/c/dynatrace">Youtube</a></li>
-          </ul>
-        </div>
-        <div class="link-list">
-          <label>Dynatrace Resources</label>
-          <ul>
-            <li><a href="https://github.com/Dynatrace">Github</a></li>
-            <li><a href="https://www.dynatrace.com/news/blog/">Blog</a></li>
-            <li><a href="https://www.dynatrace.com/news/webinar/">Webinars</a></li>
-          </ul>
-        </div>
-        <div class="link-list">
-          <label>Learn More</label>
-          <ul>
-            <li><a href="https://www.dynatrace.com/">Dynatrace</a></li>
-            <li><a href="https://www.keptn.sh/">Keptn.sh</a></li>
           </ul>
         </div>
       </div>
