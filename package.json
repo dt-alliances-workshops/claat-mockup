@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "serve": "gulp serve",
+    "serve": "gulp clean && gulp serve",
     "dist": "gulp clean && gulp dist"
   },
   "private": true,
