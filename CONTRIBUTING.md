@@ -8,7 +8,7 @@ The compiled workshop guides can be run and tested on a laptop and then upon req
 
 ## How to contribute
 
-The easiest way to start contributing or helping with the Monitoring as Code project is to pick an existing issue/bug and get to work using the guides below.
+The easiest way to start contributing or helping with workshop content is to pick an existing issue/bug and get to work using the guides below.
 
 For proposing a change, we seek to discuss potential changes in GitHub issues in advance before implementation. That will allow us to give design feedback up front and set expectations about the scope of the change, and, for larger changes, how best to approach the work such that the Dynatrace Tech Alliances team can review it and merge it along with other concurrent work. This allows to be respectful of the time of community contributors.
 
