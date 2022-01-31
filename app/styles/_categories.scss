@@ -74,8 +74,9 @@ $color-weave-green: #0f9d58;
   }
 }
 
-/* Add for each icon */
-
+/* NEED TO ADD THIS FOR EACH TAG AND CATEGORY */
+@include codelab-card(['modernization'], #455a64, 'modernization.png');
+@include codelab-card(['kubernetes'], #455a64, 'kubernetes.png');
 @include codelab-card(['aws'], #455a64, 'aws.png');
 @include codelab-card(['openshift'], #455a64, 'openshift.png');
 @include codelab-card(['azure'], #455a64, 'azure.png');
