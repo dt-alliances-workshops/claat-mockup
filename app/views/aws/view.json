@@ -1,0 +1,16 @@
+{
+  "title": "AWS workshops",
+  "dropdownName": "AWS",
+  "description": "These workshops provide a guided, tutorial-based hands-on learning experience.",
+  "contact": "Email alliances@dynatrace.com for more questions and feedback.",
+  "tags": ["aws"],
+  "categories": [""],
+  "exclude": [
+    "^lang-.*"
+  ],
+  "logoUrl": "/images/icons/aws.png",
+  "logoSizePct":"10%",
+  "toolbarBgColor": "#1e6022",
+  "sort": "mainCategory",
+  "pins": []
+}
