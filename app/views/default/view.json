@@ -8,6 +8,7 @@
     "^lang-.*"
   ],
   "logoUrl": "/images/dynatrace-logo.png",
+  "logoSizePct":"25%",
   "toolbarBgColor": "#1e6022",
   "sort": "mainCategory",
   "pins": []
