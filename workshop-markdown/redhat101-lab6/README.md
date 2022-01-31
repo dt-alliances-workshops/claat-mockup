@@ -1,6 +1,6 @@
 summary: Lab 6 Openshift 4 101 w/Dynatrace Replication and Recovery (Optional)
 id: redhat-lab6
-categories: openshift
+categories: modernization
 tags: openshift
 status: Published
 authors: Michael Villiger

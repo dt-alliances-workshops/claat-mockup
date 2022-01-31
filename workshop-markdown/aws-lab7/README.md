@@ -1,7 +1,7 @@
 id: aws-lab7
-categories: aws
+categories: modernization
 status: Published
-tags: modernization
+tags: aws
 
 
 # Lab 7 - Cleanup

@@ -1,6 +1,6 @@
 summary: Lab 2 Openshift 4 101 w/Dynatrace OpenShift Observability
 id: redhat-lab2
-categories: openshift
+categories: modernization
 tags: openshift
 status: Published
 authors: Michael Villiger

@@ -1,7 +1,7 @@
 id: aws-lab4
-categories: aws
+categories: modernization
 status: Published
-tags: modernization
+tags: aws
 
 
 # Lab 4 - AWS Monitor

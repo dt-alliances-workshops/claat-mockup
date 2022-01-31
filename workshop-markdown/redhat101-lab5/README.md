@@ -1,6 +1,6 @@
 summary: Lab 5 Openshift 4 101 w/Dynatrace Webhooks and Rollbacks (Optional)
 id: redhat-lab5
-categories: openshift
+categories: modernization
 tags: openshift
 status: Published
 authors: Michael Villiger

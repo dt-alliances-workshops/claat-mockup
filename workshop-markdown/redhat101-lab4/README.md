@@ -1,6 +1,6 @@
 summary: Lab 4 Openshift 4 101 w/Dynatrace Developing and Managing Your Application
 id: redhat-lab4
-categories: openshift
+categories: modernization
 tags: openshift
 status: Published
 authors: Michael Villiger

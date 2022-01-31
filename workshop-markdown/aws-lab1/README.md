@@ -1,7 +1,8 @@
 id: aws-lab1
-categories: aws
+categories: modernization,kubernetes
 status: Published
-tags: modernization
+tags: aws
+description: This is my lab
 
 # Lab 1 - OneAgent Observability
 

@@ -1,7 +1,7 @@
 id: aws-lab6
-categories: aws
+categories: kubernetes
 status: Published
-tags: modernization
+tags: aws
 
 
 # Lab 6 - Modernization Kubernetes

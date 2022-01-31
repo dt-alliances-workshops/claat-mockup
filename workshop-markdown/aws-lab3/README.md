@@ -1,7 +1,7 @@
 id: aws-lab3
-categories: aws
+categories: modernization
 status: Published
-tags: modernization
+tags: aws
 
 
 # Lab 3 - SLOs

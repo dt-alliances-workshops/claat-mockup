@@ -1,7 +1,7 @@
 id: aws-lab2
-categories: aws
+categories: modernization
 status: Published
-tags: modernization
+tags: aws
 
 # Lab 2 - Modernization Containers
 

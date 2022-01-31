@@ -1,6 +1,6 @@
 summary: Lab 0 Openshift 4 101 w/Dynatrace Introduction
 id: redhat-lab0
-categories: openshift
+categories: 
 tags: openshift
 status: Published
 authors: Michael Villiger

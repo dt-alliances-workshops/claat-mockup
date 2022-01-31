@@ -1,7 +1,7 @@
 id: aws-lab5
-categories: aws
+categories: modernization
 status: Published
-tags: modernization
+tags: aws
 
 
 # Lab 5 - Davis AI
