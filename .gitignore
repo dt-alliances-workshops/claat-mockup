@@ -1,6 +1,12 @@
 package-lock.json
 .DS_Store
 node_modules/
+
+# this prevents saving generated files, yet keeping the dir that gulp needs
 codelabs-build/
 codelabs-gen/
+!codelabs-gen/.gitignore
 dist/
+dist/.gitignore
+build/
+!build/.gitignore
