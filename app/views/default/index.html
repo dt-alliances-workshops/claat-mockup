@@ -121,15 +121,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- ORIGINAL HAD MORE LOGIC FOR THE DEFAULT VIEW --> 
     <header class="custom-background" id="banner">
       <div class="site-width">
-        <table><tr><td>
         <!-- do this to that logo and title are on the same line -->
         {% if view.id == 'default' %}
         <img src="{{view.logoUrl}}" width="{{view.logoSizePct}}" class="logo-devs" alt="Logo">
         <h2 class="banner-title">{{view.title}}</h2>
         {% else %}
-          <h2 class="banner-title">
-            <img src="{{view.logoUrl}}" width="{{view.logoSizePct}}" class="logo-devs" alt="Logo">
-            {{view.title}}</h2>
+        <h2 class="banner-title">
+          <img src="{{view.logoUrl}}" width="{{view.logoSizePct}}" class="logo-devs" alt="Logo">
+          {{view.title}}</h2>
         {% endif %}  
           <!-- ORIGINAL NOT USING -->
           <!-- <div class="banner-description" data-filter-selected$="{% raw %}[[_toBoolean(selectedFilter)]]{% endraw %}">-->
@@ -145,12 +144,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <a href="https://www.dynatrace.com/request-demo/"   target="_blank" class="button">Request a Demo</a>
               <a href="https://www.dynatrace.com/trial/"  target="_blank" class="button">Free Trial</a>
               -->
-              </p>
+            </p>
           </div>
-        </td><td style="vertical-align:top;"><a href="/" class="paper-button-0 aws-bg">Home</a>
-        </td></tr></table>
-      </div>
-    </header>
+      <span class="banner-info">
+        <a href="/" class="button">Home</a>
+        <a href="https://www.dynatrace.com/request-demo/" class="button">Request a Demo</a>
+        <a href="https://www.dynatrace.com/trial/" class="button">Free Trial</a>
+      </span>
+    </div>
+  </header>
 
     <main>
         <div><p>&nbsp;<BR></p></div>
