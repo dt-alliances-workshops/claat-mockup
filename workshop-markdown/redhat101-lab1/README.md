@@ -1,6 +1,6 @@
 summary: Lab 1 Openshift 4 101 w/Dynatrace BYO Container Overview
 id: redhat-lab1
-categories: openshift
+categories: modernization
 tags: openshift
 status: Published
 authors: Michael Villiger

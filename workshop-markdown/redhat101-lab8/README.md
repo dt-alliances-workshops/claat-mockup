@@ -1,6 +1,6 @@
 summary: Lab 8 Openshift 4 101 w/Dynatrace Blue | Green Deployment (Optional)
 id: redhat-lab8
-categories: openshift
+categories: modernization
 tags: openshift
 status: Published
 authors: Michael Villiger

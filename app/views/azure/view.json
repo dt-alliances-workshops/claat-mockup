@@ -1,14 +1,15 @@
 {
-  "title": "Technical alliances workshops",
+  "title": "Azure workshops",
+  "dropdownName": "Azure",
   "description": "These workshops provide a guided, tutorial-based hands-on learning experience.",
   "contact": "Email alliances@dynatrace.com for more questions and feedback.",
-  "tags": [],
-  "categories": [],
+  "tags": ["azure"],
+  "categories": [""],
   "exclude": [
     "^lang-.*"
   ],
-  "logoUrl": "/images/dynatrace-logo.png",
-  "logoSizePct":"25%",
+  "logoUrl": "/images/icons/azure.png",
+  "logoSizePct":"10%",
   "toolbarBgColor": "#1e6022",
   "sort": "mainCategory",
   "pins": []

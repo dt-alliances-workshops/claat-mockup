@@ -39,6 +39,7 @@ $card-col-height: 200px; // column mode
   border-radius: $radius;
   border: 1px solid rgba(255,255,255,.25);
   border-bottom: 2px solid transparent;
+  padding: 5px;
 
   &:nth-of-type(3n) {
     margin-right: 0;

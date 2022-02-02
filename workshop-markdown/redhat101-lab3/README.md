@@ -1,6 +1,6 @@
 summary: Lab 3 Openshift 4 101 w/Dynatrace Deploying an App with S2I
 id: redhat-lab3
-categories: openshift
+categories: modernization
 tags: openshift
 status: Published
 authors: Michael Villiger

@@ -1,6 +1,6 @@
 summary: Lab 7 Openshift 4 101 w/Dynatrace Labels (Optional)
 id: redhat-lab7
-categories: openshift
+categories: modernization
 tags: openshift
 status: Published
 authors: Michael Villiger

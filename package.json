@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "serve": "gulp serve",
-    "dist": "gulp clean && gulp dist"
+    "serve": "gulp clean && npx mkdirp build && npx mkdirp codelabs-gen && gulp serve",
+    "dist": "gulp clean && npx mkdirp build && npx mkdirp codelabs-gen && gulp dist"    
   },
   "private": true,
   "devDependencies": {
@@ -58,6 +58,7 @@
     "bb >= 10"
   ],
   "dependencies": {
+    "mkdirp": "^1.0.4",
     "postcss": "^8.4.5"
   }
 }

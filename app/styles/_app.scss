@@ -27,6 +27,10 @@ html{
   outline: none;
 }
 
+.custom-background {
+  background: #171b20;background-image: url(https://mkt-cdn.dynatrace.com/assets/Marketing/section-backgrounds/_1920x910_crop_center-center_82_line/smartscape-background-platform-dynatrace.jpeg.webp);
+}
+
 body {
   background: #171b20;
   background-image: url(https://university.dynatrace.com/images/dtu_content_background.svg);
@@ -283,10 +287,6 @@ ul, li {
     color: #fff;
     text-align: center;
     line-height: initial;
-
-    &.iron-selected {
-      background-color: $blueGrey700;
-    }
   }
 }
 
