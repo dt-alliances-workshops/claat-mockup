@@ -119,7 +119,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     {# Event pages force down attribute. On homepage, it's applied dynamically. #}
     <!-- ORIGINAL NOT USING <header class="custom-background" id="banner" {% if view.id !='default' -%}down{%- else %}down$="[[_toBoolean(selectedFilter)]]" {%- endif %}>-->
     <!-- ORIGINAL HAD MORE LOGIC FOR THE DEFAULT VIEW --> 
-    <header class="custom-background" id="banner">
+    <!-- <header class="custom-background" id="banner"> -->
+    <div id="{{view.logoSizePct}}"></div>
+    {% if view.id == 'aws-immersion-day' %}
+    <header id="banner" class="custom-background-aws-immersion-day">
+    {% else %}
+    <header id="banner" class="custom-background">
+    {%- endif %}
       <div class="site-width">
         <!-- do this to that logo and title are on the same line -->
         {% if view.id == 'default' %}
@@ -179,7 +185,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         {% if view.id == 'default' && views|length > 1 %}
         <!-- this is the stuff hiding or showing the views dropdown -->
-        <paper-dropdown-menu label="Pick Partner" class="dropdown-filter" no-label-float noink no-animations>
+        <paper-dropdown-menu label="Pick an Event" class="dropdown-filter" no-label-float noink no-animations>
           <paper-listbox id="eventlist" slot="dropdown-content" class="dropdown-content">
             {%- for view in views -%}
               {%- if view.id != 'default' && !view.hidden -%}
@@ -194,7 +200,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         {%- endif %}
 
         {%- if showcats -%}
-        <paper-dropdown-menu label="Pick Workshop" class="dropdown-filter" no-label-float noink no-animations>
+        <paper-dropdown-menu label="Filter topic" class="dropdown-filter" no-label-float noink no-animations>
           <paper-listbox id="categorylist" slot="dropdown-content" class="dropdown-content"
             on-iron-activate="onCategoryActivate" attr-for-selected="filter">
             {% for category in categories -%}
@@ -233,9 +239,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             -->
           </div>
           <div class="card-footer">
-            <div class="category-icon {{codelab.tags}}-icon"></div>
-            <div class="category-icon {{categoryClass(codelab, cat.level)}}-icon"></div>
-            <paper-button class="{{codelab.tags}}-bg">Start</paper-button>
+            <div class="category-icon {{codelab.tags[0]}}-icon"></div>
+            <paper-button class="{{codelab.tags[0]}}-bg">Start</paper-button>
             <!-- <paper-button class="{{categoryClass(codelab, cat.level)}}-bg">Start</paper-button>-->
           </div>
 
