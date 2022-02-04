@@ -1,10 +1,10 @@
 id: aws-lab7
 categories: modernization
 status: Published
-tags: aws
+tags: aws-immersion-day,aws-selfpaced
 
 
-# Lab 7 - Cleanup
+# AWS Lab Cleanup
 
 ## Overview
 
