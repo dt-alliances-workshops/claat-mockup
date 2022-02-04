@@ -276,14 +276,14 @@ gulp.task('minify:css', () => {
     .pipe(gulp.dest('dist'));
 });
 
-// minify:css minifies the html
+// minify:html minifies the html, but should not minify css again
 gulp.task('minify:html', () => {
   const srcs = [
     'dist/**/*.html',
     '!dist/codelabs/**/*',
   ]
   return gulp.src(srcs, { base: 'dist/' })
-    .pipe(postcss(opts.postcss()))
+    //.pipe(postcss(opts.postcss()))
     .pipe(htmlmin(opts.htmlmin()))
     .pipe(gulp.dest('dist'));
 });
