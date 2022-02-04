@@ -1,7 +1,7 @@
 {
   "scripts": {
     "serve": "gulp clean && npx mkdirp build && npx mkdirp codelabs-gen && gulp serve",
-    "dist": "gulp clean && npx mkdirp build && npx mkdirp codelabs-gen && gulp dist"    
+    "dist": "gulp clean && npx mkdirp build && npx mkdirp codelabs-gen && gulp dist"
   },
   "private": true,
   "devDependencies": {
