@@ -11,7 +11,7 @@ Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 
 We will now setup Dynatrace, Azure, and the workshop environment. You need all of these in place before you are presented with the lab excercises.
 
-## Objectives of this section
+## What you'll learn in this section
 
 🔷 Ensure your have an email for accessing your Dynatrace managed environment
 
@@ -19,7 +19,7 @@ We will now setup Dynatrace, Azure, and the workshop environment. You need all o
 
 🔷 Automatically provision workshop environment and sample application
 
-## Step 1 - Dynatrace Managed Environment
+## Login to Dynatrace Managed Environment
 
 For this workshop we have setup a free Dynatrace environment with evaluation license of the full feature set of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.  
 
@@ -30,11 +30,11 @@ In your email mailbox you used to register for this workshop, you should have re
 ![image](img/pre-requisites-dt-managed.png)
 
 ### Tasks to complete this step
-<details>
-<summary>Task - Login to your DT Environment</summary>
+
+1) Task - Login to your DT Environment
 - Click on the link within the email you've received to setup your password for the Dynatrace environment.
 - Once your password is setup, login to your Dynatrace environment.
-</details>
+
 
 🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
 
