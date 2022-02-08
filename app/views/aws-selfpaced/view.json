@@ -1,0 +1,16 @@
+{
+  "title": "AWS self paced labs",
+  "dropdownName": "AWS self paced",
+  "description": "These workshops provide a self paced hands-on learning experience. For these you provide the AWS and Dynatrace environments.",
+  "contact": "Email alliances@dynatrace.com for more questions and feedback.",
+  "tags": ["aws-selfpaced"],
+  "categories": [""],
+  "exclude": [
+    "^lang-.*"
+  ],
+  "logoUrl": "/images/icons/aws-logo.png",
+  "logoSizePct":"10%",
+  "toolbarBgColor": "#1e6022",
+  "sort": "mainCategory",
+  "pins": []
+}

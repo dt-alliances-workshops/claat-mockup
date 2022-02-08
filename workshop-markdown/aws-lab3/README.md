@@ -1,10 +1,10 @@
 id: aws-lab3
 categories: modernization
 status: Published
-tags: aws
+tags: aws-immersion-day,aws-selfpaced
 
 
-# Lab 3 - SLOs
+# AWS Lab 3 - SLOs
 
 ## Overview
 
@@ -39,7 +39,7 @@ img/lab2-slo-dashboard.png)
 
 From the left menu in Dynatrace, click the `SLO` option to review the two SLOs that are already setup.  Edit one of them to review the configuration.
 
-img/lab2-slo-list.png)
+![image](img/lab2-slo-list.png) 
 
 ### 👍 How this helps
 
@@ -59,7 +59,7 @@ Click the `Cloud Migration Success` to open the dashboard
 
 You should now see the dashboard
 
-img/lab2-dashboard-view.png)
+![image](img/lab2-dashboard-view.png)
 
 ### Edit Dashboard
 
@@ -73,7 +73,7 @@ On the top right of the page, click the `edit` button and then follow these step
 1. On the Service properties window, pick the monolith `frontend (monolith-frontend)` service
 1. Click the `Done` button
 
-img/lab2-dashboard-edit-tile.png)
+![image](img/lab2-dashboard-edit-tile.png)
 
 ### Edit remaining tiles
 
@@ -88,4 +88,4 @@ In this section, you should have completed the following:
 
 ✅ Examine Dynatrace Service Level Objectives (SLOs)
 
-✅ Create a custom dashboard with SLOs 
+✅ Create a custom dashboard with SLOs

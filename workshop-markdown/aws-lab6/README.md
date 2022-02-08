@@ -1,10 +1,10 @@
 id: aws-lab6
 categories: kubernetes
 status: Published
-tags: aws
+tags: aws-immersion-day,aws-selfpaced
 
 
-# Lab 6 - Modernization Kubernetes
+# AWS Lab 6 - Modernization Kubernetes
 
 ## Overview
 

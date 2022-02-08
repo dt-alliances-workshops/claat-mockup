@@ -1,9 +1,9 @@
 id: aws-lab2
 categories: modernization
 status: Published
-tags: aws
+tags: aws-immersion-day,aws-selfpaced
 
-# Lab 2 - Modernization Containers
+# AWS Lab 2 - Modernization Containers
 
 ## Overview
 

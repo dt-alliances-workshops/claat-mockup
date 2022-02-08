@@ -1,6 +1,6 @@
 {
   "title": "Openshift workshops",
-  "dropdownName": "Openshift",
+  "dropdownName": "Openshift 101",
   "description": "These workshops provide a guided, tutorial-based hands-on learning experience.",
   "contact": "Email alliances@dynatrace.com for more questions and feedback.",
   "tags": ["openshift"],
