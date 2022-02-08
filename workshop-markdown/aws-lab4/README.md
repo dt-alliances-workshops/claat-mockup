@@ -1,10 +1,10 @@
 id: aws-lab4
 categories: modernization
 status: Published
-tags: aws
+tags: aws-immersion-day,aws-selfpaced
 
 
-# Lab 4 - AWS Monitor
+# AWS Lab 4 - AWS Monitor
 
 ## Overview
 

@@ -31,6 +31,11 @@ html{
   background: #171b20;background-image: url(https://mkt-cdn.dynatrace.com/assets/Marketing/section-backgrounds/_1920x910_crop_center-center_82_line/smartscape-background-platform-dynatrace.jpeg.webp);
 }
 
+/* add these for use in the index.html page to set custom view backgrounds */
+.custom-background-aws-immersion-day {
+  background-image: url(/images/icons/aws-immersion-background.png);
+}
+
 body {
   background: #171b20;
   background-image: url(https://university.dynatrace.com/images/dtu_content_background.svg);

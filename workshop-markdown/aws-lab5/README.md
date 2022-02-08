@@ -1,10 +1,10 @@
 id: aws-lab5
 categories: modernization
 status: Published
-tags: aws
+tags: aws-immersion-day,aws-selfpaced
 
 
-# Lab 5 - Davis AI
+# AWS Lab 5 - Davis AI
 
 ## Overview
 
