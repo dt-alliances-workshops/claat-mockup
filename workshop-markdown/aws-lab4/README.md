@@ -78,120 +78,27 @@ The AWS monitoring policy defines the minimum scope of permissions you need to g
 
 1 . Go to `Identity and Access Management (IAM)` in your Amazon Console.
 
-2 . Go to `Policies` and click the `Create policy` button.
+2 . Go to `Policies` menu option on left
+
+3 . On the `Policies` page, click the `Create policy` button. 
 
 ![image](img/dt-aws-dashboard-policy.png)
 
-3 . On the new policy page, select the `JSON` tab and paste this predefined policy from the box below.
+4 . On the new policy page, select the `JSON` tab and paste this predefined policy from the box below from the JSON from this Dynatrace page:
+
+* <a href="https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas#expand--predefined-policy-in-json" target="_blank">https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas#expand--predefined-policy-in-json</a>
+
+When you are done, it should look like this:s
 
 ![image](img/dt-aws-dashboard-policy-json.png)
 
-```
-{
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "VisualEditor0",
-			"Effect": "Allow",
-			"Action": [
-				"acm-pca:ListCertificateAuthorities", 
-				"apigateway:GET", 
-				"apprunner:ListServices", 
-				"appstream:DescribeFleets", 
-				"appsync:ListGraphqlApis", 
-				"athena:ListWorkGroups", 
-				"autoscaling:DescribeAutoScalingGroups", 
-				"cloudformation:ListStackResources", 
-				"cloudfront:ListDistributions", 
-				"cloudhsm:DescribeClusters", 
-				"cloudsearch:DescribeDomains", 
-				"cloudwatch:GetMetricData", 
-				"cloudwatch:GetMetricStatistics", 
-				"cloudwatch:ListMetrics", 
-				"codebuild:ListProjects", 
-				"datasync:ListTasks", 
-				"dax:DescribeClusters", 
-				"directconnect:DescribeConnections", 
-				"dms:DescribeReplicationInstances", 
-				"dynamodb:ListTables", 
-				"dynamodb:ListTagsOfResource", 
-				"ec2:DescribeAvailabilityZones", 
-				"ec2:DescribeInstances", 
-				"ec2:DescribeNatGateways", 
-				"ec2:DescribeSpotFleetRequests", 
-				"ec2:DescribeTransitGateways", 
-				"ec2:DescribeVolumes", 
-				"ec2:DescribeVpnConnections", 
-				"ecs:ListClusters", 
-				"eks:ListClusters", 
-				"elasticache:DescribeCacheClusters", 
-				"elasticbeanstalk:DescribeEnvironmentResources", 
-				"elasticbeanstalk:DescribeEnvironments", 
-				"elasticfilesystem:DescribeFileSystems", 
-				"elasticloadbalancing:DescribeInstanceHealth", 
-				"elasticloadbalancing:DescribeListeners", 
-				"elasticloadbalancing:DescribeLoadBalancers", 
-				"elasticloadbalancing:DescribeRules", 
-				"elasticloadbalancing:DescribeTags", 
-				"elasticloadbalancing:DescribeTargetHealth", 
-				"elasticmapreduce:ListClusters", 
-				"elastictranscoder:ListPipelines", 
-				"es:ListDomainNames", 
-				"events:ListEventBuses", 
-				"firehose:ListDeliveryStreams", 
-				"fsx:DescribeFileSystems", 
-				"gamelift:ListFleets", 
-				"glue:GetJobs", 
-				"inspector:ListAssessmentTemplates", 
-				"kafka:ListClusters", 
-				"kinesis:ListStreams", 
-				"kinesisanalytics:ListApplications", 
-				"kinesisvideo:ListStreams", 
-				"lambda:ListFunctions", 
-				"lambda:ListTags", 
-				"lex:GetBots", 
-				"logs:DescribeLogGroups", 
-				"mediaconnect:ListFlows", 
-				"mediaconvert:DescribeEndpoints", 
-				"mediapackage-vod:ListPackagingConfigurations", 
-				"mediapackage:ListChannels", 
-				"mediatailor:ListPlaybackConfigurations", 
-				"opsworks:DescribeStacks", 
-				"qldb:ListLedgers", 
-				"rds:DescribeDBClusters", 
-				"rds:DescribeDBInstances", 
-				"rds:DescribeEvents", 
-				"rds:ListTagsForResource", 
-				"redshift:DescribeClusters", 
-				"robomaker:ListSimulationJobs", 
-				"route53:ListHostedZones", 
-				"route53resolver:ListResolverEndpoints", 
-				"s3:ListAllMyBuckets", 
-				"sagemaker:ListEndpoints", 
-				"sns:ListTopics", 
-				"sqs:ListQueues", 
-				"storagegateway:ListGateways", 
-				"sts:GetCallerIdentity", 
-				"swf:ListDomains", 
-				"tag:GetResources", 
-				"tag:GetTagKeys", 
-				"transfer:ListServers", 
-				"workmail:ListOrganizations", 
-				"workspaces:DescribeWorkspaces"
-			],
-			"Resource": "*"
-		}
-	]
-}
-```
+5 . You can skip over the `Add tags` page
 
-4 . You can skip over the `Add tags` page
-
-5 . One the `Review policy` page, use the policy name of `dynatrace_monitoring_policy`
+6 . One the `Review policy` page, use the policy name of `dynatrace_monitoring_policy`
 
 ![image](img/dt-aws-dashboard-policy-name.png)
 
-6 . Click `Create policy` button.
+7 . Click `Create policy` button.
 
 ### Step 2 of 3: Add an AWS user with Programmatic access
 
@@ -201,7 +108,7 @@ Dynatrace can use access keys to make secure REST or Query protocol requests to 
 
 2 . On the new use page, click `Add User`.
 
-* Enter a name for the key you want to create (for example, `Dynatrace_monitoring_user`). 
+* For User Name set to `Dynatrace_monitoring_user` 
 * In Select AWS access type section, select `Access key - Programmatic access` checkbox
 * Click the `Next:Permissions` button
 
@@ -282,7 +189,7 @@ Read more about how to scale your enterprise cloud environment with enhanced AI-
 
 ### 💥 **TECHNICAL NOTE** 
 
-See the <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas/" target="_blank">Dynatrace Docs</a> for more details on the setup options.
+<i>See the <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas/" target="_blank">Dynatrace Docs</a> for more details on the setup options.</i>
 
 ## Custom Alerting
 

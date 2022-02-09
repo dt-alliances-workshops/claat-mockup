@@ -3,13 +3,13 @@ categories: modernization
 status: Published
 tags: aws-immersion-day,aws-selfpaced
 
-# AWS Lab 2 - Modernization Containers
+# AWS Lab 2 - Modernization with containers
 
 ## Overview
 
 For this lab you are going to use an updated version of the application on a second EC2 instance.  This makes it easy for you to see the transformation of the Sample Application in Lab 1.
 
-If you would rather provision Kubernetes on AWS to interact with the sames transformed application, then please follow `Lab 2 - Modernization Kubernetes` workshop guide. 
+If you would rather provision Kubernetes on AWS to interact with the sames transformed application, then please follow ` Modernization with ssKubernetes` lab guide. 
 
 ### Objectives of this Lab
 
@@ -45,7 +45,7 @@ The Dynatrace OneAgent has been installed by the workshop provisioning scripts a
 
 ### 💥 **TECHNICAL NOTE** 
 
-_Learn more about the various ways the OneAgent can be installed, in the <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-oneagent" target="_blank">Dynatrace documentation</a>_
+<i>Learn more about the various ways the OneAgent can be installed, in the <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-oneagent" target="_blank">Dynatrace documentation</a></i>
 
 **#4 . AWS monitoring**
 
@@ -69,7 +69,7 @@ To view the application, copy the public IP into a browser that will look like t
 
 ### 💥 **TECHNICAL NOTE**
 
-One difference you will see is the a dynamic list for the backend services versions.  We will refer to this again later in the labs.
+<i>One difference you will see is the a dynamic list for the backend services versions.  We will refer to this again later in the labs.</i>
 
 ![image](img/lab2-app.png)
 
@@ -162,11 +162,11 @@ Over time, you can imagine that this sample application will be further changed 
 
 ### 💥 **TECHNICAL NOTE**
 
-_We will not cover this, but organizations are establishing DevOps approaches and establishing Continuous Integration (CI) pipelines to build and test each service independently. Then adding Continuous Deployment (CD) to the process too that vastly increase our ability to delivery features faster to our customers.  Dynatrace has a number of solutions to support DevOps that you can read about [here](https://www.dynatrace.com/solutions/devops/)_
+<i>We will not cover this, but organizations are establishing DevOps approaches and establishing Continuous Integration (CI) pipelines to build and test each service independently. Then adding Continuous Deployment (CD) to the process too that vastly increase our ability to delivery features faster to our customers.  Dynatrace has a number of solutions to support DevOps that you can read about [here](https://www.dynatrace.com/solutions/devops/)</i>
 
 ### 💥 **TECHNICAL NOTE**
 
-_Dynatrace sees a lot of demand for Lambda serverless compute service and a slew of new capabilities that you can read about in these [Dynatrace blogs](https://www.dynatrace.com/news/tag/aws-lambda/)_
+<i>Dynatrace sees a lot of demand for Lambda serverless compute service and a slew of new capabilities that you can read about in these [Dynatrace blogs](https://www.dynatrace.com/news/tag/aws-lambda/)</i>
 
 ### Checklist
 
