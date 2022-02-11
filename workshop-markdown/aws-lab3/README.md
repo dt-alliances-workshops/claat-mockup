@@ -49,7 +49,7 @@ Davis provides quick notifications on anomalies detected, along with actionable 
 
 ### 💥 **TECHNICAL NOTE** 
 
-See the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank">Dynatrace Docs</a> for more details on SLOs
+<i>See the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank">Dynatrace Docs</a> for more details on SLOs</i>
 
 ## View SLO Dashboard
 

@@ -20,6 +20,8 @@ Commits are not auto-squashed when merging a PR, so please make sure your commit
 
 # Adding or Updating Workshops
 
+Reference this [format guide](https://towardsdatascience.com/cheat-sheet-for-google-colab-63853778c093) as you add content. 
+
 ## Prerequisites (mac)
 
 Below are instructions for installing the required tools to run, author and test workshop content on your laptop.

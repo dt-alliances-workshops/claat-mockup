@@ -41,7 +41,7 @@ The Dynatrace OneAgent has been installed by the workshop provisioning scripts a
 
 ### 💥 **TECHNICAL NOTE** 
 
-*Learn more about the various ways the OneAgent can be installed, in the <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-oneagent" target="_blank">Dynatrace documentation</a>*
+<i>Learn more about the various ways the OneAgent can be installed, in the <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-oneagent" target="_blank">Dynatrace documentation</a></i>
 
 **#3 . Load generator process**
 
@@ -49,7 +49,7 @@ A <a href="https://github.com/dt-orders/load-traffic" target="_blank">JMeter</a>
 
 ### 💥 **TECHNICAL NOTE**: 
 
-*A real-world scenario would often start with the application components running on a physical or virtualized host on-prem and not "Dockerized". To simplify the workshop, we "Dockerized" the application into a front-end and back-end. In Dynatrace, these Docker containers all show up as "processes" on a host just like a "non-Dockerized" application will.*
+<i>A real-world scenario would often start with the application components running on a physical or virtualized host on-prem and not "Dockerized". To simplify the workshop, we "Dockerized" the application into a front-end and back-end. In Dynatrace, these Docker containers all show up as "processes" on a host just like a "non-Dockerized" application will.</i>
 
 ### Sample app
 
@@ -175,7 +175,7 @@ You should be on the process page where you will see information for this proces
 
 ### 💥 **TECHNICAL NOTE**
 
-_Dynatrace automatically recognizes many common processes like Tomcat and will capture process specific metrics such as JVM garbage collection. See a list of supported technologies, languages and containers in the <a href="https://www.dynatrace.com/support/help/technology-support/supported-technologies-and-versions" target="_blank">Dynatrace documentation</a>_
+<i>Dynatrace automatically recognizes many common processes like Tomcat and will capture process specific metrics such as JVM garbage collection. See a list of supported technologies, languages and containers in the <a href="https://www.dynatrace.com/support/help/technology-support/supported-technologies-and-versions" target="_blank">Dynatrace documentation</a></i>
 
 ## Dynatrace and containers
 
@@ -193,7 +193,7 @@ There’s no need to modify your Docker images, modify run commands, or create a
 
 ### 💥 **TECHNICAL NOTE** 
 
-_You can read more about Dynatrace Docker Monitoring <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/basic-concepts/how-dynatrace-monitors-containers/" target="_blank">here</a> and technical details <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/monitoring/monitor-docker-containers" target="_blank">here</a>_
+<i>You can read more about Dynatrace Docker Monitoring <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/basic-concepts/how-dynatrace-monitors-containers/" target="_blank">here</a> and technical details <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/monitoring/monitor-docker-containers" target="_blank">here</a></i>
 
 ### View a Service
 
@@ -405,10 +405,17 @@ This is another out-of-the-box feature that helps you understand what technologi
 
     ![image](img/lab1-technology-filter.png)
 
-### Planning Ahead
+### One more resource to review 
 
-You can always click into the `Hub` menu within Dynatrace to learn about the many technologies that Dynatrace supports.  This list is in sync and constantly updated in conjunction with the <a href="https://www.dynatrace.com/hub" target="_blank">Dynatrace website hub page</a>
+1 . Choose the `Dynatrace Hub` option from the left side menu to open the OneAgent deployment page. 
 
+![image](img/lab1-dynatrace-hub.png)
+
+2 . Explore all the integration options of Dynatrace while you are in the Hub
+
+You can always click into the `Hub` menu within Dynatrace to learn about the many technologies that Dynatrace supports.  
+
+This list is in sync and constantly updated in conjunction with the <a href="https://www.dynatrace.com/hub" target="_blank">Dynatrace website hub page</a>
 
 ## Summary
 
@@ -417,14 +424,6 @@ By just installing the OneAgent, we have now gained a detailed topological view 
 * **Right Priority** - We now understand the complexity and interdependency of services and components to the rest of the environment architecture
 * **Right-Sizing the environment** - We now understanding which resources are required to move along with their required resource consumption patterns
 * **Best Migration Strategy** - We now understand the current end-to-end transactions through architecture and can choose the best migration strategy (rehost, refactor, rearchitect, rebuild)
-
-### One more resource to review 
-
-1 . Choose the `Dynatrace Hub` option from the left side menu to open the OneAgent deployment page. 
-
-![image](img/lab1-dynatrace-hub.png)
-
-2 . Explore all the integration options of Dynatrace while you are in the Hub
 
 ### Checklist
 

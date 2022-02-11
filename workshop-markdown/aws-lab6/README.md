@@ -4,7 +4,7 @@ status: Published
 tags: aws-immersion-day,aws-selfpaced
 
 
-# AWS Lab 6 - Modernization Kubernetes
+# AWS Lab 6 - Modernization with Kubernetes
 
 ## Overview
 
@@ -12,7 +12,7 @@ Re-hosting (also referred to as lift and shift) is a common migration use case. 
 
 For this lab you are going to use an updated version of the application on a Kubernetes.  This makes it easy for you to see the transformation of the Sample Application in Lab 1 and the value of running Kubernetes on AWS without needing to stand up or maintain your own Kubernetes control plane. 
 
-If you would rather NOT provision Kubernetes on AWS, then please follow the `Lab 2 - Containers` workshop guide. This guide has a shorter setup process but, still allows you to interact with the sames transformed application. 
+If you would rather NOT provision Kubernetes on AWS, then please follow the `Modernization with Containers` workshop guide. This guide has a shorter setup process but, still allows you to interact with the sames transformed application. 
 
 ### Objectives of this Lab 
 
@@ -179,7 +179,7 @@ If you still get an error, first check that you have the correct `--ssh-public-k
 
 ### 💥 **TECHNICAL NOTE**
 
-*Optionally, you can adjust the argument value for `--name dynatrace-workshop` if you are sharing an AWS account with others as to make it a unique cluster name.*
+<i>Optionally, you can adjust the argument value for `--name dynatrace-workshop` if you are sharing an AWS account with others as to make it a unique cluster name.</i>
 
 5 . Review the output will start to look like this and may take 20-30 minutes to fully provision.
 
@@ -211,7 +211,7 @@ cloudshell-user@ip-10-0-45-241 learner-scripts]$ eksctl create cluster --region 
 
 ### 💥 **TECHNICAL NOTE**
 
-*It is possible that your AWS cloud shell will time out before you see the `EKS cluster is ready` in the `eksctl` console output. It that occurs, that is OK.  Just refresh your Cloud Shell connection to get back to the command prompt and just monitor the CloudFormation script progress from the AWS console as described next.*
+<i>It is possible that your AWS cloud shell will time out before you see the `EKS cluster is ready` in the `eksctl` console output. It that occurs, that is OK.  Just refresh your Cloud Shell connection to get back to the command prompt and just monitor the CloudFormation script progress from the AWS console as described next.</i>
 
 ### Verify Cluster Creation
 
@@ -604,7 +604,7 @@ Use the menu on on the home page to navigate around the application and notice t
 
 ### 💥 **TECHNICAL NOTE** 
 
-The application looks like this monolith, but notice how the home page shows the versions of the three running backend services. You will see these version updated automatically as we deploy new versions of the backend services.
+<i>The application looks like this monolith, but notice how the home page shows the versions of the three running backend services. You will see these version updated automatically as we deploy new versions of the backend services.</i>
 
 ## Backtrace
 
@@ -693,11 +693,11 @@ Over time, you can imagine that this sample application will be further changed 
 
 ### 💥 **TECHNICAL NOTE**
 
-_We will not cover this, but organizations are establishing DevOps approaches and establishing Continuous Integration (CI) pipelines to build and test each service independently. Then adding Continuous Deployment (CD) to the process too that vastly increase our ability to delivery features faster to our customers.  Dynatrace has a number of solutions to support DevOps that you can read about [here](https://www.dynatrace.com/solutions/devops/)_
+<i>We will not cover this, but organizations are establishing DevOps approaches and establishing Continuous Integration (CI) pipelines to build and test each service independently. Then adding Continuous Deployment (CD) to the process too that vastly increase our ability to delivery features faster to our customers.  Dynatrace has a number of solutions to support DevOps that you can read about [here](https://www.dynatrace.com/solutions/devops/)</i>
 
 ### 💥 **TECHNICAL NOTE**
 
-_Dynatrace sees a lot of demand for Lambda serverless compute service and a slew of new capabilities that you can read about in these [Dynatrace blogs](https://www.dynatrace.com/news/tag/aws-lambda/)_
+<i>Dynatrace sees a lot of demand for Lambda serverless compute service and a slew of new capabilities that you can read about in these [Dynatrace blogs](https://www.dynatrace.com/news/tag/aws-lambda/)</i>
 
 ### Checklist
 

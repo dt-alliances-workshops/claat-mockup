@@ -36,7 +36,7 @@ In the next section, you will run a unix script that sets these problems.
 
 ### 💥 **TECHNICAL NOTE**
 
-Refer to <a href="https://github.com/dt-orders/overview" target="_blank">dt-orders overview README</a>
+<i>Refer to <a href="https://github.com/dt-orders/overview" target="_blank">dt-orders overview README</a></i>
 
 ## Dynatrace Events
 
@@ -53,11 +53,15 @@ There are several Dynatrace information event types:
 * `CUSTOM_INFO`
 * `MARKED_FOR_TERMINATION`
 
-Below we can see both the `CUSTOM_INFO` (#1) and `CUSTOM_DEPLOYMENT` events (#2) for a service that was the root cause to a problem the Dynatrace AI engine, Davis®, determined.
+Below we can see for a service that was the root cause to a problem the Dynatrace AI engine, Davis®, determined: 
+* (#1) `CUSTOM_INFO` events and 
+* (#2)`CUSTOM_DEPLOYMENT` events  
 
 ![image](img/lab3-problemcard-events.png)
 
-Each event has a timestamp, event source, a few standardized fields (depending on the event type), and the option to add additional custom fields.  See <a href="https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events-v1/post-event/#anchor_parameters-mapping" target="_blank">this table</a> for details.  Here are two example events.  NOTE the URL back to the pipeline making the change.
+Each event has a timestamp, event source, a few standardized fields (depending on the event type), and the option to add additional custom fields.  See <a href="https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events-v1/post-event/#anchor_parameters-mapping" target="_blank">this table</a> for details.  
+
+Here are two example events.  NOTE the URL back to the pipeline making the change.
 
 ![image](img/lab3-event-examples.png)
 
