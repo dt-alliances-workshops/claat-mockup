@@ -76,8 +76,7 @@ The Kubernetes page provides an overview of all Kubernetes clusters showing moni
 This step extends what you did in the previous step and will provision an Amazon Elastic Kubernetes Service (EKS) cluster and the Dynatrace configuration needed for the workshop.
 
 There are the following setup steps for this lab:
-1. Install the pre-requisite tools
-1. Setup Dynatrace config
+1. Install the pre-requisite tools in you SSH shell
 1. Create Cluster
 1. Verify Cluster
 1. Install Dynatrace Kubernetes Operator
@@ -112,37 +111,6 @@ chmod +x $HOME/bin/kubectl
 ```
 kubectl version --short --client 
 ```
-
-## Setup Dynatrace config
-
-From the AWS Cloudshell window, run these commands:
-
-```
-cd ~/aws-modernization-dt-orders-setup/workshop-config
-./setup-workshop-config.sh cluster
-```
-
-The script output will look like this:
-
-```
------------------------------------------------------------------------------------
-Setting up Workshop config
-Dynatrace  : https://XXXXX.live.dynatrace.com
-Starting   : Fri Oct  1 19:46:19 UTC 2021
------------------------------------------------------------------------------------
-...
-...
------------------------------------------------------------------------------------
-Done Setting up Workshop config
-End: Fri Oct  1 19:46:31 UTC 2021
------------------------------------------------------------------------------------
-```
-
-The script will run fast while it adds the following Dynatrace configuration: 
-
-* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/management-zones/" target="_blank">Management Zones</a> for the kubernete versions of the application
-* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank">SLOs</a> for a use in custom dashboards
-* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/process-groups/configuration/customize-the-name-of-process-groups/" target="_blank">Process Naming Rule</a> to have the services show as namespace-service-name
 
 ## Create Cluster
 

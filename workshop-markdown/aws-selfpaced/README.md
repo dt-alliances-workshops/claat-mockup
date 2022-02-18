@@ -310,6 +310,8 @@ For the workshop you have the option of using an existing Key Pair that you may 
 
 ## Lab 1 Setup Part 1: Dynatrace Configuration
 
+### 💥💥💥 Only follow these instructions if you are running Lab 1 - OneAgent Observability 💥💥💥
+
 This step just requires you to run a few steps to provision several AWS resources and the Dynatrace configuration needed for the workshop.
 
 From the AWS Cloudshell window, run these commands:
@@ -348,6 +350,8 @@ The script will run fast while it adds the following Dynatrace configuration:
 _The Dynatrace configuration scripts use a combination of <a href="https://github.com/dynatrace-oss/dynatrace-monitoring-as-code" target="_blank">Dynatrace Monitoring as Code</a> framework (a.k.a. monaco) and the <a href="https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/" target="_blank">Dynatrace Configuration API</a> for those few Dynatrace configurations not yet supported by monaco._
 
 ## Lab 1 Setup Part 2: Provision AWS resources
+
+### 💥💥💥 Only follow these instructions if you are running Lab 1 - OneAgent Observability 💥💥💥
 
 You will now run a CloudFormation what will do the following:
 
@@ -404,6 +408,8 @@ _If you using a personal or corporate account, the CloudFormation may rollback d
 
 ## Lab 2 Setup Part 1: Dynatrace Configuration
 
+### 💥💥💥 Only follow these instructions if you are running Lab 2 - Modernization with containers 💥💥💥
+
 This step just requires you to run a few steps to provision several AWS resources and the Dynatrace configuration needed for the workshop.
 
 From the AWS Cloudshell window, run these commands:
@@ -439,6 +445,8 @@ The script will run fast while it adds the following Dynatrace configuration:
 _The Dynatrace configuration scripts use a combination of <a href="https://github.com/dynatrace-oss/dynatrace-monitoring-as-code" target="_blank">Dynatrace Monitoring as Code</a> framework (a.k.a. monaco) and the <a href="https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/" target="_blank">Dynatrace Configuration API</a> for those few Dynatrace configurations not yet supported by monaco._
 
 ## Lab 2 Setup Part 2: Provision AWS resources
+
+### 💥💥💥 Only follow these instructions if you are running Lab 2 - Modernization with containers 💥💥💥
 
 You will now run a CloudFormation what will do the following:
 
@@ -496,7 +504,9 @@ _The process to provision everything will take ~5 minutes, so please be patient.
 _If you using a personal or corporate account, the CloudFormation may rollback due to VPC limits being reached. In that scenario, delete one of the VPCs and retry the script._
 
 
-## Lab 3 Setup 
+## Lab 3: Dynatrace Configuration 
+
+### 💥💥💥 Only follow these instructions if you are running Lab 3 - SLOs 💥💥💥
 
 This step just requires you to run a few steps to import the Dynatrace configuration needed for the workshop.
 
@@ -533,6 +543,42 @@ Provisioning workshop resources COMPLETE
 End: Thu Nov  11 19:46:51 EDT 2021
 =============================================
 ```
+
+## Lab 6 Setup: Dynatrace Configuration  
+
+### 💥💥💥 Only follow these instructions if you are running Lab 6 - Modernization with Kubernetes 💥💥💥
+
+This step just requires you to run a few steps to import the Dynatrace configuration needed for the workshop.
+
+From the AWS Cloudshell window, run these commands:
+
+```
+cd ~/aws-modernization-dt-orders-setup/workshop-config
+./setup-workshop-config.sh cluster
+```
+
+The script output will look like this:
+
+```
+-----------------------------------------------------------------------------------
+Setting up Workshop config
+Dynatrace  : https://XXXXX.live.dynatrace.com
+Starting   : Fri Oct  1 19:46:19 UTC 2021
+-----------------------------------------------------------------------------------
+...
+...
+-----------------------------------------------------------------------------------
+Done Setting up Workshop config
+End: Fri Oct  1 19:46:31 UTC 2021
+-----------------------------------------------------------------------------------
+```
+
+The script will run fast while it adds the following Dynatrace configuration: 
+
+* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/management-zones/" target="_blank">Management Zones</a> for the kubernete versions of the application
+* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank">SLOs</a> for a use in custom dashboards
+* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/process-groups/configuration/customize-the-name-of-process-groups/" target="_blank">Process Naming Rule</a> to have the services show as namespace-service-name
+
 
 ## Summary
 
