@@ -7,12 +7,12 @@ TARGET=$1
 
 case "$TARGET" in
     "prod") 
-        TARGET_URL=s3://alliances-dt-test-workshops
-        CLOUD_FRONT_DISTRIBUTION_ID=E8RBDTITGBZ5
+        TARGET_URL=s3://alliances-learn-content
+        CLOUD_FRONT_DISTRIBUTION_ID=E2LSLQ6AAL5WKJ
         ;;
     "staging") 
-        TARGET_URL=s3://alliances-dt-test-workshops-stg
-        CLOUD_FRONT_DISTRIBUTION_ID=E12BGRJVW4KP6E
+        TARGET_URL=s3://alliances-learn-content-stg
+        CLOUD_FRONT_DISTRIBUTION_ID=E137VF5PUN9RRG
         ;;
     *)
         echo ""
