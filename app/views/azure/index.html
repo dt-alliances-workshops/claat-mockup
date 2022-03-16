@@ -1,0 +1,318 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="{{view.description}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="{{view.title}}">
+  <meta name="application-name" content="{{view.title}}">
+  <link rel="canonical" href="{{canonicalViewUrl(view)}}" />
+  <link rel="preconnect" href="https://www.google-analytics.com" />
+
+  <script>
+    window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+    ga('create', '{{ga}}', 'auto');
+    ga('send', 'pageview');
+    {% if view.ga %}
+    ga('create', '{{view.ga}}', 'auto', { name: 'view' });
+    ga('view.send', 'pageview');
+    {% endif %}
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  <title>{{view.title}}</title>
+
+  <link rel="stylesheet" href="/styles/main.css">
+
+  {% if view.customStyle %}
+  <link rel="stylesheet" href="{{view.customStyle}}">
+  {%- endif %}
+
+  <link rel="import" href="/elements/elements.html">
+
+  <style is="custom-style">
+    :root {
+      --primary-text-color: #FFFFFF;
+      --paper-tabs-selection-bar-color: currentcolor;
+      --paper-input-container-underline: {
+        display: none;
+      };
+      --paper-input-container-underline-focus: {
+        display: none;
+      };
+      --paper-input-container-label: {
+          color:#ccced1;
+      };
+    }
+
+    .dropdown-filter {
+      --paper-input-container: {
+        padding: 8px;
+      }
+    }
+  </style>
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#455a64">
+  <meta name="apple-mobile-web-app-title" content="{{view.title}}">
+
+  <link rel="icon" type="image/png" href="/images/favicons/dynatrace-48x48-transparent.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="msapplication-TileColor" content="#455a64">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#455a64">
+
+  <meta name="og:type" property="og:type" content="website" />
+  <meta name="og:title" property="og:title" content="{{view.title}}" />
+  <meta name="og:description" property="og:description" content="{{view.description}}" />
+  <meta name="og:url" property="og:url" content="{{canonicalViewUrl(view)}}" />
+  <meta name="og:site_name" property="og:site_name" content="Codelabs" />
+  <meta name="og:determiner" property="og:determiner" content="the" />
+  <meta name="og:locale" property="og:locale" content="en_US" />
+  <meta name="og:image" property="og:image" content="/images/og-image.png" />
+  <meta name="og:image:url" property="og:image:url" content="/images/og-image.png" />
+  <meta name="og:image:type" property="og:image:type" content="image/png" />
+  <meta name="og:image:width" property="og:image:width" content="1200" />
+  <meta name="og:image:height" property="og:image:height" content="1200" />
+  <meta name="og:image:alt" property="og:image:alt" content="Codelabs" />
+
+  <meta name="twitter:card" property="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" property="twitter:title" content="{{view.title}}" />
+  <meta name="twitter:description" property="twitter:description" content="{{view.description}}" />
+  <meta name="twitter:image" property="twitter:image" content="/images/og-image.png" />
+  <meta name="twitter:url" property="twitter:url" content="{{canonicalViewUrl(view)}}" />
+</head>
+
+<body id="app" is="body-bind" class="loading fullbleed {% if view.id != 'default' -%}view{%- endif -%}">
+  <paper-header-panel id="main" mode="standard" main>
+    <!-- ORIGINAL NOT USING - THIS HAD SEARCH AT THE TOP 
+    {% raw %}
+    <div id="mainToolbar" class="paper-header">
+      <div class="site-width layout horizontal">
+        <a href="/">
+          <img src="/images/dynatrace-logo.png" class="logo-devs" alt="Dynatrace Logo">
+        </a>
+        <div id="searchbar">
+          <paper-input-container no-label-float>
+            <paper-icon-button prefix icon="search"></paper-icon-button>
+            <label>Search</label>
+            <input is="iron-input" bind-value="{{searchVal}}" on-keydown="onSearchKeyDown">
+          </paper-input-container>
+        </div>
+      </div>
+    </div>
+    {% endraw %}
+    -->
+
+    {# Event pages force down attribute. On homepage, it's applied dynamically. #}
+    <!-- ORIGINAL NOT USING <header class="custom-background" id="banner" {% if view.id !='default' -%}down{%- else %}down$="[[_toBoolean(selectedFilter)]]" {%- endif %}>-->
+    <!-- ORIGINAL HAD MORE LOGIC FOR THE DEFAULT VIEW --> 
+    <!-- <header class="custom-background" id="banner"> -->
+    <div id="{{view.logoSizePct}}"></div>
+    {% if view.id == 'aws-immersion-day' %}
+    <header id="banner" class="custom-background-aws-immersion-day">
+    {% else %}
+    <header id="banner" class="custom-background">
+    {%- endif %}
+      <div class="site-width">
+        <!-- do this to that logo and title are on the same line -->
+        {% if view.id == 'default' %}
+        <img src="{{view.logoUrl}}" width="{{view.logoSizePct}}" class="logo-devs" alt="Logo">
+        <h2 class="banner-title">{{view.title}}</h2>
+        {% else %}
+        <h2 class="banner-title">
+          <img src="{{view.logoUrl}}" width="{{view.logoSizePct}}" class="logo-devs" alt="Logo">
+          {{view.title}}</h2>
+        {% endif %}  
+          <!-- ORIGINAL NOT USING -->
+          <!-- <div class="banner-description" data-filter-selected$="{% raw %}[[_toBoolean(selectedFilter)]]{% endraw %}">-->
+          <div class="banner-description">
+              <p class="banner-info">
+              {{view.description}}
+              <BR>
+              {{view.contact}}
+              <!-- HIDE FOR NOW
+              <br>
+              <a href="https://github.com/dynatrace-perfclinics"  target="_blank" class="button">Dynatrace Perfclinics on Github</a>
+              <a href="https://www.youtube.com/c/dynatrace"  target="_blank" class="button">Dynatrace on Youtube</a>
+              <a href="https://www.dynatrace.com/request-demo/"   target="_blank" class="button">Request a Demo</a>
+              <a href="https://www.dynatrace.com/trial/"  target="_blank" class="button">Free Trial</a>
+              -->
+            </p>
+          </div>
+      <span class="banner-info">
+        <a href="/" class="button">Home</a>
+        <a href="https://www.dynatrace.com/request-demo/" class="button">Request a Demo</a>
+        <a href="https://www.dynatrace.com/trial/" class="button">Free Trial</a>
+      </span>
+    </div>
+  </header>
+
+    <main>
+        <div><p>&nbsp;<BR></p></div>
+        <div id="filters" class="site-width layout horizontal center justified">
+        {% raw %}
+        <div id="searchbar">
+          <paper-input-container no-label-float>
+            <paper-icon-button prefix icon="search"></paper-icon-button>
+            <label>Search</label>
+            <input is="iron-input" bind-value="{{searchVal}}" on-keydown="onSearchKeyDown">
+          </paper-input-container>
+        </div>
+        {% endraw %}
+
+        <!-- HIDE FOR NOW
+        <div id="sortby">
+          <paper-tabs selected="0" noink on-iron-activate="sortBy">
+            <paper-tab>A-Z</paper-tab>
+            <paper-tab>Recent</paper-tab>
+            <paper-tab>Duration</paper-tab>
+          </paper-tabs>
+        </div>
+        -->
+
+        {% if view.id == 'default' && views|length > 1 %}
+        <!-- this is the stuff hiding or showing the views dropdown -->
+        <paper-dropdown-menu label="Pick an Event" class="dropdown-filter" no-label-float noink no-animations>
+          <paper-listbox id="eventlist" slot="dropdown-content" class="dropdown-content">
+            {%- for view in views -%}
+              {%- if view.id != 'default' && !view.hidden -%}
+                <a href="/{{view.url}}/" tabindex="-1">
+                  <!-- <paper-item>{{view.title}}</paper-item>-->
+                  <paper-item>{{view.dropdownName}}</paper-item>
+                </a>
+              {%- endif -%}
+            {%- endfor %}
+          </paper-listbox>
+        </paper-dropdown-menu>
+        {%- endif %}
+    <!-- JG - Hiding this section since automatic categories doesn't work due to a bug
+        {%- if showcats -%}
+        <paper-dropdown-menu label="Filter topic" class="dropdown-filter" no-label-float noink no-animations>
+          <paper-listbox id="categorylist" slot="dropdown-content" class="dropdown-content"
+            on-iron-activate="onCategoryActivate" attr-for-selected="filter">
+            {% for category in categories -%}
+            {%- if categoryHasShowableCodelabs(category, codelabs) -%}
+            <paper-item filter="{{category}}">{{category}}</paper-item>
+            {%- endif -%}
+            {%- endfor %}
+          </paper-listbox>
+        </paper-dropdown-menu>
+        {%- endif -%}
+    -->
+    <paper-dropdown-menu label="Category" class="dropdown-filter" no-label-float noink no-animations>
+      <paper-listbox id="categorylist" slot="dropdown-content" class="dropdown-content" on-iron-activate="onCategoryActivate" attr-for-selected="filter" >
+        <paper-item filter="all">all</paper-item>          
+          <paper-item filter="kubernetes">kubernetes</paper-item>             
+          <paper-item filter="modernization">modernization</paper-item>          
+          {# for category in categories #}
+            {# if categoryHasShowableCodelabs(category, codelabs) #}
+            <!--<paper-item filter="{{category}}">{{category}}</paper-item>-->
+            {# endif #}
+          {# endfor #}
+      </paper-listbox>
+    </paper-dropdown-menu>
+      </div>
+      <div><p>&nbsp;<BR></p></div>
+
+      <card-sorter id="cards" class="site-width">
+        {% for codelab in codelabs -%}
+
+        {# Only filter hidden codelabs from the default view.
+        All other views are explicitly opt-in via metadata. #}
+        {% if codelab.status.indexOf('hidden') === -1 || view.id !== 'default' %}
+        {% set cat = levelledCategory(codelab, view.catLevel) %}
+        <a href="{{codelabUrl(view, codelab)}}" on-tap="navigate"
+          class="codelab-card category-{{categoryClass(codelab, cat.level)}}" data-category="{{codelab.category}}"
+          data-title="{{codelab.title}}" data-duration="{{codelab.duration}}" data-updated="{{codelab.updated}}"
+          data-tags="{{codelab.tags}}" data-pin="{{codelabPin(view, codelab)}}">
+            {%- if codelabPin(view, codelab) -%}
+            <div class="card-pin"></div>
+            {%- endif -%}
+            <div style="min-height:75px;max-height:75;">
+            <div class="title">{{codelab.title}}</div>
+            <div class="description">{{codelab.description}}</div>
+            
+              <div class="card-duration">              
+              <!-- <span>{%- if codelab.updated -%}Updated {{codePrettyDate(codelab.updated)}}{%- endif -%}</span> -->
+              <span>{%- if codelab.duration -%}{{codelab.duration}} min {%- endif -%}</span>
+            </div>
+            
+            
+          </div>
+          <div class="card-footer">
+            <div class="category-icon {{codelab.tags[0]}}-icon"></div>
+            <paper-button class="{{codelab.tags[0]}}-bg">Start</paper-button>
+            <!-- <paper-button class="{{categoryClass(codelab, cat.level)}}-bg">Start</paper-button>-->
+          </div>
+
+        </a>
+        {%- endif %}
+        {%- endfor %}
+      </card-sorter>
+
+      <div id="loading-placeholder" class="site-width">
+        Loading Codelabs, please wait...
+      </div>
+    </main>
+
+    <footer id="footer">
+      <div class="footer-wrapper site-width">
+        <div class="link-list">
+          <label>Learn More</label>
+          <ul>
+            <li><a href="https://www.dynatrace.com/">Dynatrace</a></li>
+          </ul>
+        </div>
+        <div class="link-list">
+          <label>Dynatrace Resources</label>
+          <ul>
+            <li><a href="https://www.dynatrace.com/news/blog/">Blog</a></li>
+            <li><a href="https://www.dynatrace.com/news/webinar/">Webinars</a></li>
+          </ul>
+        </div>
+        <div class="link-list">
+          <label>Dynatrace Community</label>
+          <ul>
+            <li><a href="https://help.dynatrace.com/">Documentation</a></li>
+            <li><a href="https://university.dynatrace.com/">University</a></li>
+            <li><a href="https://answers.dynatrace.com/">Forums</a></li>
+            <li><a href="https://www.youtube.com/c/dynatrace">Youtube</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <div class="footerbar">
+      <hr>
+      <div class="site-width layout horizontal center justified">
+        <span>
+          <a href="https://www.dynatrace.com/company/trust-center/terms-of-use/">Terms</a>
+          &nbsp; | &nbsp;
+          <a
+            href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/data-privacy-and-security/data-privacy/">Privacy</a>
+        </span>
+      </div>
+    </div>
+
+  </paper-header-panel>
+
+  <!-- build:js /scripts/main.js -->
+  <script src="bower_components/url-search-params-polyfill/build/url-search-params.js"></script>
+  <script src="scripts/app.js"></script>
+  <!-- endbuild-->
+</body>
+
+</html>

@@ -1,11 +1,13 @@
-summary: Dynatrace Workshop on Azure - lab2
+summary: Lab 2 Dynatrace Workshop on Azure
 id: azure-lab2
-categories: modernization, kubernetes
+categories: kubernetes,all
 tags: azure
 status: Published
 authors: Jay Gurbani
-Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
+Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
+
 # Azure Workshop Lab 2 - Modernization with AKS
+
 ## Objectives & Lab Setup
 Duration: 10
 
