@@ -1,10 +1,11 @@
-summary: Dynatrace Workshop on Azure - lab1
+summary: Lab 1 Dynatrace Workshop on Azure
 id: azure-lab1
-categories: modernization, kubernetes
+categories: modernization,kubernetes,all
 tags: azure
 status: Published
 authors: Jay Gurbani
-Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
+Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
+
 # Azure Workshop Lab 1 - OneAgent Observability
 
 ## Lab Setup

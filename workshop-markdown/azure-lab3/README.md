@@ -1,10 +1,10 @@
-summary: Dynatrace Workshop on Azure - lab3
+summary: Lab 3 Dynatrace Workshop on Azure
 id: azure-lab3
-categories: modernization, kubernetes
+categories: modernization,kubernetes,all
 tags: azure
 status: Published
 authors: Jay Gurbani
-Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
+Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 
 # Azure Workshop Lab 3 - Davis AI
 

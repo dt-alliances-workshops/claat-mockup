@@ -1,10 +1,11 @@
-summary: Dynatrace Workshop on Azure - lab4
+summary: Lab 4 Dynatrace Workshop on Azure
 id: azure-lab4
-categories: modernization, kubernetes
+categories: modernization,kubernetes,all
 tags: azure
 status: Published
 authors: Jay Gurbani
-Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
+Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
+
 
 # Azure Workshop Lab 4 - Operate
 

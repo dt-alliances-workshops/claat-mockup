@@ -1,6 +1,6 @@
-summary: Dynatrace Workshop on Azure - lab6
+summary: Lab 6 Dynatrace Workshop on Azure
 id: azure-lab6
-categories: modernization, kubernetes
+categories: modernization,kubernetes,all
 tags: azure
 status: Published
 authors: Jay Gurbani

@@ -1,10 +1,11 @@
-summary: Dynatrace Workshop on Azure - Prerequisites
-id: azure-prereq
-categories: modernization, kubernetes
+summary: Lab 0 Dynatrace Workshop on Azure
+id: azure-lab0
+categories: modernization,kubernetes,all
 tags: azure
 status: Published
 authors: Jay Gurbani
-Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
+Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
+
 # Azure Workshop Lab 0 - Setup
 
 ## Learning Objectives
@@ -21,7 +22,7 @@ Duration: 2
 🔷 Automatically provision workshop environment and sample application
 
 ## Login to Dynatrace Managed Environment
-Duration: 5
+Duration: 6
 
 For this workshop we have setup a free Dynatrace environment with evaluation license of the full feature set of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.  
 
@@ -67,7 +68,7 @@ This free Azure subscription will be available to you for the next 5 days or unt
 🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
 
 ## Azure Portal Prep
-Duration: 6
+Duration: 5
 
 1. Navigate to <a href="https://portal.azure.com/" target="_blank">https://portal.azure.com/ </a>
 
