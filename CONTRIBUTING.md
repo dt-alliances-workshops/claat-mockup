@@ -74,7 +74,7 @@ npm run serve
 Some users have had difficulty with content generation on Windows, the following will mount edited codelab markdown in workshop-markdown within the current director and generate content in a Docker container, exporting that content to the dist folder in the current directory:
 
 ```
-docker run -v ${PWD}/workshop-markdown:/usr/src/app/workshop-markdown -v ${PWD}/dist:/usr/src/app/dist-final mvilliger/workshop-builder:0.1
+docker run -v ${PWD}/workshop-markdown:/usr/src/app/workshop-markdown -v ${PWD}/dist:/usr/src/app/dist-final mvilliger/workshop-builder:0.2
 ```
 
 ## Serve dist content in Docker
