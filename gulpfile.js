@@ -92,6 +92,15 @@ const STAGING_BUCKET = gcs.bucketName(args.stagingBucket || 'DEFAULT_STAGING_BUC
 // VIEWS_FILTER is the filter to use for view inclusion.
 const VIEWS_FILTER = args.viewsFilter || '*';
 
+// directories creates the necessary folders
+gulp.task('directories', function () {
+  return gulp.src('*.*', {read: false})
+      .pipe(gulp.dest('./build'))
+      .pipe(gulp.dest('./dist'))
+      .pipe(gulp.dest('./codelabs-gen'))
+});
+
+
 // clean:build removes the build directory
 gulp.task('clean:build', (callback) => {
   return del('build')
@@ -248,6 +257,7 @@ gulp.task('codelabs:export', (callback) => {
 
 // build builds all the assets
 gulp.task('build', gulp.series(
+    'directories',
     'clean',
     'codelabs:export',
     'build:codelabs',
