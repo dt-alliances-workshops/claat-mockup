@@ -92,6 +92,15 @@ const STAGING_BUCKET = gcs.bucketName(args.stagingBucket || 'DEFAULT_STAGING_BUC
 // VIEWS_FILTER is the filter to use for view inclusion.
 const VIEWS_FILTER = args.viewsFilter || '*';
 
+// directories creates the necessary folders
+gulp.task('directories', function () {
+  return gulp.src('*.*', {read: false})
+      .pipe(gulp.dest('./build'))
+      .pipe(gulp.dest('./dist'))
+      .pipe(gulp.dest('./codelabs-gen'))
+});
+
+
 // clean:build removes the build directory
 gulp.task('clean:build', (callback) => {
   return del('build')
@@ -248,6 +257,7 @@ gulp.task('codelabs:export', (callback) => {
 
 // build builds all the assets
 gulp.task('build', gulp.series(
+    'directories',
     'clean',
     'codelabs:export',
     'build:codelabs',
@@ -264,6 +274,29 @@ gulp.task('build', gulp.series(
 gulp.task('copy', (callback) => {
   // Explicitly do not use gulp here. It's too slow and messes up the symlinks
   fs.rename('build', 'dist', callback);
+});
+
+gulp.task('copy-fs', (callback) => {
+  // Explicitly do not use gulp here. It's too slow and messes up the symlinks
+  // copy not rename to get around weird linux volume issues
+  fs.copy('build', 'dist', callback);
+});
+
+gulp.task('remove-dist-codelabs', (callback) => {
+  // explicitly removing codelabs symlink from dist/codelabs
+  // we copy it over in the copy-codelabs task
+  fs.rm('./dist/codelabs', { recursive: true, force: true }, callback);
+});
+
+gulp.task('copy-codelabs', (callback) => {
+  // explicitly copying codelabs to dist/codelabs
+  fs.copy('codelabs-gen', './dist/codelabs', callback);
+});
+
+// copy copies the dist artifacts in dist into dist-final
+// this is necessary to copy into mounted volume for building under docker
+gulp.task('copy-to-dist-final', (callback) => {
+  fs.copy('./dist', './dist-final', callback);
 });
 
 // minify:css minifies the css
@@ -314,7 +347,18 @@ gulp.task('minify', gulp.parallel(
 gulp.task('dist', gulp.series(
   'build',
   'copy',
+  'minify'
+));
+
+// dist-docker packages the build for distribution within Docker,
+// compressing and condensing where appropriate.
+gulp.task('dist-docker', gulp.series(
+  'build',
+  'copy-fs',
   'minify',
+  'remove-dist-codelabs',
+  'copy-codelabs',
+  'copy-to-dist-final'
 ));
 
 // watch:css watches css files for changes and re-builds them
