@@ -266,6 +266,29 @@ gulp.task('copy', (callback) => {
   fs.rename('build', 'dist', callback);
 });
 
+gulp.task('copy-fs', (callback) => {
+  // Explicitly do not use gulp here. It's too slow and messes up the symlinks
+  // copy not rename to get around weird linux volume issues
+  fs.copy('build', 'dist', callback);
+});
+
+gulp.task('remove-dist-codelabs', (callback) => {
+  // explicitly removing codelabs symlink from dist/codelabs
+  // we copy it over in the copy-codelabs task
+  fs.rm('./dist/codelabs', { recursive: true, force: true }, callback);
+});
+
+gulp.task('copy-codelabs', (callback) => {
+  // explicitly copying codelabs to dist/codelabs
+  fs.copy('codelabs-gen', './dist/codelabs', callback);
+});
+
+// copy copies the dist artifacts in dist into dist-final
+// this is necessary to copy into mounted volume for building under docker
+gulp.task('copy-to-dist-final', (callback) => {
+  fs.copy('./dist', './dist-final', callback);
+});
+
 // minify:css minifies the css
 gulp.task('minify:css', () => {
   const srcs = [
@@ -314,7 +337,18 @@ gulp.task('minify', gulp.parallel(
 gulp.task('dist', gulp.series(
   'build',
   'copy',
+  'minify'
+));
+
+// dist-docker packages the build for distribution within Docker,
+// compressing and condensing where appropriate.
+gulp.task('dist-docker', gulp.series(
+  'build',
+  'copy-fs',
   'minify',
+  'remove-dist-codelabs',
+  'copy-codelabs',
+  'copy-to-dist-final'
 ));
 
 // watch:css watches css files for changes and re-builds them
