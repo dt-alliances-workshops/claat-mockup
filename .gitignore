@@ -6,3 +6,4 @@ node_modules/
 codelabs-build/
 codelabs-gen/
 build/
+dist/*
