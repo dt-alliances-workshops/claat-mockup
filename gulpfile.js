@@ -113,7 +113,7 @@ gulp.task('clean:dist', (callback) => {
 
 // clean:dist-final empties the dist-final directory
 gulp.task('clean:dist-final', (callback) => {
-  fs.rm('./dist-final/*', { recursive: true, force: true }, callback);
+  fs.emptyDir('./dist-final', callback);
 });
 
 // clean:js removes the built javascript
@@ -301,7 +301,7 @@ gulp.task('copy-codelabs', (callback) => {
 // copy copies the dist artifacts in dist into dist-final
 // this is necessary to copy into mounted volume for building under docker
 gulp.task('copy-to-dist-final', (callback) => {
-  fs.copy('./dist', './dist-final', callback);
+  fs.copy('./dist', './dist-final', { overwrite: true }, callback);
 });
 
 // minify:css minifies the css
