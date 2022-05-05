@@ -111,6 +111,11 @@ gulp.task('clean:dist', (callback) => {
   return del('dist')
 });
 
+// clean:dist-final empties the dist-final directory
+gulp.task('clean:dist-final', (callback) => {
+  fs.rm('./dist-final/*', { recursive: true, force: true }, callback);
+});
+
 // clean:js removes the built javascript
 // NOTE: this is not included in the default 'clean' task
 gulp.task('clean:js', (callback) => {
@@ -358,6 +363,7 @@ gulp.task('dist-docker', gulp.series(
   'minify',
   'remove-dist-codelabs',
   'copy-codelabs',
+  'clean:dist-final',
   'copy-to-dist-final'
 ));
 
