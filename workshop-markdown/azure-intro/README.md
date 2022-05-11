@@ -1,20 +1,20 @@
-summary: Dynatrace Workshop on Azure  Introduction
+summary: Dynatrace Workshop on Azure Introduction
 id: azure-intro
 categories: modernization, kubernetes
 tags: azure
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
+
 # Azure Workshop Introduction
+
+## Workshop Introduction & Learning Objectives
 Duration: 5
 ![image](img/dt-azure.png)
 
 [Dynatrace](https://www.dynatrace.com) is an Azure Gold Cloud Platform Competency Partner. Dynatrace provides software intelligence to simplify enterprise cloud complexity and accelerate digital transformation. With AI and complete automation, the company’s all-in-one platform provides answers, not just data, about the performance of applications, the underlying infrastructure and the experience of all users.
 
 Dynatrace has pioneered and expanded the collection of observability data in highly dynamic cloud environments with the Dynatrace OneAgent. When an organization installs the OneAgent, it automatically detects all applications, containers, services, processes, and infrastructure in real-time with zero manual configuration or code changes. System components are automatically instrumented collect not only metrics, logs and traces, but a broader view of your environment including full topological model with entity relationships, code-level detail, and user experience – all in context.
-
-## Workshop Learning Objectives
-Duration: 5
 
 This virtual hands-on workshop will start with a review of common challenges associated with modernization followed by a review of how Dynatrace’s AI-engine, Davis, performs automatic and intelligent root-cause analysis in hybrid cloud Azure environments. This will be followed by series of hands-on labs where you will:
 
@@ -58,7 +58,7 @@ Attendees can expect to learn the following from this workshop:​
 
 
 ## Forward
-Duration: 5
+Duration: 2
 
 ### Modern cloud environments need a different approach to observability
 
@@ -71,7 +71,7 @@ Such applications are more complex and unpredictable than ever. System health pr
 Lets next review a few common challenges the are driving the need for better observability and automation as applications are modernizing.
 
 ## Challenges
-Duration: 5
+Duration: 2
 
 Below are a few common challenges the are driving the need for better observability and automation as applications are modernizing.
 
@@ -149,7 +149,7 @@ We are asking ourselves:
 Before we take a look at how Dynatrace can help us with these challenges.
 
 ## Dynatrace and Azure
-Duration: 5
+Duration: 3
 
 The <a href="https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/" target="_blank">Azure Cloud Adoption Framework</a> provides the best practices, documentation, and tools that cloud architects, IT professionals, and business decision makers need to successfully achieve short-term and long-term objectives. 
 
@@ -169,7 +169,7 @@ Here is an overview for how <a href="https://www.dynatrace.com" target="_blank">
 ![image](img/azure-cloud-adoption.png)
 
 ## Next Steps
-Duration: 2
+Duration: 1
 
 There are a few prerequisite tasks you must perform before getting started on this workshop. These are:
 

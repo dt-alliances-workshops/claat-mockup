@@ -22,27 +22,28 @@ Duration: 2
 🔷 Automatically provision workshop environment and sample application
 
 ## Login to Dynatrace Managed Environment
-Duration: 6
+Duration: 3
 
-For this workshop we have setup a free Dynatrace environment with evaluation license of the full feature set of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.  
+For this workshop, we have set-up a free Dynatrace environment with an evaluation license of the complete feature set of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.
 
 ### What you will need
 
-In your email mailbox you used to register for this workshop, you should have received an email similar to one below 24-48 hours before the workshop.
+At least 24-48 hours before the workshop, you've received an email similar to the one below in the mailbox you used to register for this workshop.
 
 ![image](img/pre-requisites-dt-managed.png)
 
 ### Tasks to complete this step
 
 1) Task - Login to your DT Environment
-    - Click on the link within the email you've received to setup your password for the Dynatrace environment.
-    - Once your password is setup, login to your Dynatrace environment.
+    - Click on the link within the email you've received at your corporate account to setup your password for the Dynatrace environment.
+    - Once your password is setup, login to your <a href="https://syh360.dynatrace-managed.com/">Dynatrace environment</a>.
+    - <b>Note:</b>  Your login ID is your corporate email address
 
 
 🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
 
 ## Azure Pass Subscription Setup
-Duration: 5
+Duration: 4
 
 To complete this workshop, you will be provided an Azure Pass Promo code.  A workshop staff will provide that code to prior or during the day of the workshop.
 
@@ -60,37 +61,40 @@ This free Azure subscription will be available to you for the next 5 days or unt
      **💥NOTE: If you are already signed in on a Azure account via your corporate email, please signout and login with personal account or create a new account.**
 4.  Confirm the email address you want to use for your Azure pass subscription and "promo" code provided to allow for the Azure subscription to be setup.
      ![image](img/azure-pass-emailconfirm.png)
-    **💥NOTE:Using Azure Pass promotion code requires an email and the provisioning takes about 5 minutes to process.**
-
-    ![image](img/setup-ms-account.png)
+    **💥NOTE:Using Azure Pass promotion code requires an email and the provisioning takes about 5 minutes to process.** <br>
+            ![image](img/setup-ms-account.png) <br>   
+    
     **💥NOTE: You can create a new personal account during this step.**
 
 🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
 
 ## Azure Portal Prep
-Duration: 5
+Duration: 4
+
+### Tasks to complete this step
 
 1. Navigate to <a href="https://portal.azure.com/" target="_blank">https://portal.azure.com/ </a>
 
 2. Click on the Cloud Shell button
     ![image](img/setup-azure-shell-open.png)
 
-    💥**NOTE:** If you get this prompt, choose bash
+    **💥NOTE: If you get this prompt, choose bash.**
 
-![image](img/setup-azure-shell-bash.png)
+    ![image](img/setup-azure-shell-bash.png)
 
-    💥**NOTE:** If you get the prompt below, choose `Azure Pass - Sponsorship` and then click the `Create Storage` button.
+    <br>**💥NOTE: If you get the prompt below, choose `Azure Pass - Sponsorship` and then click the `Create Storage` button.**
 
-![image](img/setup-azure-shell-storage.png)
+    
+    ![image](img/setup-azure-shell-storage.png)
 
-    💥**NOTE:** Creating the storage will take about a couple of minutes.
+    
+    **💥NOTE: Creating the storage will take about a couple of minutes.**
 
 3. Once the storage is created, you should see the Unix bash shell.
-![image](img/setup-azure-shell-prompt.png)
+  ![image](img/setup-azure-shell-prompt.png)
 
 4. Make a dedicated Azure shell Browser tab by clicking this new tab icon.
-
-![image](img/setup-azure-shell-newtab.png)
+  ![image](img/setup-azure-shell-newtab.png)
 
 5. To verify which subscription is configured for the Azure CLI, run this command.
     ```
@@ -116,7 +120,7 @@ Duration: 5
       }
     ```
 
-- 💥**TECHNICAL NOTE**: If the subscription is not `Azure Pass - Sponsorship`, run this command to see all the subscriptions for your user id. If this is the first time using Azure portal or a trial, then you should only have one subscription.
+- #### 💻**TECHNICAL NOTE:** If the subscription is not `Azure Pass - Sponsorship`, run this command to see all the subscriptions for your user id. If this is the first time using Azure portal or a trial, then you should only have one subscription.
 
     ```
       az account list --output table
@@ -163,7 +167,7 @@ Duration: 5
 🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
 
 ## Provision the workshop
-Duration: 20
+Duration: 15
 
 This step will automatically provision several Azure resources and Dynatrace configuration needed for the workshop via a shell script.  
 
@@ -223,7 +227,7 @@ _The Dynatrace configuration scripts use a combination of [Dynatrace Monitoring 
     ```
 
 ## Validate workshop provisioning completed
-Duration: 5
+Duration: 2
 In this step we will verify if all of the Azure resources were provisioned for the workshop
 
 ### 💥NOTE:Only proceed if the provisioning script completed with this status:

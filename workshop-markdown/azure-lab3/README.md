@@ -8,7 +8,7 @@ Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 
 # Azure Workshop Lab 3 - Davis AI
 
-## Lab Overview & Dynatrace Events Info
+## Lab Overview 
 Duration: 3
 
 ### Lab Overview
@@ -18,13 +18,13 @@ Finding the root cause of problems is harder than ever before and the effort req
 
 In this lab, we will trigger a few problem and see how troubleshooting time is Significantly reduced by letting AI automatically detect problems and pinpoints the root cause, explaining business impact with no manual configurations.
 
-#### Objectives of this Lab
+### Objectives of this Lab
 
 🔷 Enable a problem in the application and walk through what [Dynatrace Davis](https://www.dynatrace.com/platform/artificial-intelligence/) found
 
 🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
 
-### Dynatrace Events
+## Dynatrace Events & Tags Info
 
 Before we get to the problems, let's review <a href="https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events/post-event/" target="_blank"> Dynatrace Information Events</a>.
 
@@ -193,7 +193,7 @@ In this step we are going to "simulate" a deployment of new version of the `back
 
   * By ensuring there are numberical values t the end, it validates the command ran sucessfully.
 
-  #### 💻**TECHNICAL NOTE:** Why does the problem card say 'Custom Threshold'?**
+  #### 💻**TECHNICAL NOTE:** Why does the problem card say 'Custom Threshold'?
 
   The Dynatrace AI engine is evaluating metrics and dependencies for daily and weekly traffic patterns.  Since we just setup our sample application, there is not a lot of history to review. We setup a fixed threshold as a global service setting.
 
@@ -228,7 +228,7 @@ In this step we are going to "simulate" another deployment of new version of the
 
 1. Validate the Change in Dynatrace
     * From the left side menu, navigate to the `Releases` page.  Here you will see how Dynatrace detected the versions of monitored processes.  It may take a minute, but you will see the version change in the `Real-time inventory` section and a new event in the `Release events` section.
-          <br> **NOTE** Be sure to adjust the management zone to `dt-orders-k8`
+          <br> **💥NOTE:** Be sure to adjust the management zone to `dt-orders-k8`
 
       ![image](img/lab3-release-order.png)
 
@@ -293,6 +293,7 @@ In this step we are going to "simulate" another deployment of new version of the
 
 In this section, you should have completed the following:
 
-🔷 Enable a problem in the application and walk through what <a href="https://www.dynatrace.com/platform/artificial-intelligence/" target="_blank"> Dynatrace Davis </a> found
+  🔷 Enable a problem in the application and walk through what <a href="https://www.dynatrace.com/platform/artificial-intelligence/" target="_blank"> Dynatrace Davis </a> found
+  🔷 Learn how Dynatrace use Events and Tags to provide additional context.
 
 🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.

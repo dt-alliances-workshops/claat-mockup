@@ -31,7 +31,7 @@ A docker processes that sends simulated user traffic to the sample app using <a 
 *A real-world scenario would often start with the application components running on a physical or virtualized host in on-prem and not "Dockerized". To simplify the workshop, we "Dockerized" the application into a front-end and back-end. In Dynatrace, these Docker containers all show up as "processes" on a host just like a "non-Dockerized" application will.*
 
 ## Review OneAgent
-Duration: 5
+Duration: 4
 
 The host running the sample application was created using scripts to install and run the Sample Application and to install the Dynatrace OneAgent. All these scripts you can review <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup.git" target="_blank"> here </a> within the `provision-scripts` subfolder.
 
@@ -81,7 +81,7 @@ Since the OneAgent is already deployed for your app and you've validated it abov
 
 
 ## Review Sample app
-Duration: 5
+Duration: 4
 
 The sample application is called Dynatrace Orders.  A more detailed overview can be found here - [https://github.com/dt-orders/overview](https://github.com/dt-orders/overview).  
 
@@ -108,7 +108,7 @@ All the source code can be found here - [https://github.com/dt-orders](https://g
 
 
 ## Review Host view
-Duration: 5
+Duration: 4
 
 In the next few sections, you will review what the OneAgent automatically discovered for the host, services, processes, and the complete dependency mapping for the sample application.  
 
@@ -130,7 +130,7 @@ As you plan your migration, each of these views will give insights into accessin
     ![image](img/lab1-host-view.png)
 
 ## Review Smartscape
-Duration: 5
+Duration: 4
 
 Enterprises have many hosts, services, and application that are ever changing. The ability to automatically discover and change as the environment changes is a key feature that Smartscape delivers.  
 
@@ -166,7 +166,7 @@ Referring to the picture above:
 
 
 ## Process
-Duration: 5
+Duration: 4
 
 In the Smartscape view, we saw the visualizations of the relationships in vertical stack and as well as the relationships spatially. Now let’s view the processes and services running on the host.
 
@@ -222,7 +222,7 @@ Very quickly you have seen what processes and services are running on a host AND
         ![image](img/lab1-service-view.png)
 
 ## Services
-Duration: 5
+Duration: 4
 
 Web applications consist of web pages that are served by web servers and web application processes, for example Tomcat. Web and mobile applications are built upon services that process requests like web requests, web service calls, and messaging. 
 

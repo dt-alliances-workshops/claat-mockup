@@ -127,20 +127,53 @@ events that are independent of any metric (for example, process crashes, deploym
         ![image](img/lab4-custom-alert-list.png)
 
 2. Trigger a CPU Problem
-    * To enable a problem, you will go into the Azure Portal UI and use the `Run Command` feature to start a shell script.
-    * From the Azure Portal, search for `dt-orders-monlith` VM from the search menu and select it.
-        ![image](img/lab4-monolith-vm-search.png)      
+    * To enable a problem, you will SSH into a VM and run the [yes](https://en.wikipedia.org/wiki/Yes_(Unix)) utility in the background that will cause high CPU.  
 
-    * Once inside the VM resource, click on `Run Command` under Operations
-        ![image](img/lab4-monolith-vm-runcmd.png)      
-        
-    * Next, click on `RunShellScript` and type in the following command in the `Run Command Script` window and click run
+    * From the Azure shell, SSH to the monolith virtual machine with this command:
 
         ```
-            /home/workshop/azure-modernization-dt-orders-setup/learner-scripts/run-cpu-prb.sh
+        cd ~/azure-modernization-dt-orders-setup/learner-scripts
+        ./show-app-urls.sh
         ```
-        ![image](img/lab4-monolith-vm-exec-runcmd.png)
-    
+
+    * Using the IP address for the MONOLITH host, run this command:
+
+        ```
+        ssh workshop@<PUBLIC-IP>
+        ```
+
+        **ℹ️ NOTE: Ask instructor for password**
+
+    * Once SSH session is established, copy all these lines and run them:
+
+        ```
+        yes > /dev/null &
+        yes > /dev/null &
+        yes > /dev/null &
+        ```
+
+    * To verify, run this command:
+
+        ```
+        ps -ef | grep yes
+        ```
+
+        The output should look like this:
+
+        ```
+        azureuser:~$ yes > /dev/null &
+        [1] 138465
+        azureuser:~$ yes > /dev/null &
+        [2] 138488
+        azureuser:~$ yes > /dev/null &
+        [3] 138495
+
+        azureuser:~$ ps -ef | grep yes
+        azureuser  138465  137535 81 20:54 pts/2    00:00:03 yes
+        azureuser  138488  137535 80 20:54 pts/2    00:00:02 yes
+        azureuser  138495  137535 95 20:55 pts/2    00:00:01 yes
+        azureuser  138573  137535  0 20:55 pts/2    00:00:00 grep --color=auto yes
+        ```
 
 3. Review Dynatrace UI for Problem card
     * Back in Dynatrace within the `host` view, the CPU should now be high as shown below
@@ -171,22 +204,49 @@ events that are independent of any metric (for example, process crashes, deploym
         -  Review the options to choose severity rules and filters
 
 4. Stop the CPU problem
-    * To stop the problem, we will use the `Run Command` feature in Azure Portal to stop a shell script.
-    * From the Azure Portal, search for `dt-orders-monlith` VM from the search menu and select it.
-        ![image](img/lab4-monolith-vm-search.png)      
+    * To stop the problem, you need to `kill` the processes.  To do this:
+        - Run this command to get the process IDs:
 
-    * Once inside the VM resource, click on `Run Command` under Operations
-        ![image](img/lab4-monolith-vm-runcmd.png)      
-    
-    * Next, click on `RunShellScript` and type in the following command in the `Run Command Script` window and click run
+            ```
+            ps -ef | grep yes
+            ```
+
+    * For each process, copy the process ID and run 
 
         ```
-        /home/workshop/azure-modernization-dt-orders-setup/learner-scripts/stop-cpu-prb.sh
-        ```        
-        ![image](img/lab4-monolith-vm-runcmd-stop.jpg)        
+        kill <PID>
+        ```
 
-    * Verify that CPU in Dynatrace goes to normal and the problem card will automatically close
+        For example:
 
+        ```
+        # If output is this...
+
+        azureuser:~$ ps -ef | grep yes
+        azureuser  138465  137535 81 20:54 pts/2    00:00:03 yes
+        azureuser  138488  137535 80 20:54 pts/2    00:00:02 yes
+        azureuser  138495  137535 95 20:55 pts/2    00:00:01 yes
+
+        # Then run...
+
+        kill 138465
+        kill 138488
+        kill 138495
+        ```
+
+    * Verify they are gone by running this again:
+
+        ```
+        ps -ef | grep yes
+        ```
+
+    * Verify that CPU in Dynatrace goes to normal and the problems will eventually automatically close
+
+    * To exit the SSH session, run...
+
+        ```
+        exit
+        ```
 
 🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
 
@@ -288,12 +348,12 @@ Duration: 2
 
 In this section, you should have completed the following:
 
-    🔷 Review how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
+🔷 Review how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
 
-    🔷 Review how Azure monitor metrics can be configured as <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank"> Metric events for alerts</a>
+🔷 Review how Azure monitor metrics can be configured as <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank"> Metric events for alerts</a>
 
-    🔷 Examine Dynatrace Service Level Objectives (SLOs)
+🔷 Examine Dynatrace Service Level Objectives (SLOs)
 
-    🔷 Create a custom dashboard with SLOs 
+🔷 Create a custom dashboard with SLOs 
 
 🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
