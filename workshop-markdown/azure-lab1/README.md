@@ -27,18 +27,18 @@ A docker processes that sends simulated user traffic to the sample app using <a 
 
 ![image](img/lab1-setup.png)
 
-💥**TECHNICAL NOTE**: 
-*A real-world scenario would often start with the application components running on a physical or virtualized host in on-prem and not "Dockerized". To simplify the workshop, we "Dockerized" the application into a front-end and back-end. In Dynatrace, these Docker containers all show up as "processes" on a host just like a "non-Dockerized" application will.*
+<aside class="positive"> 💥A real-world scenario would often start with the application components running on a physical or virtualized host in on-prem and not "Dockerized". To simplify the workshop, we "Dockerized" the application into a front-end and back-end. In Dynatrace, these Docker containers all show up as "processes" on a host just like a "non-Dockerized" application will.</aside>
 
 ## Review OneAgent
-Duration: 5
+Duration: 4
 
 The host running the sample application was created using scripts to install and run the Sample Application and to install the Dynatrace OneAgent. All these scripts you can review <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup.git" target="_blank"> here </a> within the `provision-scripts` subfolder.
 
-💥**TECHNICAL NOTE**: 
-**The Dynatrace OneAgent was preinstalled and is sending data to your Dynatrace environment using the <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/oneagent-integration/integrate-oneagent-on-azure-virtual-machines/" target="_blank">Dynatrace OneAgent VM Extension for Azure </a>**
+<aside class="positive"> 📓 The Dynatrace OneAgent was preinstalled and is sending data to your Dynatrace environment using the <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/oneagent-integration/integrate-oneagent-on-azure-virtual-machines/" target="_blank">Dynatrace OneAgent VM Extension for Azure </a></aside>
 
-### Additional Ways to deploy OneAgent
+<aside class="positive">
+
+`Additional Ways to deploy OneAgent`
 1. The Azure CLI command for setting up the OneAgent VM extension looks like:
     ```
     az vm extension set \
@@ -57,15 +57,17 @@ The host running the sample application was created using scripts to install and
 ![image](img/lab1-deploy-dynatrace.png)
 - On the `Download agent` page, pick the platform `Linux` to view the commands will download and run the OneAgent installer.
 ![image](img/lab1-download-dynatrace.png)
-💥 **TECHNICAL NOTE:** 
-The URL and Token is unique to your Dynatrace tenant.  If you expand the `Set customized options (optional)`. section you can review other options for the OneAgent installer.
-<br>💥 **TECHNICAL NOTE:** 
-Setting the hostname via  `/bin/sh Dynatrace-OneAgent-Linux-1.207.184.sh --set-host-name=monolith` is just <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/hosts/configuration/set-custom-host-names-in-dynamic-environments/" target="_blank"> one of the ways </a> to customize host naming.
+    <aside class="positive"> 📓<br> 
+        - The URL and Token is unique to your Dynatrace tenant.  If you expand the `Set customized options (optional)`. section you can review other options for the OneAgent installer.
+        <br>- Setting the hostname via  `/bin/sh Dynatrace-OneAgent-Linux-1.207.184.sh --set-host-name=monolith` is just <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/hosts/configuration/set-custom-host-names-in-dynamic-environments/" target="_blank"> one of the ways </a> to customize host naming.
+    </aside>
 - These are the commands used to download, verify, and install the OneAgent.  **That is it!**
 ![image](img/lab1-install-dynatrace.png)
 - Go back the `Download agent` page and review other options like Windows or Kubernetes.
 
-3. To learn more about the various ways the OneAgent can be installed, check out the <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-oneagent/" target="_blank"> Dynatrace Documentation</a>**
+3. To learn more about the various ways the OneAgent can be installed, check out the <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-oneagent/" target="_blank"> Dynatrace Documentation</a>
+
+</aside>
 
 ### Tasks to complete this step
 #### Review OneAgent Status for Monolith VM
@@ -76,12 +78,12 @@ Setting the hostname via  `/bin/sh Dynatrace-OneAgent-Linux-1.207.184.sh --set-h
 
 3. Check to ensure the `dt-orders-monolith` VM is reporting in under OneAgents
 ![image](img/lab1-deployment-status.png)
-💥**TECHNICAL NOTE:**: 
-Since the OneAgent is already deployed for your app and you've validated it above.  The steps highligted below are alternatives ways to deploy the OneAgent if you're interested in learning more.
+
+<aside class="positive"> 📓 - Since the OneAgent is already deployed for your app and you've validated it above.  The steps highligted below are alternatives ways to deploy the OneAgent if you're interested in learning more. </aside>
 
 
 ## Review Sample app
-Duration: 5
+Duration: 4
 
 The sample application is called Dynatrace Orders.  A more detailed overview can be found here - [https://github.com/dt-orders/overview](https://github.com/dt-orders/overview).  
 
@@ -104,17 +106,19 @@ All the source code can be found here - [https://github.com/dt-orders](https://g
         - Order List = `order/list.html`
         - Order Form = `order/form.html`
 
-🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
 
 ## Review Host view
-Duration: 5
+Duration: 4
 
 In the next few sections, you will review what the OneAgent automatically discovered for the host, services, processes, and the complete dependency mapping for the sample application.  
 
-### 👍 How this helps
+<aside class="positive">
 
-As you plan your migration, each of these views will give insights into accessing the profile, consumption and dependencies to other systems and services.
+👍 `How this helps`
+
+As you plan your migration, each of these views will give insights into accessing the profile, consumption and dependencies to other systems and services. </aside>
 
 ### Tasks to complete this step
 
@@ -130,13 +134,15 @@ As you plan your migration, each of these views will give insights into accessin
     ![image](img/lab1-host-view.png)
 
 ## Review Smartscape
-Duration: 5
+Duration: 4
 
 Enterprises have many hosts, services, and application that are ever changing. The ability to automatically discover and change as the environment changes is a key feature that Smartscape delivers.  
 
 Dynatrace's near real-time environment-topology visualization tool, Smartscape, is where Dynatrace's auto-discovery is delivered into a quick and efficient visualization of all the topological dependencies in your infrastructure, processes, and services.
 
-### 👍 How this helps
+<aside class="positive">
+
+👍 `How this helps`
 
 Smartscape shows all the dependencies of a given service. Those include connections to queues, web servers, app servers, and a native process. The host view shows historical and live time-series data for usage as well as the consuming processes. This information allows us to better plan the migration, as all depending services must be considered during the migration.
 
@@ -150,7 +156,7 @@ Referring to the picture above:
     * Process
     * Service
     * Application
-
+</aside>
 
 ### Tasks to complete this step
 
@@ -166,15 +172,18 @@ Referring to the picture above:
 
 
 ## Process
-Duration: 5
+Duration: 4
 
 In the Smartscape view, we saw the visualizations of the relationships in vertical stack and as well as the relationships spatially. Now let’s view the processes and services running on the host.
 
 As you plan your migration, you need more than just host level metrics.  Knowing the details for each service, **BEFORE** you change it, will lower the risk of impacting the business.
 
-### 👍 How this helps
+<aside class="positive">
+
+👍 `How this helps`
 
 Very quickly you have seen what processes and services are running on a host AND more importantly, what processes and services call (outbound) and are being called (inbound).  Having a real-time picture is certainly more accurate than an out of date documentation.
+</aside>
 
 ### Tasks to complete this step
 
@@ -192,23 +201,24 @@ Very quickly you have seen what processes and services are running on a host AND
             * Click to view the Process specific metrics
         1. Did you notice Docker??
         ![image](img/lab1-process-view.png)
-            💥**TECHNICAL NOTE:**
-            Dynatrace automatically recognizes many common processes like Tomcat and will capture process specific metrics such as JVM garbage collection. See a list of supported technologies, languages and containers in the [Dynatrace documentation](https://www.dynatrace.com/support/help/technology-support/supported-technologies-and-versions)
+            <aside class="positive"> 📓  Dynatrace automatically recognizes many common processes like Tomcat and will capture process specific metrics such as JVM garbage collection. See a list of supported technologies, languages and containers in the [Dynatrace documentation](https://www.dynatrace.com/support/help/technology-support/supported-technologies-and-versions) </aside>
 
-            ### Dynatrace and containers
+            <aside class="positive"> 📓 
+            
+            `Dynatrace and containers`
 
             In the picture above, the arrow shows the properties for Docker.
 
             Our sample app was built as a Docker container and Dynatrace hooks into containers and provides code for injecting OneAgent into containerized process.  
 
-            ### How Dynatrace monitors containers
+            `How Dynatrace monitors containers`
 
             ![image](img/lab1-docker-monitoring.png)
 
-            There’s no need to modify your Docker images, modify run commands, or create additional containers to enable Docker monitoring. Simply install OneAgent on your hosts that serve containerized applications and services. Dynatrace automatically detects the creation and termination of containers and monitors the applications and services contained within those containers.
+            There’s no need to modify your Docker images, modify run commands, or create additional containers to enable Docker monitoring. Simply install OneAgent on your hosts that serve containerized applications and services. Dynatrace automatically detects the creation and termination of containers and monitors the applications and services contained within those containers. </aside>
 
-            💥**TECHNICAL NOTE:** 
-            You can read more about Dynatrace Docker Monitoring [here](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/basic-concepts/how-dynatrace-monitors-containers/) and technical details [here](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/monitoring/monitor-docker-containers)
+            <aside class="positive"> 📓
+            You can read more about Dynatrace Docker Monitoring [here](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/basic-concepts/how-dynatrace-monitors-containers/) and technical details [here](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/monitoring/monitor-docker-containers) </aside>
 
 2. Review the data on the Services screen
     - Now Let’s review a specific service.
@@ -222,15 +232,17 @@ Very quickly you have seen what processes and services are running on a host AND
         ![image](img/lab1-service-view.png)
 
 ## Services
-Duration: 5
+Duration: 4
 
 Web applications consist of web pages that are served by web servers and web application processes, for example Tomcat. Web and mobile applications are built upon services that process requests like web requests, web service calls, and messaging. 
 
 Such "server-side services" can take the form of web services, web containers, database requests, custom services, and more. Services may in turn call other services such as web services, remote services, and databases services.
 
-### 👍 How this helps
+<aside class="positive">
 
-As you plan your migration, it is important to gain a complete picture of interdependency to the rest of the environment architecture at host, processes, services, application perspectives. Since time is always scarce, being able to do this in a single place can shorten assessment timelines.
+👍 `How this helps`
+
+As you plan your migration, it is important to gain a complete picture of interdependency to the rest of the environment architecture at host, processes, services, application perspectives. Since time is always scarce, being able to do this in a single place can shorten assessment timelines. </aside>
 
 ### Tasks to complete this step
 1. Review the Services being monitored. Let’s now take a look at all the services being monitored by clicking on the `Services` left side Dynatrace menu.
@@ -264,11 +276,14 @@ We just saw one way to review process and service communication, but let’s loo
 
 * With `Service backtrace`, you see the calls **TO** a service.
 
-### 👍 How this helps
+<aside class="positive">
+
+👍 `How this helps`
 
 As you plan your migration, it is important to gain a complete picture of interdependency to the rest of the environment architecture at host, processes, services, and application perspectives. Since time is always scarce, being able to do this in a single place can shorten assessment timelines.
 
 Knowing the type of access, executed statements, and amount of data transferred during regular hours of operation allows for better planning and prioritization. 
+</aside>
 
 ### Tasks to complete this step
 - Review the Service Flow 
@@ -304,9 +319,9 @@ Dynatrace understands your applications transactions from end to end. This trans
 
 The backtrace tree view represents the sequence of services that led to this service call, beginning with the page load or user action in the browser.
 
-### 👍 How this helps
+<aside class="positive">👍 How this helps
 
-Using the service flow and service backtrace, these two tools give you a complete picture of interdependency to the rest of the environment architecture at host, processes, services, application perspectives. 
+Using the service flow and service backtrace, these two tools give you a complete picture of interdependency to the rest of the environment architecture at host, processes, services, application perspectives.  </aside>
 
 ### Tasks to complete this step
 #### Review the Service Backtrace 
@@ -316,16 +331,21 @@ Using the service flow and service backtrace, these two tools give you a complet
 - On the `backend` service, click on the `Analyze Backtrace` button.
 ![image](img/lab1-service-backtrace-arrow.png)
 
-📓**Note:** You should be on the service backtrace page where you will see information for this specific service.
+<aside class="positive"> 📓 You should be on the service backtrace page where you will see information for this specific service. </aside>
 
-💥**TECHNICAL NOTE:** This will get more interesting in the next lab, but for the monolith backend, we can see that the backtrace is as follows:
-1. The starting point is the `backend`
-1. `backend` is called by the `frontend` service
-1. `ApacheJMeter` traffic from the load generator script
-1. You may also see browser traffic to the **frontend** from the `My web application`.  If you don't that is OK.
+<aside class="positive">📓 If you click on any of the rows in the backtrace, the bottom portion of the page will expand.
 
-📓**Note:**If you click on any of the rows in the backtrace, the bottom portion of the page will expand.
-![image](img/lab1-service-backtrace-arrows.png)
+![image](img/lab1-service-backtrace-arrows.png) 
+
+</aside>
+
+<aside class="positive"> 📓 This will get more interesting in the next lab, but for the monolith backend, we can see that the backtrace is as follows:<br>
+1. The starting point is the `backend`  <br>
+2. `backend` is called by the `frontend` service  <br>
+3. `ApacheJMeter` traffic from the load generator script <br>
+4. You may also see browser traffic to the **frontend** from the `My web application`.  If you don't that is OK. </aside>
+
+
 
 
 ## Databases
@@ -333,11 +353,13 @@ Duration: 3
 
 As you plan your migration, Database observability is critical to a successful plan. Knowing the type of access, executed statements, and amount of data transferred during regular hours of operation allows for better migration planning and prioritization of the move groups. In some cases, you may decide to not migrate this database in favor of other services or databases that are less complex to migrate due to fewer dependencies.
 
-### 👍 How this helps 
+<aside class="positive">👍 How this helps
 
 When monitoring database activity, Dynatrace shows you which database statements are executed most often and which statements take up the most time. You can also see which services execute the database statements, what will be direct input to migration planning, and prioritization of the move groups.
 
 Dynatrace monitors all the popular databases like SQL Server, Oracle, and MongoDB. See <a href="https://www.dynatrace.com/platform/database-monitoring/" target="_blank">Dynatrace documentation </a> for more details on platform support.
+
+</aside>
 
 ### Tasks to complete this step
 1.  Navigate to the Database screen
@@ -367,9 +389,12 @@ The workshop is somewhat limited, so here is an example from another environment
 
 ![image](img/lab1-technology-demo.png)
 
-### 👍 How this helps
+<aside class="positive">👍 How this helps
 
 This is another out the box feature that helps you understand what technologies are in your environment with a heat map presentation that shows to what degree they exist. 
+
+</aside>
+
 
 ### Tasks to complete this step
 1. Review the Technologies view 
@@ -395,14 +420,6 @@ By just installing the OneAgent, we have now gained a detailed topological view 
 * **Right-Sizing the environment** - We now understanding which resources are required to move along with their required resource consumption patterns
 * **Best Migration Strategy** - We now understand the current end-to-end transactions through architecture and can choose the best migration strategy (rehost, refactor, rearchitect, rebuild)
 
-### One more resource to review 
-
-1 . Choose the `Dynatrace Hub` option from the left side menu to open the OneAgent deployment page. 
-
-![image](img/lab1-dynatrace-hub.png)
-
-2 . Explore all the integration options of Dynatrace while you are in the Hub
-
 ### Checklist
 
 In this section, you should have completed the following:
@@ -412,3 +429,5 @@ In this section, you should have completed the following:
 ✅ Review real-time data now available for the sample application
 
 ✅ Review how Dynatrace helps with modernization planning
+
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>

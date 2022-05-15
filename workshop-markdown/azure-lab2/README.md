@@ -8,8 +8,8 @@ Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 
 # Azure Workshop Lab 2 - Modernization with AKS
 
-## Objectives & Lab Setup
-Duration: 10
+## Objectives 
+Duration: 2
 
 Re-hosting (also referred to as lift and shift) is a common migration use case. Re-architecture and Re-platform are steps that break the traditional architectures and replace individual components with cloud services and microservices.
 
@@ -23,25 +23,17 @@ We just learned how we can get great information on services, processes and user
 
 🔷 Examine the transformed application using service flows and back traces 
 
-🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
-### Modernize the Sample App 
+## Review - Modernize the Sample App 
+Duration: 3
 As we saw earlier, the sample application is a three-tiered application --> frontend, backend, database.
 
 For our lab, another version of the application exists that breaks out each of these backend services into separate services. By putting these services into Docker images, we gain the ability to deploy the service into modern platforms like Azure Kubernetes and Cloud managed services such as the ones from Azure shown below.
 
 ![image](img/lab4-app-architecture.png)
 
-### Beyond the Lab
-Over time, you can imagine that this sample application will be further changed to add in other technologies like Azures serverless and other PaaS services like Azures SQL or Cosmo DB databases and virtual networking Application gateways as shown in the picture below.
-
-![image](img/lab4-app-architecture-future.png)
- 
-### 💥 **TECHNICAL NOTE** 
-We will not cover this, but organizations are establishing DevOps approaches and Continuous Integration (CI) pipelines to build and test each service independently. They are also adding Continuous Deployment (CD) as well to the process too that vastly increases our ability to delivery features faster to our customers. 
-
-### Lab Setup
-Refer to the picture below, here are the components for lab 2.
+The picture below shows how the components of the sample application interact with Dynatrace. 
 
 ![image](img/lab2-setup.png)
 
@@ -63,9 +55,18 @@ Made possible by the Dynatrace OneAgent that will automatically instrument each 
 **#6 . Kubernetes Dashboard**
 The Kubernetes page provides an overview of all Kubernetes clusters showing monitoring data like the clusters’ sizing and utilization.
 
+<aside class="positive">   
+
+### 📓 Beyond the Lab
+Over time, you can imagine that this sample application will be further changed to add in other technologies like Azures serverless and other PaaS services like Azures SQL or Cosmo DB databases and virtual networking Application gateways as shown in the picture below.
+
+![image](img/lab4-app-architecture-future.png)
+
+</aside>
+ 
 
 ## Deploy Kubernetes Dynatrace Operator
-Duration: 7
+Duration: 5
 
 One key Dynatrace advantage is ease of activation. OneAgent technology simplifies deployment across large enterprises and relieves engineers of the burden of instrumenting their applications by hand. As Kubernetes adoption continues to grow, it becomes more important than ever to simplify the activation of observability across workloads without sacrificing the deployment automation that Kubernetes provides. Observability should be as cloud-native as Kubernetes itself.
 
@@ -73,56 +74,96 @@ In our workshop, we will install the Dynatrace Operator that streamlines lifecyc
 
 Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/monitor-kubernetes-environments/" target="_blank"> Dynatrace Doc</a> but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
 
-When we run this command, it will do the following:
-* Create a namespace called `dynatrace` in your cluster containing the Dynatrace Operator supporting pods
-* Set the OneAgent on each of the cluster nodes as to provide full-stack Dynatrace monitoring
-* Create a Kubernetes dashboard that will be populated with the Kubernetes data pulled from the API
-* Setup a Dynatrace ActiveGate that runs as a container in the `dynatrace` namespace that is used in the polling of Kubernetes API
-* Enable preset out-of-the-box Kubernetes dashboards
 
 ### Tasks to complete this step
 - Install Dynatrace Operator
-   1. To navigate to Kubernetes page, follow these steps and refer to the picture below:
-      1. Within Dynatrace, click on the `Deploy Dynatrace` menu
-      1. Click on the `Start Installation` button
-      1. Click on the `Kubernetes` button
+   1. To navigate to Kubernetes page, follow these steps and refer to the picture below:<br>
+      1.1 Within Dynatrace, click on the `Deploy Dynatrace` menu<br>
+      1.2 Click on the `Start Installation` button<br>
+      1.3 Click on the `Kubernetes` button
        ![image](img/lab4-operator-menu.png)
+        
+      1.4 On the `Monitor Kubernetes / Openshift`  configuration page, enter `workshop` for the name field. This is not the cluster name, it will show up as the Kubernetes page name in Dynatrace <br>
+      1.5 Click the `Create tokens` button for both Operator and Data Ingest Token <br>
+      1.6 Select the `Skip SSL Certificate Check` to be ON
 
-         💥**TECHNICAL NOTE:** To get the Dynatrace Operator installation command, refer to the steps and pictures below:
-            1. On the Kubernetes configuration page, enter `workshop` for the name. This is not the cluster name, it will show up as the Kubernetes page name in Dynatrace
-            1 Click the `Create tokens` button
-            1. Select the `Skip SSL Certificate Check` to be ON
-            1. Click the `Copy` button
-            ![image](img/lab4-operator.png)
+         ![image](img/lab4-operator-mod-may2022.jpg)
 
-   1. Paste the command in Azure Shell and run it
+         <aside class="positive"> 📓 The `dynakube.yaml` file was automatically generated in Azure cloudshell during the provision script you ran in Lab0. Therefore we'll use a modified version of the commands</aside>        
 
-   1. Once the script is complete, then monitor the installation until all the pods are in `Running` state.
+      1.7. First, copy and paste command below into your Azure Cloud Shell to orient you in correct directory for `dynakube.yaml` file.
 
-    ```
-    kubectl -n dynatrace get pods
-    ```
+         ```
+         cd ~/azure-modernization-dt-orders-setup/gen
+         ```
+      1.8. Next, copy the commands from the `Monitor Kubernetes / Openshift`  configuration page of Dynatrace UI or from below to continue with the Kuberentes Operator Install steps.
 
-    Rerun the command until the output looks like this:
+         ```
+         kubectl create namespace dynatrace
+         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.4.2/kubernetes.yaml
+         kubectl -n dynatrace wait pod --for=condition=ready -l internal.dynatrace.com/app=webhook --timeout=300s
+         kubectl apply -f dynakube.yaml
+         ```
+         <aside class="negative">
+            If you receive any errors running the commands above, please ensure you're in the `/azure-modernization-dt-orders-setup/gen` folder as highlighted in step 1.7 above.
+         </aside>
 
-    ```
-    NAME                                 READY   STATUS    RESTARTS    AGE
-    dynakube-activegate-0                 1/1     Running   0          2m45s
-    dynakube-oneagent-pg9q6               1/1     Running   0          2m45s
-    dynakube-oneagent-vqns7               1/1     Running   0          2m43s
-    dynakube-operator-fd9b7cc79-df9ph     1/1     Running   0          2m45s
-    dynatrace-webhook-f946fb4c6-q5k5g     1/1     Running   0          3m59s
-    ```
+         <aside class="positive"> 
+         When we run the `kubectl` commands above, it does the following: <br>
+            - Creates a namespace called `dynatrace` in your cluster containing the Dynatrace Operator supporting pods<br>
+            - Setup the OneAgent on each of the cluster nodes as to provide full-stack Dynatrace monitoring<br>
+            - Setup a Dynatrace ActiveGate that runs as a container in the `dynatrace` namespace that is used in the polling of Kubernetes API<br>
+            - Enables preset out-of-the-box Kubernetes dashboards that will be populated with the Kubernetes data pulled from the API<br>
+         </aside>
+
+   2. Once the commands above run sucessfully, then monitor the installation until all the pods are in `Running` state.
+
+      ```
+      kubectl -n dynatrace get pods
+      ```
+
+   1. Rerun the command until the output looks like this:
+
+      ```
+      NAME                                            READY   STATUS    RESTARTS    AGE
+      dynatrace-operator-b54bf4694-t4k28               1/1     Running   0          2m45s
+      dynatrace-webhook-5679588856-zpr7k               1/1     Running   0          2m45s
+      dynatrace-workshop-cluster-activegate-0          1/1     Running   0          2m43s
+      dynatrace-workshop-cluster-oneagent-24njq        1/1     Running   0          2m45s
+      dynatrace-workshop-cluster-oneagent-86gh7        1/1     Running   0          3m59s
+      ```
 
 
 ## Deploy sample application
-Duration: 8
+Duration: 5
 
-Dynatrace automatically derives tags from your Kubernetes/OpenShift labels. This enables you to automatically organize and filter all your monitored Kubernetes/OpenShift application components.
+In this step we'll walk through deploying the sample app that is now "modernized" into a microservices based app to the Azure Kubernetes cluster.  
 
-To review what is configured for the sample application, go ahead and click on the link for YAML file: <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/tree/master/app-scripts/manifests/frontend.yml" target="_blank">frontend.yml</a> 
+We'll use a shell script to deploy the sample application.  Below you'll learn some details around what that shell script is doing and YAML file parmeters that Dynatrace uses to define and configure your application in Kubernetes.
 
-Notice the labels and annotations:
+<aside class="positive"> 
+
+ **📓`Shell Script to deploy sample app to Kubernetes`**
+
+By now you understand the various automation files, lets go ahead and open up the <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/blob/master/app-scripts/start-k8.sh" target="_blank"> `start-k8.sh` </a> to review what the script did for you:
+
+This script automates a number of `kubectl` commands for the following:
+
+1. Create a namespace called `staging` where all these resources will reside
+1. Grant the Kubernetes default service account a viewer role into the `staging` namespace
+1. Create both the `deployment` and `service` Kubernetes objects for each of the sample
+
+- You can read more details on the Kubernetes installation in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/other-deployments-and-configurations/leverage-tags-defined-in-kubernetes-deployments/" target="_blank"> Dynatrace Documentation </a>
+
+</aside>
+
+
+<aside class="positive"> 
+
+**📓 `Sample App YAML file for deploymenent`**
+<br>To review what is configured for the sample application, go ahead and click on the link for YAML file: <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/tree/master/app-scripts/manifests/frontend.yml" target="_blank">frontend.yml</a> 
+
+`Notice the labels and annotations:`
 
 ```
 metadata:
@@ -155,11 +196,13 @@ env:
         value: "project=dt-orders service=frontend"
 ```
 
-💥**TECHNICAL NOTE:** 
-
 The `DT_CUSTOM_PROPS` is a special Dynatrace feature, that the OneAgent will automatically recognize and make Dynatrace tags for the process. You can read more details in the <a href="https://www.dynatrace.com/support/help/shortlink/process-group-properties#anchor_variables" target="_blank"> Dynatrace Documentation </a>
 
-### Kubernetes Role Binding
+</aside>
+
+<aside class="positive"> 
+
+**📓 `Kubernetes Role Binding`**
 
 In Kubernetes, every pod is associated with a service account which is used to authenticate the pod's requests to the Kubernetes API. If not otherwise specified the pod uses the default service account of its namespace.
 
@@ -169,106 +212,35 @@ In Kubernetes, every pod is associated with a service account which is used to a
 
 For the workshop, we already updated the required file with the `staging` namespace. Next you will run the setup script that will apply it to your cluster. Go ahead and open this folder and look at the <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/blob/master/app-scripts/manifests/dynatrace-oneagent-metadata-viewer.yaml" target="_blank"> dynatrace-oneagent-metadata-viewer.yaml </a> file.  
 
+</aside>
+
+
 ### Tasks to complete this step
 - Deploy the Sample App to Kubernetes
-1. In the Azure Cloud Shell, run these commands:
-   ```
-   cd ~/azure-modernization-dt-orders-setup/app-scripts
-   ./start-k8.sh
-   ```
-2. The Kubernetes take a few minutes to come to a running, rerun this command until all the pods are in `Running` status.
-   ```
-   kubectl -n staging get pods
-   ```
+   1. In the Azure Cloud Shell, run these commands:
+      ```
+      cd ~/azure-modernization-dt-orders-setup/app-scripts
+      ./start-k8.sh
+      ```
+   2. The Kubernetes take a few minutes to come to a running, rerun this command until all the pods are in `Running` status.
+      ```
+      kubectl -n staging get pods
+      ```
 
-   The output should look like this:
+      The output should look like this:
 
-   ```
-   NAME                               READY   STATUS    RESTARTS   AGE
-   browser-traffic-5b9456875d-ks9vw   1/1     Running   0          30h
-   catalog-7dcf64cc99-hfrpg           1/1     Running   0          2d8h
-   customer-8464884799-vljdx          1/1     Running   0          2d8h
-   frontend-7c466b9d69-9ql2g          1/1     Running   0          2d8h
-   load-traffic-6886649ddf-76pqf      1/1     Running   0          2d8h
-   order-6d4cd477cb-9bvn4             1/1     Running   0          2d8h
-   ```
+      ```
+      NAME                               READY   STATUS    RESTARTS   AGE
+      browser-traffic-5b9456875d-ks9vw   1/1     Running   0          30h
+      catalog-7dcf64cc99-hfrpg           1/1     Running   0          2d8h
+      customer-8464884799-vljdx          1/1     Running   0          2d8h
+      frontend-7c466b9d69-9ql2g          1/1     Running   0          2d8h
+      load-traffic-6886649ddf-76pqf      1/1     Running   0          2d8h
+      order-6d4cd477cb-9bvn4             1/1     Running   0          2d8h
+      ```
 
-💥**TECHNICAL NOTE** 
-
-By now you understand the various automation files, lets go ahead and open up the <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/blob/master/app-scripts/start-k8.sh" target="_blank"> `start-k8.sh` </a> to review what the script did for you:
-
-This script automates a number of `kubectl` commands for the following:
-
-1. Create a namespace called `staging` where all these resources will reside
-1. Grant the Kubernetes default service account a viewer role into the `staging` namespace
-1. Create both the `deployment` and `service` Kubernetes objects for each of the sample
-
-- You can read more details on the Kubernetes installation in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/other-deployments-and-configurations/leverage-tags-defined-in-kubernetes-deployments/" target="_blank"> Dynatrace Documentation </a>
-
-
-## Review Kubernetes within Dynatrace
-Duration: 10
-
-In this step we will walk through the different Dynatrace dashboards that are available out of the box for monitoring Kubernetes.
-
-### Tasks to complete this step
-1. Validate AKS ActivateGate visible in Dynatrace UI</summary>
-   1. Go to the Dynatrace UI.
-   1. From the Dynatrace Menu, click `Manage --> Deployment status` to review OneAgent Deployment status
-   1. Within the `Deployment status` page, next click on the `ActiveGate` option to review the Active Gate. 
-      📓**Note:**  You will notice there is a `dynakube-activegate` connected to your Dynatrace environment now.  This actigate gate routes all the agent traffic from apps that are running on that AKS cluster.**
-2. Review Kubernetes Dashboards</summary>
-   1. From the left-side menu in Dynatrace choose `Kubernetes` and navigate to the Kubernetes cluster page as shown below:
-      📓**Note:** Be sure that your management zone is NOT filtered!**
-      ![image](img/lab2-k8s-layers.png)
-
-      **1 - Kubernetes cluster**
-      A summary the Kubernetes cluster is shown at the top of the Kubernetes dashboard.
-
-      <br>**2 - Nodes**
-      The resources for the Cluster are summarized for the one-to-many hosts or Cluster nodes in this view.
-      Explore specific node in the Node Analysis section, pick the analyze nodes button.
-      ![image](img/lab4-aks-nodeutiliz.png)
-
-      **3 - Namespaces**
-      📓**Note:** Namespaces are ways to partition your cluster resources to run multiple workloads (for example `application A` and `application B` workloads) on same cluster
-      1.	This workload section shows workloads over time
-      2.	In the Cluster workload section, pick the view all workloads button.
-      ![image](img/lab4-aks-workload.png)
-      
-      In the filter, pick namespace then staging
-      ![image](img/lab4-aks-workload-filter.png)
-
-      **4 - Kubernetes workload**
-      - Pick the frontend to drill into.
-         ![image](img/la4-aks-kubeworkload.png)
-      - Review the workload overview page to look at various metrics related to the workload.
-      - Click on Kubernetes POD to look at POD utilization metrics.
-         ![image](img/lab4-aks-frontend-workload.png)
-
-      **5 - POD**
-      - Review the POD overview page to look at various metrics related to the POD
-      - Click on Container next to look at container metrics      
-         ![image](img/lab4-aks-pod.png)
-       
-
-      **6 - Containers** 
-      Referring to the diagram above, expand the properties and tags section to view:
-      1. Container information
-      2. Kubernetes information
-      3. In the info graphic, pick the service to open the services list
-      4. In the service list, click on k8-frontend service
-      ![image](img/lab4-aks-container.png)
-
-      5. Next click on 2 Services Icon to review the services running inside the container
-      6. Select the active front-end service.
-      
-      **7 - Service**
-      This view should now look familiar. In Lab 1, we looked at the service for the frontend and backend.  Notice how the Kubernetes information is also available in the service properties.  
-         ![image](img/aks-layer7-service.png)
-      
 ## Review Sample application on Kubernetes
-Duration: 10 
+Duration: 7
 
 In this step we will review the Sample app that we modernized and deployed to Kubernetes.  Refer to this picture for a more detailed description of our setup. 
 
@@ -300,33 +272,94 @@ The frontend service is exposed as a public IP and is accessible in a browser.
 
 ### Tasks to complete this step
 1. Validate Sample App is accessible via browser
-- To view the application, we need to get the IP address assigned to the Kubernetes service for the sample application. 
-   1. Go back to the window where you have Azure Cloud shell open
-   1. From the Azure Cloud Shell SSH command prompt type this command
-   ```
-   kubectl -n staging get svc
-   ```
-   1. From the output, copy the entire value from EXTERNAL-IP and 
-   ![image](img/lab4-app-ip.png) 
-   1. Open a browser window. Type in IP address similar to this `http://11.22.33.11` for the example above.  The output and application should look like the above browser window
+   - To view the application, we need to get the IP address assigned to the Kubernetes service for the sample application. 
+      1. Go back to the window where you have Azure Cloud shell open
+      2. From the Azure Cloud Shell SSH command prompt type this command
+         ```
+         kubectl -n staging get svc
+         ```
+      3. From the output, copy the entire value from EXTERNAL-IP and 
+         ![image](img/lab4-app-ip.png) 
+      4. Open a browser window. Type in IP address similar to this `http://11.22.33.11` for the example above.  The output and application should look like the above browser window
 
-2. Explore the Sample App on Kubernetes</summary>
+2. Explore the Sample App on Kubernetes
+      - Use the menu on on the home page to navigate around the application and notice the URL for key functionality. You will see these URLs later as we analyze the application.
 
-Use the menu on on the home page to navigate around the application and notice the URL for key functionality. You will see these URLs later as we analyze the application.
+            * Customer List = customer/list.html
+            * Customer Detail = customer/5.html
+            * Catalog List = catalog/list.html
+            * Catalog Search Form = catalog/searchForm.html
+            * Order List = order/list.html
+            * Order Form = order/form.html
 
-   * Customer List = customer/list.html
-   * Customer Detail = customer/5.html
-   * Catalog List = catalog/list.html
-   * Catalog Search Form = catalog/searchForm.html
-   * Order List = order/list.html
-   * Order Form = order/form.html
+         <aside class="positive"> 
 
-### 💥 **TECHNICAL NOTE** 
+         📓 The application looks like this monolith, but notice how the home page shows the versions of the three running backend services. You will see these version updated automatically as we deploy new versions of the backend services.
+         
+         </aside>
 
-The application looks like this monolith, but notice how the home page shows the versions of the three running backend services. You will see these version updated automatically as we deploy new versions of the backend services.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
 
-🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
+## Review Kubernetes within Dynatrace
+Duration: 10
+
+In this step we will walk through the different Dynatrace dashboards that are available out of the box for monitoring Kubernetes.
+
+### Tasks to complete this step
+1. Validate AKS ActivateGate visible in Dynatrace UI</summary>
+   1.1. Go to the Dynatrace UI.
+   1.2. From the Dynatrace Menu, click `Manage --> Deployment status` to review OneAgent Deployment status
+   1.3. Within the `Deployment status` page, next click on the `ActiveGate` option to review the Active Gate. <br>
+      <aside class="positive"> 
+
+         📓   From Dynatrace menu on the left, go to Manage -> Deployment Status -> ActiveGates, you will notice there is a `dynatrace-workshop-cluster-activegate-0` connected to your Dynatrace environment now.  This actigate gate routes all the agent traffic from apps that are running on that AKS cluster.**
+
+      </aside>
+
+2. Review Kubernetes Dashboards are accessible from the left-side menu in Dynatrace choose `Kubernetes` and navigate to the Kubernetes cluster page as shown below: <br>
+      📓**Note:** Be sure that your management zone is NOT filtered!**
+
+      ![image](img/lab2-k8s-layers.png)
+
+      **1 - Kubernetes cluster** - A summary the Kubernetes cluster is shown at the top of the Kubernetes dashboard.<br>
+
+      **2 - Nodes** - The resources for the Cluster are summarized for the one-to-many hosts or Cluster nodes in this view.
+      Explore specific node in the Node Analysis section, pick the analyze nodes button.
+      ![image](img/lab4-aks-nodeutiliz.png)
+
+      **3 - Namespaces** - Namespaces are ways to partition your cluster resources to run multiple workloads (for example `application A` and `application B` workloads) on same cluster
+      1.	This workload section shows workloads over time
+      2.	In the Cluster workload section, pick the view all workloads button.
+            ![image](img/lab4-aks-workload.png)
+      - In the filter, pick namespace then staging
+            ![image](img/lab4-aks-workload-filter.png)
+
+      **4 - Kubernetes workload**
+      - Pick the frontend to drill into.
+         ![image](img/la4-aks-kubeworkload.png)
+      - Review the workload overview page to look at various metrics related to the workload.
+      - Click on Kubernetes POD to look at POD utilization metrics.
+         ![image](img/lab4-aks-frontend-workload.png)
+
+      **5 - POD** - Review the POD overview page to look at various metrics related to the POD
+      - Click on Container next to look at container metrics      
+         ![image](img/lab4-aks-pod.png)
+       
+
+      **6 - Containers** - Referring to the diagram above, expand the properties and tags section to view:
+      - Container information
+      - Kubernetes information
+      - In the info graphic, pick the service to open the services list
+      - In the service list, click on k8-frontend service
+      ![image](img/lab4-aks-container.png)
+
+      - Next click on 2 Services Icon to review the services running inside the container
+      - Select the active front-end service.
+      
+      **7 - Service** - This view should now look familiar. In Lab 1, we looked at the service for the frontend and backend.  Notice how the Kubernetes information is also available in the service properties.  
+            ![image](img/aks-layer7-service.png)
+      
 
 ## Analyze Service Backtrace on Kubernetes
 Duration: 5
@@ -339,50 +372,35 @@ The backtrace tree view represents the sequence of services that led to this ser
 
 Dynatrace also gives you insight into what Kubernetes cluster, node, workload, and namespace that service is running on.
 
-### 👍 How this helps
+<aside class="positive">
+
+**👍 How this helps**
+
 The service flow and service backtrace give you a complete picture of interdependency to the rest of the environment architecture at host, processes, services, and application perspectives.
 
+</aside>
+
 ### Tasks to complete this step
-Task 1  - Review Services View
+1. Review Services View for `order` service
+   * Left Menu -> Applications & Microservices -> Services <br>
+         ![image](img/lab2-step8-services.png)
+   * Top Menu -> filter by ``` dt-orders-k8 management ``` zone.
+         ![image](img/lab4-k8-mgmtzone-filter.png)
+   * Pick the ``` order ``` service.
+         ![image](img/lab4-k8-service-filter.png)
+   * On this service, we can quickly review the inbound and outbound dependencies.
+   * Referring to the picture, within the services infographic, click on the "services" square to get a list of the services that the order service calls.
+         ![image](img/lab4-k8-service-view-mod.png)
 
-* Left Menu -> Applications & Microservices -> Services
-
-   ![image](img/lab2-step8-services.png)
-
-
-* Top Menu -> filter by ``` dt-orders-k8 management ``` zone.
-
-   ![image](img/lab4-k8-mgmtzone-filter.png)
-
-* Pick the ``` order ``` service.
-
-![image](img/lab4-k8-service-filter.png)
-
-
-* On this service, we can quickly review the inbound and outbound dependencies.
-
-* Referring to the picture, within the services infographic, click on the "services" square to get a list of the services that the order service calls.
-
-![image](img/lab4-k8-service-view.png)
-
-
-Task 2  - Review Backtrace View
-
-* To see the backtrace page, just click on the Analyze Backtrace button.
-
-* You should be on the service backtrace page where you will see information for this specific service.
-
-* This will get more interesting in the next lab, but for the monolith backend, we can see that the backtrace is as follows:
-
-1 . The starting point is the backend
-
-2 . Backend service is called by the front-end
-
-3 . Front-end is a where end user requests start and the user sessions get captured 
-
-4 . My web application is the default application that Dynatrace creates
-
-![image](img/lab4-k8-service-backflow.png)
+2. Review Backtrace View
+   * To see the backtrace page, just click on the Analyze Backtrace button.
+   * You should be on the service backtrace page where you will see information for this specific service.
+   * This will get more interesting in the next lab, but for the monolith backend, we can see that the backtrace is as follows:
+      1. The starting point is the backend
+      1. Backend service is called by the front-end
+      1. Front-end is a where end user requests start and the user sessions get captured 
+      1. My web application is the default application that Dynatrace creates
+         ![image](img/lab4-k8-service-backflow.png)
 
 ## Analyze Service flow on Kubernetes
 Duration: 5
@@ -390,58 +408,48 @@ Duration: 5
 In this step we will walk through the Service Flow view within Dynatrace  and see what's different now that its deployed on Kubernetes.
 
 ### Tasks to complete this step
-Task - Review Service Flow View
+1. Review Services View for `Frontend` service
+   * Left Menu -> Applications & Microservices -> Services <br>
+            ![image](img/lab2-step8-services.png)
+   * Top Menu -> filter by ``` dt-orders-k8 management ``` zone.
+         ![image](img/lab4-k8-mgmtzone-filter.png)
+   * Pick the ``` frontend ``` service.
+         ![image](img/lab4-k8-frontendservice-filter.png)
+   * Just click on the view service flow button to open this.
+         ![image](img/lab4-serviceflow.png) 
 
-* Left Menu -> Applications & Microservices -> Services
+2. Analyze Services view from Response time perspective
+   - You should now be on the Service flow page.
+   - Right away, we can see how this application is structured:
+      * Frontend calls order, customer, and catalog service
+      * Order service calls order and customer service
+   - Something you would never know from the application web UI!
+         ![image](img/lab4-serviceflow-responsetime.png)
 
-   ![image](img/lab2-step8-services.png)
+   - Refer to the picture above:
+      1.	We are viewing the data from a Response time perspective. Shortly, we will review the Throughput perspective.
+      2.	Click on the boxes to expand the response time metrics. Most of the response time is spent in the order service and the least in the customer services. And as in the simple version of the application, a very small amount of the response time is spent in the databases.
 
+3. Analyze Services view from Throughput perspective
+         ![image](img/lab4-serviceflow-thoroughput.png)   
 
-* Top Menu -> filter by ``` dt-orders-k8 management ``` zone.
+   - Refer to the picture above:
+      1.	Change to the Throughput perspective by clicking on the box
+      2.	Click on the boxes to expand the metrics to see the number of requests and average response times going to each service
 
-   ![image](img/lab4-k8-mgmtzone-filter.png)
+<aside class="positive">
 
-* Pick the ``` frontend ``` service.
-
-   ![image](img/lab4-k8-frontendservice-filter.png)
-
-
-* Just click on the view service flow button to open this.
-
-![image](img/lab4-serviceflow.png) 
-
-### Response time perspective
-You should now be on the Service flow page.
-
-Right away, we can see how this application is structured:
-* Frontend calls order, customer, and catalog service
-* Order service calls order and customer service
-
-Something you would never know from the application web UI!
-
-![image](img/lab4-serviceflow-responsetime.png)
-
-Refer to the picture above:
-1.	We are viewing the data from a Response time perspective. Shortly, we will review the Throughput perspective.
-2.	Click on the boxes to expand the response time metrics. Most of the response time is spent in the order service and the least in the customer services. And as in the simple version of the application, a very small amount of the response time is spent in the databases.
-
-### Throughput perspective
-
-![image](img/lab4-serviceflow-thoroughput.png)   
-
-Refer to the picture above:
-1.	Change to the Throughput perspective by clicking on the box
-2.	Click on the boxes to expand the metrics to see the number of requests and average response times going to each service
-
-### 👍 How this helps
+**👍 How this helps**
 
 Reviewing the architecture before and after changes is now as easy as a few clicks!
+
+</aside>
 
 
 
 
 ## Summary
-Duration: 5
+Duration: 3
 
 While migrating to the cloud, you want to evaluate if your migration goes according to the plan, whether the services are still performing well or even better than before, and whether your new architecture is as efficient as the blueprint suggested. Dynatrace helps you validate all these steps automatically, which helps speed up the migration and validation process.
 
@@ -451,9 +459,13 @@ Having the ability to understand service flows enables us to make smarter re-arc
 
 In this section, you should have completed the following:
 
-🔷 Review Dynatrace Operator installaiton on Kubernetes
-🔷 Review real-time data now available for the sample application on Kubernetes
-🔷 Review Kubernetes dashboards within Dynatrace
-🔷 Review how Dynatrace helps with modernization planning
+   ✅ Installed Dynatrace Operator on Azure Kubernetes cluster
 
-🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
+   ✅ Review real-time data now available for the sample application on Kubernetes
+
+   ✅ Review Kubernetes dashboards within Dynatrace
+
+   ✅ Review how Dynatrace helps with modernization planning
+
+
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
