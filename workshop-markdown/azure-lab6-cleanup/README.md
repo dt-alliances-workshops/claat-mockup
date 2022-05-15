@@ -10,14 +10,14 @@ Feedback Link: mailto:jay.gurbani@dynatrace.com
 
 ## Workshop Environment Reminder
 
-If you plan to keep the Workshop resources running for a few days to come back and review the labs, please keep in mind the following items:
+If you plan to keep the workshop resources running in Azure for a few more days to come back and review the labs, please keep in mind the following things:
 
-* Free Azure Subscription credits will expire after 5 days or until the $100 credit is utilized by Azure Resources (whichever comes first)
-* Dynatrae Environment will disabled after 7 calendar days of your workshop.
+* Your free Azure Subscription credits will expire after 5 days or until the $100 credit is utilized by Azure Resources **(whichever comes first)**
+* Your Dynatrace Environment will disabled after 7 calendar days of your workshop.
 
 ## Workshop Cleanup
 
-When you are ready cleanup the workshop resource, run this command to remove the Azure resources and Dynatrace configuration:
+When you are ready to cleanup the workshop resource, run this command to remove the Azure resources and Dynatrace configuration:
 
 ```
 cd ~/azure-modernization-dt-orders-setup/provision-scripts
@@ -52,10 +52,10 @@ End: Fri 07 May 2021 04:40:40 AM UTC
 ## Other Resources
 
 ### Free Dynatrace SaaS tenant 
-To signup for a free fully feature enabled Dynatrace SaaS Tenant for 15 days [click here](https://www.dynatrace.com/trial/) 
+To signup for a free fully featured enabled Dynatrace SaaS Tenant for 15 days [click here](https://www.dynatrace.com/trial/) 
 
 ### Resources
-Addition Azure & Dynatrace related to get your started:
+Addition Azure & Dynatrace related resources to get your started with:
 
 * [Partner Cafe Quick Azure Overview](https://www.youtube.com/watch?v=VCdEHAoEePw)
 * [Dynatrace YouTube Videos](https://www.youtube.com/channel/UCcYJ-5q_AfmjQ4XTjTS0o3g)

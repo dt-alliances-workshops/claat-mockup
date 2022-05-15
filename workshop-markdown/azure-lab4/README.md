@@ -14,38 +14,30 @@ Duration: 3
 
 In order to do more with less and scale, organizations must transcend IT silos, foster collaboration and improve productivity. Automation and a common data model are key components of this, but it takes platforms that support operational teams and workflows.
 
-🔷 Review how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
+    🔷 Review how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
 
-🔷 Review how Azure monitor metrics can be configured as [Metric events for alerts](https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/)
+    🔷 Review how Azure monitor metrics can be configured as [Metric events for alerts](https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/)
 
-🔷 Examine Dynatrace Service Level Objectives (SLOs)
+    🔷 Examine Dynatrace Service Level Objectives (SLOs)
 
-🔷 Create a custom dashboard with SLOs 
+    🔷 Create a custom dashboard with SLOs 
 
 🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
 
-## Overview - Azure Monitor Setup
+## Review - Azure Monitor Setup
 Duration: 5
 
 Referring to the picture below, here are the components for this lab.
 
 ![image](img/lab4-setup.png)
 
-**#1 . Azure**
+**#1 . Azure**:  Azure cloud platform where Azure services produce metrics that are sent to Azure monitor.
 
-Azure cloud platform where Azure services produce metrics that are sent to Azure monitor.
+**#2 . Azure VM running ActiveGate**: A <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-activegate/basic-concepts/when-do-i-need-to-install-an-activegate/#anchor-route" target="_blank"> Dynatrace ActiveGate </a> process required to monitor Azure monitor data. 
 
-**#2 . Azure VM running ActiveGate**
+**#3 . Dynatrace**: Dynatrace tenant where monitoring data is collected and analyzed.
 
-A <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-activegate/basic-concepts/when-do-i-need-to-install-an-activegate/#anchor-route" target="_blank"> Dynatrace ActiveGate </a> process required to monitor Azure monitor data. 
-
-**#3 . Dynatrace**
-
-Dynatrace tenant where monitoring data is collected and analyzed.
-
-**#4 . Dynatrace Azure Dashboard**
-
-Out of the box dashboard for each configured Azure subscription.
+**#4 . Dynatrace Azure Dashboard**: Out of the box dashboard for each configured Azure subscription.
 
 ### Azure Dashboard
 
@@ -79,13 +71,21 @@ Notice the following details:
 
 ![image](img/lab4-host-detail.png)
 
- #### 💻**TECHNICAL NOTE:**  See the [Dynatrace Docs](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/) for more details on the setup.
+<aside class="positive"> 
 
-### 👍 How this helps
+💻📓 See the [Dynatrace Docs](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/) for more details on the setup.
+
+</aside>
+
+<aside class="positive">
+
+**👍 How this helps**
 
 Dynatrace brings value by enriching the data from Azure Monitor/App Insights and extending observability into the platform with additional metrics for cloud infrastructure, load balancers, API Management Services, and more.​
 
 These metrics are managed by Dynatrace's AI engine automatically and this extended observability improves operations, reduces MTTR and increases innovation. 
+
+</aside>
 
 ## Custom Alerting Setup
 Duration: 10
@@ -105,6 +105,9 @@ events that are independent of any metric (for example, process crashes, deploym
             ![image](img/lab4-alert-create.png)
     * In the `Category` dropdown list, select `Cloud Platform` and in the `Metric` dropdown list, type `Percentage CPU` and pick the `Cloud platforms > Azure > Virtual Machine > cpuUsage` option and Pick `Average`
     ![image](img/lab4-vm-alert.png)
+
+        <aside class="positive"> 💡There are similar CPU percentage metrics, please make sure you select the right one </aside>
+
     * Click `Add rule-base` button and update as shown below
         ![image](img/lab4-custom-alert-filter.png)
 
@@ -131,15 +134,19 @@ events that are independent of any metric (for example, process crashes, deploym
     * From the Azure Portal, search for `dt-orders-monlith` VM from the search menu and select it.
         ![image](img/lab4-monolith-vm-search.png)      
 
-    * Once inside the VM resource, click on `Run Command` under Operations
+    * Once inside the VM resource page, click on `Run Command` under Operations from the left menu
         ![image](img/lab4-monolith-vm-runcmd.png)      
         
-    * Next, click on `RunShellScript` and type in the following command in the `Run Command Script` window and click run
+    * Next, click on `RunShellScript` and type in the command listed below in the `Run Command Script` window and click run
 
         ```
-            /home/workshop/azure-modernization-dt-orders-setup/learner-scripts/run-cpu-prb.sh
+        /home/workshop/azure-modernization-dt-orders-setup/learner-scripts/run-cpu-prb.sh
         ```
         ![image](img/lab4-monolith-vm-exec-runcmd.png)
+
+    * In the output window you should receive the following:
+
+        ![image](img/lab4-monolith-vm-runcmd-output.jpg)
     
 
 3. Review Dynatrace UI for Problem card
@@ -151,13 +158,13 @@ events that are independent of any metric (for example, process crashes, deploym
 
         ![image](img/lab4-custom-alert-problems.png)
 
-        ### 💥 **TECHNICAL NOTE** 
+        <aside class="positive">💻📓 Look at the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank"> Dynatrace Docs </a> for more details on the setup.
 
-        * See the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank"> Dynatrace Docs </a> for more details on the setup.
+        Alert configuration is available through the <a href="https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/anomaly-detection-api/anomaly-detection-api-metric-events/" target="_blank"> Anomaly detection—metric events API </a> Using the API, you can list, update, create, and delete configurations.
 
-        * Alert configuration is available through the <a href="https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/anomaly-detection-api/anomaly-detection-api-metric-events/" target="_blank"> Anomaly detection—metric events API </a> Using the API, you can list, update, create, and delete configurations.
+        </aside>
 
-    * Review Problem Notifications
+    * Review Problem Notifications Settings
         -  Navigate to `Settings --> Integrations --> Problem Notifications` 
         -  Read the overview and then click the `Add Notification` button
         -  Click various `Notification types` from the drop down to review the configurations inputs.
@@ -171,19 +178,22 @@ events that are independent of any metric (for example, process crashes, deploym
         -  Review the options to choose severity rules and filters
 
 4. Stop the CPU problem
-    * To stop the problem, we will use the `Run Command` feature in Azure Portal to stop a shell script.
+    * To stop the problem, we will use the same `Run Command` feature in Azure Portal to execute stop shell script.
     * From the Azure Portal, search for `dt-orders-monlith` VM from the search menu and select it.
         ![image](img/lab4-monolith-vm-search.png)      
 
-    * Once inside the VM resource, click on `Run Command` under Operations
-        ![image](img/lab4-monolith-vm-runcmd.png)      
+    * Once inside the VM resource page, click on `Run Command` under Operations from the left menu         
     
-    * Next, click on `RunShellScript` and type in the following command in the `Run Command Script` window and click run
+    * Next, click on `RunShellScript` and type in the following command listed below in the `Run Command Script` window and click run
 
         ```
         /home/workshop/azure-modernization-dt-orders-setup/learner-scripts/stop-cpu-prb.sh
         ```        
         ![image](img/lab4-monolith-vm-runcmd-stop.jpg)        
+
+    * In the output window you should receive the following:
+
+        ![image](img/lab4-monolith-vm-runcmd-stop-output.jpg)
 
     * Verify that CPU in Dynatrace goes to normal and the problem card will automatically close
 
@@ -218,15 +228,17 @@ Here is an example custom dashboard with SLO dashboard tiles.
 
         ![image](img/lab4-slo-list.png)
 
-        ### 👍 How this helps
+        <aside class="positive">
+
+        **👍 How this helps**
 
         You can review the current health status, error budgets, targets and warnings, along with the timeframe of all your SLOs on the SLOs overview page.
 
         Davis provides quick notifications on anomalies detected, along with actionable root causes. If your SLO has turned red, this is most likely because Davis has already raised a problem for the underlying metrics, showing you the root cause.
+        </aside>
 
-        ### 💥 **TECHNICAL NOTE** 
-
-        See the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank"> Dynatrace Docs </a> for more details on SLOs
+        <aside class="positive">💻📓 See the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank"> Dynatrace Docs </a> for more details on SLOs
+        </aside>
 
 ## Create SLO Dashboard
 Duration: 10
@@ -281,19 +293,19 @@ In this step we'll create a very basic SLO dashboard to compare the before and a
         * Click the `Done` button to save the dashboard
 
 
-🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
 ## Summary
 Duration: 2
 
 In this section, you should have completed the following:
 
-    🔷 Review how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
+✅  Reviewed how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
 
-    🔷 Review how Azure monitor metrics can be configured as <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank"> Metric events for alerts</a>
+✅  Reviewed how Azure monitor metrics can be configured as <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank"> Metric events for alerts</a>
 
-    🔷 Examine Dynatrace Service Level Objectives (SLOs)
+✅ Examined Dynatrace Service Level Objectives (SLOs)
 
-    🔷 Create a custom dashboard with SLOs 
+✅ Created a custom dashboard with SLOs 
 
-🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>

@@ -8,10 +8,10 @@ Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 
 # Azure Workshop Lab 3 - Davis AI
 
-## Lab Overview 
+## Lab Overview & Objectives
 Duration: 3
 
-### Lab Overview
+### Overview
 Often the monitoring tools organizations use simply don’t work in the complex ecosystem of microservices and for technologies like Kubernetes.
 
 Finding the root cause of problems is harder than ever before and the effort required goes beyond what is humanly possible when the application spans to the cloud providers and data centers and the explosion of interconnected services. There are more possibilities for failures and more hiding spots for problems to sneak into the environment when software driving more than just the application.
@@ -22,9 +22,11 @@ In this lab, we will trigger a few problem and see how troubleshooting time is S
 
 🔷 Enable a problem in the application and walk through what [Dynatrace Davis](https://www.dynatrace.com/platform/artificial-intelligence/) found
 
-🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
+🔷 Review how Dynatrace process events and Tags to provide additional context in root cause analysis
 
-## Dynatrace Events & Tags Info
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+
+## Review Events & Tags in Dynatrace
 
 Before we get to the problems, let's review <a href="https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events/post-event/" target="_blank"> Dynatrace Information Events</a>.
 
@@ -47,9 +49,14 @@ Each event has a timestamp, event source, a few standardized fields (depending o
 
 ![image](img/lab3-event-examples.png)
 
-### 👍 How this helps
+<aside class="positive">
+
+**👍 How this helps**
+
 
 Having information events speeds up triage by adding context to what’s happening with the application. Just imagine getting alerted about an issue and immediately seeing a load test or deployment took place, and in one click of the event, review the system, job, and team responsible!
+
+</aside>
 
 ### Dynatrace tags
 
@@ -137,46 +144,44 @@ In this step we are going to "simulate" a deployment of new version of the `back
 
       ```
 
-1. Validate Sample App in Browser
+2. Validate Sample App in Browser
       - The output from previous task has link to the sample under `CI_BACK_LINK`.  Click on the URL to get to the sample application if you don't have the sample app up already.  You should see `version 2` for the customer app now too.
 
       ![image](img/lab3-app-backend-version-2.png)
 
-1. Review & Analyze the Problem in Dynatrace
+3. Review the Problem card in Dynatrace
     * Go to Dynatrace menu -> Problems, and you will probably see two problems that eventually get merged…
-        - Impact summary - multiple service impact
-        - Root cause
-
+        1. Impact summary - multiple service impact
+        1. Root cause
+        1. Click on the `Analyze Response Time Degradation` button to view the real issue with the request.
           ![image](img/lab3-backend-problem.png)
 
-    * Analyze problem - top findings
-        - Click on the `Analyze Response Time Degradation` button to view the real issue with the request.
-        - Here you can see how Dynatrace automatically analyzes the problem and lets you know whether the problem is related to code, waiting, or other services and queues.
-        - Click in the `active wait time` line with the top findings to open the execution time breakdown detail.
+4. Analyze problem - top findings        
+    1. Here you can see how Dynatrace automatically analyzes the problem and lets you know whether the problem is related to code, waiting, or other services and queues.
+    1. Click in the `active wait time` line with the top findings to open the execution time breakdown detail.
+      ![image](img/lab3-backend-analysis.png)
 
-          ![image](img/lab3-backend-analysis.png)
+5. Analyze problem - execution time breakdown
+    - Dynatrace automatically shows the breakdown of the execution time.  To see more, click the `View method hotspots` button.
+      ![image](img/lab3-backend-hotspots.png)
 
-    * Analyze problem - execution time breakdown
-        - Dynatrace automatically shows the breakdown of the execution time.  To see more, click the `View method hotspots` button.
+6. Analyze problem - hot spots
+    - Here the code call breakdown is shown and by expanding this tree, you can locate the method where the slow down is occurring.
+    <aside class="positive"> 
 
-          ![image](img/lab3-backend-hotspots.png)
+    **📓 You will need to expand several stack frames to get to method causing the slow down.** 
+    </aside>
 
-    * Analyze problem - hot spots
-        - Here the code call breakdown is shown and by expanding this tree, you can locate the method where the slow down is occurring.
-            **NOTE: You will need to expand several stack frames to get to method causing the slow down.**
+    ![image](img/lab3-backend-analysis-trace.png)
 
-            ![image](img/lab3-backend-analysis-trace.png)
+7. Analyze problem impact
+    - From the breadcrumb menu, click on the `backend` to open the service page.
+      ![image](img/lab3-backend-breadcrumb.png)
 
-    * Analyze problem impact
-        - From the breadcrumb menu, click on the `backend` to open the service page.
+    - Then click on the response time box in the Dynamic web requests section to open the service details page.  You can see exactly when the problem started.
+      ![image](img/lab3-backend-problem-details.png)
 
-            ![image](img/lab3-backend-breadcrumb.png)
-
-        - Then click on the response time box in the Dynamic web requests section to open the service details page.  You can see exactly when the problem started.
-
-            ![image](img/lab3-backend-problem-details.png)
-
-1. Disable the problem pattern
+8. Disable the problem pattern
   * From the Azure shell run these commands to set the version back to version 1
 
     ```
@@ -193,15 +198,18 @@ In this step we are going to "simulate" a deployment of new version of the `back
 
   * By ensuring there are numberical values t the end, it validates the command ran sucessfully.
 
-  #### 💻**TECHNICAL NOTE:** Why does the problem card say 'Custom Threshold'?
+<aside class="positive"> 
 
-  The Dynatrace AI engine is evaluating metrics and dependencies for daily and weekly traffic patterns.  Since we just setup our sample application, there is not a lot of history to review. We setup a fixed threshold as a global service setting.
+**📓 Why does the problem card say 'Custom Threshold'?**
+<br>The Dynatrace AI engine is evaluating metrics and dependencies for daily and weekly traffic patterns.  Since we just setup our sample application, there is not a lot of history to review. We setup a fixed threshold as a global service setting.
 
   * To review this setting, on the left side menu, click `settings`, click `Anomaly Detection` and the the `Services` setting.
 
       ![image](img/lab3-global-anomoly-rules.png)
 
   * To learn more about how Davis AI problems are detected and analyze, click the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/automated-multi-dimensional-baselining/" target="_blank"> Dynatrace docs </a> to learn more
+
+</aside>
 
 ## Enable Order Service problem on AKS
 Duration: 10
@@ -226,9 +234,9 @@ In this step we are going to "simulate" another deployment of new version of the
       {"storedEventIds":[8663164135574257870,-5988376401319068441],"storedIds":["8663164135574257870_1628095127627","-5988376401319068441_1628095127627"],"storedCorrelationIds":[]}
       ```
 
-1. Validate the Change in Dynatrace
+2. Validate the Change in Dynatrace
     * From the left side menu, navigate to the `Releases` page.  Here you will see how Dynatrace detected the versions of monitored processes.  It may take a minute, but you will see the version change in the `Real-time inventory` section and a new event in the `Release events` section.
-          <br> **💥NOTE:** Be sure to adjust the management zone to `dt-orders-k8`
+      <aside class="positive"> 📓 Be sure to adjust the management zone to `dt-orders-k8` </aside>
 
       ![image](img/lab3-release-order.png)
 
@@ -236,12 +244,12 @@ In this step we are going to "simulate" another deployment of new version of the
 
       ![image](img/lab3-release-order-event.png)
 
-1. Validate Sample App in Browser
+3. Validate Sample App in Browser
     * The event above has the URL back to the sample application, so just click that if you don't have the sample app up already.  You should see `version 3` for the order app now too.
 
       ![image](img/lab3-app-ui-order-version-3.png)
 
-1. Review & Analyze the Problem in Dynatrace  
+4. Review the Problem in Dynatrace  
     * The problem may take a minute to show up, but this is what the problem will look like once it does. Also, you may see two problems that eventually get merged into one as Dynatrace is performing the problem analysis.
       1. Problem card windows and impact summary
       1. Root cause
@@ -249,13 +257,13 @@ In this step we are going to "simulate" another deployment of new version of the
 
         ![image](img/lab3-order-problem.png)
 
-    * Analyze problem
+5. Analyze problem
       - Referring to #4 in the picture above, click on the `Analyze failure rate degradation` button.
       - Right away we can see that there were exceptions in the code and the `details` button can be clicked to see the code stack trace.
 
           ![image](img/lab3-order-problem-detail.png)
 
-    * Analyze problem impact
+6. Analyze problem impact
       - From the breadcrumb menu, click on the `order` to open the service page.
 
           ![image](img/lab3-order-menu.png)
@@ -268,7 +276,7 @@ In this step we are going to "simulate" another deployment of new version of the
 
           ![image](img/lab3-order-problem-requests.png)
 
-1. Disable the Problem Pattern
+7. Disable the Problem Pattern
     * From the Azure shell run these commands to set the version back to version 1
 
       ```
@@ -286,14 +294,17 @@ In this step we are going to "simulate" another deployment of new version of the
     * Dynatrace will automatically close the problem once it detects things are back to normal.
 
 
-🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
 
 ## Summary
 
 In this section, you should have completed the following:
 
-  🔷 Enable a problem in the application and walk through what <a href="https://www.dynatrace.com/platform/artificial-intelligence/" target="_blank"> Dynatrace Davis </a> found
-  🔷 Learn how Dynatrace use Events and Tags to provide additional context.
+  ✅ Enabled a problem in the application and walk through what <a href="https://www.dynatrace.com/platform/artificial-intelligence/" target="_blank"> Dynatrace Davis </a> found
 
-🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
+  ✅ Reviewed the details of the Dynatrace Prolem card.
+    
+  ✅ Learn how Dynatrace use Events and Tags to provide additional context.
+
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>

@@ -40,7 +40,7 @@ At least 24-48 hours before the workshop, you've received an email similar to th
     - <b>Note:</b>  Your login ID is your corporate email address
 
 
-🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
 ## Azure Pass Subscription Setup
 Duration: 4
@@ -51,6 +51,7 @@ That Azure Pass Promo code enables you to have a separate Azure subscription set
 
 This free Azure subscription will be available to you for the next 5 days or until when the $100 credit is utilized by the Azure resources (whichever comes first).
 
+
 ### Tasks to complete this step
 
 1. To setup your workshop using free Azure Pass subscription, navigate to <a href="https://www.microsoftazurepass.com/" target="_blank">Microsoft's Azure Pass website</a>
@@ -58,15 +59,16 @@ This free Azure subscription will be available to you for the next 5 days or unt
      ![image](img/setup-azure.png)
 3. Use a ***personal email address*** to signin or create a new Microsoft account email.
      ![image](img/azure-pass-signin.png)
-     **💥NOTE: If you are already signed in on a Azure account via your corporate email, please signout and login with personal account or create a new account.**
+      <aside class="negative">If you are signed in on a Azure account via your **corporate email**, please signout and login using your personal account or create a new account shown below.</aside>
+
+      ![image](img/setup-ms-account.png) <br>   
+
 4.  Confirm the email address you want to use for your Azure pass subscription and "promo" code provided to allow for the Azure subscription to be setup.
      ![image](img/azure-pass-emailconfirm.png)
-    **💥NOTE:Using Azure Pass promotion code requires an email and the provisioning takes about 5 minutes to process.** <br>
-            ![image](img/setup-ms-account.png) <br>   
+    <aside class="positive"> ℹ️   Provisioning your Azure subscription can take upto 5 minutes to process.</aside>           
     
-    **💥NOTE: You can create a new personal account during this step.**
 
-🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
 ## Azure Portal Prep
 Duration: 4
@@ -78,17 +80,17 @@ Duration: 4
 2. Click on the Cloud Shell button
     ![image](img/setup-azure-shell-open.png)
 
-    **💥NOTE: If you get this prompt, choose bash.**
+    <aside class="positive"> If you get this prompt, choose bash.  </aside>
 
     ![image](img/setup-azure-shell-bash.png)
 
-    <br>**💥NOTE: If you get the prompt below, choose `Azure Pass - Sponsorship` and then click the `Create Storage` button.**
+    <br><aside class="positive">If you get the prompt below, choose `Azure Pass - Sponsorship` and then click the `Create Storage` button.</aside>
 
     
     ![image](img/setup-azure-shell-storage.png)
 
     
-    **💥NOTE: Creating the storage will take about a couple of minutes.**
+    <aside class="positive"> Creating the storage will take a couple of minutes.**
 
 3. Once the storage is created, you should see the Unix bash shell.
   ![image](img/setup-azure-shell-prompt.png)
@@ -97,7 +99,7 @@ Duration: 4
   ![image](img/setup-azure-shell-newtab.png)
 
 5. To verify which subscription is configured for the Azure CLI, run this command.
-    ```
+    ```console
       az account show
     ```
 
@@ -120,10 +122,10 @@ Duration: 4
       }
     ```
 
-- #### 💻**TECHNICAL NOTE:** If the subscription is not `Azure Pass - Sponsorship`, run this command to see all the subscriptions for your user id. If this is the first time using Azure portal or a trial, then you should only have one subscription.
+    <aside class="positive"> 💻 If the subscription is not `Azure Pass - Sponsorship`, run the command below to see all the subscriptions for your user id. If this is the first time using Azure portal or a trial, then you should only have one subscription. </aside>
 
     ```
-      az account list --output table
+    az account list --output table
     ```
 
 - Here is an sample output:
@@ -164,7 +166,7 @@ Duration: 4
  ![image](img/pre-requisites-azure-cli-gitcloneoutput.png)
 
 
-🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
 ## Provision the workshop
 Duration: 15
@@ -318,4 +320,4 @@ In this section, you should have completed the following:
 
 ✅ Provisioned workshop resources
 
-🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
