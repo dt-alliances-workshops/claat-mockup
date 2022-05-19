@@ -12,7 +12,13 @@ Re-hosting (also referred to as lift and shift) is a common migration use case. 
 
 For this lab you are going to use an updated version of the application on a Kubernetes.  This makes it easy for you to see the transformation of the Sample Application in Lab 1 and the value of running Kubernetes on AWS without needing to stand up or maintain your own Kubernetes control plane. 
 
-If you would rather NOT provision Kubernetes on AWS, then please follow the `Modernization with Containers` workshop guide. This guide has a shorter setup process but, still allows you to interact with the sames transformed application. 
+### 💥💥💥 Notice 💥💥💥
+
+If you would rather NOT provision Kubernetes on AWS, then please follow the `AWS Lab 2 - Modernization with Containers` workshop guide. This guide has a shorter setup process but, still allows you to interact with the sames transformed application. 
+
+### 💥💥💥 Notice 💥💥💥
+
+This lab assumed you already provisioned an Amazon Elastic Kubernetes Service (EKS) cluster. If you did not have a cluster, then return the Kubernetes Lab.
 
 ### Objectives of this Lab 
 
@@ -26,7 +32,7 @@ If you would rather NOT provision Kubernetes on AWS, then please follow the `Mod
 
 For this lab, another version of the application exists that breaks out each of these backend services into separate services. By putting these services into Docker images, we gain the ability to deploy the service into modern platforms like Kubernetes and AWS services.
 
-### Kubernetes
+### Kubernetes Overview
 
 Kubernetes is open source software that allows you to deploy and manage containerized applications at scale. 
 
@@ -47,7 +53,7 @@ Amazon EKS is also integrated with many AWS services to provide scalability and 
 * Amazon VPC for isolation
 * Amazon ECR for container images
 
-### Lab components
+## Lab components
 
 Refer to the picture below, here are the components for lab 2.
 
@@ -71,117 +77,15 @@ Made possible by the Dynatrace OneAgent that will automatically instrument each 
 **#6 . Kubernetes Dashboard**
 The Kubernetes page provides an overview of all Kubernetes clusters showing monitoring data like the clusters’ sizing and utilization.
 
-## Lab pre-requisites
+## Dynatrace Operator Overview
 
-This step extends what you did in the previous step and will provision an Amazon Elastic Kubernetes Service (EKS) cluster and the Dynatrace configuration needed for the workshop.
+One key Dynatrace advantage is ease of activation. OneAgent technology simplifies deployment across large enterprises and relieves engineers of the burden of instrumenting their applications by hand. As Kubernetes adoption continues to grow, it becomes more important than ever to simplify the activation of observability across workloads without sacrificing the deployment automation that Kubernetes provides. Observability should be as cloud-native as Kubernetes itself.
 
-There are the following setup steps for this lab:
-1. Install the pre-requisite tools in you SSH shell
-1. Create Cluster
-1. Verify Cluster
-1. Install Dynatrace Kubernetes Operator
-1. Install sample application
+In our workshop, we will install the Dynatrace Operator that streamlines lifecycle management.  You can read more about it here in this <a href="https://www.dynatrace.com/news/blog/new-dynatrace-operator-elevates-cloud-native-observability-for-kubernetes/" target="_blank">Dynatrace blog</a>.
 
-NOTE: The step `Create Cluster` will take ~30 minutes to complete while the EKS cluster is provisioning.
+Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/monitor-kubernetes-environments/" target="_blank">Dynatrace docs</a> but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
 
-### Install the pre-requisite tools
-
-1 . From the AWS Cloudshell, create a new folder in your home directory
-
-```
-mkdir -p $HOME/bin 
-```
-
-2 . Install `kubectl`. Kubernetes uses this command line utility for communicating with the cluster API server. You can find out more by checking out the documentation
-
- * <a href="https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html" target="_blank">https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html</a>
-
- ```
- curl --silent -o $HOME/bin/kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl 
- ```
-
-3 . Change the permissions of the new folder to make it executable
-
-```
-chmod +x $HOME/bin/kubectl 
-```
-
-4 . check to make sure it installed properly by checking the version
-
-```
-kubectl version --short --client 
-```
-
-## Create Cluster
-
-If you are at an AWS event and using an AWS event engine code, your cluster may have been automatically created in advance and you can skip this page and proceed to the `Verify Cluster` page.
-
-If you are at not at an AWS event or you do not have a cluster, then follow these steps to setup you cluster.
-
-### Using eksctl to create your cluster 
-
-When you run the eksctl command below to create your cluster, it create a CloudFormation script for you.  This CloudFormation will the take 20-30 minutes to fully provision and you can monitor the status with the AWS console.
-
-1 . Copy the `eksctl create cluster ...` command below and run it.
-
-```
-eksctl create cluster --with-oidc --ssh-access --version=1.21 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key <YOUR-Key Pair-NAME>
-```
-
-It is OK when you get an error like this...
-
-```
-bash: syntax error near unexpected token `newline'
-```
-
-...because you **MUST** replace the argument value for `--ssh-public-key` with your Key Pair name that was automatically created in Lab 1 for the EC2 instance
-
-2 . Copy the Key Pair name and then back in the CLoudShell, click the `up arrow keyboard button` to get the previous command.
-
-4 . Adjust the `--ssh-public-key <YOUR-Key Pair-NAME>` argument and then run the command again.
-
-* If you are at an AWS event using AWS Event Engine, then this value will be `ee-default-keypair`
-* If you are using your own AWS Account, then copy the Key pair name you created earlier in the `Prerequisites` section and saved to your local notes.
-
-If you still get an error, first check that you have the correct `--ssh-public-key` argument value.
-
-### 💥 **TECHNICAL NOTE**
-
-<i>Optionally, you can adjust the argument value for `--name dynatrace-workshop` if you are sharing an AWS account with others as to make it a unique cluster name.</i>
-
-5 . Review the output will start to look like this and may take 20-30 minutes to fully provision.
-
-```
-cloudshell-user@ip-10-0-45-241 learner-scripts]$ eksctl create cluster --region us-west-2 --with-oidc --ssh-access --version=1.21 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key jones-dynatrace-modernize-workshop
-2021-09-03 19:26:32 [ℹ]  eksctl version 0.64.0
-2021-09-03 19:26:32 [ℹ]  using region us-west-2
-2021-09-03 19:26:32 [ℹ]  setting availability zones to [us-west-2a us-west-2b us-west-2d]
-2021-09-03 19:26:32 [ℹ]  subnets for us-west-2a - public:192.168.0.0/19 private:192.168.96.0/19
-2021-09-03 19:26:32 [ℹ]  subnets for us-west-2b - public:192.168.32.0/19 private:192.168.128.0/19
-2021-09-03 19:26:32 [ℹ]  subnets for us-west-2d - public:192.168.64.0/19 private:192.168.160.0/19
-2021-09-03 19:26:32 [ℹ]  nodegroup "ng-eaa2eae4" will use "" [AmazonLinux2/1.21]
-2021-09-03 19:26:32 [ℹ]  using EC2 key pair %!q(*string=<nil>)
-2021-09-03 19:26:32 [ℹ]  using Kubernetes version 1.21
-2021-09-03 19:26:32 [ℹ]  creating EKS cluster "dynatrace-workshop" in "us-west-2" region with managed nodes
-...
-...
-2021-09-03 19:28:33 [ℹ]  waiting for CloudFormation stack "eksctl-dynatrace-workshop-cluster"
-2021-09-03 19:29:33 [ℹ]  waiting for CloudFormation stack "eksctl-dynatrace-workshop-cluster"
-```
-
-6 . When this command completes, you should see output such as:
-
-```
-2021-09-03 19:51:34 [ℹ]  node "ip-192-168-89-237.us-west-2.compute.internal" is ready
-2021-09-03 19:53:35 [ℹ]  kubectl command should work with "/home/cloudshell-user/.kube/config", try 'kubectl get nodes'
-2021-09-03 19:53:35 [✔]  EKS cluster "dynatrace-workshop-cluster" in "us-west-2" region is ready
-```
-
-### 💥 **TECHNICAL NOTE**
-
-<i>It is possible that your AWS cloud shell will time out before you see the `EKS cluster is ready` in the `eksctl` console output. It that occurs, that is OK.  Just refresh your Cloud Shell connection to get back to the command prompt and just monitor the CloudFormation script progress from the AWS console as described next.</i>
-
-### Verify Cluster Creation
+## Review CloudFormation
 
 To verify completion status of the CloudFormation script within the AWS console.
 
@@ -270,15 +174,8 @@ content/99_cleanup/index.md
     ```
     kubectl describe nodes
     ```
-## Dynatrace Operator
-
-One key Dynatrace advantage is ease of activation. OneAgent technology simplifies deployment across large enterprises and relieves engineers of the burden of instrumenting their applications by hand. As Kubernetes adoption continues to grow, it becomes more important than ever to simplify the activation of observability across workloads without sacrificing the deployment automation that Kubernetes provides. Observability should be as cloud-native as Kubernetes itself.
-
-In our workshop, we will install the Dynatrace Operator that streamlines lifecycle management.  You can read more about it here in this <a href="https://www.dynatrace.com/news/blog/new-dynatrace-operator-elevates-cloud-native-observability-for-kubernetes/" target="_blank">Dynatrace blog</a>.
-
-Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/monitor-kubernetes-environments/" target="_blank">Dynatrace docs</a> but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
-
-### Install Dynatrace Operator
+    
+## Install Dynatrace Operator
 
 1. To navigate to Kubernetes page, follow these steps and refer to the picture below:
 
@@ -304,7 +201,7 @@ Organizations will often customize the Dynatrace Operator installation and you c
     * Setup a Dynatrace Active gate that runs as a container in the `dynatrace` namespace that is used in the polling of Kubernetes API
     * Enable preset out-of-the-box Kubernetes dashboards
 
-### Verify Dynatrace Operator
+## Verify Dynatrace Operator
 
 Once the script is complete, then monitor the installation until you all pods are in `Running` state with all pods as `1/1`.
 
@@ -323,7 +220,7 @@ dynakube-routing-0                   1/1     Running   0          2m45s
 dynatrace-operator-f946fb4c6-q5k5g   1/1     Running   0          3m59s
 ```
 
-### Verify Dynatrace Monitoring
+## Verify Dynatrace Monitoring
 
 We will review more detail shortly, but quickly verify within Dynatrace that the hosts are now monitored.
 
@@ -383,7 +280,7 @@ env:
 
 * Read more details on how Dynatrace identifies labels and tags Kubernetes in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/other-deployments-and-configurations/leverage-tags-defined-in-kubernetes-deployments" target="_blank">Dynatrace documentation</a>
 
-### Run the script to deploy the sample application
+## Deploy sample app
 
 Back in the SSH shell, run these commands to deploy the application:
 
