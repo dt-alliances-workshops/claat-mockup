@@ -16,7 +16,7 @@ In our workshop, we will install the Dynatrace Operator that streamlines lifecyc
 
 ## Deploying Dynatrace Operator
 
-Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the [Dynatrace docs](https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/monitor-kubernetes-environments/) but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
+Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the [Dynatrace docs](https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-container-platforms/kubernetes/get-started-with-kubernetes-monitoring) but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
 
 When we run this command, it will do the following:
 * Create a namespace called `dynatrace` in your cluster will the Dynatrace Operator pods
