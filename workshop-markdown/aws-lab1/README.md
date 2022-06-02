@@ -1,5 +1,5 @@
 id: aws-lab1
-categories: modernization,kubernetes
+categories: modernization
 status: Published
 tags: aws-immersion-day,aws-selfpaced
 cardname: aws
