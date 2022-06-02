@@ -3,7 +3,7 @@ categories: kubernetes
 status: Published
 tags: aws-immersion-day,aws-selfpaced
 
-# AWS Lab 0 - Kubernetes Setup
+# AWS Lab 0 - Provisions EKS Cluster
 
 ## Overview
 
