@@ -3,7 +3,7 @@ categories: kubernetes, modernization
 status: Published
 tags: aws-immersion-day,aws-selfpaced
 
-# Lab 9 - DevSecOps Events
+# Lab 9 - DevSecOps Events - Under Construction
 
 ## Overview
 
@@ -11,13 +11,13 @@ tags: aws-immersion-day,aws-selfpaced
 
 In practice, DevSecOps is a tactical trifecta that connects three different disciplines:
 
-1. - Development
-1. - Security
-1. - Operations
+1. Development
+1. Security
+1. Operations
 
 The goal is to seamlessly integrate security into your continuous integration and continuous delivery (CI/CD) pipeline in both pre-production (dev) and production (ops) environments. 
 
-To find out more about each discipline in more depth and the role it plays in delivering better, more secure software faster please follow the link below to the Dynatrace blog.<a href="https://www.dynatrace.com/news/blog/what-is-devsecops/" target="_blank">Dynatrace blog</a>
+To find out more about each discipline in more depth and the role it plays in delivering better, more secure software faster please follow the link below to the <a href="https://www.dynatrace.com/news/blog/what-is-devsecops/" target="_blank">Dynatrace blog.</a>
 
 
 ![image](img/DevSec1.png)
