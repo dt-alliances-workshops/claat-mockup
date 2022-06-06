@@ -1,12 +1,12 @@
-id: aws-immersion-day
+id: aws-lab0 immersion-day
 categories: modernization,kubernetes
 status: Published
 tags: aws-immersion-day
 description: 
 
-# AWS Lab 0 - Immersion Day Overview
+# AWS Lab 0 - Introduction and Setup
 
-## Workshop Learning Objectives
+## AWS Immersion Day Objectives
 
 This virtual hands-on workshop will start with a review of common challenges associated with modernization followed by a review of how Dynatrace’s AI-engine, Davis, performs automatic and intelligent root-cause analysis in hybrid cloud AWS environments. This will be followed by series of hands-on labs where you will:
 
@@ -22,7 +22,6 @@ The workshop breaks down into three sections.  Plan on 2-4 hours for completion 
 
 * **Prerequisites** - Ensure your Dynatrace and AWS accounts are set-up
 * **Workshop Labs** - Divided into modules, some labs include a step to run scripts that will provision AWS resources, deploy sample application, and configure Dynatrace.
-* **Cleanup Resources**  - Tear down workshop resources and keep on using the Free Trial!
 
 ### Workshop Audience
 
@@ -123,7 +122,14 @@ Receiving objects: 100% (161/161), 19.82 MiB | 22.21 MiB/s, done.
 Resolving deltas: 100% (72/72), done.
 ```
 
-## Provision
+## Provision VM
+
+This step creates two CloudFormation stacks that do the following:
+
+* Add two EC2 instance named: `dt-orders-monolith` and `dt-orders-services`
+* At EC2 startup, it installs `Docker` and `Docker-Compose`
+* At EC2 startup, it installs the `OneAgent` for your Dynatrace tenant
+* Starts up the sample application by running `docker-compose up`
 
 ### 1. Copy provisioning script command
 
@@ -170,21 +176,6 @@ Create AWS resource: services-vm
 }
 ```
 
-What the script did is to add the following Dynatrace configuration: 
-
-* Set global <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/detection-of-frequent-issues/" target="_blank">Frequent Issue Detection</a> settings to Off
-* Adjust the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/how-to-adjust-the-sensitivity-of-problem-detection/" target="_blank">Service Anomaly Detection</a>
-* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/management-zones/" target="_blank">Management Zones</a> for the monolith version of the application
-* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/tags-and-metadata/" target="_blank">Auto Tagging Rules</a> to drive management zone and SLO settings
-* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank">SLOs</a> for a use in custom dashboards
-
-The script will also create two CloudFormation stacks that do the following:
-
-* Add two EC2 instance named: `dt-orders-monolith` and `dt-orders-services`
-* At EC2 startup, it installs `Docker` and `Docker-Compose`
-* At EC2 startup, it installs the `OneAgent` for your Dynatrace tenant
-* Starts up the sample application
-
 ### 3. Verify CLoudFormation Stacks
 
 The CloudFormation may take a few minutes, but you can check the CloudFormation output to ensure that all the AWS resources were provisioned successfully. 
@@ -199,6 +190,20 @@ When it is complete, it will show a `CREATE_COMPLETE` status as shown below.s
 ### 💥 **TECHNICAL NOTE**
 
 _The process to provision everything will take ~5 minutes, so please be patient._
+
+## Dynatrace Configuration
+
+You will also notice output from the provision script that was add the following Dynatrace configuration: 
+
+* Set global <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/detection-of-frequent-issues/" target="_blank">Frequent Issue Detection</a> settings to Off
+* Adjust the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/how-to-adjust-the-sensitivity-of-problem-detection/" target="_blank">Service Anomaly Detection</a>
+* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/management-zones/" target="_blank">Management Zones</a> for the monolith version of the application
+* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/tags-and-metadata/" target="_blank">Auto Tagging Rules</a> to drive management zone and SLO settings
+* Add <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank">SLOs</a> for a use in custom dashboards
+
+The scripts use a combination of [Dynatrace Monitoring as Code](https://github.com/dynatrace-oss/dynatrace-monitoring-as-code) framework (a.k.a. monaco) and configuration using the [Dynatrace Configuration API](https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/) for those few Dynatrace configurations not yet supported by monaco.  
+
+You can review the Monitoring as Code workshop files [in the GitHub repo](https://github.com/dt-alliances-workshops/aws-modernization-dt-orders-setup/tree/main/workshop-config)
 
 ## Summary
 
