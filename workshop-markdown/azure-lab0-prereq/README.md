@@ -1,6 +1,6 @@
 summary: Lab 0 Dynatrace Workshop on Azure
 id: azure-lab0
-categories: modernization,kubernetes,all
+categories: modernization,kubernetes,appsec,all
 tags: azure
 status: Published
 authors: Jay Gurbani
