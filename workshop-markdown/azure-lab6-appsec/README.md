@@ -17,7 +17,9 @@ As we have seen in the previous labs, Dynatrace helps you detect problems proact
 ### Objectives of this Lab
 
 🔷 Enable Dynatrace Application Security to find potential vulnerabilities our application
+
 🔷 Become familiar with the user interface by reviewing some of the identified vulnerabilities
+
 🔷 See how Davis Security Score helps us prioritize vulnerabilities
 
 
