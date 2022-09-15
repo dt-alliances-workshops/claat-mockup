@@ -100,7 +100,7 @@ Organizations will often customize the Dynatrace Operator installation and you c
 
          ```
          kubectl create namespace dynatrace
-         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.4.2/kubernetes.yaml
+         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.7.2/kubernetes.yaml
          kubectl -n dynatrace wait pod --for=condition=ready -l internal.dynatrace.com/app=webhook --timeout=300s
          kubectl apply -f dynakube.yaml
          ```
@@ -313,7 +313,7 @@ In this step we will walk through the different Dynatrace dashboards that are av
    1.3. Within the `Deployment status` page, next click on the `ActiveGate` option to review the Active Gate. <br>
       <aside class="positive"> 
 
-         📓   From Dynatrace menu on the left, go to Manage -> Deployment Status -> ActiveGates, you will notice there is a `dynatrace-workshop-cluster-activegate-0` connected to your Dynatrace environment now.  This actigate gate routes all the agent traffic from apps that are running on that AKS cluster.**
+      📓 From Dynatrace menu on the left, go to Manage -> Deployment Status -> ActiveGates, you will notice there is a `dynatrace-workshop-cluster-activegate-0` connected to your Dynatrace environment now.  This actigate gate routes all the agent traffic from apps that are running on that AKS cluster.**
 
       </aside>
 

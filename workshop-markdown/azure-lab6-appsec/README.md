@@ -109,33 +109,73 @@ Let's see if we are affected by this vulnerability.
     - First, click on the first Process Group to see the Process Group Details and expand the *Properties and Tags* section. ![image](img/2-7-pg-details.png)
     - As you can see in the properties, the application is deployed on Tomcat and is running on Java 11, meaning that it is affected by the spring4shell vulnerability. 
 
-## Davis Security Score
+## Security Notifications
 
-Davis Security Score (DSS) is an enhanced risk-calculation score based on the industry-standard Common Vulnerability Scoring System. Because Davis AI also considers parameters like public internet exposure and checks to see if and where sensitive data is affected, DSS is the most precise risk-assessment score available.
+In order to get alerted in case new vulnerability is discovered in our environment, we can setup security notifications. There are currently three notification types:
+- Email: sends a email to a predefined address
+- Jira: opens a new Jira Issue
+- Custom integration (Webhook): sends a webrequest with a payload to an end-point. 
 
-In order to see the Davis in action, we are going to generate some traffic from public locations using the Synthetic monitors in Dynatrace.
-
-
-In order to simulate Public Internet Exposure we take advantage of the Synthetic Monitors in Dynatrace to simulate requests from several locations.
+Two steps are required to setup notifications. First we need to create a *Security Profile*, which defines in which cases a notifications is sent out. Then we can setup a *Security Notification* that sends out a notification for the previously created *Security Profile*. 
 
 ### Tasks to complete this step
 
-- In Dynatrace Open Application & Microservice > Synthetic and create a new Synthetic Monitor ![image](img/3-1-synthetic-monitor.png)
-  - Click on **Create a synthetic monitor**
-  - Choose: Create an HTTP Monitor ![image](img/3-2-browser-monitor.png)
+- The first step is to create a Vulnerability Alerting Profile 
+  - Go to *Settings > Alerting > Vulnerability alerting profiles*
+  - Click on **Add alerting profile**
+  - Specify a name, e.g. *Critical and high vulnerabilities*
+  - Toggle the *Critical* and *High* Risk Levels
+  - Click on **Save changes**
+![image](img/4-1-alerting-profile.png)
+- After that we can setup the notification for the profile we just created
+  - Go to *Settings > Integration > Security notifications*
+  - Click on **Add integration##
+  - Under *Security alert type* select *Vulnerability alert* 
+  - For the Notification type we are going to use *Email*
+  - Display name: Email for critical and high vulnerabilities.
+  - Under *To* click on *Add recipient* and enter your email address
+  - The *Subject* and *Body* fields allow us to define the information in the email.
+    - You can for example add the severity in to the subject: [{Severity}] Security problem {SecurityProblemId}: {Title}
+  - The last step is to select the alerting profiles, where you can select the previously created profile
+  - Click on
+
+ - Click on **Create a synthetic monitor**
+  - Choose: Create an HTTP Monitor ![image](img//3-2-browser-monitor.png)
   - Give it a name (e.g. load application) and click *Add HTTP request*
     - type: HTTP request
     - URL: public IP address of the sample application
       - Use `kubectl -n staging get svc` to get the public IP, as described in Lab 2, Section 5
     - Name: load
     - HTTP Method: GET
-  - Click **Add GTTP request** and then click on **Next** at the bottom of the page. ![image](img/3-2-setup-http-monitor.png)
-  - On the requency and location screen:
+  - Click **Add GTTP request** and then click on **Next** at the bottom of the page. ![image](img//3-2-setup-http-monitor.png)
+  - On the frequency and location screen:
     - Leave the Frequency to 1min
     - Location: Choose at least 3 different locations, for example:
       - Johannesburg (southafricanorth)
       - Seoul (koreacentral)
-      - Berlin (germanynorth) ![image](img/3-3-frequency-location.png)
+      - Berlin (germanynorth) ![image](img//3-3-frequency-location.png)
   - Click: *Next* and *Create HTTP Monitor*
+  - After that you can sent out a test notification to get an idea how the email looks like by clicking on **Send test notifications**
+    - You can use that to try different formats of the email before saving.
+  - By clicking on **Save changes** you can save the created notification. 
 
-  
+From now on, you will receive notifications whenever a new vulnerability with a risk score of *critical* or *high* is discovered. 
+
+## Summary
+Without any additional deployment or configuration required, Dynatrace can provide you a real-time view of the vulnerabilities present in your running applications. This helps you:
+- Immediately get notified about vulnerabilities impacting your production environment
+- Understand the potential impact
+- Prioritize the vulnerabilities thanks to the context information 
+- Reduce false-positives, since it focuses on libraries that are effectively used
+
+In this section, you should have completed the following:
+
+  ✅  Enabled Runtime vulnerability analytics in just one click
+
+  ✅  Review the vulnerabilities that were detected automatically by Dynatrace
+
+  ✅  Use context information to prioritize the vulnerabilities
+
+  ✅  Setup notifications to receive an email upon discovery of new vulnerabilities
+
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task.   </aside>
