@@ -305,7 +305,7 @@ Provisioning workshop resources COMPLETE
 </details>
 
 
-🏫**Class Note** - Please update the Tracking Spreadsheet upon completing this task.
+
 
 ## Summary
 Duration: 2
@@ -320,4 +320,4 @@ In this section, you should have completed the following:
 
 ✅ Provisioned workshop resources
 
-<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task.   </aside>
