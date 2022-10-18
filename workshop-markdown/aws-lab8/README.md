@@ -3,7 +3,7 @@ categories: kubernetes
 status: Published
 tags: aws-immersion-day,aws-selfpaced
 
-# Lab 8 - Kubernetes Events
+# AWS Lab 8 - Kubernetes Events
 
 ## Overview
 

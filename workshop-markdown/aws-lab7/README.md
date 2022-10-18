@@ -176,7 +176,7 @@ Use the menu on on the home page to navigate around the application and notice t
 In this step we will walk through the different Dynatrace dashboards that are available out of the box for monitoring Kubernetes.
 
 ### Tasks to complete this step
-1. Validate AKS ActivateGate visible in Dynatrace UI</summary>
+1. Validate AWS ActivateGate visible in Dynatrace UI</summary>
    1.1. Go to the Dynatrace UI.
    1.2. From the Dynatrace Menu, click `Manage --> Deployment status` to review OneAgent Deployment status
    1.3. Within the `Deployment status` page, next click on the `ActiveGate` option to review the Active Gate. <br>
@@ -185,6 +185,29 @@ In this step we will walk through the different Dynatrace dashboards that are av
          📓   From Dynatrace menu on the left, go to Manage -> Deployment Status -> ActiveGates, you will notice there is a `dynatrace-workshop-cluster-activegate-0` connected to your Dynatrace environment now.  This actigate gate routes all the agent traffic from apps that are running on that AKS cluster.**
 
       </aside>
+          
+### Configure Dynatrace to View the Kubernetes Clusters
+1 . From the AWS Cloudshell, run the below command to get the `Kubernetes API URL`.
+
+ ```
+ kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}' 
+ ```
+    
+`example:  https://ABC123xxxxxxxxxxxxxxx.gr7.us-east-2.eks.amazonaws.com`
+
+2 . Copy paste the output into your Dynatrace Tenant `pictured`
+
+4 . Next we need to get the `bearer token`. Run below command in the Cloudshell.
+
+ ```
+kubectl get secret $(kubectl get sa dynatrace-kubernetes-monitoring -o jsonpath='{.secrets[0].name}' -n dynatrace) -o jsonpath='{.data.token}' -n dynatrace | base64 --decode
+ ```
+example-note the token is very very long and only copy up to `[cloudshell` as highlighted:  `eyJhbGcixxxxxxxxxxxxxxtpZCI6IlNDcWVLVWxiOUNwQlBKSlVJZjNyQkhCdFBrTU8yeXNhWEVjSXpubDlCTEEifQvhzl0HYFA5kEnWtjznuhb4OKBwywhP9G-zO9Uo-6_EaXP2TLsZUjJ8kFHGAWc_EFxg`[cloudshell-user@ip-10-0-xx-xx ~]$
+
+6 . Copy paste the output into your Dynatrace Tenant `pictured`
+      ![image](img/Lab7-ekstoken.png)
+
+7 . test the connection once the data is ready `pictured`, finally save the configuration.
 
 2. Review Kubernetes Dashboards are accessible from the left-side menu in Dynatrace choose `Kubernetes` and navigate to the Kubernetes cluster page as shown below: <br>
       📓**Note:** Be sure that your management zone is NOT filtered!**
@@ -313,107 +336,6 @@ In this step we will walk through the Service Flow view within Dynatrace  and se
 Reviewing the architecture before and after changes is now as easy as a few clicks!
 
 </aside>
-
-
-
-
-## Summary
-Duration: 3
-
-While migrating to the cloud, you want to evaluate if your migration goes according to the plan, whether the services are still performing well or even better than before, and whether your new architecture is as efficient as the blueprint suggested. Dynatrace helps you validate all these steps automatically, which helps speed up the migration and validation process.
-
-Having the ability to understand service flows enables us to make smarter re-architecture and re-platforming decisions.  With support for new technologies like Kubernetes, you have confidence to modernize with a platform that spans the old and the new. 
-
-### Checklist
-
-In this section, you should have completed the following:
-
-   ✅ Installed Dynatrace Operator on Azure Kubernetes cluster
-
-   ✅ Review real-time data now available for the sample application on Kubernetes
-
-   ✅ Review Kubernetes dashboards within Dynatrace
-
-   ✅ Review how Dynatrace helps with modernization planning
-
-
-<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
-
-
-## Backtrace
-
-### Open Service Page
-
-First filter by ``` dt-orders-k8 management ``` zone.
-
-![image](img/lab4-k8-mgmtzone-filter.png)
-
-Pick the ``` order ``` service.
-
-![image](img/lab4-k8-service-filter.png)
-
-On this service, we can quickly review the inbound and outbound dependencies.
-
-Referring to the picture, within the services infographic, click on the "services" square to get a list of the services that the order service calls.
-
-![image](img/lab4-k8-service-view.png)
-
-### Open Backtrace Page
-
-To see the backtrace page, just click on the Analyze Backtrace button.
-
-You should be on the service backtrace page where you will see information for this specific service.
-
-This will get more interesting in the next lab, but for the monolith backend, we can see that the backtrace is as follows:
-
-1 . The starting point is the backend
-
-2 . Backend service is called by the front-end
-
-3 . Front-end is a where end user requests start and the user sessions get captured 
-
-4 . My web application is the default application that Dynatrace creates
-
-![image](img/lab4-k8-service-backflow.png)
-
-### 👍 How this helps
-
-The service flow and service backtrace give you a complete picture of interdependency to the rest of the environment architecture at host, processes, services, and application perspectives.
-
-## Serviceflow
-
-### Analyze the Service Flow 
-Now that we are back on the frontend service, let's look at the service flow to see what's different now. Just click on the view service flow button to open this.
-
-![image](img/lab4-serviceflow.png) 
-
-### Response time perspective
-
-You should now be on the Service flow page.
-
-Right away, we can see how this application is structured:
-* Frontend calls order, customer, and catalog service
-* Order service calls order and customer service
-
-Something you would never know from the application web UI!
-
-![image](img/lab4-serviceflow-responsetime.png)
-
-Refer to the picture above:
-1.	We are viewing the data from a Response time perspective. Shortly, we will review the Throughput perspective.
-2.	Click on the boxes to expand the response time metrics. Most of the response time is spent in the order service and the least in the customer services. And as in the simple version of the application, a very small amount of the response time is spent in the databases.
-
-### Throughput perspective
-
-![image](img/lab4-serviceflow-thoroughput.png)   
-
-Refer to the picture above:
-1.	Change to the Throughput perspective by clicking on the box
-2.	Click on the boxes to expand the metrics to see the number of requests and average response times going to each service
-
-### 👍 How this helps
-
-Reviewing the architecture before and after changes is now as easy as a few clicks!
 
 ## Summary
 

@@ -6,7 +6,7 @@ status: Published
 authors: Erick Leon 
 Feedback Link: mailto:erick.leon@dynatrace.com
 
-# AWS Workshop Lab 9 - AppSec
+# AWS Lab 9 - AppSec
 
 ## Objectives
 
