@@ -12,5 +12,6 @@
   "logoSizePct":"10%",
   "toolbarBgColor": "#1e6022",
   "sort": "mainCategory",
-  "pins": []
+  "pins": [],
+  "hidden": false
 }

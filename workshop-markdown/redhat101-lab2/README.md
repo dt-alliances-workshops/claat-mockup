@@ -16,7 +16,7 @@ In our workshop, we will install the Dynatrace Operator that streamlines lifecyc
 
 ## Deploying Dynatrace Operator
 
-Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the [Dynatrace docs](https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/monitor-kubernetes-environments/) but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
+Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the [Dynatrace docs](https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-container-platforms/kubernetes/get-started-with-kubernetes-monitoring) but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
 
 When we run this command, it will do the following:
 * Create a namespace called `dynatrace` in your cluster will the Dynatrace Operator pods
@@ -35,16 +35,30 @@ When we run this command, it will do the following:
 
     ![image](img/operator-menu.png)
 
-1. To get the Dynatrace Operator installation command, refer to the steps and pictures below:
+1. To get the customized dynakube YAML and the Dynatrace Operator installation command, refer to the steps and pictures below:
 
     1. On the Kubernetes configuration page, enter `openshift-workshop` for the name. This is not the cluster name, it will show up as the Kubernetes page name in Dynatrace
-    1. Click the `Create tokens` button
+    1. Next to Dynatrace Operator Token, Click the `Create token` button
+    1. Next to Data ingest token, Click the `Create token` button
     1. Select the `Skip SSL Certificate Check` to be ON
-    1. Click the `Copy` button
+    1. Click the `Download dynakube.yaml` button
 
-    ![image](img/k8s-easybutton.png)
+    ![image](img/dt-openshift-deploy.png)
 
-1. Paste the command in Butterfly console and run it
+1. We will need to copy the contents of the dynakube.yaml to your Butterfly console
+
+    1. Open the dynakube.yaml file with the text editor of your choice
+    1. Select-all and select copy
+    1. Within Butterfly, type (or paste) the following command `vi dynakube.yaml`
+    1. Hit the `i` key on your keyboard to put vi in insert mode
+    1. Hit ctrl-shift-v to paste your clipboard contents into Butterfly
+    1. Hit Escape to put vi in command mode
+    1. Type `:wq!` to save your file and exit vi
+
+1. Deploy the Dynatrace operator
+
+    1. Back at the Dynatrace `Monitor Kubernetes / Openshift`, click the `copy` button to load the deployments commands to your clipboard
+    1. Within Butterfly, paste the deployment commands from your clipboard (ctrl-shift-v)
 
 1. Once the script is complete, then monitor the installation until you all pods are in `Running` state.
 
@@ -69,33 +83,20 @@ When we run this command, it will do the following:
 
 ## Dynatrace Kubernetes Events Ingest
 
-Dynatrace Kubernetes Events Ingest is a Dynatrace feature for Kubernetes that allows you to receive events from your cluster within Dynatrace. This allows you to accurately track Kubernetes events within the context of other activities in the cluster and can supply DAVIS with additional context around problems in your cluster provoding for more accurate root cause analysis.
+Dynatrace Kubernetes Events Ingest is a Dynatrace feature for Kubernetes that allows you to receive events from your cluster within Dynatrace. This allows you to accurately track Kubernetes events within the context of other activities in the cluster and can supply DAVIS with additional context around problems in your cluster provoding for more accurate root cause analysis. This feature is enabled for us automatically by the Dynatrace Operator.
 
-1. Within the Dynatrace Kubernetes Overview screen, select "Enable Kubernetes events visibility". (This can also be accessed via Settings->Cloud and virtualization->Kubernetes)
+1. Navigate to the Dynatrace Kubernetes Overview screen
+     
+1. Click the green "Enable Kubernetes events visibility" to edit the Dynatrace configuration for your workload cluster.
 
-    ![image](img/dt-missing-k8s-events.png)  
-1. Click the pencil next to the X to edit the Dynatrace configuration for your workload cluster.
-
-    ![image](img/dt-kubernetes-configuration-01.png)
-1. Enable "Monitor Events" and then enable "Opt in to the Kubernetes events feature" as well as "Include al levents relevant for Davis"
+    ![image](img/dt-missing-k8s-events.png) 
+1. Enable "Monitor Events"
 
     ![image](img/dt-k8s-events-1.png)
 1. Click the "Save" button.
 
 1. As our cluster is likely healthy, we might not immediately see any events within the Dynatrace kubernetes overview. 
 
-1. Should we wish to see additional events, you can enable additional events ingest by adding an additional events field selector
-
-1. From the Kubernetes configuration screen, click the "Add events field selector" button.
-
-1. Supply a name for the events field selector. Here we will use "Warning events"
-
-1. Supply a field selector expression. Here we will use "type=Warning"
-
-1. Click the "Activate" button.
-
-1. Click the "Save" button.
-
-1. After some time, if there are events matching our field selectors we should see events within the Dynatrace Kubernetes overview screen.
+1. After some time, we should see events within the Dynatrace Kubernetes overview screen.
 
     ![image](img/dt-k8s-events-2.png)

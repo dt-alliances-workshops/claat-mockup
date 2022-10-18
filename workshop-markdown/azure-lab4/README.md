@@ -14,18 +14,23 @@ Duration: 3
 
 In order to do more with less and scale, organizations must transcend IT silos, foster collaboration and improve productivity. Automation and a common data model are key components of this, but it takes platforms that support operational teams and workflows.
 
-    🔷 Review how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
+🔷 Review how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
 
-    🔷 Review how Azure monitor metrics can be configured as [Metric events for alerts](https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/)
+🔷 Review how Azure monitor metrics can be configured as [Metric events for alerts](https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/)
 
-    🔷 Examine Dynatrace Service Level Objectives (SLOs)
+🔷 Examine Dynatrace Service Level Objectives (SLOs)
 
-    🔷 Create a custom dashboard with SLOs 
+🔷 Create a custom dashboard with SLOs 
 
+<aside class="positive"> 
+
+💻📓
 🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
 
+</aside>
+
 ## Review - Azure Monitor Setup
-Duration: 5
+Duration: 3
 
 Referring to the picture below, here are the components for this lab.
 
@@ -88,7 +93,7 @@ These metrics are managed by Dynatrace's AI engine automatically and this extend
 </aside>
 
 ## Custom Alerting Setup
-Duration: 10
+Duration: 7
 
 Dynatrace Davis automatically analyzes abnormal situations within your IT infrastructure and attempts to identify any relevant impact and root cause. Davis relies on a wide spectrum of information sources, such as a transactional view of your services and applications, as well as on events raised on individual nodes within your Smartscape topology.
 
@@ -241,7 +246,7 @@ Here is an example custom dashboard with SLO dashboard tiles.
         </aside>
 
 ## Create SLO Dashboard
-Duration: 10
+Duration: 7
 
 In this step we'll create a very basic SLO dashboard to compare the before and after migration SLO's we've defined for our Monolith and Kubernetes service.
 
