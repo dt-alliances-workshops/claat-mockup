@@ -82,7 +82,7 @@ This assumes the AWS keypair with the name `ee-default-keypair` is created.
 1 . Copy the `eksctl create cluster ...` command below into your Cloud Shell
 
 ```
-eksctl create cluster --with-oidc --ssh-access --version=1.21 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key ee-default-keypair
+eksctl create cluster --with-oidc --ssh-access --version=1.23 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key ee-default-keypair
 ```
 
 3 . Run the command
@@ -94,7 +94,7 @@ You **MUST** replace the argument value for `--ssh-public-key` with your Key Pai
 1 . Copy the `eksctl create cluster ...` command below into your Cloud Shell
 
 ```
-eksctl create cluster --with-oidc --ssh-access --version=1.21 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key <YOUR-KEY-PAIRNAME>
+eksctl create cluster --with-oidc --ssh-access --version=1.23 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key <YOUR-KEY-PAIRNAME>
 ```
 
 2 . Adjust the `--ssh-public-key <YOUR-Key Pair-NAME>` argument
@@ -106,7 +106,7 @@ eksctl create cluster --with-oidc --ssh-access --version=1.21 --managed --name d
 Review the output will start to look like this and may take 20-30 minutes to fully provision.
 
 ```
-cloudshell-user@ip-10-0-45-241 learner-scripts]$ eksctl create cluster --region us-west-2 --with-oidc --ssh-access --version=1.21 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key jones-dynatrace-modernize-workshop
+cloudshell-user@ip-10-0-45-241 learner-scripts]$ eksctl create cluster --region us-west-2 --with-oidc --ssh-access --version=1.23 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key jones-dynatrace-modernize-workshop
 2021-09-03 19:26:32 [ℹ]  eksctl version 0.64.0
 2021-09-03 19:26:32 [ℹ]  using region us-west-2
 2021-09-03 19:26:32 [ℹ]  setting availability zones to [us-west-2a us-west-2b us-west-2d]
@@ -115,7 +115,7 @@ cloudshell-user@ip-10-0-45-241 learner-scripts]$ eksctl create cluster --region 
 2021-09-03 19:26:32 [ℹ]  subnets for us-west-2d - public:192.168.64.0/19 private:192.168.160.0/19
 2021-09-03 19:26:32 [ℹ]  nodegroup "ng-eaa2eae4" will use "" [AmazonLinux2/1.21]
 2021-09-03 19:26:32 [ℹ]  using EC2 key pair %!q(*string=<nil>)
-2021-09-03 19:26:32 [ℹ]  using Kubernetes version 1.21
+2021-09-03 19:26:32 [ℹ]  using Kubernetes version 1.23
 2021-09-03 19:26:32 [ℹ]  creating EKS cluster "dynatrace-workshop" in "us-west-2" region with managed nodes
 ...
 ...

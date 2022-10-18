@@ -120,7 +120,7 @@ With the AWS Console, search for the `Elastic Kubernetes Service` or click on th
 
 ![image](img/setup-eks-cluster.png)
 
-The cluster page, click on the new workshop cluster. You should see a few nodes as shown below.
+The cluster page, click on the new workshop cluster. Next click on the resources tab --> in the left hand menu under the Clusters section click on Nodes.  You should see a few nodes listed as shown below.
 
 ![image](img/setup-eks-cluster-detail.png)
 
