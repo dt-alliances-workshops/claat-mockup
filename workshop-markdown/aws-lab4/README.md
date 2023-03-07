@@ -86,7 +86,7 @@ The AWS monitoring policy defines the minimum scope of permissions you need to g
 
 4 . On the new policy page, select the `JSON` tab and paste this predefined policy from the box below from the JSON from this Dynatrace page:
 
-* <a href="https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas#expand--predefined-policy-in-json" target="_blank">https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas#expand--predefined-policy-in-json</a>
+* <a href="https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/amazon-web-services-integrations/cloudwatch-metrics#expand--key-based-authentication-as-an-alternative-to-role-based-authentication--2" target="_blank">https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas#expand--predefined-policy-in-json</a>
 
 When you are done, it should look like this:s
 
@@ -354,8 +354,6 @@ kill 5806
 Simply type `exit` to exit the VM and return the CloudShell.
 
 ### 💥 **TECHNICAL NOTE** 
-
-* See the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank">Dynatrace Docs</a> for more details on the setup.
 
 * Alert configuration is available through the <a href="https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/anomaly-detection-api/anomaly-detection-api-metric-events/" target="_blank">Anomaly detection—metric events API</a>. Using the API, you can list, update, create, and delete configurations.
 

@@ -53,7 +53,7 @@ env:
 * The `DT_CUSTOM_PROPS` is a special Dynatrace feature, that the OneAgent will automatically recognize and make Dynatrace tags for the process. You can read more details in the <a href="https://www.dynatrace.com/support/help/shortlink/process-group-properties#anchor_variables" target="_blank">Dynatrace documentation</a>
 
 
-* Read more details on how Dynatrace identifies labels and tags Kubernetes in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/other-deployments-and-configurations/leverage-tags-defined-in-kubernetes-deployments" target="_blank">Dynatrace documentation</a>
+* Read more details on how Dynatrace identifies labels and tags Kubernetes in the <a href="https://www.dynatrace.com/support/help/shortlink/kubernetes-tagging" target="_blank">Dynatrace documentation</a>
 
 ## Deploy sample app
 
@@ -197,19 +197,19 @@ In this step we will walk through the different Dynatrace dashboards that are av
 
 2 . Copy paste the output into your Dynatrace Tenant `pictured`
 
-4 . Next we need to get the `bearer token`. Run below command in the Cloudshell.
+3 . Next we need to get the `bearer token`. Run below command in the Cloudshell.
 
  ```
 kubectl get secret $(kubectl get sa dynatrace-kubernetes-monitoring -o jsonpath='{.secrets[0].name}' -n dynatrace) -o jsonpath='{.data.token}' -n dynatrace | base64 --decode
  ```
 example-note the token is very very long and only copy up to `[cloudshell` as highlighted:  `eyJhbGcixxxxxxxxxxxxxxtpZCI6IlNDcWVLVWxiOUNwQlBKSlVJZjNyQkhCdFBrTU8yeXNhWEVjSXpubDlCTEEifQvhzl0HYFA5kEnWtjznuhb4OKBwywhP9G-zO9Uo-6_EaXP2TLsZUjJ8kFHGAWc_EFxg`[cloudshell-user@ip-10-0-xx-xx ~]$
 
-6 . Copy paste the output into your Dynatrace Tenant `pictured`
+4 . Copy paste the output into your Dynatrace Tenant `pictured`
       ![image](img/Lab7-ekstoken.png)
 
-7 . test the connection once the data is ready `pictured`, finally save the configuration.
+5 . test the connection once the data is ready `pictured`, finally save the configuration.
 
-2. Review Kubernetes Dashboards are accessible from the left-side menu in Dynatrace choose `Kubernetes` and navigate to the Kubernetes cluster page as shown below: <br>
+1. Review Kubernetes Dashboards are accessible from the left-side menu in Dynatrace choose `Kubernetes` and navigate to the Kubernetes cluster page as shown below: <br>
       📓**Note:** Be sure that your management zone is NOT filtered!**
 
       ![image](img/lab2-k8s-layers.png)

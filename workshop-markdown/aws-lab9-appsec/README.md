@@ -137,28 +137,7 @@ Two steps are required to setup notifications. First we need to create a *Securi
   - The *Subject* and *Body* fields allow us to define the information in the email.
     - You can for example add the severity in to the subject: [{Severity}] Security problem {SecurityProblemId}: {Title}
   - The last step is to select the alerting profiles, where you can select the previously created profile
-  - Click on
-
- - Click on **Create a synthetic monitor**
-  - Choose: Create an HTTP Monitor ![image](img//3-2-browser-monitor.png)
-  - Give it a name (e.g. load application) and click *Add HTTP request*
-    - type: HTTP request
-    - URL: public IP address of the sample application
-      - Use `kubectl -n staging get svc` to get the public IP, as described in Lab 2, Section 5
-    - Name: load
-    - HTTP Method: GET
-  - Click **Add GTTP request** and then click on **Next** at the bottom of the page. ![image](img//3-2-setup-http-monitor.png)
-  - On the frequency and location screen:
-    - Leave the Frequency to 1min
-    - Location: Choose at least 3 different locations, for example:
-      - Johannesburg (southafricanorth)
-      - Seoul (koreacentral)
-      - Berlin (germanynorth) ![image](img//3-3-frequency-location.png)
-  - Click: *Next* and *Create HTTP Monitor*
-  - After that you can sent out a test notification to get an idea how the email looks like by clicking on **Send test notifications**
-    - You can use that to try different formats of the email before saving.
-  - By clicking on **Save changes** you can save the created notification. 
-
+  
 From now on, you will receive notifications whenever a new vulnerability with a risk score of *critical* or *high* is discovered. 
 
 ## Summary
