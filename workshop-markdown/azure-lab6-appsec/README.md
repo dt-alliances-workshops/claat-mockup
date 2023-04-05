@@ -2,7 +2,7 @@ summary: Lab 6 Dynatrace Workshop on Azure
 id: azure-lab6
 categories: appsec,all
 tags: azure
-status: Hidden
+status: Published
 authors: Jay Gurbani
 Feedback Link: mailto:jay.gurbani@dynatrace.com
 
@@ -16,16 +16,14 @@ As we have seen in the previous labs, Dynatrace helps you detect problems proact
 
 ### Objectives of this Lab
 
-🔷 Enable Dynatrace Application Security to find potential vulnerabilities our application
-
-🔷 Become familiar with the user interface by reviewing some of the identified vulnerabilities
-
-🔷 See how Davis Security Score helps us prioritize vulnerabilities
-
+- Enable Dynatrace Application Security to find potential vulnerabilities in our application
+- Become familiar with the user interface by reviewing some of the identified vulnerabilities
+- See how Davis Security Score helps us prioritize vulnerabilities
 
 ## Enable Dynatrace Application Security
 
-Application Security is an integral part of the Dynatrace platform, and it uses the same core technologies as all other Dynatrace products. This includes OneAgent, Smartscape, PurePath, and DAVIS. This not only makes configuration quick and easy, but also means that observability is used to enrich vulnerability data as well as provide accurate insight into your runtime applications. The only action required is toggling a switch in the user interface. 
+Application Security is an integral part of the Dynatrace platform, which makes it very easy to set it up, the only action required is toggling a switch in the user interface. 
+
 
 To demonstrate this, we will enable Application Security in our environment by following the below. Once this is completed, we will explore the product and analyze some vulnerabilities. 
 
@@ -49,19 +47,6 @@ To demonstrate this, we will enable Application Security in our environment by f
 
         </aside>
 
-        
-
-        <aside class="positive"> 
-
-        📓 The following technologies are currently supported by Dynatrace Applcation Security:
-        -  Java
-        -  .NET
-        - Kubernetes
-        - Node.js
-        - PHP
-
-        </aside>
-
 ## Getting familiar with Application Security
 
 Now that Application Security is enabled, lets explore the product and analyze some vulnerabilities.
@@ -69,16 +54,16 @@ Now that Application Security is enabled, lets explore the product and analyze s
 ### Vulnerabilities
 On this screen you can see a list of all vulnerabilities that were discovered in the environment. 
 
-![image](img/2-2-vulnerabilities.png)
+![image](img/2-1-vulnerabilities.png)
 
-The list is sorted by the Davis Security Score, which is based on the CVSS, but also factors in context information detected at runtime. This contextual information, shown as icons next to the Davis Security Score, indicates whether there is public exposure, sensitive data in range, presence of vulnerable functions, and availability of a public exploit. 
+The list is sorted by the Davis Security Score, which is based on the CVSS, but also factors in context information detected at runtime. This contextual information, shown as icons next to the Davis Security Score, indicates whether there is public exposure, reachable data assets, presence of vulnerable functions, and availability of a public exploit. 
 
 
   <aside class="positive"> 
 
    📓 `Contexual Information`
     <br> - **Public exposure**: The vulnerability affects a process that is exposed to the internet, based on the Dynatrace entity model (Smartscape).
-    <br> - **Sensitive Data**: The vulnerability affects a process that has database access, based on the Dynatrace entity model.
+    <br> - **Reachable Data**: The vulnerability affects a process that has a direct access to a database
     <br> - **Vulnerable Functions**: The vulnerable code of the affected librariy is actively used.  We have not enabled this yet, therefore this information won't be displayed. 
     <br> - **Public Exploit**: There is a known exploit for this vulnerability.
 
@@ -97,21 +82,31 @@ Let's see if we are affected by this vulnerability.
 </aside>
 
 1. Click on the *Filter by* field, select *Snyk/CVE ID* and enter CVE-2022-22965. ![image](img/2-2-filter.png)
-<br>As you can the vulnerability was detected in your environment, with a Davis Security Score of 8.8 out of 10. It also shows you that there are 3 process groups that are affected. ![image](img/2-3-result.png)
-2. Now, click on *Remote Code Execution* to show further details about this vulnerability.
-3. Here you can see all the details about this specific vulnerability: ![image](img/2-3-detail.png)
+<br>As you can see, the vulnerability was detected in your environment and is has a Davis Security Score of 8.8 out of 10. It also shows you that there are 3 process groups that are affected. ![image](img/2-3-result.png)
+2. Now, click on the title of the vulnerability (*S-XXX: Remote Code Execution*) to show further details about this vulnerability.
+3. Here you can see all the details about this specific vulnerability: ![image](img/2-4-detail.png)
     1. At the top you can see the context information, it shows that no public internet exposure was detected, meaning that all requests to the affected processes are from the local network. However, the **Sensitive data assets** indicates that the there is a access to a database from at least one of the processes, meaning that some data could be at risk. Meanwhile on the right side, it is indicated that there is a ***public exploit*** available for this vulnerability, making it easier for potential attackers to exploit the vulnerability. 
-    2. Here you can see how the Davis Security Score was calculated. Its original CVSS is a 9.8, but now that Davis has factored in the contextual information, it has been lowered to 8.8. This is because, although reachability to Sensitive Data has been identified, there is no Public Internet Exposure as all requests come from Adjacent networks. This helps you prioritize the different vulnerabilities. 
-    3. Under context and details you can see that there are 8 processes in 3 process groups that are affected by the vulnerabily. A description of the vulnerability is also provides, for example it mentions that the current known exploits affect applications deployed on Tomcat, Payara or Glassfish using Java 9 or higher. Links to other resources, such as the National Vulnerability Database, OWASP and Snyk are also provided for further research. 
-4. By scrolling further down, you can see additional context informaion, like all affected processes, the affected container images and other related entities. ![image](img/2-3-detail-2.png)
+    2. Under **Vulnerability details** you can see the number of processes and process groups that are affected by the vulnerabily. A description of the vulnerability is also provides, for example it mentions that the current known exploits affect applications deployed on Tomcat, Payara or Glassfish using Java 9 or higher. Links to other resources, such as the National Vulnerability Database, OWASP and Snyk are provided for further research.  
+    3. The **Process group overview** shows the affected process groups and processes.  By scrolling further down, you can see additional context informaion, like related entities, details about the security score, evolution of the vulnerability, etc. ![image](img/2-5-detail-2.png)
+    4. The details about the Davis Security Score shows you how the context information are applied to the base CVSS to adjust the scare based on the current environment. In this example you can see that the score was lowered because there is no *Public Exposure*, all requests come from *Adjacent networks*. This helps you prioritize the different vulnerabilities. 
+   5. You can also see all related entities (hosts, services, applications, kubernetes clusters, etc.) to quickly identify the potential impact if someone can exploit the vulnerability.  
+   In order to further investigate this vulnerability, we want to check if the conditions for this vulnerability to be exploitable, as described under Vulnerability details, apply to our Process Groups. For this you can click on **View all process groups** under *Process group overview*: ![image](img/2-6-click-view-pg.png)
+ - Click on the first entry in the list of affected Process Groups.
+   - This brings us to the detail view of that specific Process Group. ![image](img/2-7-pg-details.png)
+
+As we saw in the detail information about the vulnerability, currently the exploits are only known to work with Java 9 or newer and applications deployed as a WAR in Tomcat, Payara or Glassfish. Since Dynatrace collects all these information at runtime, it is quite easy to see if the Process Groups match these criteria. 
+ - Click on **Properties and tags** to show the properties of this Process Group
+   - As you can see in the properties, the application is deployed on Apache Tomcat and is running on Java 11, meaning that it is affected by the spring4shell vulnerability. 
+
     - Click on *View all process groups*. ![image](img/2-5-click-view-all.png)
-    - This shows the list of all affected Process Groups. As we saw in the detail information about the vulnerability, currently the exploits are only known to work with Java 9 or newer and applications deployed in Tomcat, Payara or Glassfish. Since Dynatrace collects all these information at runtime, it is quite easy to see if the Process Groups match these criteria. ![image](img/2-6-remediation-tracking.png)
-    - First, click on the first Process Group to see the Process Group Details and expand the *Properties and Tags* section. ![image](img/2-7-pg-details.png)
-    - As you can see in the properties, the application is deployed on Tomcat and is running on Java 11, meaning that it is affected by the spring4shell vulnerability. 
+    - This shows the list of all affected Process Groups. 
+    
+    - As you can see in the properties, the application is deployed on Tomcat and is running on Java 11, meaning that it is affected by the vulnerability. 
+
 
 ## Security Notifications
 
-In order to get alerted in case new vulnerability is discovered in our environment, we can setup security notifications. There are currently three notification types:
+In order to get alerted in case new vulnerability is discovered in our environment, we can setup security notifications. There are three notification types:
 - Email: sends a email to a predefined address
 - Jira: opens a new Jira Issue
 - Custom integration (Webhook): sends a webrequest with a payload to an end-point. 
@@ -136,28 +131,10 @@ Two steps are required to setup notifications. First we need to create a *Securi
   - Under *To* click on *Add recipient* and enter your email address
   - The *Subject* and *Body* fields allow us to define the information in the email.
     - You can for example add the severity in to the subject: [{Severity}] Security problem {SecurityProblemId}: {Title}
-  - The last step is to select the alerting profiles, where you can select the previously created profile
-  - Click on
-
- - Click on **Create a synthetic monitor**
-  - Choose: Create an HTTP Monitor ![image](img//3-2-browser-monitor.png)
-  - Give it a name (e.g. load application) and click *Add HTTP request*
-    - type: HTTP request
-    - URL: public IP address of the sample application
-      - Use `kubectl -n staging get svc` to get the public IP, as described in Lab 2, Section 5
-    - Name: load
-    - HTTP Method: GET
-  - Click **Add GTTP request** and then click on **Next** at the bottom of the page. ![image](img//3-2-setup-http-monitor.png)
-  - On the frequency and location screen:
-    - Leave the Frequency to 1min
-    - Location: Choose at least 3 different locations, for example:
-      - Johannesburg (southafricanorth)
-      - Seoul (koreacentral)
-      - Berlin (germanynorth) ![image](img//3-3-frequency-location.png)
-  - Click: *Next* and *Create HTTP Monitor*
-  - After that you can sent out a test notification to get an idea how the email looks like by clicking on **Send test notifications**
-    - You can use that to try different formats of the email before saving.
-  - By clicking on **Save changes** you can save the created notification. 
+  - The last step is to select the alerting profiles, where you can select the previously created profile (should be preselected)
+  - You can choose to send a test notification to see how the notification would look like
+  - Then click on **Save changes**
+  ![image](img/4-2-notification.png)
 
 From now on, you will receive notifications whenever a new vulnerability with a risk score of *critical* or *high* is discovered. 
 
@@ -165,17 +142,21 @@ From now on, you will receive notifications whenever a new vulnerability with a 
 Without any additional deployment or configuration required, Dynatrace can provide you a real-time view of the vulnerabilities present in your running applications. This helps you:
 - Immediately get notified about vulnerabilities impacting your production environment
 - Understand the potential impact
-- Prioritize the vulnerabilities thanks to the context information 
+- Prioritize the vulnerabilities thanks to context information 
 - Reduce false-positives, since it focuses on libraries that are effectively used
+
+
+
+### Checklist
 
 In this section, you should have completed the following:
 
-  ✅  Enabled Runtime vulnerability analytics in just one click
+✅  Enabled Runtime vulnerability analytics in just one click
 
-  ✅  Review the vulnerabilities that were detected automatically by Dynatrace
+✅  Review the vulnerabilities that were detected automatically by Dynatrace
 
-  ✅  Use context information to prioritize the vulnerabilities
+✅  Use context information to prioritize the vulnerabilities
 
-  ✅  Setup notifications to receive an email upon discovery of new vulnerabilities
+✅  Setup notifications to receive an email upon discovery of new vulnerabilities
 
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task.   </aside>
