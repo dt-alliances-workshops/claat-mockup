@@ -231,12 +231,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div style="min-height:75px;max-height:75;">
             <div class="title">{{codelab.title}}</div>
             <div class="description">{{codelab.description}}</div>
-            <!-- HIDE THIS 
+            
               <div class="card-duration">
               <span>{%- if codelab.duration -%}{{codelab.duration}} min {%- endif -%}</span>
-              <span>{%- if codelab.updated -%}Updated {{codePrettyDate(codelab.updated)}}{%- endif -%}</span>
+              <!-- HIDE THIS 
+                          <span>{%- if codelab.updated -%}Updated {{codePrettyDate(codelab.updated)}}{%- endif -%}</span> 
+              -->
             </div>
-            -->
+            
           </div>
           <div class="card-footer">
             <div class="category-icon {{codelab.tags[0]}}-icon"></div>
