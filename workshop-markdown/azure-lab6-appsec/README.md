@@ -9,6 +9,7 @@ Feedback Link: mailto:jay.gurbani@dynatrace.com
 # Azure Workshop Lab 6 - AppSec
 
 ## Objectives
+Duration: 2
 
 We now have a moden microservices application hosted on Azure, but is it secure? The number of reported vulnerabilities is growing every year and examples like log4shell have shown us how severe they can be and how hard it is to quickly identify and resolve them.
 
@@ -21,6 +22,7 @@ As we have seen in the previous labs, Dynatrace helps you detect problems proact
 - See how Davis Security Score helps us prioritize vulnerabilities
 
 ## Enable Dynatrace Application Security
+Duration: 5
 
 Application Security is an integral part of the Dynatrace platform, which makes it very easy to set it up, the only action required is toggling a switch in the user interface. 
 
@@ -48,6 +50,7 @@ To demonstrate this, we will enable Application Security in our environment by f
         </aside>
 
 ## Getting familiar with Application Security
+Duration: 15
 
 Now that Application Security is enabled, lets explore the product and analyze some vulnerabilities.
 
@@ -105,6 +108,7 @@ As we saw in the detail information about the vulnerability, currently the explo
 
 
 ## Security Notifications
+Duration: 10
 
 In order to get alerted in case new vulnerability is discovered in our environment, we can setup security notifications. There are three notification types:
 - Email: sends a email to a predefined address
@@ -139,6 +143,8 @@ Two steps are required to setup notifications. First we need to create a *Securi
 From now on, you will receive notifications whenever a new vulnerability with a risk score of *critical* or *high* is discovered. 
 
 ## Summary
+Duration: 3
+
 Without any additional deployment or configuration required, Dynatrace can provide you a real-time view of the vulnerabilities present in your running applications. This helps you:
 - Immediately get notified about vulnerabilities impacting your production environment
 - Understand the potential impact

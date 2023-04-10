@@ -1,12 +1,12 @@
-summary: Lab 7 Dynatrace Workshop on Azure
-id: azure-lab7
+summary: Lab 10 Dynatrace Workshop on Azure
+id: azure-lab8
 categories: modernization,kubernetes,all
 tags: azure
 status: Published
 authors: Jay Gurbani
 Feedback Link: mailto:jay.gurbani@dynatrace.com
 
-# Azure Workshop Lab 7 - Reminder & Cleanup
+# Azure Workshop Lab 8 - Reminder & Cleanup
 
 ## Workshop Environment Reminder
 

@@ -1,5 +1,5 @@
-summary: Lab 9 Dynatrace Workshop on Azure
-id: azure-lab9
+summary: Lab 7 Dynatrace Workshop on Azure
+id: azure-lab7
 categories: modernization,all
 tags: azure
 status: Published
@@ -7,7 +7,7 @@ authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 
 
-# Azure Workshop Lab 9 - Modernization with Containers
+# Azure Workshop Lab 7 - Modernization with Containers
 
 ## Objectives of this Lab
 Duration: 2
@@ -15,6 +15,15 @@ Duration: 2
 🔷 Review how the sample app went from monolith to microservices
 
 🔷 Examine the transformed application using serviceflows and backtraces 
+
+<aside class="positive"> 
+
+💥💥💥 **Notice** 💥💥💥
+
+<br> This is an alternative version to Azure Lab 2 - Modernization with AKS.  This lab uses containers instead of Azure Kubernetes Service. 
+
+<br>If you would rather NOT provision Kubernetes on Azure, then please follow this lab. This guide has a shorter setup process but, still allows you to interact with the sames transformed application.
+</aside>
 
 ## Review Modernization on a VM
 Duration: 5

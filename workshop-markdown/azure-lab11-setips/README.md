@@ -1,5 +1,5 @@
-summary: Lab 10 Dynatrace Workshop on Azure
-id: azure-lab10
+summary: Lab 11 Dynatrace Workshop on Azure
+id: azure-lab11
 categories: all
 tags: azure
 status: Hidden
