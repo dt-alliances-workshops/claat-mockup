@@ -1,174 +1,125 @@
 summary: Lab 5 Dynatrace Workshop on Azure
 id: azure-lab5
-categories: modernization,all
+categories: modernization,kubernetes,all
 tags: azure
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 
 
-# Azure Workshop Lab 5 - Modernization with Containers
+# Azure Workshop Lab 5 - SLO's
 
-## Objectives of this Lab
-Duration: 2
-
-🔷 Review how the sample app went from monolith to microservices
-
-🔷 Examine the transformed application using serviceflows and backtraces 
-
-## Review Modernization on a VM
-Duration: 5
-
-Re-hosting (also referred to as lift and shift) is a common migration use case. Re-architecture and Re-platform are steps that break the traditional monolithic architectures and replace individual components with cloud services. These steps can also replace newly-developed microservices, including containerized or serverless.
-
-We just learned how we can get great information on services, processes and user requests using Dynatrace and OneAgent. This helps us now decide what individual features or complete applications based on business benefits we need to migrate and modernize. The idea here is to focus on feature-based business benefit with functional migration.
-
-### Modernize the Sample App 
-
-As we saw earlier, the sample application is a three-tiered application --> frontend, backend, database.
-
-For our lab, another version of the application exists that breaks out each of these backend services into separate services. By putting these services into Docker images, we gain the ability to deploy the service into modern platforms like Kubernetes and Cloud managed services such as the ones shown below.
-
-![image](img/lab5-picture.png)
-
-### Beyond the Lab
-
-Over time, you can imagine that this sample application will be further changed to add in other technologies like [Azures serverless](https://azure.microsoft.com/en-us/solutions/serverless/) and other PaaS services like [Azure SQL](https://docs.microsoft.com/en-us/azure/azure-sql/database/) or [Cosmo DB](https://docs.microsoft.com/en-us/azure/cosmos-db/) databases and virtual networking [Application gateway](https://docs.microsoft.com/en-us/azure/application-gateway/) as shown in the picture below. 
-
-![image](img/lab5-picture-future.png)
-
-### 💥 **TECHNICAL NOTE**
-
-_We will not cover this, but organizations are establishing DevOps approaches and establishing Continuous Integration (CI) pipelines to build and test each service independently. Then adding Continuous Deployment (CD) to the process too that vastly increase our ability to delivery features faster to our customers.  Dynatrace has a number of solutions to support DevOps that you can read about [here](https://www.dynatrace.com/solutions/devops/)_
-
-## Review Lab Environment Setup
+## Objectives of this Lab 
 Duration: 3
 
-Refer to the picture below, here are the components for lab 5.
+🔷 Examine Dynatrace Service Level Objectives (SLOs)
 
-![image](img/lab5-setup.png)
-
-**#1 . Sample Application**
-
-Sample app representing a "services" architecture of a frontend and multiple backend services implemented as Docker containers that we will review in this lab.
-
-**#2 . Load generator process**
-
-A docker processes that sends simulated user traffic to the sample app using [Jmeter](https://github.com/dt-orders/load-traffic) run within a Docker container.  You will not need to interact with this container, it just runs in the background.
-
-**#3 . Dynatrace monitoring**
-
-The Dynatrace OneAgent has been installed by the workshop provisioning scripts and is communicating to your SaaS Dynatrace tenant.
-
-**#4 . Azure monitoring**
-
-In addition to monitoring your Azure workloads using OneAgent, Dynatrace provides [integration](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/) with Azure Monitor which adds infrastructure monitoring to gain insight even into serverless application scenarios.
-
-The integration uses Azure Monitor metrics for service insights, as well as Azure Resource Manager (ARM) to gather metadata.
-
-We will not have them configured for the lab, see the [Dynatrace Docs](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/supporting-services/) for complete list of Azure Supported services.
-
-**#5 . Azure monitor Dashboard**
-
-This out of the box dashboard gives insights or Azure monitor metrics to each configured Azure subscription.
+🔷 Create a custom dashboard with SLOs 
 
 
-## Access the sample application
+## SLOs Setup Review
 Duration: 5
 
-- As you did in lab 1, open up Azure console and open up the Virtual Machine page.  You can use the search feature as shown below.
+Dynatrace provides all the necessary real-time information that your Site-Reliability Engineering (SRE) teams need to monitor their defined objectives.
 
-    ![image](img/lab5-azure-find-vm.png)
+An SRE team is responsible for finding good service-level indicators (SLIs) for a given service in order to closely monitor the reliable delivery of that service. SLIs can differ from one service to another, as not all services are equally critical in terms of time and error constraints.
 
-- Once on the Virtual Machine page, click on the VM named `dt-orders-services`.  Explore details about this VM, but you want to copy the public IP as shown below.
+Dynatrace offers more than 2000 different metrics that are ready for use as dedicated SLIs.
 
-    ![image](img/lab5-azure-get-public-ip.png)
+Each Service Level Objective (SLO) definition can be evaluated by following two result metrics:
 
-- To view the application, copy the public IP into a browser that will look like this.
+* **SLO status:** The current evaluation result of the SLO, expressed as a percentage. The semantics of this percentage (for example, 99.3% of all service requests are successful, or 99.99% of all website users are “satisfied” in terms of Apdex rating) and the target defined for this percentage are up to the SRE team.
 
-### 💥 **TECHNICAL NOTE**
-_One difference you will see is the a dynamic list for the backend services versions.  We will refer to this again later in the labs._
+* **SLO error budget:** The remaining buffer until the defined SLO target is considered as failed. For example, if an SLO defines a 95% target and its current SLO status is evaluated as 98%, the remaining error budget is the difference between the SLO status and the SLO target.
+Two SLOs were created for you, so review those.
 
-![image](img/lab5-app.png)
+Here is an example custom dashboard with SLO dashboard tiles.
 
-## Review Sample App Service Flow 
-Duration: 5
+![image](img/lab4-slo-dashboard.png)
 
-- Let’s now take a look at all the services being monitored by clicking on the `Transactions and services` left side Dynatrace menu.
-- In the management zone drop down, choose `dt-orders-services`. The filtered list should now look like this:
 
-    ![image](img/lab5-trans-services.png)
+### Tasks to complete this step
+1. Review SLO's are deployed
 
-- Choose the `frontend` service.
+    * From the left menu in Dynatrace, click the `Service Level Objective` option to review the two SLOs that are already setup.  Edit one of them to review the configuration.
 
-### Analyze serviceflow
+        ![image](img/lab4-slo-list.png)
 
-- Now that we are back on the frontend service, lets look at the service flow to see whats different now.  Just click on the `view service flow` button to open this.
+        <aside class="positive">
 
-    ![image](img/lab5-service-flow-arrow.png)
+        **👍 How this helps**
 
-### Response time perspective
+        You can review the current health status, error budgets, targets and warnings, along with the timeframe of all your SLOs on the SLOs overview page.
 
-- You should now be on the `Service flow` page.
+        Davis provides quick notifications on anomalies detected, along with actionable root causes. If your SLO has turned red, this is most likely because Davis has already raised a problem for the underlying metrics, showing you the root cause.
+        </aside>
 
-- Right away, we can see how this application is structured:  
-    * Frontend calls order, customer, and catalog service
-    * Order service calls order and customer service
+        <aside class="positive">💻📓 See the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/" target="_blank"> Dynatrace Docs </a> for more details on SLOs
+        </aside>
 
-- Something you would never know from the application web UI !
+## Create SLO Dashboard
+Duration: 7
 
-    ![image](img/lab5-service-flow.png)
+In this step we'll create a very basic SLO dashboard to compare the before and after migration SLO's we've defined for our Monolith and Kubernetes service.
 
-- Refer to the picture above:
-    1. We are viewing the data from a `Response time perspective`. Shortly, we will review the `Throughput perspective`.
-    1. Click on the boxes to expand the response time metrics. We can see that most of the response time, most of the time is spent in the `order` service and the least in the `customer` services.  And as in the simple version of the application, a very small amount of the response time is spent in the databases. 
+### Tasks to complete this step
+1.  Create Dashboard
+    * From the left side menu in Dynatrace, pick the `dashboard` menu.
+    * On the dashboard page, click the `new dashboard` button.
 
-### Throughput perspective
+        ![image](img/lab4-dashboard.png)
 
-![image](img/lab5-service-flow-tp.png)
+    - Provide a dashboard name like `Cloud Migration Success`
+    - On the blank dashboard page, click the settings.  Then click the `advanced settings` link to open then settings page
 
-- Refer to the picture above:
-    1. Change to the `Throughput perspective` by clicking on the box
-    1. Click on the boxes to expand the metrics to see the number of requests and average response times going to each service
+        ![image](img/lab4-dashboard-settings.png)
 
-    ### 👍 How this helps
-    - Review architecture before and after changes is now as easy as a few clicks !
+    - Referring to this picture, follow these steps:
+        * On the settings page, click the `dashboard JSON` menu.
+        * Copy and paste the following Json content from this file into your dashboard JSON, replacing the existing JSON in the process:
+            * <a href="https://raw.githubusercontent.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/master/learner-scripts/cloud-modernization-dashboard.json" target="_blank"> Dashboard JSON file Link</a>
+        * You **MUST** replace the `owner` field to be the email that you logged into Dynatrace with or you will not be able to view it.
 
-## Analyze Service Backtrace
-Duration: 5
+            ![image](img/lab4-dashboard-json.png)
 
-Let’s now take a look at the transactions and Services by clicking on the `Transactions and services` left side Dynatrace menu.
+        * After you edit the email, then click the `Revert Dashboard ID` button.  After you click the `Revert Dashboard ID` button, click the `Save changes` button.
 
-- In the management zone drop down, choose `dt-orders-services` and pick the `catalog` service.
+            ![image](img/lab4-save-dashboard.png)
+2. View Dashboard
+    - Click the `Cloud Migration Success` breadcrumb menu to go back to the dashboard page
 
-    ![image](img/lab5-service-list-catalog.png)
+        ![image](img/lab4-dashboard-bread.png)
 
-- To see the backtrace page, just click on the `Analyze Backtrace` button.
+    - You should now see the dashboard
 
-    ![image](img/lab5-service-backtrace-arrow.png)
+        ![image](img/lab4-dashboard-view.png)
 
-- You should be on the service backtrace page where you will see information for this specific service.
-- This will get more interesting in the next lab, but for the modernized backend, we can see that the backtrace is as follows:
-    1. The starting point is the `catalog` service
-    1. `catalog` is called by the `order` service
-    1. `catalog` is called by the `frontend` service
-    1. You may also see browser traffic to the `frontend` from the `My web application`.  If you don't that is OK.
+3. Edit Dashboard
+    - Now you need to edit the dashboard and adjust the tiles with the SLOs and databases in your environment.
+    - On the top right of the page, click the `edit` button and then follow these steps:
+        *  Click on the title of the Dynamic requests tile to open the Service properties window on the right side 
+        *  On the Service properties window, pick the monolith `frontend (monolith-frontend)` service
+        *  Click the `Done` button
 
-    ![image](img/lab5-backtrace-detail.png)
+            ![image](img/lab4-dashboard-edit-tile.png)
 
-    ### 👍 How this helps
-    The `service flow` and `service backtrace` give you a complete picture of interdependency to the rest of the environment architecture at host, processes, services, application perspectives. 
+    - Edit remaining tiles by following these steps
+        * Repeat the same steps above for the Cloud services tile, but pick the `staging- frontend` in the Service properties window
+        * Repeat for the two SLO tiles, but pick the associated SLO from the drop down list in the SLO properties window
+        * Repeat for the two database tiles. For Cloud services application there are 3 databases, so just pick one of the database of a demo.
+        * Click the `Done` button to save the dashboard
+
+
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+
 
 ## Summary
-Duration: 5
-
-While migrating to the cloud, you want to evaluate if your migration goes according to the plan, whether the services are still performing well or even better than before, and whether your new architecture is as efficient as the blueprint suggested. Dynatrace helps you validate all these steps automatically, which helps speed up the migration and validation process.
-
-Having the ability to understand service flows enables us to make smarter re-architecture and re-platforming decisions.  With support for new technologies like Kubernetes, you have confidence to modernize with a platform that span the old and the new. 
-
-### Checklist
+Duration: 2
 
 In this section, you should have completed the following:
 
-🔷 Review how the sample app went from monolith to microservices
-🔷 Examine the transformed application using serviceflows and backtraces 
+✅ Examined Dynatrace Service Level Objectives (SLOs)
+
+✅ Created a custom dashboard with SLOs 
+
+<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
