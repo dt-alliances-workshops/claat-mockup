@@ -1,6 +1,6 @@
 summary: Lab 5 Dynatrace Workshop on Azure
 id: azure-lab5
-categories: modernization,all
+categories: modernization,kubernetes,all
 tags: azure
 status: Published
 authors: Jay Gurbani

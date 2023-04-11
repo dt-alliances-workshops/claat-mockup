@@ -32,8 +32,9 @@ Feedback Link: mailto:jay.gurbani@dynatrace.com
     * Walk through the high-level workshop overview in slides 1-6.  
     * After slide 6, jump into the lab content site 
         * [https://learn.alliances.dynatracelabs.com/azure?cat=modernization](https://learn.alliances.dynatracelabs.com/azure?cat=modernization)
-        * **Reminder**: we will do Lab 0-4.  Lab 7 is cleanup lab.
-            * Lab5 is a variation of lab4 that we will not do today.
+        * **Reminder**: we will do Lab 0-5.  Lab 7 is cleanup lab.
+            * Lab5 is a variation of lab2 that we will not do today.
+            * Lab6 is AppSec focused.  Only do if there's interest and time.
     * **Note**: Slides 7-20 are supplemental material if someone has questions around specific topics such as Azure functions, etc.
     * Lab Content Site - https://learn.alliances.dynatracelabs.com/azure?cat=modernization
         * Start with Lab 0 
@@ -44,11 +45,12 @@ Feedback Link: mailto:jay.gurbani@dynatrace.com
 * 11:30-11:40 - Take a 10 min break.   
 * 11:40-12:20 – Complete Lab2 
 * 12:20-12:30 – Let everyone grab lunch
-* 12:30-12:50 – Azure Portal Integration Demo (Jay)
+* 12:30-12:50 – Demo (Azure Portal Integration Demo (Jay))
 * 12:50-1:20 - lab 3
 * 1:20 – 5-minute break
-* 1:25-1:50 - lab 4
-* 1:50 - #4 - [Wrap-up Deck (Jay Gurbani)](https://dynatrace.sharepoint.com/:p:/s/StrategicBusinessDevelopment/EYY8_-EBWIVCiJgVhdhYneIB0OKTvVz5xfsMJ8JzUe1WFw?e=hS1HtJ)
+* 1:25-1:40 - lab 4
+* 1:40-1:55 - lab 5
+* 1:55 - #4 - [Wrap-up Deck (Jay Gurbani)](https://dynatrace.sharepoint.com/:p:/s/StrategicBusinessDevelopment/EYY8_-EBWIVCiJgVhdhYneIB0OKTvVz5xfsMJ8JzUe1WFw?e=hS1HtJ)
 
 ## Guidance and Recommendations
 
@@ -109,9 +111,12 @@ Feedback Link: mailto:jay.gurbani@dynatrace.com
 * In next two steps of the lab, we will use the Information Events from a “deployment” to illustrate how things go wrong during a deployment and how Davis uses that information for problem cards.
 * It can take about 5-7 minutes for the problem card to be generated sometimes and another 3-5 minutes for them to be correlated together to show root cause.
 
-#### Lab 4 – Operate
+#### Lab 4 – Azure Monitor
 
 * Step 3 around setting up Custom Alerting is long.  Some attendees tend to get lost on this.  Please go through this slowly.
+
+#### Lab 5 – SLO Dashboards
+* There is a JSON file link embedded for Dashboard so users don't have create the dashboard.  They just need to copy/paste the JSON data into Dashbaord creation ui. 
 
 #### Lab 7 - Cleanup
 
