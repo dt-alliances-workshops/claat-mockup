@@ -1,5 +1,5 @@
 id: aws-lab1
-categories: modernization,kubernetes
+categories: modernization
 status: Published
 tags: aws-immersion-day,aws-selfpaced
 cardname: aws
@@ -175,7 +175,7 @@ You should be on the process page where you will see information for this proces
 
 ### 💥 **TECHNICAL NOTE**
 
-<i>Dynatrace automatically recognizes many common processes like Tomcat and will capture process specific metrics such as JVM garbage collection. See a list of supported technologies, languages and containers in the <a href="https://www.dynatrace.com/support/help/technology-support/supported-technologies-and-versions" target="_blank">Dynatrace documentation</a></i>
+<i>Dynatrace automatically recognizes many common processes like Tomcat and will capture process specific metrics such as JVM garbage collection. See a list of supported technologies, languages and containers in the <a href="https://www.dynatrace.com/support/help/technology-support" target="_blank">Dynatrace documentation</a></i>
 
 ## Dynatrace and containers
 
@@ -370,7 +370,7 @@ To learn some out-of-the-box features of Dynatrace. Let’s do a quick review of
 
 ### Database Review
 
-The sample application uses an <a href="http://hsqldb.org/)" target="_blank">In memory Java relational database</a>.  On this page you can explore the database process like
+The sample application uses an <a href="http://hsqldb.org/" target="_blank">In memory Java relational database</a>.  On this page you can explore the database process like
 
 1. What services call this database
 1. Database availability

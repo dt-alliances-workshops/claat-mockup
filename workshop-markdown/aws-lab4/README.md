@@ -86,7 +86,7 @@ The AWS monitoring policy defines the minimum scope of permissions you need to g
 
 4 . On the new policy page, select the `JSON` tab and paste this predefined policy from the box below from the JSON from this Dynatrace page:
 
-* <a href="https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas#expand--predefined-policy-in-json" target="_blank">https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas#expand--predefined-policy-in-json</a>
+* <a href="https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/amazon-web-services-integrations/cloudwatch-metrics#expand--key-based-authentication-as-an-alternative-to-role-based-authentication--2" target="_blank">https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas#expand--predefined-policy-in-json</a>
 
 When you are done, it should look like this:s
 
@@ -109,29 +109,47 @@ Dynatrace can use access keys to make secure REST or Query protocol requests to 
 2 . On the new use page, click `Add User`.
 
 * For User Name set to `Dynatrace_monitoring_user` 
-* In Select AWS access type section, select `Access key - Programmatic access` checkbox
 * Click the `Next:Permissions` button
 
-![image](img/dt-aws-dashboard-1.png)
+Specify User Details
 
-4 . On the set permissions page
+![image](img/CWUserDetails.png)
+
+3 . On the set permissions page
 
 * Click the `Attach existing policies directly` tab 
 * Search and choose the monitoring policy you defined in the previous step, for example `dynatrace_monitoring_policy`
 * Click the `Click Next: Review` button
 
-![image](img/dt-aws-dashboard-2.png)
+![image](img/CWSetPermisions.png)
 
-5 . You can skip over the `Add tags` page
+4 . You can skip over the `Add tags` page
 
-6 . Review the user details and click `Create user`.
+5 . Review the user details and click `Create user`.
 
-![image](img/dt-aws-dashboard-3.png)
+![image](img/CWReviewCreate.png)
 
-7 . Store the Access Key ID name (AKID) and Secret access key values.
-You can either download the user credentials or copy the credentials displayed online (click Show)
+6 . In order to create an Access key and Secret, we first need to access the newly created user.
 
-![image](img/dt-aws-dashboard-4.png)
+![image](img/CWIAMUser.png)
+
+7  .  Choose the Security Credentials Tab ...
+
+![image](img/CWSecCreds.png)
+
+8  .  and click on Create access key
+
+![image](img/CWCreateKeys.png)
+
+9  .  In the Access key best practices & alternatives choose the Third-party service tab, check the “I understand …” box and proceed to Next .
+
+![image](img/CWAccessKeyBestPractices.png)
+
+10  .  You can skip setting a description tag and directly Create access key.
+
+11  .  You can store the Access Key ID name (AKID) and Secret access key values using any of the available methods. Be mindful of the warning up top though: This is the only time that the secret access key can be viewed or downloaded. You cannot recover it later. However, you can create a new access key any time.
+
+![image](img/CWRetrieveAccessKey.png)
 
 ### Step 3 of 3: Start the creation of a Dynatrace AWS connection and generate connection token
 
@@ -354,8 +372,6 @@ kill 5806
 Simply type `exit` to exit the VM and return the CloudShell.
 
 ### 💥 **TECHNICAL NOTE** 
-
-* See the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank">Dynatrace Docs</a> for more details on the setup.
 
 * Alert configuration is available through the <a href="https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/anomaly-detection-api/anomaly-detection-api-metric-events/" target="_blank">Anomaly detection—metric events API</a>. Using the API, you can list, update, create, and delete configurations.
 

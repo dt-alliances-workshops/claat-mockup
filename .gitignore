@@ -7,3 +7,5 @@ codelabs-build/
 codelabs-gen/
 build/
 dist/*
+
+local-notes/

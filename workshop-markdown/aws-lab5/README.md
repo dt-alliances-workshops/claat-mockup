@@ -40,7 +40,7 @@ In the next section, you will run a unix script that sets these problems.
 
 ## Dynatrace Events
 
-Before we get to the problems, let's review Refer to <a href="https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events/post-event/" target="_blank">Dynatrace information events</a>.
+Before we get to the problems, let's review Refer to <a href="https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events-v2" target="_blank">Dynatrace information events</a>.
 
 Dynatrace information events enable continuous delivery tools to provide additional details for Dynatrace. Here is an example of two informational events for deployment and performance testing being be sent to Dynatrace.
 
@@ -59,7 +59,7 @@ Below we can see for a service that was the root cause to a problem the Dynatrac
 
 ![image](img/lab3-problemcard-events.png)
 
-Each event has a timestamp, event source, a few standardized fields (depending on the event type), and the option to add additional custom fields.  See <a href="https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events-v1/post-event/#anchor_parameters-mapping" target="_blank">this table</a> for details.  
+Each event has a timestamp, event source, a few standardized fields (depending on the event type), and the option to add additional custom fields.  See <a href="https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events-v2/get-event-properties" target="_blank">this table</a> for details.  
 
 Here are two example events.  NOTE the URL back to the pipeline making the change.
 

@@ -57,7 +57,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "---------------------------------------"
     echo "Step 1: Sync to S3"
     echo "---------------------------------------"
-    aws s3 sync dist/ $TARGET_URL
+    aws s3 sync dist/ $TARGET_URL 
 
     echo ""
     echo "---------------------------------------"
