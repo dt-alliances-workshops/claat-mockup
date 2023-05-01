@@ -169,7 +169,7 @@ Use the menu on on the home page to navigate around the application and notice t
 
 ### 💥 **TECHNICAL NOTE** 
 
-<i>The application looks like this monolith, but notice how the home page shows the versions of the three running backend services. You will see these version updated automatically as we deploy new versions of the backend services.</i>
+The application looks like this monolith, but notice how the home page shows the versions of the three running backend services. You will see these version updated automatically as we deploy new versions of the backend services.
 
 ## Review Kubernetes within Dynatrace
 
@@ -177,37 +177,10 @@ In this step we will walk through the different Dynatrace dashboards that are av
 
 ### Tasks to complete this step
 1. Validate AWS ActivateGate visible in Dynatrace UI</summary>
-   1.1. Go to the Dynatrace UI.
-   1.2. From the Dynatrace Menu, click `Manage --> Deployment status` to review OneAgent Deployment status
-   1.3. Within the `Deployment status` page, next click on the `ActiveGate` option to review the Active Gate. <br>
-      <aside class="positive"> 
-
-         📓   From Dynatrace menu on the left, go to Manage -> Deployment Status -> ActiveGates, you will notice there is a `dynatrace-workshop-cluster-activegate-0` connected to your Dynatrace environment now.  This actigate gate routes all the agent traffic from apps that are running on that AKS cluster.**
-
-      </aside>
-          
-### Configure Dynatrace to View the Kubernetes Clusters
-1 . From the AWS Cloudshell, run the below command to get the `Kubernetes API URL`.
-
- ```
- kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}' 
- ```
-    
-`example:  https://ABC123xxxxxxxxxxxxxxx.gr7.us-east-2.eks.amazonaws.com`
-
-2 . Copy paste the output into your Dynatrace Tenant `pictured`
-
-3 . Next we need to get the `bearer token`. Run below command in the Cloudshell.
-
- ```
-kubectl get secret $(kubectl get sa dynatrace-kubernetes-monitoring -o jsonpath='{.secrets[0].name}' -n dynatrace) -o jsonpath='{.data.token}' -n dynatrace | base64 --decode
- ```
-example-note the token is very very long and only copy up to `[cloudshell` as highlighted:  `eyJhbGcixxxxxxxxxxxxxxtpZCI6IlNDcWVLVWxiOUNwQlBKSlVJZjNyQkhCdFBrTU8yeXNhWEVjSXpubDlCTEEifQvhzl0HYFA5kEnWtjznuhb4OKBwywhP9G-zO9Uo-6_EaXP2TLsZUjJ8kFHGAWc_EFxg`[cloudshell-user@ip-10-0-xx-xx ~]$
-
-4 . Copy paste the output into your Dynatrace Tenant `pictured`
-      ![image](img/Lab7-ekstoken.png)
-
-5 . test the connection once the data is ready `pictured`, finally save the configuration.
+   1. Go to the Dynatrace UI.<br>
+   2. From the Dynatrace Menu, click `Manage --> Deployment status` to review OneAgent Deployment status<br>
+   3. Within the `Deployment status` page, next click on the `ActiveGate` option to review the Active Gate. <br>
+   4. From Dynatrace menu on the left, go to Manage -> Deployment Status -> ActiveGates, you will notice there is a `dynatrace-workshop-cluster-activegate-0` connected to your Dynatrace environment now.  This actigate gate routes all the agent traffic from apps that are running on that AKS cluster. <br>
 
 1. Review Kubernetes Dashboards are accessible from the left-side menu in Dynatrace choose `Kubernetes` and navigate to the Kubernetes cluster page as shown below: <br>
       📓**Note:** Be sure that your management zone is NOT filtered!**

@@ -196,8 +196,7 @@ Organizations will often customize the Dynatrace Operator installation and you c
     1. On the Kubernetes configuration page, enter `dynatrace` for the name and `workshop` for the group. This is not the cluster name, it will show up as the Kubernetes page name in Dynatrace
     1. Click the `Create tokens` button
     1. Select the `Skip SSL Certificate Check` to be ON
-    1. Click the `Copy` button and paste to a notepad for use after next step
-
+    
     ![image](img/lab4-operator-new.png)
 
 ## Install Dynatrace Operator For Workshop
@@ -216,8 +215,8 @@ Organizations will often customize the Dynatrace Operator installation and you c
 
          ```
          kubectl create namespace dynatrace
-         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.4.2/kubernetes.yaml
-         kubectl -n dynatrace wait pod --for=condition=ready -l internal.dynatrace.com/app=webhook --timeout=300s
+         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.10.4/kubernetes.yaml
+         kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s
          kubectl apply -f dynakube.yaml
          ```
 
