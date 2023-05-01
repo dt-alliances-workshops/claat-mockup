@@ -59,7 +59,7 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 sudo mv /tmp/eksctl /usr/local/bin
 ```
 
-3 . Test that your installation was successful with the following command. The version should be at least 0.97.0.
+3 . Test that your installation was successful with the following command. The version should be at least 0.138.0.
 
 ```
 eksctl version
@@ -82,7 +82,7 @@ This assumes the AWS keypair with the name `ee-default-keypair` is created.
 1 . Copy the `eksctl create cluster ...` command below into your Cloud Shell
 
 ```
-eksctl create cluster --with-oidc --ssh-access --version=1.23 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key ee-default-keypair
+eksctl create cluster --with-oidc --ssh-access --version=1.25 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key ee-default-keypair
 ```
 
 3 . Run the command
@@ -94,7 +94,7 @@ You **MUST** replace the argument value for `--ssh-public-key` with your Key Pai
 1 . Copy the `eksctl create cluster ...` command below into your Cloud Shell
 
 ```
-eksctl create cluster --with-oidc --ssh-access --version=1.23 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key <YOUR-KEY-PAIRNAME>
+eksctl create cluster --with-oidc --ssh-access --version=1.25 --managed --name dynatrace-workshop --tags "Purpose=dynatrace-modernization-workshop" --ssh-public-key <YOUR-KEY-PAIRNAME>
 ```
 
 2 . Adjust the `--ssh-public-key <YOUR-Key Pair-NAME>` argument
