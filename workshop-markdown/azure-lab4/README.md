@@ -35,7 +35,7 @@ Referring to the picture below, here are the components for this lab.
 
 **#1 . Azure**:  Azure cloud platform where Azure services produce metrics that are sent to Azure monitor.
 
-**#2 . Azure VM running ActiveGate**: A <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-activegate/basic-concepts/when-do-i-need-to-install-an-activegate/#anchor-route" target="_blank"> Dynatrace ActiveGate </a> process required to monitor Azure monitor data. 
+**#2 . Azure VM running ActiveGate**: A <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-activegate/installation" target="_blank"> Dynatrace ActiveGate </a> process required to monitor Azure monitor data. 
 
 **#3 . Dynatrace**: Dynatrace tenant where monitoring data is collected and analyzed.
 
@@ -75,7 +75,7 @@ Notice the following details:
 
 <aside class="positive"> 
 
-💻📓 See the [Dynatrace Docs](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/set-up-integration-with-azure-monitor/) for more details on the setup.
+💻📓 See the [Dynatrace Docs](https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/microsoft-azure-services/azure-integrations/azure-cloud-services-metrics/monitor-azure-integration-service-environment) for more details on the setup.
 
 </aside>
 

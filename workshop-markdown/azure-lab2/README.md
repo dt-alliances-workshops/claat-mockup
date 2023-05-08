@@ -153,7 +153,7 @@ This script automates a number of `kubectl` commands for the following:
 1. Grant the Kubernetes default service account a viewer role into the `staging` namespace
 1. Create both the `deployment` and `service` Kubernetes objects for each of the sample
 
-- You can read more details on the Kubernetes installation in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/other-deployments-and-configurations/leverage-tags-defined-in-kubernetes-deployments/" target="_blank"> Dynatrace Documentation </a>
+- You can read more details on the Kubernetes installation in the <a href="https://dynatrace.com/support/help/platform-modules/infrastructure-monitoring/container-platform-monitoring/kubernetes-monitoring/leverage-tags-defined-in-kubernetes-deployments" target="_blank"> Dynatrace Documentation </a>
 
 </aside>
 
