@@ -85,7 +85,7 @@ The AWS monitoring policy defines the minimum scope of permissions you need to g
 
 4 . On the new policy page, select the `JSON` tab and paste this predefined policy from the box below from the JSON from this Dynatrace page:
 
-* <a href="https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/amazon-web-services-integrations/cloudwatch-metrics#expand--key-based-authentication-as-an-alternative-to-role-based-authentication--2" target="_blank">https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas#expand--predefined-policy-in-json</a>
+* <a href="https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/amazon-web-services-integrations/cloudwatch-metrics/aws-monitoring-with-dynatrace-managed#expand--key-based-access-aws-govcloud-and-aws-china-only--6" target="_blank">https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/amazon-web-services-integrations/cloudwatch-metrics/aws-monitoring-with-dynatrace-managed#expand--key-based-access-aws-govcloud-and-aws-china-only--6</a>
 
 When you are done, it should look like this:s
 
@@ -316,7 +316,6 @@ ubuntu    5805  5438 89 20:48 pts/0    00:00:04 yes
 ubuntu    5806  5438 97 20:48 pts/0    00:00:03 yes
 ubuntu    5818  5438  0 20:48 pts/0    00:00:00 grep --color=auto yes
 ```
-
 3 . Back in Dynatrace within the `host` view, the CPU should now be high as shown below
 
 ![image](img/lab4-cpu.png)
