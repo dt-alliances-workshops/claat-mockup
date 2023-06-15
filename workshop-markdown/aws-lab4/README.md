@@ -87,7 +87,9 @@ The AWS monitoring policy defines the minimum scope of permissions you need to g
 
 * <a href="https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/amazon-web-services-integrations/cloudwatch-metrics/aws-monitoring-with-dynatrace-managed#expand--key-based-access-aws-govcloud-and-aws-china-only--6" target="_blank">https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/amazon-web-services-integrations/cloudwatch-metrics/aws-monitoring-with-dynatrace-managed#expand--key-based-access-aws-govcloud-and-aws-china-only--6</a>
 
-When you are done, it should look like this:s
+Scroll down and expand the section `Key-based authentication (AWS GovCloud and AWS China only)`
+
+When you are done, it should look like this
 
 ![image](img/dt-aws-dashboard-policy-json.png)
 
@@ -208,7 +210,7 @@ Read more about how to scale your enterprise cloud environment with enhanced AI-
 
 <i>See the <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-saas/" target="_blank">Dynatrace Docs</a> for more details on the setup options.</i>
 
-## Metric Streams
+## Custom Metrics Events
 
 Dynatrace Davis automatically analyzes abnormal situations within your IT infrastructure and attempts to identify any relevant impact and root cause. Davis relies on a wide spectrum of information sources, such as a transactional view of your services and applications, as well as all on events raised on individual nodes within your Smartscape topology.
 
@@ -267,7 +269,9 @@ Custom metric events are configured in the global settings of your environment a
 
 ![image](img/savedmetricevents.png)
 
-### 2. SSH to monolith host 
+## Trigger Custom Problem Alerts
+
+### 1. SSH to monolith host 
 
 To connect to the host, simply use `EC2 Instance Connect`.  To this, navigate to the `EC2 instances` page in the AWS console.
 
@@ -290,7 +294,7 @@ See "man sudo_root" for details.
 ubuntu@ip-10-0-0-118:~$ 
 ```
 
-### 3. Trigger a CPU problem
+### 2. Trigger a CPU problem
 
 Using a unix utility <a href="https://linuxconfig.org/how-to-stress-test-your-cpu-on-linux" target="_blank">yes</a>, we can generate CPU stress just by running the `yes` command a few times.
 
@@ -324,7 +328,7 @@ ubuntu    5818  5438  0 20:48 pts/0    00:00:00 grep --color=auto yes
 
 ![image](img/lab4-custom-alert-problems.png)
 
-### 4. Review Problem Notifications
+### 3. Review Problem Notifications
 
 1 . Navigate to `Settings --> Integrations --> Problem Notifications` 
 
@@ -336,7 +340,7 @@ ubuntu    5818  5438  0 20:48 pts/0    00:00:00 grep --color=auto yes
 
 5 . Notice how you can choose the `Alert profile`, but you only have default
 
-### 5. Review Alerting Profiles
+### 4. Review Alerting Profiles
 
 1 . Navigate to `Settings --> Alerting --> Alerting profiles`
 
@@ -346,7 +350,7 @@ ubuntu    5818  5438  0 20:48 pts/0    00:00:00 grep --color=auto yes
 
 4 . Review the options to choose severity rules and filters
 
-### 6. Stop the CPU problem
+### 5. Stop the CPU problem
 
 To stop the problem, you need to `kill` the processes.  To do this:
 
@@ -369,6 +373,10 @@ ubuntu    5806  5438 97 20:48 pts/0    00:00:03 yes
 kill 5802
 kill 5805
 kill 5806
+```
+Or use the below command to kill all the PID's at once
+```
+kill $(ps -ef | grep yes | awk '{print $2}' | sed '$d')
 ```
 
 3 . Verify they are gone by running this again `ps -ef | grep yes`
