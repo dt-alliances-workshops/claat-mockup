@@ -7,7 +7,7 @@ tags: aws-immersion-day,aws-selfpaced
 
 ## Overview
 
-Since the Kubernetes may take awhile, follow these steps for that task then once complete move to the overview and exercises in the `AWS Lab 6 - Modernization with Kubernetes`
+Since the Kubernetes may take awhile, follow these steps for that task then once complete move to the overview and exercises in the `Lab 6 - Dynatrace Operator for Kubernetes`
 
 ### 💥💥💥 Notice 💥💥💥
 
