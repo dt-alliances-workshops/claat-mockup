@@ -12,7 +12,6 @@ tags: aws-immersion-day-jp
 1. Dynatraceによるモノリスアプリケーションのオブザーバビリティの確認
 1. モノリスからマイクロサービスへ更新された際のオブザーバビリティの確認
 1. Dynatraceによるサービスレベル目標の概要
-1. DynatraceとAWSの連携
 1. Dynatraceによる障害の検知と根本原因分析の実現方法
 
 本セッションを通じて、クラウドネイティブアーキテクチャにおけるオブザーバビリティの実現方法について理解することができます！
@@ -33,29 +32,41 @@ tags: aws-immersion-day-jp
 
 ## Dynatrace環境
 
-ワークショップで使用するDynatraceにログインするためのURLが記載されたメールを送付しております。メールにID・パスワードが記載されている場合はそのID・パスワードでログインをしてください。以下のようなメールが届いている場合はリンクからご自身で設定してください。
+ワークショップで使用するDynatraceにログインするためのURLが記載されたメールを送付しております。メールにログインURL、ID・パスワードが記載されておりますので、そちらの情報を元にログインをしてください。
 
-![image](img/dt-managed-login.png)
+![image](img/handson-mail.png)
 
 ログインができないなどがございましたら、講師までお知らせください。
 
 ## AWSアカウント
 
-AWSアカウントについてはAWS Event Engineサービスを通じて提供されます。ログインに必要なハッシュコードは別途お知らせいたします。
+AWSアカウントについてはAWS Event Engineサービスを通じて提供されます。ログインに必要なハッシュコードについても先ほどのメールに記載がございます。
 
-1. 普段ご利用のAWSアカウントでログインしている場合は、ログアウトいただくか、ブラウザのプライベートウィンドウを起動してください。
+1. 普段ご利用のAWSアカウントでログインしている場合は、ログアウトいただくか、ブラウザのプライベートウィンドウを利用してください。
 
 2. <a href="https://dashboard.eventengine.run" target="_blank">https://dashboard.eventengine.run</a>にアクセスしていただくと以下の画面が表示されます。**Enter your event hash**に提供されたハッシュコードを入力し**Accept Terms & Login**をクリックしてください。
 
 ![image](img/event-engine-initial-screen.png)
 
-3. **Team dashboard**のページが表示されたら、**AWS console**ボタンをクリックしてください。 ポップアップウィンドウが表示されるはずです。
+3. **Sign in with**と表示されたら、`Email One-Time Password (OTP)`を選びます。
+
+![image](img/one-time-password.png)
+
+4. メールアドレスを入力し、`Send passcode`ボタンをクリックします。
+
+![image](img/send-passcode.png)
+
+5. しばらくすると登録したメールアドレスにpasscodeが届くので、それを入力します。
+
+![image](img/enter-passcode.png)
+
+6. **Team dashboard**のページが表示されたら、`AWS console`ボタンをクリックしてください。
 
 ![image](img/aws-event-engine.png)
 
-4. ポップアップウィンドウにて**Open AWS console**をクリックします。
+7. **AWS Console Login**画面が表示されたら、`Open Console`ボタンをクリックします。
 
-![image](img//aws-event-engine-popup.png)
+![image](img/open-console.png)
 
 5. 新しいブラウザのタブが開き、AWSのコンソールが表示されます。
 
@@ -66,7 +77,6 @@ AWSアカウントについてはAWS Event Engineサービスを通じて提供�
 ### 💥 **TECHNICAL NOTE**
 
 *無料クレジットの有効期限が切れると、作成されたすべてのリソースは自動的に削除され、アカウントにアクセスすることができなくなります。*
-
 
 ## 監視対象サーバーの構築
 
@@ -90,7 +100,7 @@ Cloudshellを開くには、AWSコンソールの上部にあるCloudshellアイ
 
 下の画像のページが開く場合があります。その場合は**Close**ボタンをクリックしてウィンドウを閉じます。
 
-![image](img/lab2-cloudshell-splash-page.png)
+![image](img/cloudshell-splash-page.png)
 
 ポップアップを閉じた後、Cloudshellが初期化されるのを1分ほど待ちます。これが終わると、以下のようなコマンドプロンプトが表示されます。
 
@@ -132,13 +142,16 @@ Resolving deltas: 100% (72/72), done.
 
 Dynatraceの左側のメニューから`ダッシュボード`を開きます。
 
-ダッシュボードページで**Workshop Provisioning**をクリックします。
+ダッシュボードページで**ワークショップダッシュボード**をクリックします。
 
 ![image](img/dt-provision-dashboard-list.png)
 
-右上に表示されている**編集**をクリックし、コマンドが記載されている**Markdown**をクリックします。コマンドを全て選択し、右クリックから`コピー`をします。
+下の画像を参考にタイル右上の▽をクリックし、**タイルの編集**を選びます。コマンドが記載されている**Markdown**をクリックします。コマンドを全て選択し、右クリックから`コピー`をします。
 
-![image](img/dt-copy-command.png)
+![image](img/edit-tile.png)
+
+![image](img/copy-markdown.png)
+
 
 **完了**ボタンをクリックし、編集モードから抜けます。
 
