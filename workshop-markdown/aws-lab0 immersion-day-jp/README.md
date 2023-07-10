@@ -1,7 +1,7 @@
 id: aws-lab0 immersion-day-jp
 categories: modernization
-status: Published
 tags: aws-immersion-day-jp
+status:
 
 # AWS Lab 0 - 初期設定
 

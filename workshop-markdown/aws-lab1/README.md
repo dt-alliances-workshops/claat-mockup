@@ -1,9 +1,8 @@
 id: aws-lab1
 categories: modernization
-status: Published
 tags: aws-immersion-day,aws-selfpaced
-cardname: aws
-description: This is my lab
+status:
+
 
 # AWS Lab 1 - OneAgent Observability
 

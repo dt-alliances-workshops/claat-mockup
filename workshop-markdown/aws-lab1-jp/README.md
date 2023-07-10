@@ -1,7 +1,7 @@
 id: aws-lab1-jp
 categories: modernization
-status: Published
 tags: aws-immersion-day-jp
+status:
 
 # AWS Lab 1 - OneAgent オブザーバビリティ
 

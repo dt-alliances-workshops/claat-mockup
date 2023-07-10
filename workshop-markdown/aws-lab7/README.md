@@ -1,7 +1,7 @@
 id: aws-lab7
-categories: kubernetes
-status: Published
-tags: aws-immersion-day,aws-selfpaced
+categories: kubernetes,SAAS
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+status:
 
 
 # AWS Lab 7 - Modernization with Kubernetes

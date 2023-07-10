@@ -1,7 +1,7 @@
 id: aws-lab8
-categories: kubernetes
-status: Published
-tags: aws-immersion-day,aws-selfpaced
+categories: 
+tags:
+status:
 
 # AWS Lab 8 - Kubernetes Events
 

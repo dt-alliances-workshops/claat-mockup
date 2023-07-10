@@ -1,10 +1,7 @@
-summary: Lab 9 Dynatrace Workshop on AWS
 id: aws-lab9-appsec
 categories: appsec,all
-tags: aws-immersion-day,aws-selfpaced
-status: Published
-authors: Erick Leon 
-Feedback Link: mailto:erick.leon@dynatrace.com
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+status:
 
 # AWS Lab 9 - AppSec
 

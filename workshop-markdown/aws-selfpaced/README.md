@@ -1,8 +1,7 @@
 id: aws-selfpaced
 categories: modernization,kubernetes
-status: Published
 tags: aws-selfpaced
-description:
+status:
 
 # AWS & Dynatrace - Self Paced Lab Overview
 

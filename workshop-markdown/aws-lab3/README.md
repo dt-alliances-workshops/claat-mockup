@@ -1,7 +1,7 @@
 id: aws-lab3
-categories: modernization
-status: Published
-tags: aws-immersion-day,aws-selfpaced
+categories: modernization,SAAS
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+status:
 
 
 # AWS Lab 3 - SLOs
