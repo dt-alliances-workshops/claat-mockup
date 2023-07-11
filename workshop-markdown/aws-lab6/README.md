@@ -1,8 +1,7 @@
 id: aws-lab6
 categories: kubernetes,SAAS
 tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
-status:
-
+status: Published
 
 # AWS Lab 6 - Dynatrace Operator for Kubernetes
 

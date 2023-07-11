@@ -1,7 +1,7 @@
 id: aws-lab0 immersion-day
 categories: modernization,kubernetes
 tags: aws-immersion-day
-status:
+status: Published
 
 # AWS Lab 0 - Introduction and Setup
 

@@ -1,7 +1,7 @@
 id: aws-lab0 immersion-day-SAAS
 categories: SAAS
 tags: aws-immersion-day-SAAS
-status:
+status: Published
 
 # AWS Lab 0 - Introduction and Setup SAAS
 

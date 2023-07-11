@@ -1,7 +1,8 @@
 id: aws-lab cleanup
 categories: modernization,kubernetes
-status: Published
 tags: aws-selfpaced, modernization
+status: Published
+
 
 # AWS Lab Cleanup
 

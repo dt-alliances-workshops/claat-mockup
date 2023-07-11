@@ -1,7 +1,7 @@
 id: aws-lab5-jp
 categories: modernization
 tags: aws-immersion-day-jp
-status:
+status: Published
 
 # AWS Lab 5 - Davis AI
 

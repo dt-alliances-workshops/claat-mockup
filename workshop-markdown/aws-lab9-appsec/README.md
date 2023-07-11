@@ -1,7 +1,7 @@
 id: aws-lab9-appsec
 categories: appsec,all
 tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
-status:
+status: Published
 
 # AWS Lab 9 - AppSec
 

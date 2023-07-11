@@ -1,7 +1,7 @@
 id: aws-dt-lab0-Prereq
 categories: AWS-Lab-Prerequisite
 tags: Dynatrace-SAAS-Prereq
-status: 
+status: Published
 
 # Dynatrace Prerequisite Lab 0 - SAAS Deployment
 

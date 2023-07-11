@@ -1,7 +1,7 @@
 id: aws-lab0-eks
 categories: kubernetes
 tags: aws-immersion-day,aws-selfpaced
-status:
+status: Published
 
 # AWS Lab 0 - Provisions EKS Cluster
 

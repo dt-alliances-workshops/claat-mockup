@@ -1,7 +1,7 @@
 id: aws-dynatrace-better-together
 categories: modernization,kubernetes
 tags: aws-selfpaced
-status: 
+status: Published
 
 # AWS & Dynatrace - Better Together
 

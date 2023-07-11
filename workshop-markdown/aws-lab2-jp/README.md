@@ -1,7 +1,7 @@
 id: aws-lab2-jp
 categories: modernization
 tags: aws-immersion-day-jp
-status:
+status: Published
 
 # AWS Lab 2 - コンテナ環境へのモダナイゼーション
 

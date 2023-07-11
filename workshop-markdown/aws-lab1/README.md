@@ -1,7 +1,7 @@
 id: aws-lab1
-categories: modernization
-tags: aws-immersion-day,aws-selfpaced
-status:
+categories: modernization,SAAS
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+status: Published
 
 
 # AWS Lab 1 - OneAgent Observability
