@@ -1,8 +1,7 @@
 id: aws-lab0 immersion-day
 categories: modernization,kubernetes
-status: Published
 tags: aws-immersion-day
-description: 
+status: Published
 
 # AWS Lab 0 - Introduction and Setup
 
@@ -38,9 +37,9 @@ It will be helpful for you to be:
 
 ## Dynatrace Tenant
 
-You should have received and email with the URL to login to a Dynatrace environment that you will use for the workshop.  The instructor may provide you a password or if not follow the link to setup your own.
+You should have received and email with the URL to login to a Dynatrace environment that you will use for the workshop.  The instructor has set the password to be `Dynatrac3`. 
 
-![image](img/dt-managed-login.png)
+![image](img/WelcometoDT.png)
 
 If you are unable to login, please let the instructor know.
 
@@ -54,19 +53,31 @@ To complete this workshop, you will be provided with an AWS account via the AWS 
 
 ![image](img/event-engine-initial-screen.png)
 
-3 . Once on the `Team dashboard` page, click the `AWS console` button that opens a popup.  
+3 . Click on `Email One Time Password (OTP)`
+
+![image](img/one-time-password.png)
+
+4 . Enter your email address
+
+![image](img/send-passcode.png)
+
+5 . Enter the Passcode from you received in your email.
+
+![image](img/enter-passcode.png)
+
+6 . Once on the `Team dashboard` page, click the `AWS console` button that opens a popup.  
 
 ![image](img/aws-event-engine.png)
 
-4 . On the popup, click on `Open AWS console` button which opens the AWS portal.
+7 . On the popup, click on `Open AWS console` button which opens the AWS portal.
 
 ![image](img//aws-event-engine-popup.png)
 
-5 . One the new browser tab, you should see the AWS portal. 
+8 . One the new browser tab, you should see the AWS portal. 
 
 ![image](img/setup-aws-portal.png)
 
-6 . Once you are in the AWS portal, you can now move to the next section.
+9 . Once you are in the AWS portal, you can now move to the next section.
 
 ### 💥 **TECHNICAL NOTE**
 
@@ -185,11 +196,11 @@ Monitor CloudFormation stack status within the AWS console. Navigate to the `Clo
 
 When it is complete, it will show a `CREATE_COMPLETE` status as shown below.s
 
-![image](img/aws-cf-complete-both.png)
+![image](img/CFTCreateCompeleteMonoAG.png)
  
 ### 💥 **TECHNICAL NOTE**
 
-_The process to provision everything will take ~5 minutes, so please be patient._
+_The process to provision everything will take ~5 minutes, so please be patient. You will also see 3 more CFT (Cloud Formation Template's) deploying but we wont need those till we get to Kubernetes Lab 6_
 
 ## Dynatrace Configuration
 

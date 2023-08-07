@@ -110,7 +110,15 @@ todo - add instructions
 Some users have had difficulty with content generation on Windows, the following will mount edited codelab markdown in workshop-markdown within the current director and generate content in a Docker container, exporting that content to the dist folder in the current directory:
 
 ```
-docker run -v ${PWD}/workshop-markdown:/usr/src/app/workshop-markdown -v ${PWD}/dist:/usr/src/app/dist-final mvilliger/workshop-builder:0.3
+docker run -it \
+-v ${PWD}/workshop-markdown:/usr/src/app/workshop-markdown \
+-v ${PWD}/dist:/usr/src/app/dist-final \
+-v ${PWD}/app/views/aws-immersion-day-jp/view.json:/usr/src/app/app/views/aws-immersion-day-jp/view.json \
+-v ${PWD}/app/views/azure/view.json:/usr/src/app/app/views/azure/view.json \
+-v ${PWD}/app/views/aws-immersion-day-SAAS/view.json:/usr/src/app/app/views/aws-immersion-day-SAAS/view.json \
+-v ${PWD}/app/views/Dynatrace-SAAS-Prereq/view.json:/usr/src/app/app/views/Dynatrace-SAAS-Prereq/view.json \
+-v ${PWD}/app/styles/_categories.scss:/usr/src/app/app/styles/_categories.scss mvilliger/workshop-builder:0.4 \
+&& ./shell-test-script.sh
 ```
 
 ## Serve dist content in Docker

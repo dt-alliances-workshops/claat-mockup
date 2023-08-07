@@ -1,8 +1,7 @@
 id: aws-lab6
-categories: kubernetes
+categories: kubernetes,SAAS
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
 status: Published
-tags: aws-immersion-day,aws-selfpaced
-
 
 # AWS Lab 6 - Dynatrace Operator for Kubernetes
 
@@ -215,7 +214,7 @@ Organizations will often customize the Dynatrace Operator installation and you c
 
          ```
          kubectl create namespace dynatrace
-         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.10.4/kubernetes.yaml
+         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.12.0/kubernetes.yaml
          kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s
          kubectl apply -f dynakube.yaml
          ```
