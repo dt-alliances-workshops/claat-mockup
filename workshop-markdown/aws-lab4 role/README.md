@@ -1,6 +1,6 @@
 id: aws-lab4-Roles Based Access
 categories: SAAS
-tags: aws-immersion-day,aws-immersion-day-SAAS 
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS 
 status: Published
 
 # AWS Lab 4 - AWS Monitor with Roles Configured Access
