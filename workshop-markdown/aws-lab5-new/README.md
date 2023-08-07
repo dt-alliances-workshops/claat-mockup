@@ -1,7 +1,7 @@
 id: aws-lab5
 categories: modernization,SAAS
-tags: 
-status: Hidden
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+status: Published
 
 # AWS Lab 5 - Davis AI
 
@@ -257,7 +257,7 @@ To review this setting, on the left side menu, click `settings`, click `Anomaly 
 
 Learn more about how How problems are detected and analyzed in the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/automated-multi-dimensional-baselining/" target="_blank">Dynatrace Docs</a>
 
-## Order service problem
+<!-- ## Order service problem
 
 Now we are going to set the `order` service version that will cause failures on the all requests.
 
@@ -300,7 +300,7 @@ Response Data
 
 The event has the URL back to the sample application, so just click that if you don't have the sample app up already.  You should see `version 3` for the order app now too.
 
-![image](img/lab3-app-ui-order-version-3.png)
+![image](img/lab3-app-ui-order-version-3.png) -->
 
 <!--
 ## 2. View change in Dynatrace
@@ -318,7 +318,7 @@ If you expand the event, you should see something like this
 ![image](img/lab3-release-order-event.png)
 -->
 
-### 3. Review problem in Dynatrace
+<!-- ### 3. Review problem in Dynatrace
 
 The problem may take a minute to show up, but this is what the problem will look like once it does. Also, you may see two problems that eventually get merged into one as Dynatrace is performing the problem analysis.
 
@@ -368,7 +368,7 @@ cd ~/aws-modernization-dt-orders-setup/learner-scripts/
 ```
 cd ~/aws-modernization-dt-orders-setup/learner-scripts/
 ./set-version.sh k8-order 1
-```
+``` -->
 
 Dynatrace will automatically close the problem once it detects things are back to normal.
 

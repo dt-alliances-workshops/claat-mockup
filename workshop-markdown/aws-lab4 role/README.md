@@ -1,6 +1,6 @@
 id: aws-lab4-Roles Based Access
 categories: SAAS
-tags: aws-immersion-day-SAAS
+tags: aws-immersion-day,aws-immersion-day-SAAS 
 status: Published
 
 # AWS Lab 4 - AWS Monitor with Roles Configured Access
@@ -63,7 +63,7 @@ As AWS services are enabled, Dynatrace will enable preset dashboards automatical
 To see more dashboards, navigate to this repository:
 * <a href="https://github.com/Dynatrace/snippets/tree/master/product/dashboarding/aws-metric-streaming" target="_blank">https://github.com/Dynatrace/snippets/tree/master/product/dashboarding/aws-metric-streaming</a>
 
-## Lab Setup
+## Lab Setup:  We will not execute this part of the lab as we have automated the creation of a proxy known as the Dynatrace Activegate and creating the necessary AWS policies and roles that are needed for the Cloudwatch configuration. You can see all the magic in the Git repo you copied in Lab 0 in the provision-scripts/provision-workshop.sh file.  However we will show you the steps so you are familiar and can reference them should you need them for other purposes. Hands on will resume on step 3 of this lab.
 
 There are <a href="https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/amazon-web-services/aws-monitoring-with-dynatrace-managed" target="_blank">several ways</a> one can configure the Dynatrace AWS monitor, but for this workshop we will use a `quick` solution using AWS `role` based access by creating and executiung a `Cloud Formation Template` by following these basic steps:
 

@@ -1,9 +1,9 @@
-id: aws-lab8-K8 events
+id: aws-lab9-K8 events
 categories: kubernetes,SAAS
 tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
 status: Published
 
-# AWS Lab 8 - Kubernetes Events
+# AWS Lab 9 - Kubernetes Events
 
 ## Overview
 
