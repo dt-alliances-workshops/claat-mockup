@@ -3,7 +3,7 @@ categories: modernization
 tags: aws-immersion-day-jp
 status: Published
 
-# AWS Lab 3 - SLOs
+# AWS Lab 3 - SLOs JP
 
 ## 概要
 

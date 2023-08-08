@@ -1,9 +1,9 @@
-id: aws-lab9-K8 events
+id: aws-lab8
 categories: kubernetes,SAAS
 tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
 status: Published
 
-# AWS Lab 9 - Kubernetes Events
+# AWS Lab 8 - Kubernetes Events
 
 ## Overview
 
@@ -51,18 +51,10 @@ As you saw before in Lab 7 you are able to see all the same metricsw and work lo
 
 ![image](img/Boom1.png)
 
-**2 - Workload detail**
-
-![image](img/boom4.png)
-
-**3 - Overview of the Boom-App workload**
-
-![image](img/boom5.png)
-
-**4 - Events specific to failed containers**
+**2 - Events specific to failed containers**
 
 ![image](img/boom2.png)
 
-**5 - Event Metadata**
+**3 - Event Metadata**
 
 ![image](img/boom3.png)

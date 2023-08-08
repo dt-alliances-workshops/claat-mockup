@@ -1,9 +1,9 @@
-id: aws-lab10-appsec
+id: aws-lab10
 categories: appsec,all
 tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
 status: Published
 
-# AWS Lab 10 - AppSec
+# AWS Lab 10 - Application Security
 
 ## Objectives
 
