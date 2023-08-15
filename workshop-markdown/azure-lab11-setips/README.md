@@ -1,7 +1,7 @@
 summary: Lab 11 Dynatrace Workshop on Azure
 id: azure-lab11
-categories: all
-tags: azure
+categories: 
+tags: 
 status: Hidden
 authors: Jay Gurbani
 Feedback Link: mailto:jay.gurbani@dynatrace.com

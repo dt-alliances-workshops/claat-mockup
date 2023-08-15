@@ -1,6 +1,6 @@
 id: aws-lab2
-categories: modernization,SAAS
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+categories: 
+tags: 
 status: Hidden
 
 # AWS Lab 2 - Modernization with containers
