@@ -1,6 +1,6 @@
 id: aws-lab4-Key Based Access
-categories: modernization
-tags: aws-immersion-day,aws-selfpaced
+categories: 
+tags: 
 status: Hidden
 
 # AWS Lab 4 - AWS Monitor with Key Access

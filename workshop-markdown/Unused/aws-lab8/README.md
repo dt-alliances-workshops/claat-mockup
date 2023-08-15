@@ -1,7 +1,7 @@
 id: aws-lab8
 categories: 
 tags:
-status:Hidden
+status: Hidden
 
 # AWS Lab 8 - Kubernetes Events
 

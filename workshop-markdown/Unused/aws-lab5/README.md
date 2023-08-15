@@ -1,5 +1,5 @@
 id: aws-lab5
-categories: modernization,SAAS
+categories: 
 tags: 
 status: Hidden
 

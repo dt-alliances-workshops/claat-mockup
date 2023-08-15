@@ -1,9 +1,9 @@
-id: aws-lab4-Roles Based Access
+id: aws-lab4 AWS CloudWatch Integration
 categories: SAAS
 tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS 
 status: Published
 
-# AWS Lab 4 - AWS Monitor with Roles Configured Access
+# AWS Lab 4 - AWS CloudWatch Integration
 
 ## Overview
 
