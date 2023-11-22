@@ -13,21 +13,23 @@ Duration: 2
 
 Referring to the picture below, here are the components for lab 1.
 
-**#1 . Sample Application**
+  **#1 . Sample Application**
 
-Sample app representing a simple architecture of a frontend and backend implemented as Docker containers that we will review in this lab.
+  Sample app representing a simple architecture of a frontend and backend implemented as Docker containers that we will review in this lab.
 
-**#2 . Dynatrace monitoring**
+  **#2 . Dynatrace monitoring**
 
-The Dynatrace OneAgent has been installed by the workshop provisioning scripts and is communicating to your Dynatrace tenant.
+  The Dynatrace OneAgent has been installed by the workshop provisioning scripts and is communicating to your Dynatrace tenant.
 
-**#3 . Load generator process**
+  **#3 . Load generator process**
 
-A docker processes that sends simulated user traffic to the sample app using <a href="https://github.com/dt-orders/load-traffic" target="_blank"> Jmeter </a> run within a Docker container.  You will not need to interact with this container; it just runs in the background.
+  A docker processes that sends simulated user traffic to the sample app using <a href="https://github.com/dt-orders/load-traffic" target="_blank"> Jmeter </a> run within a Docker container.  You will not need to interact with this container; it just runs in the background.
 
-![image](img/lab1-setup.png)
+   ![image](img/lab1-setup.png)
 
-<aside class="positive"> 💥A real-world scenario would often start with the application components running on a physical or virtualized host in on-prem and not "Dockerized". To simplify the workshop, we "Dockerized" the application into a front-end and back-end. In Dynatrace, these Docker containers all show up as "processes" on a host just like a "non-Dockerized" application will.</aside>
+<aside class="positive"> 💥A real-world scenario would often start with the application components running on a physical or virtualized host in on-prem and not "Dockerized". 
+
+To simplify the workshop, we "Dockerized" the application into a front-end and back-end. In Dynatrace, these Docker containers all show up as "processes" on a host just like a "non-Dockerized" application will.</aside>
 
 ## Review OneAgent
 Duration: 4
@@ -57,7 +59,7 @@ The host running the sample application was created using scripts to install and
 ![image](img/lab1-deploy-dynatrace.png)
 - On the `Download agent` page, pick the platform `Linux` to view the commands will download and run the OneAgent installer.
 ![image](img/lab1-download-dynatrace.png)
-    <aside class="positive"> 📓<br> 
+    <aside class="positive"> 📓NOTE:<br>
         - The URL and Token is unique to your Dynatrace tenant.  If you expand the `Set customized options (optional)`. section you can review other options for the OneAgent installer.
         <br>- Setting the hostname via  `/bin/sh Dynatrace-OneAgent-Linux-1.207.184.sh --set-host-name=monolith` is just <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/hosts/configuration/set-custom-host-names-in-dynamic-environments/" target="_blank"> one of the ways </a> to customize host naming.
     </aside>
@@ -79,7 +81,6 @@ The host running the sample application was created using scripts to install and
 3. Check to ensure the `dt-orders-monolith` VM is reporting in under OneAgents
 ![image](img/lab1-deployment-status.png)
 
-<aside class="positive"> 📓 - Since the OneAgent is already deployed for your app and you've validated it above.  The steps highligted below are alternatives ways to deploy the OneAgent if you're interested in learning more. </aside>
 
 
 ## Review Sample app
@@ -131,7 +132,8 @@ As you plan your migration, each of these views will give insights into accessin
     1. Host resource metrics (CPU, memory)
     1. Host availability
     1. Discovered processes. In this case the front end is running Node.js and the backend is running Java in Apache Tomcat.  JMeter is running in Java providing the automated user interactions
-    ![image](img/lab1-host-view.png)
+    ![image](img/lab1-host-view-upd.png)
+    ![image](img/lab1-host-view-proc.png)
 
 ## Review Smartscape
 Duration: 4
@@ -188,9 +190,9 @@ Very quickly you have seen what processes and services are running on a host AND
 ### Tasks to complete this step
 
 1. Review the data on the Process screen 
-    - Return back to the host view for the host with the prefix of `dt-orders-monolith` and locate the `Processes and Containers` section.
+    - Return back to the host view for the host with the prefix of `dt-orders-monolith` and locate the `Processes Analysis` section on far right hand side of the screen.
     - Click on the 2nd `monolith-frontend` process to open the process detail view.
-    ![image](img/lab1-host-process.png)
+    ![image](img/lab1-host-view-proc.png)
     - You should be on the process page where you will see information for this process.  Follow the picture below to locate the following:
         1. Click on the `Properties and tags` line to toggle on/off to see additional data 
         1. Notice the properties such as open ports
@@ -251,20 +253,14 @@ As you plan your migration, it is important to gain a complete picture of interd
     - The filtered list should now look like this:
     ![image](img/lab1-trans-services.png)
     - Choose the `frontend` service.
-    - On the `frontend` service page, find the `Dynamic Web Requests` section on the right and click the `view Dynamic Requests` button to see what it calls. 
-    ![image](img/lab1-dynamic-requests-arrow.png)
+    - On the `frontend` service page, find the `Key Requests/endpoints` section on the right and click the `Top web Requests` button to see what it calls. 
+    ![image](img/lab1-top-web-requests.png)
         - On this page you can view the transactions as time-series charts.
             ![image](img/lab1-dynamic-requests-chart.png)
-        - On this page you can view the top 15 requests and their response time consumption.  You should recognize the URLs from the sample app!
-            ![image](img/lab1-dynamic-requests-list.png)
-        - By clicking on one of the requests, the time-series charts are filtered to just that one request.
-            ![image](img/lab1-request-filter.png)
-
-2. Review the Analysis View screen
-    - On the top of the page on the right is a button labeled `Create Analysis view`, click that.
-        ![image](img/lab1-analysis-view-button.png)
-    - Try the various options available to view, filter and analyze data.
-        ![image](img/lab1-analysis-view.png)
+        - On this page you can view the top web requests by count.  You should recognize the URLs from the sample app!
+            ![image](img/lab1-top-web-request-list.png)
+        - You can also view top web request by Response Time by simply changing the metric to Response Time By clicking on one of the requests.
+            ![image](img/lab1-resp-time-filter.png)
 
 
 ## Analyze serviceflow
@@ -288,9 +284,9 @@ Knowing the type of access, executed statements, and amount of data transferred 
 ### Tasks to complete this step
 - Review the Service Flow 
     1. Return to the `frontend` service.  You can use the `breakcrumb` menu as shown below.
-        ![image](img/lab1-navigate-to-frontend.png)
-    1. On the `frontend` service page, locate the `Understand dependencies` section on the right, and then click the `view service flow` button. 
-        ![image](img/lab1-service-flow-arrow.png)
+        ![image](img/lab1-navigate-to-frontend-upd.png)
+    1. On the `frontend` service page, locate the `Topology` section on the right, and then click the `Service Flow` button. 
+        ![image](img/lab1-service-flow-arrow-upd.png)
 - Response time perspective
     - You should now be on the **Service flow** page.
     - Right away, we can see how this application is structured:  
@@ -329,7 +325,7 @@ Using the service flow and service backtrace, these two tools give you a complet
 - Pick the `backend` service.
 ![image](img/lab1-trans-services-db.png)
 - On the `backend` service, click on the `Analyze Backtrace` button.
-![image](img/lab1-service-backtrace-arrow.png)
+![image](img/lab1-service-backtrace-arrow-upd.png)
 
 <aside class="positive"> 📓 You should be on the service backtrace page where you will see information for this specific service. </aside>
 
@@ -364,16 +360,16 @@ Dynatrace monitors all the popular databases like SQL Server, Oracle, and MongoD
 ### Tasks to complete this step
 1.  Navigate to the Database screen
     - Lets get back to the `backend` service. One way is to go back to the `Services` left side Dynatrace menu and then pick the `backend` service for the `dt-orders-monolith` management zone.
-    - On the `backend` service page, click on the `[embedded]` database to open the database service page. 
-    ![image](img/lab1-pick-db.png)
+    - On the `backend` service page, click on the `[embedded]` database under the `Topology` section to open the database service page. 
+    ![image](img/lab1-pick-db-upd.png)
 
 2. Review the Database screen
     - The sample application uses an <a href="http://hsqldb.org/" target="_blank">In memory Java relational database</a>.  On this page you can explore the database process like
         1. What services call this database
         1. Database availability
         1. View individual SQL statements
-        1. Custom metric analysis 
-        ![image](img/lab1-database.png)
+        1. Various Database metric  
+        ![image](img/lab1-database-upd.png)
 
 
 ## Technologies View
