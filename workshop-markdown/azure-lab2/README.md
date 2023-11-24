@@ -68,11 +68,16 @@ Over time, you can imagine that this sample application will be further changed 
 ## Deploy Kubernetes Dynatrace Operator
 Duration: 5
 
+<aside class="positive">
+Before starting this step, please ensure you completed the step in Lab 0 to <a href="/codelabs/azure-lab0/index.html?index=..%2F..azure#5"target="_blank">verify your AKS cluster was provisioned correctly!</a>
+
+</aside>
+
 One key Dynatrace advantage is ease of activation. OneAgent technology simplifies deployment across large enterprises and relieves engineers of the burden of instrumenting their applications by hand. As Kubernetes adoption continues to grow, it becomes more important than ever to simplify the activation of observability across workloads without sacrificing the deployment automation that Kubernetes provides. Observability should be as cloud-native as Kubernetes itself.
 
 In our workshop, we will install the Dynatrace Operator that streamlines lifecycle management.  You can read more about it here in this <a href="https://www.dynatrace.com/news/blog/new-dynatrace-operator-elevates-cloud-native-observability-for-kubernetes/" target="_blank"> Dynatrace Blog </a>
 
-Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the <a href="https://www.dynatrace.com/support/help/technology-support/container-platforms/kubernetes/monitor-kubernetes-environments/" target="_blank"> Dynatrace Doc</a> but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
+Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the <a href="https://docs.dynatrace.com/docs/setup-and-configuration/setup-on-k8s/installation" target="_blank"> Dynatrace Doc</a> but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
 
 
 ### Tasks to complete this step
@@ -97,15 +102,15 @@ Organizations will often customize the Dynatrace Operator installation and you c
          cd ~/azure-modernization-dt-orders-setup/gen
          ```
       1.8. Next, copy the commands from the `Monitor Kubernetes / Openshift`  configuration page of Dynatrace UI or from below to continue with the Kuberentes Operator Install steps.
-
+      
          ```
-         kubectl create namespace dynatrace
-         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.7.2/kubernetes.yaml
-         kubectl -n dynatrace wait pod --for=condition=ready -l internal.dynatrace.com/app=webhook --timeout=300s
-         kubectl apply -f dynakube.yaml
+            kubectl create namespace dynatrace |      
+            kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.13.0/kubernetes.yaml |
+            kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s |
+            kubectl apply -f dynakube.yaml  
          ```
          <aside class="negative">
-            If you receive any errors running the commands above, please ensure you're in the `/azure-modernization-dt-orders-setup/gen` folder as highlighted in step 1.7 above.
+            If you receive any errors running the commands above, please ensure you're in the `~/azure-modernization-dt-orders-setup/gen` folder as highlighted in step 1.7 above.
          </aside>
 
          <aside class="positive"> 
@@ -317,34 +322,35 @@ In this step we will walk through the different Dynatrace dashboards that are av
 
       </aside>
 
-2. Review Kubernetes Dashboards are accessible from the left-side menu in Dynatrace choose `Kubernetes` and navigate to the Kubernetes cluster page as shown below: <br>
+2. Review Kubernetes Dashboards are accessible from the left-side menu in Dynatrace choose `Infrastructure -> Kubernetes` and navigate to the Kubernetes cluster page as shown below: <br>
       📓**Note:** Be sure that your management zone is NOT filtered!**
 
-      ![image](img/lab2-k8s-layers.png)
+      ![image](img/lab2-k8s-layers-upd.png)
 
-      **1 - Kubernetes cluster** - A summary the Kubernetes cluster is shown at the top of the Kubernetes dashboard.<br>
+      **1 - Kubernetes cluster** - A summary the Kubernetes cluster metrics are shown on the right.<br>
 
       **2 - Nodes** - The resources for the Cluster are summarized for the one-to-many hosts or Cluster nodes in this view.
-      Explore specific node in the Node Analysis section, pick the analyze nodes button.
-      ![image](img/lab4-aks-nodeutiliz.png)
+      To explore specific node metrics in the `Node Analysis`` section, click into the cluster scroll to that section on the right.
+      ![image](img/lab2-aks-nodeutiliz.png)
 
       **3 - Namespaces** - Namespaces are ways to partition your cluster resources to run multiple workloads (for example `application A` and `application B` workloads) on same cluster
-      1.	This workload section shows workloads over time
-      2.	In the Cluster workload section, pick the view all workloads button.
-            ![image](img/lab4-aks-workload.png)
+      1.	This `Namespace analysis` section shows workloads metrics over time
+            ![image](img/lab2-aks-namespace.png)
+      2.	In the `Namespace Analysis` section, pick the view all `staging` namespace.
+            
       - In the filter, pick namespace then staging
-            ![image](img/lab4-aks-workload-filter.png)
+            ![image](img/lab2-aks-staging-filter.png)
 
       **4 - Kubernetes workload**
       - Pick the frontend to drill into.
-         ![image](img/la4-aks-kubeworkload.png)
+         ![image](img/la2-aks-kubeworkload.png)
       - Review the workload overview page to look at various metrics related to the workload.
       - Click on Kubernetes POD to look at POD utilization metrics.
-         ![image](img/lab4-aks-frontend-workload.png)
+         ![image](img/lab2-aks-frontend-workload.png)
 
       **5 - POD** - Review the POD overview page to look at various metrics related to the POD
       - Click on Container next to look at container metrics      
-         ![image](img/lab4-aks-pod.png)
+         ![image](img/lab2-aks-pod.png)
        
 
       **6 - Containers** - Referring to the diagram above, expand the properties and tags section to view:
@@ -352,14 +358,14 @@ In this step we will walk through the different Dynatrace dashboards that are av
       - Kubernetes information
       - In the info graphic, pick the service to open the services list
       - In the service list, click on k8-frontend service
-      ![image](img/lab4-aks-container.png)
+      ![image](img/lab2-aks-container.png)
 
-      - Next click on 2 Services Icon to review the services running inside the container
-      - Select the active front-end service.
+      - Under the `process analysis` section, click on 2nd `staging-frontend` Proces Icon to review the services running inside the container
+       
       
-      **7 - Service** - This view should now look familiar. In Lab 1, we looked at the service for the frontend and backend.  Notice how the Kubernetes information is also available in the service properties.  
-            ![image](img/aks-layer7-service.png)
-      
+      **7 - Service** - This view should now look familiar. In Lab 1, we looked at the service for the frontend and backend.  
+            ![image](img/aks-layer7-service-upd.png)
+            📓**Note:** If you expand the `Properties and Tag` Section, you'll notice the various Kubernetes information that is also available for this service.
 
 ## Analyze Service Backtrace on Kubernetes
 Duration: 5
@@ -390,10 +396,10 @@ The service flow and service backtrace give you a complete picture of interdepen
          ![image](img/lab4-k8-service-filter.png)
    * On this service, we can quickly review the inbound and outbound dependencies.
    * Referring to the picture, within the services infographic, click on the "services" square to get a list of the services that the order service calls.
-         ![image](img/lab4-k8-service-view-mod.png)
+         ![image](img/lab2-k8-service-view-mod.png)
 
 2. Review Backtrace View
-   * To see the backtrace page, just click on the Analyze Backtrace button.
+   * To see the backtrace page, scroll down to the `Topology` section just click on the `View Backtrace` button.
    * You should be on the service backtrace page where you will see information for this specific service.
    * This will get more interesting in the next lab, but for the monolith backend, we can see that the backtrace is as follows:
       1. The starting point is the backend
@@ -415,8 +421,8 @@ In this step we will walk through the Service Flow view within Dynatrace  and se
          ![image](img/lab4-k8-mgmtzone-filter.png)
    * Pick the ``` frontend ``` service.
          ![image](img/lab4-k8-frontendservice-filter.png)
-   * Just click on the view service flow button to open this.
-         ![image](img/lab4-serviceflow.png) 
+   * Just click on the `service flow` button to open this.
+         ![image](img/lab2-serviceflow.png) 
 
 2. Analyze Services view from Response time perspective
    - You should now be on the Service flow page.
