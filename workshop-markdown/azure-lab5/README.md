@@ -70,9 +70,9 @@ In this step we'll create a very basic SLO dashboard to compare the before and a
         ![image](img/lab4-dashboard.png)
 
     - Provide a dashboard name like `Cloud Migration Success`
-    - On the blank dashboard page, click the settings.  Then click the `advanced settings` link to open then settings page
+    - On the blank dashboard page, click the settings.  Then click the `Configure more` link to open then settings page
 
-        ![image](img/lab4-dashboard-settings.png)
+        ![image](img/lab4-dashboard-settings-upd.png)
 
     - Referring to this picture, follow these steps:
         * On the settings page, click the `dashboard JSON` menu.
