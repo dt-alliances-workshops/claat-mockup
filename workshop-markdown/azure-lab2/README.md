@@ -69,7 +69,7 @@ Over time, you can imagine that this sample application will be further changed 
 Duration: 5
 
 <aside class="positive">
-Before starting this step, please ensure you completed the step in Lab 0 to <a href="/codelabs/azure-lab0/index.html?index=..%2F..azure#5"target="_blank">verify your AKS cluster was provisioned correctly!</a>
+Before starting this step, please ensure you completed the `Step 6` in `Lab 0` to <a href="/codelabs/azure-lab0/index.html?index=..%2F..azure#5"target="_blank"> `Verify AKS cluster is provisioned` correctly!</a>
 
 </aside>
 
@@ -104,22 +104,27 @@ Organizations will often customize the Dynatrace Operator installation and you c
       1.8. Next, copy the commands from the `Monitor Kubernetes / Openshift`  configuration page of Dynatrace UI or from below to continue with the Kuberentes Operator Install steps.
       
          ```
-            kubectl create namespace dynatrace |      
-            kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.13.0/kubernetes.yaml |
-            kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s |
-            kubectl apply -f dynakube.yaml  
+         kubectl create namespace dynatrace       
+         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.13.0/kubernetes.yaml 
+         kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s 
+         kubectl apply -f dynakube.yaml  
          ```
          <aside class="negative">
             If you receive any errors running the commands above, please ensure you're in the `~/azure-modernization-dt-orders-setup/gen` folder as highlighted in step 1.7 above.
          </aside>
 
-         <aside class="positive"> 
-         When we run the `kubectl` commands above, it does the following: <br>
-            - Creates a namespace called `dynatrace` in your cluster containing the Dynatrace Operator supporting pods<br>
-            - Setup the OneAgent on each of the cluster nodes as to provide full-stack Dynatrace monitoring<br>
-            - Setup a Dynatrace ActiveGate that runs as a container in the `dynatrace` namespace that is used in the polling of Kubernetes API<br>
-            - Enables preset out-of-the-box Kubernetes dashboards that will be populated with the Kubernetes data pulled from the API<br>
-         </aside>
+   <aside class="positive"> 
+      When we run the `kubectl` commands above, it does the following:<br>
+            - Creates a namespace called `dynatrace` in your cluster containing the Dynatrace Operator supporting pods <br>
+            - Setup the OneAgent on each of the cluster nodes as to provide full-stack Dynatrace monitoring <br>
+            - Setup a Dynatrace ActiveGate that runs as a container in the `dynatrace` namespace that is used in the polling of Kubernetes API <br>
+            - Enables preset out-of-the-box Kubernetes dashboards that will be populated with the Kubernetes data pulled from the API <br>
+            - Creates a namespace called `dynatrace` in your cluster containing the Dynatrace Operator supporting pods <br>
+            - Setup the OneAgent on each of the cluster nodes as to provide full-stack Dynatrace monitoring <br>
+            - Setup a Dynatrace ActiveGate that runs as a container in the `dynatrace` namespace that is used in the polling of Kubernetes API <br>
+            - Enables preset out-of-the-box Kubernetes dashboards that will be populated with the Kubernetes data pulled from the API <br>
+
+   </aside>
 
    2. Once the commands above run sucessfully, then monitor the installation until all the pods are in `Running` state.
 
@@ -335,7 +340,7 @@ In this step we will walk through the different Dynatrace dashboards that are av
 
       **3 - Namespaces** - Namespaces are ways to partition your cluster resources to run multiple workloads (for example `application A` and `application B` workloads) on same cluster
       1.	This `Namespace analysis` section shows workloads metrics over time
-            ![image](img/lab2-aks-namespace.png)
+            ![image](img/lab2-aks-namespace-upd.png)
       2.	In the `Namespace Analysis` section, pick the view all `staging` namespace.
             
       - In the filter, pick namespace then staging

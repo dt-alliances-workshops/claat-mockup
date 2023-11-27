@@ -203,11 +203,9 @@ Very quickly you have seen what processes and services are running on a host AND
             * Click to view the Process specific metrics
         1. Did you notice Docker??
         ![image](img/lab1-process-view.png)
-            <aside class="positive"> 📓  Dynatrace automatically recognizes many common processes like Tomcat and will capture process specific metrics such as JVM garbage collection. See a list of supported technologies, languages and containers in the [Dynatrace documentation](https://www.dynatrace.com/support/help/technology-support/supported-technologies-and-versions) </aside>
+            <aside class="positive"> 📓  Dynatrace automatically recognizes many common processes like Tomcat and will capture process specific metrics such as JVM garbage collection. See a list of supported technologies, languages and containers in the <a href="https://docs.dynatrace.com/docs/setup-and-configuration/technology-support" target="_blank"> Dynatrace documentation</a> </aside>
 
-            <aside class="positive"> 📓 
-            
-            `Dynatrace and containers`
+            <aside class="positive"> 📓`Dynatrace and containers`
 
             In the picture above, the arrow shows the properties for Docker.
 
@@ -220,7 +218,7 @@ Very quickly you have seen what processes and services are running on a host AND
             There’s no need to modify your Docker images, modify run commands, or create additional containers to enable Docker monitoring. Simply install OneAgent on your hosts that serve containerized applications and services. Dynatrace automatically detects the creation and termination of containers and monitors the applications and services contained within those containers. </aside>
 
             <aside class="positive"> 📓
-            You can read more about Dynatrace Docker Monitoring [here](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/basic-concepts/how-dynatrace-monitors-containers/) and technical details [here](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/monitoring/monitor-docker-containers) </aside>
+            You can read more about Dynatrace Docker Monitoring <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/other-platforms/docker/basic-concepts/how-dynatrace-monitors-containers/" target="_blank"> here </a> and technical details <a href="https://docs.dynatrace.com/docs/platform-modules/infrastructure-monitoring/container-platform-monitoring/docker-monitoring" target="_blank"> here</a> </aside>
 
 2. Review the data on the Services screen
     - Now Let’s review a specific service.
@@ -276,9 +274,7 @@ We just saw one way to review process and service communication, but let’s loo
 
 👍 `How this helps`
 
-As you plan your migration, it is important to gain a complete picture of interdependency to the rest of the environment architecture at host, processes, services, and application perspectives. Since time is always scarce, being able to do this in a single place can shorten assessment timelines.
-
-Knowing the type of access, executed statements, and amount of data transferred during regular hours of operation allows for better planning and prioritization. 
+Knowing the type of downstream services called, executed statements, and amount of data transferred during regular hours of operation allows for better planning and prioritization. 
 </aside>
 
 ### Tasks to complete this step
@@ -320,20 +316,20 @@ The backtrace tree view represents the sequence of services that led to this ser
 Using the service flow and service backtrace, these two tools give you a complete picture of interdependency to the rest of the environment architecture at host, processes, services, application perspectives.  </aside>
 
 ### Tasks to complete this step
-#### Review the Service Backtrace 
+1. Review the Service Backtrace 
 - Click on the `Services` left side Dynatrace menu.
 - Pick the `backend` service.
 ![image](img/lab1-trans-services-db.png)
 - On the `backend` service, click on the `Analyze Backtrace` button.
 ![image](img/lab1-service-backtrace-arrow-upd.png)
 
-<aside class="positive"> 📓 You should be on the service backtrace page where you will see information for this specific service. </aside>
+    <aside class="positive"> 📓 You should be on the service backtrace page where you will see information for this specific service. </aside>
 
-<aside class="positive">📓 If you click on any of the rows in the backtrace, the bottom portion of the page will expand.
+    <aside class="positive">📓 If you click on any of the rows in the backtrace, the bottom portion of the page will expand.
 
-![image](img/lab1-service-backtrace-arrows.png) 
+    ![image](img/lab1-service-backtrace-arrows.png) 
 
-</aside>
+    </aside>
 
 <aside class="positive"> 📓 This will get more interesting in the next lab, but for the monolith backend, we can see that the backtrace is as follows:<br>
 1. The starting point is the `backend`  <br>

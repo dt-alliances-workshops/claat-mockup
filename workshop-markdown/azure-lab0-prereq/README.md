@@ -34,10 +34,10 @@ At least 24-48 hours before the workshop, you've received an email similar to th
 
 ### Tasks to complete this step
 
-1) Task - Login to your DT Environment
+1) Login to your DT Environment
     - Click on the link within the email you've received at your corporate account to setup your password for the Dynatrace environment.
     - Once your password is setup, login to your <a href="https://syh360.dynatrace-managed.com/">Dynatrace environment</a>.
-    - <b>Note:</b>  Your login ID is your corporate email address
+      - <b>📓Note:</b>  Your login ID is your corporate email address
 
 
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
@@ -206,7 +206,7 @@ _The Dynatrace configuration scripts use a combination of [Dynatrace Monitoring 
 4. While inside the Workshop Provisioning dashboard page, click on edit
 ![image](img/dt-provision-dashboard-edit.png)
 5. Select the tile that has provisioning command
-![image](img/dt-copy-command.png)
+![image](img/dt-copy-command-1.png)
 6. Copy ALL the text from the Markdown text on the right. You will paste this in the Azure cloud shell as the next step.
 
 7. Return back to the window where you have the Azure Cloud shell open
