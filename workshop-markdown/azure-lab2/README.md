@@ -119,11 +119,6 @@ Organizations will often customize the Dynatrace Operator installation and you c
             - Setup the OneAgent on each of the cluster nodes as to provide full-stack Dynatrace monitoring <br>
             - Setup a Dynatrace ActiveGate that runs as a container in the `dynatrace` namespace that is used in the polling of Kubernetes API <br>
             - Enables preset out-of-the-box Kubernetes dashboards that will be populated with the Kubernetes data pulled from the API <br>
-            - Creates a namespace called `dynatrace` in your cluster containing the Dynatrace Operator supporting pods <br>
-            - Setup the OneAgent on each of the cluster nodes as to provide full-stack Dynatrace monitoring <br>
-            - Setup a Dynatrace ActiveGate that runs as a container in the `dynatrace` namespace that is used in the polling of Kubernetes API <br>
-            - Enables preset out-of-the-box Kubernetes dashboards that will be populated with the Kubernetes data pulled from the API <br>
-
    </aside>
 
    2. Once the commands above run sucessfully, then monitor the installation until all the pods are in `Running` state.
