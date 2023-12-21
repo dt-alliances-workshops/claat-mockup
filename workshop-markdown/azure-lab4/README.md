@@ -89,8 +89,8 @@ These metrics are managed by Dynatrace's AI engine automatically and this extend
 
 </aside>
 
-## Custom Alerting Setup
-Duration: 7
+## Custom Metric Event Setup
+Duration: 3
 
 Dynatrace Davis automatically analyzes abnormal situations within your IT infrastructure and attempts to identify any relevant impact and root cause. Davis relies on a wide spectrum of information sources, such as a transactional view of your services and applications, as well as on events raised on individual nodes within your Smartscape topology.
 
@@ -101,37 +101,44 @@ events that are independent of any metric (for example, process crashes, deploym
 * Custom metric events are configured in the global settings of your environment and are visible to all Dynatrace users in your environment.
 
 ### Tasks to complete this step
-1. Setup Custom Events for Alerting
-    * To add custom alerts, navigate to `Settings --> Anomaly Detection --> Custom Events for Alerting` menu. 
-    * Click the `Create custom event for alerting` button.
-            ![image](img/lab4-alert-create.png)
-    * In the `Category` dropdown list, select `Cloud Platform` and in the `Metric` dropdown list, type `Percentage CPU` and pick the `Cloud platforms > Azure > Virtual Machine > cpuUsage` option and Pick `Average`
-    ![image](img/lab4-vm-alert.png)
+1. Setup Custom Metric Events for Alerting
+    * To add custom alerts, navigate to `Settings --> Anomaly Detection --> Metric Events` menu. 
+    * Click the `Add metric Event` button.
+            ![image](img/lab4-alert-create-upd.png)
+    * Fill in the below information on the `Add metric event` template
+        1.  Summary:  `CPU % percentage`
+        2.  Type:  `Metric key` from dropdown
+        3.  Metric key `Azure CPU usage` from dropdown
+            ![image](img/lab4-vm-alert-upd.png)
+            <aside class="positive"> 💡There are similar CPU percentage metrics, please make sure you select the right one </aside>
+        4.  Agregation `Average` from dropdown
+        5.  Management zone `dt-orders-monolith`
+        6.  under `Entities` click on `>` to see `Advanced dimension definition` and select `Azure VM` from dropdown
+            ![image](img/lab4-dimentions-key.png)
+        7.  Dymension filter click on `Add dimension filter` and select as shown below.
+                ![image](img/lab4-adddimensionfilter.png)
+        8.  under Monitoring strategy section select as shown.
+            ![image](img/lab4-monotoringstrategy.png)
+        9.  select the `>` next to `Advanced model properties` and input as shown.
+            ![image](img/lab4-advancedmodelproperties.png)
+        10. In the `Event template` section add:
+            1. Title:  `CPU CUSTOM ALERT`
+            2. Event type from dropdown:  `Custom alert`
+            3. Dimension key of entity for events select `Azure VM` from dropdown
+                ![image](img/lab4-keydimensionofentity.png)
+        11. click on `Save Changes`        
 
-        <aside class="positive"> 💡There are similar CPU percentage metrics, please make sure you select the right one </aside>
-
-    * Click `Add rule-base` button and update as shown below
-        ![image](img/lab4-custom-alert-filter.png)
-
-    * Choose `Static threshold` and update as shown below
-        ![image](img/lab4-custom-alert-threshold.png)
-
-    * Add the `Event Description` to have the `title` and `severity = CUSTOM ALERT` as shown below.
-        ![image](img/lab4-custom-alert-message.png)
-
-        ℹ️ Notice the `Alert preview` chart that helps you in reviewing these settings
-
-        ![image](img/lab4-vm-alert-chart.png)
-
-    * Save your changes
-
-    * Add another rule, with everything the same, except for the `Event Description` to have the `title` and `severity = RESOURCE` as shown below.
-        ![image](img/lab4-custom-resource-message.png)
+    *  Add another rule, with everything the same, except for the Event Description to have the title as `CPU Resource Alert` and Event type = `RESOURCE` as shown below.
+        ![image](img/lab4-resource-alert-eventtemplate.png)    
 
     * Save your changes and the list should look as shown below.
-        ![image](img/lab4-custom-alert-list.png)
+        ![image](img/lab4-custom-alert-list-upd.png)
 
-2. Trigger a CPU Problem
+## Trigger CPU Problem on VM
+Duration: 3
+
+### Tasks to complete this step
+1. Trigger a CPU Problem
     * To enable a problem, you will go into the Azure Portal UI and use the `Run Command` feature to start a shell script.
     * From the Azure Portal, search for `dt-orders-monlith` VM from the search menu and select it.
         ![image](img/lab4-monolith-vm-search.png)      
@@ -151,14 +158,14 @@ events that are independent of any metric (for example, process crashes, deploym
         ![image](img/lab4-monolith-vm-runcmd-output.jpg)
     
 
-3. Review Dynatrace UI for Problem card
+1. Review Dynatrace UI for Problem card
     * Back in Dynatrace within the `host` view, the CPU should now be high as shown below
 
-        ![image](img/lab4-cpu.png)
+        ![image](img/lab4-cpu-upd.png)
 
     * It may take a minute or so, but you will get two problem cards as shown below.  #1 is the alert from the `severity = RESOURCE` where Davis was invoked, and #2 is the alert from `severity = CUSTOM ALERT`.
 
-        ![image](img/lab4-custom-alert-problems.png)
+        ![image](img/lab4-custom-alert-problems-upd.png)
 
         <aside class="positive">💻📓 Look at the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank"> Dynatrace Docs </a> for more details on the setup.
 
@@ -179,7 +186,7 @@ events that are independent of any metric (for example, process crashes, deploym
         -  Now add one, by clicking on the `Add alerting profile` button
         -  Review the options to choose severity rules and filters
 
-4. Stop the CPU problem
+1. Stop the CPU problem
     * To stop the problem, we will use the same `Run Command` feature in Azure Portal to execute stop shell script.
     * From the Azure Portal, search for `dt-orders-monlith` VM from the search menu and select it.
         ![image](img/lab4-monolith-vm-search.png)      

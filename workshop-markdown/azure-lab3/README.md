@@ -28,7 +28,7 @@ In this lab, we will trigger a few problem and see how troubleshooting time is S
 
 ## Review Events & Tags in Dynatrace
 
-Before we get to the problems, let's review <a href="https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events/post-event/" target="_blank"> Dynatrace Information Events</a>.
+Before we get to the problems, let's review <a href="https://docs.dynatrace.com/docs/dynatrace-api/environment-api/events-v2/post-event" target="_blank"> Dynatrace Information Events</a>.
 
 Dynatrace information events enable continuous delivery tools, such as Azure DevOps, to provide additional details for Dynatrace. Here is an example of two informational events for deployment and performance testing being be sent to Dynatrace.
 
@@ -72,7 +72,7 @@ Here is an example of a typical events API call. You do not need to executed thi
 
 ```
 curl -X POST \
-  https://mySampleEnv.live.dynatrace.com/api/v1/events \
+  https://mySampleEnv.live.dynatrace.com/api/v2/events/ingest\
   -H 'Authorization: Api-token abcdefjhij1234567890' \
   -H 'Content-Type: application/json' \  
   -d '{
@@ -158,15 +158,15 @@ In this step we are going to "simulate" a deployment of new version of the `back
 
 4. Analyze problem - top findings        
     1. Here you can see how Dynatrace automatically analyzes the problem and lets you know whether the problem is related to code, waiting, or other services and queues.
-    1. Click in the `active wait time` line with the top findings to open the execution time breakdown detail.
-      ![image](img/lab3-backend-analysis.png)
+    1. Click in the `code execution` line with the top findings to open the execution time breakdown detail.
+      ![image](img/lab3-backend-analysis-upd.png)
 
 5. Analyze problem - execution time breakdown
     - Dynatrace automatically shows the breakdown of the execution time.  To see more, click the `View method hotspots` button.
-      ![image](img/lab3-backend-hotspots.png)
+      ![image](img/lab3-backend-hotspots-upd.png)
 
 6. Analyze problem - hot spots
-    - Here the code call breakdown is shown and by expanding this tree, you can locate the method where the slow down is occurring.
+    - Here the code hierarchy breakdown is shown and by expanding this tree, you can locate the method where the slow down is occurring.
     <aside class="positive"> 
 
     **📓 You will need to expand several stack frames to get to method causing the slow down.** 
@@ -178,8 +178,8 @@ In this step we are going to "simulate" a deployment of new version of the `back
     - From the breadcrumb menu, click on the `backend` to open the service page.
       ![image](img/lab3-backend-breadcrumb.png)
 
-    - Then click on the response time box in the Dynamic web requests section to open the service details page.  You can see exactly when the problem started.
-      ![image](img/lab3-backend-problem-details.png)
+    - You can see exactly when the problem started.
+      ![image](img/lab3-backend-problem-details-upd.png)
 
 8. Disable the problem pattern
   * From the Azure shell run these commands to set the version back to version 1
@@ -268,13 +268,9 @@ In this step we are going to "simulate" another deployment of new version of the
 
           ![image](img/lab3-order-menu.png)
 
-      - On this page, notice the failure rate.  
-
-          ![image](img/lab3-order-problem-service.png)
-
       - Then click on the failure rate box to open the service details page.  You can see exactly when the problem started.
 
-          ![image](img/lab3-order-problem-requests.png)
+          ![image](img/lab3-order-problem-requests-upd.png)
 
 7. Disable the Problem Pattern
     * From the Azure shell run these commands to set the version back to version 1
