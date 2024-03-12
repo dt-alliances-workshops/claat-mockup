@@ -1,6 +1,6 @@
 id: aws-lab0 immersion-day
 categories: modernization,kubernetes,serverless
-tags: aws-immersion-day
+tags: aws-immersion-day, aws-immersion-day-serverless
 status: Published
 
 # AWS Lab 0 - Introduction and Setup

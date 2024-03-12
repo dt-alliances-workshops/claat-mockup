@@ -1,6 +1,6 @@
 id: aws-lab11-serverless-setup
-categories: kubernetes,SAAS,serverless,all
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+categories: kubernetes,serverless,saas,all
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-saas,aws-immersion-day-serverless
 status: Published
 
 # AWS Lab 11 - Modernization with AWS Serverless Lambda

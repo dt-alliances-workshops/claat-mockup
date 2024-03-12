@@ -1,6 +1,6 @@
 id: aws-lab12-serverless observability
-categories: kubernetes,SAAS,serverless
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+categories: kubernetes,serverless,saas,all
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-saas,aws-immersion-day-serverless
 status: Published
 
 # AWS Lab 12 - Serverless Observability with Dynatrace
@@ -39,7 +39,7 @@ Next we will move back to the AWS console to complete the instrumentation.
 
 ![image](img/cwLambdaLink.png)
 
-### Lambda and Dynatrace Service Flow
+## Lambda and Dynatrace Service Flow
 
 Now that you have 1 of your Lambdas instrumented with the power of the Dynatrace OneAgent lets continue to dive into the DT Orders application and look to see how this Modernization has impacted our environment. 
 
@@ -59,7 +59,7 @@ Take a look at the service flow once again to see some interresting information.
 
 ![image](img/catalogdServiceFlow.png)
 
-### Lambda and Dynatrace Distributed Tracing
+## Lambda and Dynatrace Distributed Tracing
 Now we will look at this information from a different angle and dive into the requests that are transacting.
 
 In the `service flow` page click over the box for the `servervlessDBActions` and select the `filter` icon. This will isolate the calls that start in the `frontend` service and end with our Lambda function.  
@@ -100,6 +100,6 @@ With the OTEL instrumentation for the Lambda function we are now able to analyze
 ### 💥 **TECHNICAL NOTE**``
 *Dive into OpenTelemetry with AWS Lambda and see how it transforms the game. It's like having a superpower for spotting exactly how your serverless apps are doing, making it a breeze to tune them up for speed and reliability. You get to fix issues faster, save on resources, and keep your users smiling, all with one clever tool.*
 
-### Parting Words
+## Parting Words
 
 And there is much more to see that the Dynatrace platform can offer that we didnt have time to talk about.  We hope that in future workshops we will be able to continue to bring you more content as we at Dynatrace strive to define what it means to have "Cloud Done Right"
