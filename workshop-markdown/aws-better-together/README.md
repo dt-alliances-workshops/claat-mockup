@@ -1,5 +1,5 @@
 id: aws-dynatrace-better-together
-categories: modernization,kubernetes
+categories: modernization,kubernetes,serverless
 tags: aws-selfpaced,aws-immersion-day,aws-immersion-day-SAAS
 status: Published
 

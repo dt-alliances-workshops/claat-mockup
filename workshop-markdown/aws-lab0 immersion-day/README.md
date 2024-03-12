@@ -1,5 +1,5 @@
 id: aws-lab0 immersion-day
-categories: modernization,kubernetes
+categories: modernization,kubernetes,serverless
 tags: aws-immersion-day
 status: Published
 

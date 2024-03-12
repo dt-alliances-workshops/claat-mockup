@@ -1,5 +1,5 @@
 id: aws-lab7
-categories: kubernetes,SAAS
+categories: kubernetes,SAAS,serverless
 tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
 status: Published
 
@@ -335,4 +335,4 @@ In this section, you should have completed the following:
 
 ✅ Review how the sample application went from a simple architecture to multiple services 
 
-✅ Examine the transformed application using service flows and backtraces 
+✅ We examined the transformed application using service flows and backtraces 
