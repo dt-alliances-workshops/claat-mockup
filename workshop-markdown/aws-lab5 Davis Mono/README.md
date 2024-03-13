@@ -1,6 +1,6 @@
 id: aws-lab5
 categories: modernization,SAAS
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-saas
 status: Published
 
 # AWS Lab 5 - Davis AI

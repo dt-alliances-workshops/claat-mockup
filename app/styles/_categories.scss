@@ -74,11 +74,15 @@ $color-weave-green: #0f9d58;
   }
 }
 
-/* Need to add for each category name the view.json files */
+/* Need to add for each category name the view.json files
+   please ensure that the icon is in the images/icons folder
+   and the directory/view.json is in the vuews folder */ 
 @include codelab-card(['modernization'], #455a64, 'modernization.png');
 @include codelab-card(['kubernetes'], #455a64, 'kubernetes.png');
 @include codelab-card(['aws-immersion-day'], #455a64, 'aws-immersion-day.png');
+@include codelab-card(['aws-immersion-day-jp'], #455a64, 'aws-immersion-day.png');
 @include codelab-card(['aws-immersion-day-saas'], #455a64, 'aws-immersion-day.png');
+@include codelab-card(['dynatrace-saas-prereq'], #455a64, 'aws-immersion-day.png');
 @include codelab-card(['aws-selfpaced'], #455a64, 'aws-immersion-day.png');
 @include codelab-card(['openshift'], #455a64, 'openshift.png');
 @include codelab-card(['azure'], #455a64, 'azure.png');

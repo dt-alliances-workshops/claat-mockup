@@ -1,6 +1,6 @@
 id: aws-dynatrace-better-together
 categories: modernization,kubernetes
-tags: aws-selfpaced,aws-immersion-day,aws-immersion-day-SAAS
+tags: aws-selfpaced,aws-immersion-day,aws-immersion-day-saas
 status: Published
 
 # AWS & Dynatrace - Better Together
