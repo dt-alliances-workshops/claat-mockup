@@ -1,0 +1,16 @@
+{
+  "title": "AWS Immersion Day Serverless",
+  "dropdownName": "AWS immersion day Serverless",
+  "description": "Instructor guided, tutorial-based hands-on learning experience that is delivered jointly with AWS.",
+  "contact": "Email alliances@dynatrace.com for more questions and feedback.",
+  "tags": ["aws-immersion-day-serverless"],
+  "categories": [""],
+  "exclude": [
+    "^lang-.*"
+  ],
+  "logoUrl": "/images/icons/aws-logo.png",
+  "logoSizePct":"10%",
+  "toolbarBgColor": "#1e6022",
+  "sort": "mainCategory",
+  "pins": []
+}

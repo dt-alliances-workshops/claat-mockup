@@ -335,4 +335,4 @@ In this section, you should have completed the following:
 
 ✅ Review how the sample application went from a simple architecture to multiple services 
 
-✅ Examine the transformed application using service flows and backtraces 
+✅ We examined the transformed application using service flows and backtraces 
