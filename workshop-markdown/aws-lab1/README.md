@@ -1,6 +1,6 @@
 id: aws-lab1
 categories: modernization,SAAS
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-saas
 status: Published
 
 

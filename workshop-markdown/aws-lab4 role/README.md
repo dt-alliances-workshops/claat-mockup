@@ -1,6 +1,6 @@
 id: aws-lab4 AWS CloudWatch Integration
 categories: SAAS
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS 
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-saas 
 status: Published
 
 # AWS Lab 4 - AWS CloudWatch Integration

@@ -1,6 +1,6 @@
 id: aws-lab9
 categories: SAAS,kubernetes
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-saas
 status: Published
 
 # AWS Lab  9 - Davis AI for Kubernetes

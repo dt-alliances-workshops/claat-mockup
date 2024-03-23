@@ -115,11 +115,17 @@ docker run -it \
 -v ${PWD}/dist:/usr/src/app/dist-final \
 -v ${PWD}/app/views/aws-immersion-day-jp/view.json:/usr/src/app/app/views/aws-immersion-day-jp/view.json \
 -v ${PWD}/app/views/azure/view.json:/usr/src/app/app/views/azure/view.json \
--v ${PWD}/app/views/aws-immersion-day-SAAS/view.json:/usr/src/app/app/views/aws-immersion-day-SAAS/view.json \
+-v ${PWD}/app/views/aws-immersion-day-saas/view.json:/usr/src/app/app/views/aws-immersion-day-saas/view.json \
 -v ${PWD}/app/views/Dynatrace-SAAS-Prereq/view.json:/usr/src/app/app/views/Dynatrace-SAAS-Prereq/view.json \
 -v ${PWD}/app/styles/_categories.scss:/usr/src/app/app/styles/_categories.scss mvilliger/workshop-builder:0.4 \
 && ./shell-test-script.sh
 ```
+
+Given that the above can fail quite often and is often resolved just by attempting to build a few times, we have the following script to help with that:
+
+```./build-until-pass.sh```
+
+This script will attempt to build the content until it passes, up to 20 times before giving up.
 
 ## Serve dist content in Docker
 
