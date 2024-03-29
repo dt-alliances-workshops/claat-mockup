@@ -6,7 +6,7 @@ status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 
-# Azure Workshop Lab 1 - Dashboards & Notebooks
+# Azure Workshop Lab 3 - Dashboards & Notebooks
 
 ## Getting started with Dashboards
 
