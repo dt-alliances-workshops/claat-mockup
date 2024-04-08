@@ -1,6 +1,6 @@
-summary: Dynatrace Workshop on Azure Grail Lab2
-id: azure-azure-lab2
-categories: modernization,kubernetes,grail,all
+summary: Dynatrace Workshop on Azure Grail Lab1
+id: azure-azure-lab1
+categories: modernization, kubernetes, grail, all
 tags: azure
 status: Published
 authors: Jay Gurbani
