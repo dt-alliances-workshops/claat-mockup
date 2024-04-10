@@ -1,12 +1,12 @@
 summary: Dynatrace Workshop on Azure Grail Introduction
 id: azure-grail-lab0
-categories: modernization, kubernetes, grail, all
+categories: modernization,kubernetes,grail,all
 tags: azure
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 
-# Azure Workshop Lab 0 - Setup
+# Azure Grail Workshop Lab 0 - Setup
 
 ## Learning Objectives
 
@@ -171,6 +171,76 @@ Duration: 4
 
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
+## Create Dynatrace Access Token
+
+All we wanted to do here, is quickly get a Dynatrace token and save it for use in the Lab setup.  To capture the token, follow these steps:
+
+1. Login into Dynatrace
+
+1. From the Left menu, click Apps -> Choose the `Access Tokens` app. 
+
+  ![image](img/dt-access-token.png)
+
+1. On the Access token page, click the `Generate new token` button
+
+1. On the new token page, Enter a name like `azure-workshop`
+
+1. Add `Write API Tokens` to the scope.
+
+1. Click on Generate token button on the bottom.
+
+1. Since this token is only shown once and you will need it in the next labs, copy this value to a local TEXT file before you leave this page. (For example Notepad, Notepad++, Notes.app)
+
+  ![image](img/dt-tokens-page-save.png)
+
+1. You will use this token in the next step as you setup the lab resources.
+
+## Collect Setup Script Inputs
+
+The next steps of this guide will have you gather various information from your Dynatrace environment needed to configure your environment and for the lab exercises.
+
+From your Dynatrace environment, you will capture:
+
+* Dynatrace Base URL
+* Dynatrace API token
+
+### 💥 **TECHNICAL NOTE**
+
+- The next set of steps assume that your Dynatrace tenant is fully provisioned and you are logged into it._
+
+### Capture Inputs Script
+
+In the code repo you cloned, there is a simple UNIX shell script that prompts for values and writes them to a file called `gen/workshop-credentials.json`. Later in the labs, there are a few other simple UNIX shell scripts that will automate the step that reads this file so that you don’t need to type or copy-paste these values over and over again during the workshop.
+
+The next section below instructs how to get the inputs values that you type or paste against the prompt one at a time. This is what the script will look like:
+
+```
+==================================================================
+Please enter your Dynatrace credentials as requested below: 
+Press <enter> to keep the current value
+===================================================================
+Dynatrace Base URL              (current: ) : 
+Dynatrace Access API Token      (current: ) : 
+Azure Subscription ID           (current: ) : 
+===================================================================
+```
+
+If you mess up, just click [enter] through the rest of the values and save it at the ending prompt.  You can then just re-run the script and the script will prompt you again to re-enter each value showing you each current value that it saved.
+
+### Lets begin
+
+1 . Run the input credentials Unix script
+
+```
+cd ~/azure-modernization-dt-orders-setup/provision-scripts
+./input-credentials.sh
+```
+
+### 💥 **TECHNICAL NOTE**
+- The `Base URL` will be in the Dynatrace tenant such as: https://[ENVIRONMENT ID].apps.dynatrace.com/.
+- The `Access API Token` will the token generated in the previous step.
+- The `Azure Subscription` ID will be Azure Portal -> Search for subscriptions at the top and select the `Azure Pass` subscription.
+
 ## Provision the workshop
 Duration: 15
 
@@ -182,11 +252,13 @@ The process to provision everything will take ~15-20 minutes.
 
 1 . Add Azure resources
 
-- Add a Resource Group for all the VMs named: `dynatrace-azure-modernize-workshop`
+- Add a Resource Group for all the VMs named: `dynatrace-azure-grail-modernize`
+<!--
 - Add Service Principal: `dynatrace-azure-modernize-workshop-sp` needed for the Azure monitor integration.
-- Add VM named: `dt-orders-monolith`. At startup, it installs Docker and the Dynatrace Orders application in the Monolith configuration. OneAgent is installed using Azure extension
 - Add VM named: `dt-orders-active-gate`. At startup, it installs the Dynatrace ActiveGate process needed for the Azure monitor integration.
-- Add Azure Kubernetes Cluster named `dynatrace-workshop-cluster`.
+-->
+- Add VM named: `dt-orders-monolith`. At startup, it installs Docker and the Dynatrace Orders application in the Monolith configuration. OneAgent is installed using Azure extension
+- Add Azure Kubernetes Cluster named `dynatrace-azure-grail-cluster`.
 
 2 . Set Dynatrace configuration
 
@@ -202,24 +274,20 @@ The process to provision everything will take ~15-20 minutes.
 _The Dynatrace configuration scripts use a combination of [Dynatrace Monitoring as Code](https://github.com/dynatrace-oss/dynatrace-monitoring-as-code) framework (a.k.a. monaco) and the [Dynatrace Configuration API](https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/) for those few Dynatrace configurations not yet supported by monaco._
 
 ### Tasks to complete this step
-1. Login to the Dynatrace UI
-2. From left side in Dynatrace, pick the dashboard menu
-3. On the Dashboard page, open the Workshop Provisioning dashboard.
-![image](img/dt-provision-dashboard-list.png)
-4. While inside the Workshop Provisioning dashboard page, click on edit
-![image](img/dt-provision-dashboard-edit.png)
-5. Select the tile that has provisioning command
-![image](img/dt-copy-command-1.png)
-6. Copy ALL the text from the Markdown text on the right. You will paste this in the Azure cloud shell as the next step.
+1. Open up Azure Cloud shell open
 
-7. Return back to the window where you have the Azure Cloud shell open
-8. Paste the full command and hit enter.  You should see a prompt similar to as one below.
+1. Copy the command from below and hit enter it into your Azure Cloud shell and hit enter.  
+    ```
+      ./provision-workshop.sh grail
+    ```
+
+1. You should see a prompt similar to as one below.
 
     ```
       ===================================================================
-      About to Provision Workshop for
-      Dynatrace Managed Server: https://name.dynatrace-managed.com/e/aaaaa-bbbb-ccccc-ddddd
-      SETUP_TYPE   = all
+      About to setup Dynatrace Grail Workshop
+      Dynatrace Server: https://name.live.dynatrace.com
+      SETUP_TYPE   = grail
       ===================================================================
       Proceed? (y/n) : 
     ```
@@ -249,7 +317,7 @@ Provisioning workshop resources COMPLETE
 1. Go back to the window where you have the Azure Portal screen open
 2. Search for `Resource Groups` from the search bar at the top
 ![image](img/pre-requisites-azure-portal-resources.png)
-3. Click on `Resource Groups`.  From the list of resource group select `dynatrace-azure-modernize-workshop`.
+3. Click on `Resource Groups`.  From the list of resource group select `dynatrace-azure-grail-modernize`.
 4. Once you within the resource group, you will see all of the different types of resources we've automatically provisionined for this workshop
 ![image](img/pre-requisites-azure-portal-resources-resourcelist.png)
 
@@ -267,10 +335,10 @@ Provisioning workshop resources COMPLETE
 1. Configure kubectl to connect to the new cluster by downloading the cluster credentials. 
 
     ```
-    az aks get-credentials --resource-group dynatrace-azure-modernize-workshop --name dynatrace-workshop-cluster
+    az aks get-credentials --resource-group dynatrace-azure-grail-modernize --name dynatrace-azure-grail-cluster
     ```
 
-1. Verify you are connected.  You should see `dynatrace-workshop-cluster` as the output.
+1. Verify you are connected.  You should see `dynatrace-azure-grail-cluster` as the output.
 
     ```
     kubectl config current-context

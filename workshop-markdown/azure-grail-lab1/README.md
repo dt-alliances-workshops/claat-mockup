@@ -1,12 +1,12 @@
 summary: Dynatrace Workshop on Azure Grail Lab1
 id: azure-azure-lab1
-categories: modernization, kubernetes, grail, all
+categories: grail,all
 tags: azure
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 
-# Azure Workshop Lab 1 - OneAgent Observability
+# Azure Grail Workshop Lab 1 - OneAgent Observability
 
 ## Lab Setup
 Duration: 2

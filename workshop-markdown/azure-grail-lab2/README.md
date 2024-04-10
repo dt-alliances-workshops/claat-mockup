@@ -1,12 +1,12 @@
 summary: Dynatrace Workshop on Azure Grail Lab2
 id: azure-grail-lab2
-categories: grail,kubernetes,all
-tags: azure, grail
+categories: grail,all
+tags: azure
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 
-# Azure Workshop Lab 2 - Modernization with AKS
+# Azure Grail Workshop Lab 2 - Modernization with AKS
 
 ## Objectives 
 Duration: 2

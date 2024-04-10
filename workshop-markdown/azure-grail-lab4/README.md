@@ -1,14 +1,14 @@
 summary: Dynatrace Workshop on Azure Grail Lab4
 id: azure-grail-lab4
-categories: modernization, kubernetes, grail, all
+categories: grail,all
 tags: azure
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 
-# Azure Workshop Lab 4 - Dashboards & Notebooks
+# Azure Grail Workshop Lab 4 - Dashboards & Notebooks
 
-## Getting started with Dashboards
+## Dashboards Overview
 
 Get your first fully functional dashboard up and running in minutes with this quick guided tour. We’ll show you how to add queries, external data, markdown, and variables—without long explanations or tutorials.
 
@@ -31,7 +31,7 @@ With Dashboards, you can:
 1. If you want to display the same results in different visualizations, select Duplicate
     ![image](img/dashboards-app-getting-started.gif)
 
-## Getting started with Notebooks
+## Notebooks Overview
 Want to explore data and create powerful, data-driven documents for sharing and collaboration? You're in the right place. If you're already familiar with Notebooks, you can get going with an empty notebook. If you ever want to revisit this page, you’ll find it under Getting started in the (?) menu.
 
 With Notebooks, you can:
@@ -81,7 +81,9 @@ At other times, a chart or graph may be more effective for communicating a trend
 
 ### Tasks to complete this step
 1. Download this sample notebook we will use to analyze logs
-    - Click on <a href="" target="_blank">this link</a> to download the notebook
+    - Click on <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/blob/grail/learner-scripts/Azure%20%20Workshop%20-%20Logs.json" target="_blank">this link</a>.  
+    - Click on `Download raw file` button 
+        ![image](img/lab4-grail-download-notebook.png)
 2. Go into Dynatrace UI, open the notebooks app from your left menu
     ![image](img/lab3-grail-notebooks.png)
 3. Expand the Notebooks menu
@@ -93,7 +95,9 @@ At other times, a chart or graph may be more effective for communicating a trend
 
 ### Tasks to complete this step
 1. Download this sample notebook we will use to analyze logs
-    - Click on <a href="" target="_blank">this link</a> to download the notebook
+    - Click on <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/blob/grail/learner-scripts/Azure%20Workshop%20-%20Metrics.json" target="_blank">this link</a>.  
+    - Click on `Download raw file` button 
+        ![image](img/lab4-grail-download-notebook.png)
 2. Go into Dynatrace UI, open the notebooks app from your left menu
     ![image](img/lab3-grail-notebooks.png)
 3. Expand the Notebooks menu

@@ -1,13 +1,13 @@
 summary: Dynatrace Workshop on Azure Grail Lab3
 id: azure-grail-lab3
-categories: modernization, kubernetes, grail, all
+categories: grail,all
 tags: azure
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 
 
-# Azure Workshop Lab 3 - Azure Monitor
+# Azure Grail Workshop Lab 3 - Azure Monitor
 
 ## Objectives of this Lab 
 Duration: 3
