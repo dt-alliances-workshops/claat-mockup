@@ -104,3 +104,13 @@ At other times, a chart or graph may be more effective for communicating a trend
     ![image](img/lab3-grail-notebooks-expand.png)
 4. Click on upload and browse to the notebook JSON file for Metrics where you saved.
 5. Follow the instructions in the notebook to analyze metrics for your hosts.
+
+## Summary
+Duration: 2
+
+In this section, you should have completed the following:
+
+✅  Reviewed how Notebooks can be used to colloborate and analyze any date in Grail.
+✅  Reviewed a Notebooks on how to analyze log data from Grail and build graphs based on different datatypes.
+✅  Reviewed a Notebooks on how to analyze metric and use the forecasting feature.
+
