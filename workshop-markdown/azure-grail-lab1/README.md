@@ -34,7 +34,9 @@ To simplify the workshop, we "Dockerized" the application into a front-end and b
 ## Review OneAgent
 Duration: 4
 
-The host running the sample application was created using scripts to install and run the Sample Application and to install the Dynatrace OneAgent. All these scripts you can review <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup.git" target="_blank"> here </a> within the `provision-scripts` subfolder.
+The host running the sample application was created using scripts to install and run the Sample Application and to install the Dynatrace OneAgent. 
+
+All these scripts you can review <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup.git" target="_blank"> here </a> within the `provision-scripts` subfolder.
 
 <aside class="positive"> 📓 The Dynatrace OneAgent was preinstalled and is sending data to your Dynatrace environment using the <a href="https://www.dynatrace.com/support/help/technology-support/cloud-platforms/microsoft-azure-services/oneagent-integration/integrate-oneagent-on-azure-virtual-machines/" target="_blank">Dynatrace OneAgent VM Extension for Azure </a></aside>
 
@@ -76,7 +78,7 @@ The host running the sample application was created using scripts to install and
 
 1. Login into Dynatrace UI
 
-2. Choose the `Manage --> Deployment Status` option from the left side menu to open the OneAgent deployment page.
+2. From the left menu, Choose the `Apps -> Deployment Status` to open the OneAgent deployment app.
 
 3. Check to ensure the `dt-orders-monolith` VM is reporting in under OneAgents
 ![image](img/lab1-deployment-status.png)
@@ -109,9 +111,29 @@ All the source code can be found here - [https://github.com/dt-orders](https://g
 
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
-
-## Review Host view
+## Review the new Infrastructure & Operations App
 Duration: 4
+
+In this section, you will review what the OneAgent automatically discovered for the host, services, processes, and the complete dependency mapping for the sample application using the new [Infrastructure & Operations](https://www.dynatrace.com/hub/detail/infrastructure-operations/) app now available on Grail.  
+
+### Tasks to complete this step
+
+1. From the left menu, Choose the `Apps -> Infrastructure & Operations` apps.
+
+1. On the initial view, you'll see two views one by Datacenters and the other by Hosts.  
+    - Under the datacenters view you will see the Azure region your VM's are currently deployed in
+        ![image](img/lab1-infraops-main.png)
+1. Click hosts view and select the `dt-orders-monolith` VM
+        ![image](img/lab1-infraops-hosts.png)
+
+1.  On the Overview tab, you will notice high level cpu, memory, disk usage, etc metrics for the host.  At the bottom you'll see proprtiers, tags and ownership data related to this host.
+    <aside class="positive"> 
+    👍 `How this helps` 
+        As you click to the Technologies, processes, problems, vulnerabilities, slo, logs, events, metrics tabs you'll notice this new app offers a consolidated view of your monitored host. The app helps you to quickly identify areas that require attention and drill down to the host level, where all necessary information is provided to quickly address any issue
+    </aside>
+
+## Review Host Classic view
+Duration: 2
 
 In the next few sections, you will review what the OneAgent automatically discovered for the host, services, processes, and the complete dependency mapping for the sample application.  
 
@@ -245,11 +267,15 @@ Such "server-side services" can take the form of web services, web containers, d
 As you plan your migration, it is important to gain a complete picture of interdependency to the rest of the environment architecture at host, processes, services, application perspectives. Since time is always scarce, being able to do this in a single place can shorten assessment timelines. </aside>
 
 ### Tasks to complete this step
-1. Review the Services being monitored. Let’s now take a look at all the services being monitored by clicking on the `Services` left side Dynatrace menu.
+1. Review the Services being monitored. Let’s now take a look at all the services being monitored by selecting  `Services` App from the left side Dynatrace menu.
+    ![image](img/lab1-apps-services.png)
+    <!--
     - In the management zone drop down, choose `dt-orders-monolith`. 
     ![image](img/lab1-pick-monolith-mz.png)
-    - The filtered list should now look like this:
+    -->
+    - The services list should now look like this:
     ![image](img/lab1-trans-services.png)
+    
     - Choose the `frontend` service.
     - On the `frontend` service page, find the `Key Requests/endpoints` section on the right and click the `Top web Requests` button to see what it calls. 
     ![image](img/lab1-top-web-requests.png)
@@ -304,6 +330,8 @@ Knowing the type of downstream services called, executed statements, and amount 
         1. Click on the boxes to expand the metrics to see the number of requests and average response times going to the backend sevice
         1.  We can see the number of requests to `backend` database
 
+<!---
+
 ##  Analyze service backtrace
 Duration: 5
 
@@ -338,7 +366,7 @@ Using the service flow and service backtrace, these two tools give you a complet
 4. You may also see browser traffic to the **frontend** from the `My web application`.  If you don't that is OK. </aside>
 
 
-
+-->
 
 ## Databases
 Duration: 3

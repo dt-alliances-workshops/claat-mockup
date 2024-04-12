@@ -14,6 +14,8 @@ Duration: 3
 
 In order to do more with less and scale, organizations must transcend IT silos, foster collaboration and improve productivity. Automation and a common data model are key components of this, but it takes platforms that support operational teams and workflows.
 
+With Azure Native Dynatrace Services, our SaaS solution is available as a native azure resource in the Azure Portal.  With the native azure resource, we can easily get Azure monitor metrics and azure resource logs without the need of provisioning ActiveGate in your Azure subscription to query the Azure Monitor metrics or setting up Eventhub or Azure functions to forward Azure logs.  
+
 🔷 Review how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
 
 🔷 Review how Azure monitor metrics can be configured as [Metric events for alerts](https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/)
@@ -31,15 +33,14 @@ Duration: 3
 
 Referring to the picture below, here are the components for this lab.
 
-![image](img/lab4-setup.png)
+<!-- ![image](img/lab4-setup.png) -->
+![image](img/lab3-ands-metrics.png)
 
 **#1 . Azure**:  Azure cloud platform where Azure services produce metrics that are sent to Azure monitor.
 
-**#2 . Azure VM running ActiveGate**: A <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-activegate/installation" target="_blank"> Dynatrace ActiveGate </a> process required to monitor Azure monitor data. 
+**#2 . Azure Native Dynatrace Service**: An <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-activegate/installation" target="_blank"> native Azure resource </a> inside the Azure Portal. 
 
-**#3 . Dynatrace**: Dynatrace tenant where monitoring data is collected and analyzed.
-
-**#4 . Dynatrace Azure Dashboard**: Out of the box dashboard for each configured Azure subscription.
+**#3 . Dynatrace Azure Dashboard**: Out of the box dashboard for each configured Azure subscription.
 
 ### Azure Dashboard
 

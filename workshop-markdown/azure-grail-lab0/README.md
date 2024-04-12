@@ -19,32 +19,6 @@ Duration: 2
 
 🔷 Automatically provision workshop environment and sample application
 
-## Create Azure Native Dynatrace Service from Marketplace  
-Duration: 3
-
-For this workshop, we have set-up a free Dynatrace Azure SaaS tenant with an temporary license of the complete feature set of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.
-
-### Tasks to complete this step
-
-1) Open up browser and go to Azure Portal
-    - Search for Marketplace from the top search bar     
-        ![image](img/az-marketplace.png)
-    - Once in the Azure Marketplace, search for `Azure Native Dynatrace Service` click on tile when the search displays the results.
-        ![image](img/ands.png)
-    - From the drop-down under plan, select `Dynatrace for Azure Trial` and click on subscribe
-        ![image](img/ands-subscribe.png)
-    - Click on "Create" a new Dynatrace environment
-        ![image](img/ands-create.png)
-    - On the create Dynatrace environment screen (Basic's)
-        - Select the `Azure Pass - Sponsorship` subscription
-        - create a new resource group called `azure-native-dynatrace`
-        - fill in the resource name as `dt-trial`
-        - The rest of the settings can take the defaults
-        - Click on "Review + Create" button
-            ![image](img/ands-create-basics-1.png)
-        - It will take 3-5 minutes for the deployment to complete.  Once the deployment comples successfully, your screen should reflect as below.  Click on `Go to resource` button
-            ![image](img/ands-create-complete.png)
-   
 ## Azure Pass Subscription Setup
 Duration: 4
 
@@ -171,7 +145,49 @@ Duration: 4
 
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
-## Create Dynatrace Access Token
+## Create Azure Native Dynatrace Service from Marketplace  
+Duration: 3
+
+For this workshop, we have set-up a free Dynatrace Azure SaaS tenant with an temporary license full of the complete feature set of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.
+
+### Tasks to complete this step
+
+1) Open up browser and go to Azure Portal
+    - Search for Marketplace from the top search bar     
+        ![image](img/az-marketplace.png)
+    - Once in the Azure Marketplace, search for `Azure Native Dynatrace Service` click on tile when the search displays the results.
+        ![image](img/ands.png)
+    - From the drop-down under plan, select `Dynatrace for Azure Trial` and click on subscribe
+        ![image](img/ands-subscribe.png)
+    - Click on "Create" a new Dynatrace environment
+        ![image](img/ands-create.png)
+    - On the create Dynatrace environment screen (Basic's)
+        - Select the `Azure Pass - Sponsorship` subscription
+        - create a new resource group called `azure-native-dynatrace`
+        - fill in the resource name as `dt-trial`
+        - The rest of the settings can take the defaults
+        - Click on "Review + Create" button
+            ![image](img/ands-create-basics-1.png)
+        - It will take 3-5 minutes for the deployment to complete.  Once the deployment comples successfully, your screen should reflect as below.  Click on `Go to resource` button
+            ![image](img/ands-create-complete.png)
+
+## Setup your Dynatrace Environment
+In this section, we'll setup a few things within your Dynatrace envrionment 
+
+### Access the new UI with Grail
+
+1. Login to Dynatrace
+
+1. On the Left menu, you'll notice a banner to access the new UI that was introduced with Grail.  
+  - Click on `Take a look` button to access the new UI.
+    ![image](img/lab0-newUI-access-banner.png)
+  - Click on `Tru the latest Dynatrace`
+    ![image](img/lab0-newUI-try-latest-dt.png)
+  - Click on `Get started`
+1.  You are now accessing the new UI with Grail.
+    ![image](img/lab0-newUI-main.png)
+
+### Create Dynatrace Access Token
 
 All we wanted to do here, is quickly get a Dynatrace token and save it for use in the Lab setup.  To capture the token, follow these steps:
 
@@ -179,7 +195,7 @@ All we wanted to do here, is quickly get a Dynatrace token and save it for use i
 
 1. From the Left menu, click Apps -> Choose the `Access Tokens` app. 
 
-  ![image](img/dt-access-token.png)
+    ![image](img/dt-access-token.png)
 
 1. On the Access token page, click the `Generate new token` button
 
@@ -191,11 +207,11 @@ All we wanted to do here, is quickly get a Dynatrace token and save it for use i
 
 1. Since this token is only shown once and you will need it in the next labs, copy this value to a local TEXT file before you leave this page. (For example Notepad, Notepad++, Notes.app)
 
-  ![image](img/dt-tokens-page-save.png)
+    ![image](img/dt-tokens-page-save.png)
 
 1. You will use this token in the next step as you setup the lab resources.
 
-## Collect Setup Script Inputs
+## Collect Provision Script Inputs
 
 The next steps of this guide will have you gather various information from your Dynatrace environment needed to configure your environment and for the lab exercises.
 
@@ -204,9 +220,9 @@ From your Dynatrace environment, you will capture:
 * Dynatrace Base URL
 * Dynatrace API token
 
-### 💥 **TECHNICAL NOTE**
-
-- The next set of steps assume that your Dynatrace tenant is fully provisioned and you are logged into it._
+<aside class="positive"> 
+  📓 The next set of steps assume that your Dynatrace tenant is fully provisioned and you are logged into it.
+</aside>
 
 ### Capture Inputs Script
 
@@ -227,7 +243,7 @@ Azure Subscription ID           (current: ) :
 
 If you mess up, just click [enter] through the rest of the values and save it at the ending prompt.  You can then just re-run the script and the script will prompt you again to re-enter each value showing you each current value that it saved.
 
-### Lets begin
+### Lets begin..
 
 1 . Run the input credentials Unix script
 
@@ -236,10 +252,13 @@ cd ~/azure-modernization-dt-orders-setup/provision-scripts
 ./input-credentials.sh
 ```
 
-### 💥 **TECHNICAL NOTE**
-- The `Base URL` will be in the Dynatrace tenant such as: https://[ENVIRONMENT ID].apps.dynatrace.com/.
-- The `Access API Token` will the token generated in the previous step.
-- The `Azure Subscription` ID will be Azure Portal -> Search for subscriptions at the top and select the `Azure Pass` subscription.
+<aside class="positive"> 📓
+
+  - The `Base URL` will be in the Dynatrace tenant such as: https://[ENVIRONMENT ID].apps.dynatrace.com/.
+  - The `Access API Token` will the token generated in the previous step.
+  - The `Azure Subscription` ID will be Azure Portal -> Search for subscriptions at the top and select the `Azure Pass` subscription.
+
+</aside>
 
 ## Provision the workshop
 Duration: 15
@@ -269,9 +288,11 @@ The process to provision everything will take ~15-20 minutes.
 - Add [SLOs](https://www.dynatrace.com/support/help/how-to-use-dynatrace/service-level-objectives/) for a use in custom dashboards
 - Add [Azure Monitor Integration](https://www.dynatrace.com/support/help/setup-and-configuration/setup-on-cloud-platforms/microsoft-azure-services/azure-integrations/azure-cloud-services-metrics/monitor-azure-integration-service-environment)
 
-### 💥 **TECHNICAL NOTE**
+<aside class="positive"> 
 
-_The Dynatrace configuration scripts use a combination of [Dynatrace Monitoring as Code](https://github.com/dynatrace-oss/dynatrace-monitoring-as-code) framework (a.k.a. monaco) and the [Dynatrace Configuration API](https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/) for those few Dynatrace configurations not yet supported by monaco._
+  📓The Dynatrace configuration scripts use a combination of [Dynatrace Monitoring as Code](https://github.com/dynatrace-oss/dynatrace-monitoring-as-code) framework (a.k.a. monaco) and the [Dynatrace Configuration API](https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/) for those few Dynatrace configurations not yet supported by monaco.
+
+</aside>
 
 ### Tasks to complete this step
 1. Open up Azure Cloud shell open
@@ -303,15 +324,19 @@ _The Dynatrace configuration scripts use a combination of [Dynatrace Monitoring 
 Duration: 2
 In this step we will verify if all of the Azure resources were provisioned for the workshop
 
-### 💥NOTE:Only proceed if the provisioning script completed with this status:
+<aside class="positive"> 
 
-```
-...
-...
-=============================================
-Provisioning workshop resources COMPLETE
-=============================================
-```
+📓 Only proceed if the provisioning script completed with this status
+
+  ```
+  ...
+  ...
+  =============================================
+  Provisioning workshop resources COMPLETE
+  =============================================
+  ```
+
+</aside>
 
 ### Tasks to complete this step
 1. Go back to the window where you have the Azure Portal screen open
@@ -383,12 +408,14 @@ Duration: 2
 
 In this section, you should have completed the following:
 
-✅ Provisioned a Dynatrace tenant and Azure subscription
+✅ Setup your Azure subscription utlizing the Azure Pass Token
+
+✅ Provisioned a trail Dynatrace Grail tenant through the Azure Marketplace
 
 ✅ Setup the Azure Cloud Shell to run various UNIX commands
 
 ✅ Captured environment and token info needed for workshop provisioning automation scripts
 
-✅ Provisioned workshop resources
+✅ Provisioned workshop Azure resources
 
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task.   </aside>

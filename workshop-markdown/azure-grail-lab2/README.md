@@ -105,7 +105,7 @@ Organizations will often customize the Dynatrace Operator installation and you c
       
          ```
          kubectl create namespace dynatrace       
-         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.13.0/kubernetes.yaml 
+         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.14.2/kubernetes.yaml
          kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s 
          kubectl apply -f dynakube.yaml  
          ```
@@ -305,6 +305,28 @@ The frontend service is exposed as a public IP and is accessible in a browser.
 
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
+## Enable Kubernetes Log & Events for Dynatrace
+Duration: 2
+
+### Kubernetes events monitoring for analysis and alerting
+For full observability into your Kubernetes events, automatic Davis analysis, and custom alerting, you need to enable Kubernetes event monitoring & Log ingest into Dynatrace
+
+### Tasks to complete this step
+1. In the Dynatrace UI, Go to Apps list from menu on the left and open up `Kubernetes Classic" 
+   ![image](img/lab2-k8classic-app.png)
+1. Open up the AKS Cluster
+   ![image](img/lab2-k8classic-cluster-view.png)
+1. Once you're in Overview of Kubernetes cluster, scroll down to bottom to Events and Logs section
+   ![image](img/lab2-k8classic-cluster-view-eventslogs.png)
+1. Click on the button first to `Enable Kuberenetes Events`.  On the next screen click on Monitor events and click Save bottom.
+   ![image](img/lab2-k8classic-events-config.png)
+1. To navigate back to your cluster overview screen, click on cluster name at the breadcumb menu at the top
+   ![image](img/lab2-k8classic-events-config-breadcrumb.png)
+1. Scroll down to the bottom to Events and Logs section.  This time click on link `Set up log ingest` to capture log data for the cluster.
+   ![image](img/lab2-k8classic-cluster-view-eventslogs.png)
+1. Scroll to the top of the log ingest screen and enable `Ingest all detected log sources`.  
+   ![image](img/lab2-k8classic-logingest.png)
+1. To navigate back to your cluster overview screen, click on `Kubernetes Classic` app from the left navigation menu.
 
 ## Review Kubernetes within Dynatrace
 Duration: 10
@@ -313,16 +335,17 @@ In this step we will walk through the different Dynatrace dashboards that are av
 
 ### Tasks to complete this step
 1. Validate AKS ActivateGate visible in Dynatrace UI</summary>
-   1.1. Go to the Dynatrace UI.
-   1.2. From the Dynatrace Menu, click `Manage --> Deployment status` to review OneAgent Deployment status
-   1.3. Within the `Deployment status` page, next click on the `ActiveGate` option to review the Active Gate. <br>
-      <aside class="positive"> 
+   -  Go to the Dynatrace UI.
+   -  From the menu on the left, click `Apps --> Deployment status` to review OneAgent Deployment status
+   - Within the `Deployment status` page, next click on the `ActiveGate` option to review the Active Gate. <br>
 
-      📓 From Dynatrace menu on the left, go to Manage -> Deployment Status -> ActiveGates, you will notice there is a `dynatrace-workshop-cluster-activegate-0` connected to your Dynatrace environment now.  This actigate gate routes all the agent traffic from apps that are running on that AKS cluster.**
+     <aside class="positive"> 
 
-      </aside>
+     📓 From Dynatrace menu on the left, go to Manage -> Deployment Status -> ActiveGates, you will notice there is a `dynatrace-workshop-cluster-activegate-0` connected to your Dynatrace environment now.  This actigate gate routes all the agent traffic from apps that are running on that AKS cluster.**
 
-2. Review Kubernetes Dashboards are accessible from the left-side menu in Dynatrace choose `Infrastructure -> Kubernetes` and navigate to the Kubernetes cluster page as shown below: <br>
+     </aside>
+
+2. Review Kubernetes Dashboards are accessible from the left-side menu in Dynatrace choose `Apps --> Kubernetes Classic` and navigate to the Kubernetes cluster page as shown below: <br>
       📓**Note:** Be sure that your management zone is NOT filtered!**
 
       ![image](img/lab2-k8s-layers-upd.png)
