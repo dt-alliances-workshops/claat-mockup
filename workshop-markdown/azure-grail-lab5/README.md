@@ -48,11 +48,12 @@ Workflows allows you to:
 ### Tasks to complete this step
 1. Create a guardian
     - In the Dynatrace Launcher, select Site Reliability Guardian.
-    - On the overview page, select New Guardian. A new guardian is displayed in the editor.
+    - On the All Guardians overview page, select `+ Guardian`. 
+    - Click on `create without template`.  A new guardian is displayed in the editor.
     - Provide a name for the guardian: my-first-guardian
     - Add the following objective example by defining the name, a DQL, and specifying a target as well as a warning threshold.
-        - Objective name: Error rate
-        - Description: The error rate objective derives the number of error logs in ratio to the total number of log lines. The target is set to be less than 2% with a warning indicator at 1.5% of error logs.
+        - **Objective name:** Error rate
+        - **Description:** The error rate objective derives the number of error logs in ratio to the total number of log lines. The target is set to be less than 2% with a warning indicator at 1.5% of error logs.
         - DQL to calculate error rate:
             ```
                 fetch logs
@@ -60,9 +61,12 @@ Workflows allows you to:
                 | summarize errorRate = sum(errors)/count() * 100
                 
             ```
-    - **Set criteria for this objective**: `Lower than the defined failure value is better for my objective`
-        - **Target**: `2`
-        - **Warning**: `1.5`
+            ![image](img/lab5-sreguardian-create.png)
+        - Click on `run query`, select the last 1 hour to previw results of your current error rate.
+    - **Set thresholds for this objective**: 
+        - Select `Lower than the these numbers is good` 
+        - **Failure**: `1`
+        - **Warning**: `0.4`
         > For other examples, please see: [Site Reliability Guardian objective examples](https://docs.dynatrace.com/platform/capabilities/site-reliability-guardian/reference).
     - Click on **Create** to create the guardian.
     - Click on **Validate** to perform a manual validation of the objective.
@@ -91,7 +95,8 @@ In todays lab for Workflow's we'll leverage the Guardian we created in previous 
 1. Select Run to execute the workflow.
 
 
-## Workflow Use Case for Reporting
+## Sample Workflow Use Case for Reporting
+Duration: 2
 
 [Example link for Reporting Workflow](https://egu21862.apps.dynatrace.com/ui/apps/dynatrace.notebooks/notebook/d2c17fd0-8bd6-4f57-9985-77431fb8af6f#964bfb79-2c8d-4d65-920d-88ef6f6b4263)
 Let's say you manage an e-commerce platform. Your team has recently deployed several updates to enhance user experience. To ensure these changes are working as expected and have not introduced any new performance issues, you need a robust observability strategy - so you decided to use Dynatrace.
@@ -109,7 +114,7 @@ Since your demand on your services is very elastic, various services spin up and
 ### Tasks to complete this step
 
 1.  Since you are very lazy and don't want to log in again at 6, you want this data to be sent to your boss automatically. Your objective is to create a workflow that reads this data and sends it to your boss once a day. For submitting the results use the email action.
-
+<!--
 2.  Unfortunately your boss is not happy with the result, because he got it in a JSON format. Instead, he want's it human readable, line by line. Luckily - Dynatrace supports Jinja expressions for formatting the [data](https://www.dynatrace.com/support/help/shortlink/automations-reference#for-loop)
 
     - Your objective is to enhance that workflow to loop over the results and provide some output in this format:
@@ -118,6 +123,7 @@ Since your demand on your services is very elastic, various services spin up and
             gke-apac-hackathon-default-pool-5179eccf-kuvo.c.acm-workshops.internal: 23:58:41.515879000
             gke-dynatrace-demo-default-pool-81ea5ea3-thsc.c.acm-workshops.internal: 23:58:24.841474000      
         ```
+-->
 ## Summary
 Duration: 2
 
