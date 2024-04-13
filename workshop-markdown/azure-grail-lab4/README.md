@@ -1,7 +1,7 @@
 summary: Dynatrace Workshop on Azure Grail Lab4
 id: azure-grail-lab4
 categories: grail,all
-tags: azure
+tags: azure, grail
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content

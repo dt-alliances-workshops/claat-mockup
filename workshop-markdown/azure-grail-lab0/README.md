@@ -1,7 +1,7 @@
 summary: Dynatrace Workshop on Azure Grail Introduction
 id: azure-grail-lab0
 categories: modernization,kubernetes,grail,all
-tags: azure
+tags: azure, grail
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content

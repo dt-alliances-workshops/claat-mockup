@@ -1,7 +1,7 @@
 summary: Dynatrace Workshop on Azure Grail Lab3
 id: azure-grail-lab3
 categories: grail,all
-tags: azure
+tags: azure, grail
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
@@ -89,6 +89,16 @@ Dynatrace brings value by enriching the data from Azure Monitor/App Insights and
 These metrics are managed by Dynatrace's AI engine automatically and this extended observability improves operations, reduces MTTR and increases innovation. 
 
 </aside>
+
+## Cloud App Review
+
+Detail about cloud app
+
+### Tasks to complete this step
+
+1.
+
+1.
 
 ## Custom Metric Event Setup
 Duration: 3

@@ -1,7 +1,7 @@
 summary: Dynatrace Workshop on Azure Grail Lab5
 id: azure-grail-lab5
 categories: grail,all
-tags: azure
+tags: azure,grail
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
@@ -130,7 +130,10 @@ Duration: 2
 In this section, you should have completed the following:
 
 ✅  Understand what a Site Reliability Guardian is and how it can strengten SRE practices
+
 ✅  Understand use cases for Workflows
+
 ✅  Created a Site Reliability Guardain.
+
 ✅  Created a simple workflow using the SRG
 
