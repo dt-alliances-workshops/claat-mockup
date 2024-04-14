@@ -64,9 +64,63 @@ Over time, you can imagine that this sample application will be further changed 
 
 </aside>
  
+## Deploy the Dynatrace Kubernetes Operator via Azure Portal
+Duration: 7
 
-## Deploy Kubernetes Dynatrace Operator
-Duration: 5
+<aside class="positive">
+Before starting this step, please ensure you completed the <b>Step 8</b> in <b>Lab 0</b> to <a href="/codelabs/azure-grail-lab0/index.html?index=..%2F..azure#7"target="_blank"> `Verify AKS cluster is provisioned` correctly!</a>
+</aside>
+
+<aside class="positive">
+In <b>Step 6</b> of <b>Lab 0</b>, you should have also save off <a href="/codelabs/azure-grail-lab0/index.html?index=..%2F..azure#5"target="_blank">two values </a> in a notepad session.  You will now need to input those values in this step.
+</aside>
+
+
+One key Dynatrace advantage is ease of activation via Azure Portal. OneAgent technology simplifies deployment across large enterprises and relieves engineers of the burden of instrumenting their applications by hand. As Kubernetes adoption continues to grow, it becomes more important than ever to simplify the activation of observability across workloads without sacrificing the deployment automation that Kubernetes provides. Observability should be as cloud-native as Kubernetes itself.
+
+In our workshop, we will install the Dynatrace Operator that streamlines lifecycle management.  You can read more about it here in this <a href="https://www.dynatrace.com/news/blog/new-dynatrace-operator-elevates-cloud-native-observability-for-kubernetes/" target="_blank"> Dynatrace Blog </a>
+
+Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the <a href="https://docs.dynatrace.com/docs/setup-and-configuration/setup-on-k8s/installation" target="_blank"> Dynatrace Doc</a> but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
+
+
+### Tasks to complete this step
+
+1. Open up the Azure Portal and search for the AKS Cluster from the top search bar and select it once it displays under resources
+      ![image](img/lab2-aks-search.png)
+
+1. Once you're on the AKS cluster, from the left navigation, go to `Settings -> Extensions + Applications`
+
+1. Click on `Install an extension`.
+   ![image](img/lab2-aks-dt-extension-install1.png)
+
+1. Search Dynatrace in search bar.  Click on Dynatrace Operator tile once its displayed.  
+   ![image](img/lab2-aks-dt-extension-install2.png)
+
+1. Click create at the next screen
+
+1. On the `Basics` tab, the subscription and resource group shold already be pre-selected. Just select the AKS Cluster from the drop down.
+   ![image](img/lab2-aks-dt-extension-install3.png)
+
+1. On the `Dynatrace Operator Configuration` here are the values to fill in
+   <aside class="positive">
+      Bring up the notepad where you save off the values for Dynatrace Operator & Data Ingest token during the provisioning step of the input-credentials script.
+   </aside>
+
+   - `AKS extension resource name`: dynatraceazuregrail
+   - `Dynatrace operator token`: token value from notepad saved from earlier step
+   - `Data ingest token`: token value from notepad saved from earlier step
+   - `API URL`: URL value from notepad saved from earlier step
+   - `OneAgent Deployment Type`: cloud native full stack
+
+   ![image](img/lab2-aks-dt-extension-install4.png)
+   
+1. Click on `Review + Create` and click `Create` on the next screen.
+1. After the deployment is complete, go into Dynatrace -> From the left menu select `Apps` and bring up `Kubernetes Classic` app.
+   - Within a couple of minutes, you will cluster and some of the metrics start to show up.
+      ![image](img/lab2-aks-dt-extension-install5.png)
+
+
+## Deploy Dynatrace Kubernetes Operator via Dynatrace + Kubectl (donotuse)
 
 <aside class="positive">
 Before starting this step, please ensure you completed the `Step 6` in `Lab 0` to <a href="/codelabs/azure-lab0/index.html?index=..%2F..azure#5"target="_blank"> `Verify AKS cluster is provisioned` correctly!</a>
@@ -137,6 +191,7 @@ Organizations will often customize the Dynatrace Operator installation and you c
       dynatrace-workshop-cluster-oneagent-24njq        1/1     Running   0          2m45s
       dynatrace-workshop-cluster-oneagent-86gh7        1/1     Running   0          3m59s
       ```
+
 
 
 ## Deploy sample application
@@ -321,7 +376,7 @@ For full observability into your Kubernetes events, automatic Davis analysis, an
 1. Click on the button first to `Enable Kuberenetes Events`.  On the next screen click on Monitor events and click Save bottom.
    ![image](img/lab2-k8classic-events-config.png)
 1. To navigate back to your cluster overview screen, click on cluster name at the breadcumb menu at the top
-   ![image](img/lab2-k8classic-events-config-breadcrumb.png)
+   ![image](img/lab2-k8classic-events-config-breadcrumb.png)   
 1. Scroll down to the bottom to Events and Logs section.  This time click on link `Set up log ingest` to capture log data for the cluster.
    ![image](img/lab2-k8classic-cluster-view-eventslogs.png)
 1. Scroll to the top of the log ingest screen and enable `Ingest all detected log sources`.  
@@ -488,7 +543,7 @@ Having the ability to understand service flows enables us to make smarter re-arc
 
 In this section, you should have completed the following:
 
-   ✅ Installed Dynatrace Operator on Azure Kubernetes cluster
+   ✅ Installed Dynatrace Operator on Azure Kubernetes cluster via Azure Portal
 
    ✅ Review real-time data now available for the sample application on Kubernetes
 

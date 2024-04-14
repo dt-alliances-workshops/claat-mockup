@@ -2,4 +2,5 @@
 
 gulp clean
 rm -rf codelabs-gen/
-gulp serve:dist
+gulp dist
+gulp serve

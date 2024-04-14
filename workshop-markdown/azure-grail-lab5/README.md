@@ -9,6 +9,7 @@ Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 # Azure Grail Workshop Lab 5 - SRE Guardian and Workflow
 
 ## Site Reliability Guardian Overview
+Duration: 2
 
 The Site Reliability Guardian provides an automated change impact analysis to validate service availability, performance, and capacity objectives across various systems. This enables DevOps platform engineers to make the right release decisions for new versions and empowers SREs to apply Service-Level Objectives (SLOs) for their critical services.
 
@@ -19,6 +20,7 @@ In this lab exercise, you will learn more about the workflow leveraged by the <a
 ![image](img/lab5-srg-1.png)
 
 ## Workflow Overview
+Duration: 2
 Workflows is one of the built-in apps shipped with Dynatrace. A workflow in Dynatrace refers to a sequence of automated steps or tasks that can be triggered based on specific conditions or events within your monitored environment. These workflows are crucial in automating the response to particular situations and ensuring the smooth running of applications and systems.
 
 Workflows allows you to:
@@ -44,10 +46,11 @@ Workflows allows you to:
     ![image](img/lab5-Workflows-4.png)
 
 ## Getting started Guardian
+Duration: 7
 
 ### Tasks to complete this step
 1. Create a guardian
-    - In the Dynatrace Launcher, select Site Reliability Guardian.
+    - In Dynatrace from menu on the left, select `Apps -> Site Reliability Guardian`.
     - On the All Guardians overview page, select `+ Guardian`. 
     - Click on `create without template`.  A new guardian is displayed in the editor.
     - Provide a name for the guardian: my-first-guardian
@@ -72,6 +75,7 @@ Workflows allows you to:
     - Click on **Validate** to perform a manual validation of the objective.
 
 ## Getting started with Workflow
+Duration: 8
 
 In todays lab for Workflow's we'll leverage the Guardian we created in previous step and run that on scheduled basis to ensure we always meet our SLO
 

@@ -1,7 +1,7 @@
 summary: Lab 10 Dynatrace Workshop on Azure
 id: azure-lab8
-categories: modernization,kubernetes,all
-tags: azure
+categories: modernization,kubernetes,grail,all
+tags: azure,grail
 status: Published
 authors: Jay Gurbani
 Feedback Link: mailto:jay.gurbani@dynatrace.com
@@ -59,7 +59,7 @@ End: Fri 07 May 2021 04:40:40 AM UTC
 ## Other Resources
 
 ### Free Dynatrace SaaS tenant 
-To signup for a free fully featured enabled Dynatrace SaaS Tenant for 15 days [click here](https://www.dynatrace.com/trial/) 
+To signup for a free fully featured enabled Azure Native Dynatrace Service based SaaS Tenant for 30 days [click here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/dynatrace.dynatrace_portal_integration?tab=Overview) 
 
 ### Resources
 Addition Azure & Dynatrace related resources to get your started with:

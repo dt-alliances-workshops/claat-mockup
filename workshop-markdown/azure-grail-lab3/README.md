@@ -14,9 +14,9 @@ Duration: 3
 
 In order to do more with less and scale, organizations must transcend IT silos, foster collaboration and improve productivity. Automation and a common data model are key components of this, but it takes platforms that support operational teams and workflows.
 
-With Azure Native Dynatrace Services, our SaaS solution is available as a native azure resource in the Azure Portal.  With the native azure resource, we can easily get Azure monitor metrics and azure resource logs without the need of provisioning ActiveGate in your Azure subscription to query the Azure Monitor metrics or setting up Eventhub or Azure functions to forward Azure logs.  
+With [Azure Native Dynatrace Services](https://www.dynatrace.com/news/blog/using-dynatrace-on-microsoft-azure/), our SaaS solution is available as a native azure resource in the Azure Portal.  With the native azure resource, we can easily get Azure monitor metrics and azure resource logs without the need of provisioning ActiveGate in your Azure subscription to query the Azure Monitor metrics or setting up Eventhub or Azure functions to forward Azure logs.  
 
-🔷 Review how Dynatrace integrates with [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/)
+🔷 Review how Azure Native Dynatrace integrates and gathers [Azure monitor](https://azure.microsoft.com/en-us/services/monitor/) metrics
 
 🔷 Review how Azure monitor metrics can be configured as [Metric events for alerts](https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/)
 
@@ -38,7 +38,7 @@ Referring to the picture below, here are the components for this lab.
 
 **#1 . Azure**:  Azure cloud platform where Azure services produce metrics that are sent to Azure monitor.
 
-**#2 . Azure Native Dynatrace Service**: An <a href="https://www.dynatrace.com/support/help/setup-and-configuration/dynatrace-activegate/installation" target="_blank"> native Azure resource </a> inside the Azure Portal. 
+**#2 . Azure Native Dynatrace Service**: An <a href="https://docs.dynatrace.com/docs/setup-and-configuration/setup-on-cloud-platforms/microsoft-azure-services/azure-platform/azure-native-integration" target="_blank"> native Azure resource </a> inside the Azure Portal. 
 
 **#3 . Dynatrace Azure Dashboard**: Out of the box dashboard for each configured Azure subscription.
 
@@ -91,14 +91,29 @@ These metrics are managed by Dynatrace's AI engine automatically and this extend
 </aside>
 
 ## Cloud App Review
+Duration: 5
 
-Detail about cloud app
+The Dynatrace Clouds app, a novel way for observing multiple resources across multiple clouds. It provides a single, centralized dashboard that displays all resources across multiple clouds, and significantly enhances multicloud resource tracking and governance.
+
+The [Clouds App]([https://www.dynatrace.com/hub/detail/clouds/?query=clouds&filter=all) provides:
+    - Centralized oversight and insights:  A univied view that elimiates the to switch between different cloud services dashboards.
+    - Logs and metrics in context: With a single click, the dashboard shows an analysis of logs and metrics for a selected resource in its appropriate context, making it easier to understand the complexities inherent in cloud infrastructure.
+    - Enhanced troubleshooting: Troubleshooting is more effective when teams can see patterns and anomalies across all cloud environments, rather than analyzing them in isolation.
+
+Check out this [blog](https://www.dynatrace.com/news/blog/maximizing-the-potential-of-multicloud-strategy-with-the-dynatrace-cloud-app/) for additional use cases.  Also here's a link to the [docs](https://docs.dynatrace.com/docs/platform-modules/infrastructure-monitoring/cloud-platform-monitoring/clouds-app)
 
 ### Tasks to complete this step
 
-1.
-
-1.
+1. In Dynatrace from menu on the left, select `Apps -> Clouds`.
+1. Click on All Services and select the Azure VM called `dt-orders-monolith` to view the metrics for that VM
+    ![image](img/lab3-cloudapps-allservices.png)
+    - Click on Metrics, and Logs tab  to quickly access the details for that service.
+    - Also, if there'an open problem against this host, you can quickly view the problem details on `Problems` tab.
+1. Select another service such as the `Kubernetes` Azure Load Balancer service
+    - Notice all the properties we bring in for this service including the Azure tags
+        ![image](img/lab3-cloudapps-k8.png)
+1. Notice all of the other ways you can filter the cloud services by service type, regions, or service names, clouds, etc to look for details on specific metric.
+    ![image](img/lab3-cloudapps-allservices-filters.png)
 
 ## Custom Metric Event Setup
 Duration: 3
@@ -170,9 +185,13 @@ Duration: 3
     
 
 1. Review Dynatrace UI for Problem card
-    * Back in Dynatrace within the `host` view, the CPU should now be high as shown below
+    * Back in Dynatrace within the `Infrastructure & Ops` app, the CPU should now be high as shown below
 
-        ![image](img/lab4-cpu-upd.png)
+        <!-- 
+            ![image](img/lab4-cpu-upd.png) 
+        -->
+        ![image](img/lab3-infraops-monolith-cpu.png)
+
 
     * It may take a minute or so, but you will get two problem cards as shown below.  #1 is the alert from the `severity = RESOURCE` where Davis was invoked, and #2 is the alert from `severity = CUSTOM ALERT`.
 
