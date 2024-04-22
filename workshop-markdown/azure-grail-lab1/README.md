@@ -109,9 +109,11 @@ All the source code can be found here - [https://github.com/dt-orders](https://g
         - Order List = `order/list.html`
         - Order Form = `order/form.html`
 
+<!--
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+-->
 
-## Review the new Infrastructure & Operations App
+## Review Infrastructure & Operations App (New)
 Duration: 4
 
 In this section, you will review what the OneAgent automatically discovered for the host, services, processes, and the complete dependency mapping for the sample application using the new [Infrastructure & Operations](https://www.dynatrace.com/hub/detail/infrastructure-operations/) app now available on Grail.  
@@ -147,7 +149,7 @@ As you plan your migration, each of these views will give insights into accessin
 
 #### Review the Data on the Hosts screen
 
-- From the left-side menu in Dynatrace choose `Infrastructure -> Hosts` then click on the host with the name `dt-orders-monolith`.
+- From the left menu, Choose the `Apps -> Hosts Classic` apps. Then click on the host with the name `dt-orders-monolith`.
 ![image](img/lab1-hostlist.png)
 - On host page, you will see basic infrastructure information for the host.
     1. Now expand the `Properties` section to see data about the host:
@@ -418,7 +420,7 @@ This is another out the box feature that helps you understand what technologies 
 
 ### Tasks to complete this step
 1. Review the Technologies view 
-- Click on the **Technology and processes** link on the left side menu within Dynatrace to view the technologies that OneAgent was able to automatically discover and instrument.
+- Click on the **Technology and processes Classic** App on the left side menu within Dynatrace to view the technologies that OneAgent was able to automatically discover and instrument.
     ![image](img/lab1-technology.png)
 - Make sure your management zone filter is set to `All` so that you see everything
     ![image](img/lab1-mz-filter-off.png)
@@ -450,4 +452,6 @@ In this section, you should have completed the following:
 
 ✅ Review how Dynatrace helps with modernization planning
 
+<!--
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+-->

@@ -45,7 +45,9 @@ This free Azure subscription will be available to you for the next 5 days or unt
     <aside class="positive"> ℹ️   Provisioning your Azure subscription can take upto 5 minutes to process.</aside>           
     
 
+<!--
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+-->
 
 ## Azure Portal Prep
 Duration: 4
@@ -143,7 +145,9 @@ Duration: 4
  ![image](img/pre-requisites-azure-cli-gitcloneoutput.png)
 
 
+<!--
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+-->
 
 ## Create Azure Native Dynatrace Service from Marketplace  
 Duration: 3
@@ -374,8 +378,7 @@ In this step we will verify if all of the Azure resources were provisioned for t
 
     ```
     az aks get-credentials --resource-group dynatrace-azure-grail-modernize --name dynatrace-azure-grail-cluster
-    ```
-
+        ```
 1. Verify you are connected.  You should see `dynatrace-azure-grail-cluster` as the output.
 
     ```
@@ -401,6 +404,12 @@ In this step we will verify if all of the Azure resources were provisioned for t
     ```
     kubectl describe nodes
     ```
+
+    <aside class="positive"> 
+
+    📓 Ensure you're able to sucessfully run all of the `kubectl` commands above.  This ensures you can sucessfully connectivity to the AKS cluster, which is key in Lab2 when we deploy the sample application to the AKS cluster in Lab2, Step 5
+
+    </aisde>
 
 ### Optional Verification of AKS Cluster via Azure Portal
 
@@ -431,4 +440,6 @@ In this section, you should have completed the following:
 
 ✅ Provisioned workshop Azure resources
 
+<!--
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task.   </aside>
+-->

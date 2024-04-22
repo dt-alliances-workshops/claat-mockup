@@ -23,7 +23,9 @@ We just learned how we can get great information on services, processes and user
 
 🔷 Examine the transformed application using service flows and back traces 
 
+<!--
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+-->
 
 ## Review - Modernize the Sample App 
 Duration: 3
@@ -68,7 +70,7 @@ Over time, you can imagine that this sample application will be further changed 
 Duration: 7
 
 <aside class="positive">
-Before starting this step, please ensure you completed the <b>Step 8</b> in <b>Lab 0</b> to <a href="/codelabs/azure-grail-lab0/index.html?index=..%2F..azure#7"target="_blank"> `Verify AKS cluster is provisioned` correctly!</a>
+Before starting this step, please ensure you completed the <b>Step 8</b> in <b>Lab 0</b> to <a href="/codelabs/azure-grail-lab0/index.html?index=..%2F..azure#5"target="_blank"> `Verify AKS cluster is provisioned` correctly!</a>
 </aside>
 
 <aside class="positive">
@@ -104,6 +106,8 @@ Organizations will often customize the Dynatrace Operator installation and you c
 1. On the `Dynatrace Operator Configuration` here are the values to fill in
    <aside class="positive">
       Bring up the notepad where you save off the values for Dynatrace Operator & Data Ingest token during the provisioning step of the input-credentials script.
+
+      📓 Both the Dynatrace Operator and Data Ingest token values are the same.
    </aside>
 
    - `AKS extension resource name`: dynatraceazuregrail
@@ -358,7 +362,9 @@ The frontend service is exposed as a public IP and is accessible in a browser.
          
          </aside>
 
+<!--
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+-->
 
 ## Enable Kubernetes Log & Events for Dynatrace
 Duration: 2
@@ -552,4 +558,6 @@ In this section, you should have completed the following:
    ✅ Review how Dynatrace helps with modernization planning
 
 
+<!--
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+-->

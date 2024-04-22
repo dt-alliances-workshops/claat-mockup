@@ -98,7 +98,7 @@ In todays lab for Workflow's we'll leverage the Guardian we created in previous 
     ![image](img/lab5-Workflows-task5.png)
 1. Select Run to execute the workflow.
 
-
+<!--
 ## Sample Workflow Use Case for Reporting
 Duration: 2
 

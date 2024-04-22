@@ -20,13 +20,14 @@ With [Azure Native Dynatrace Services](https://www.dynatrace.com/news/blog/using
 
 🔷 Review how Azure monitor metrics can be configured as [Metric events for alerts](https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/)
 
-
+<!--
 <aside class="positive"> 
 
 💻📓
 🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
 
 </aside>
+-->
 
 ## Review - Azure Monitor Setup
 Duration: 3
@@ -141,7 +142,7 @@ events that are independent of any metric (for example, process crashes, deploym
         5.  Management zone `dt-orders-monolith`
         6.  under `Entities` click on `>` to see `Advanced dimension definition` and select `Azure VM` from dropdown
             ![image](img/lab4-dimentions-key.png)
-        7.  Dymension filter click on `Add dimension filter` and select as shown below.
+        7.  Dimension filter click on `Add dimension filter` and select as shown below.
                 ![image](img/lab4-adddimensionfilter.png)
         8.  under Monitoring strategy section select as shown.
             ![image](img/lab4-monotoringstrategy.png)
@@ -161,7 +162,7 @@ events that are independent of any metric (for example, process crashes, deploym
         ![image](img/lab4-custom-alert-list-upd.png)
 
 ## Trigger CPU Problem on VM
-Duration: 3
+Duration: 4
 
 ### Tasks to complete this step
 1. Trigger a CPU Problem
@@ -185,13 +186,30 @@ Duration: 3
     
 
 1. Review Dynatrace UI for Problem card
-    * Back in Dynatrace within the `Infrastructure & Ops` app, the CPU should now be high as shown below
+    <!--
+        * Back in Dynatrace within the `Infrastructure & Ops` app, the CPU should now be high as shown below 
+    -->
 
-        <!-- 
-            ![image](img/lab4-cpu-upd.png) 
-        -->
-        ![image](img/lab3-infraops-monolith-cpu.png)
+    <!-- 
+             ![image](img/lab4-cpu-upd.png) 
+    -->
+    
 
+    <!--
+    * It may take a minute or so, but you will get two problem cards as shown below.  #1 is the alert from the `severity = RESOURCE` where Davis was invoked, and #2 is the alert from `severity = CUSTOM ALERT`.
+
+        ![image](img/lab4-custom-alert-problems-upd.png)
+
+        <aside class="positive">💻📓 Look at the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank"> Dynatrace Docs </a> for more details on the setup.
+
+        Alert configuration is available through the <a href="https://www.dynatrace.com/support/help/dynatrace-api/configuration-api/anomaly-detection-api/anomaly-detection-api-metric-events/" target="_blank"> Anomaly detection—metric events API </a> Using the API, you can list, update, create, and delete configurations.
+
+        </aside>
+    -->
+
+    * Back in Dynatrace within the `Hosts Classic` app, the CPU should now be high as shown below
+
+        ![image](img/lab4-cpu-upd.png)
 
     * It may take a minute or so, but you will get two problem cards as shown below.  #1 is the alert from the `severity = RESOURCE` where Davis was invoked, and #2 is the alert from `severity = CUSTOM ALERT`.
 
@@ -236,9 +254,9 @@ Duration: 3
 
     * Verify that CPU in Dynatrace goes to normal and the problem card will automatically close
 
-
+<!--
 🏫**Class Note** - Please update the Tracking Spreadsheet if you've completed the task on this step.
-
+-->
 
 
 ## Summary
@@ -251,4 +269,6 @@ In this section, you should have completed the following:
 ✅  Reviewed how Azure monitor metrics can be configured as <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/metric-events-for-alerting/" target="_blank"> Metric events for alerts</a>
 
 
+<!--
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
+-->
