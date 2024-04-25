@@ -123,7 +123,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- this seems to be what is breaking everything -->
     <div id="{{view.logoSizePct}}"></div>
     {% if view.id == 'aws-immersion-day' %}
-    <header id="banner" class="custom-background-aws-immersion-day">
+    <header id="banner" class="custom-background-aws-immersion-day">    
     {% else %}    
     <header id="banner" class="custom-background">
     {%- endif %}
@@ -243,6 +243,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>
           <div class="card-footer">
             <div class="category-icon {{codelab.tags[0]}}-icon"></div>
+            <div class="category-icon {{codelab.tags[1]}}-icon"></div>                        
             <paper-button class="{{codelab.tags[0]}}-bg">Start</paper-button>
             <!-- <paper-button class="{{categoryClass(codelab, cat.level)}}-bg">Start</paper-button>-->
           </div>

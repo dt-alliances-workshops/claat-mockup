@@ -2,7 +2,7 @@ summary: Lab 1 Dynatrace Workshop on Azure
 id: azure-lab1
 categories: modernization,kubernetes,all
 tags: azure
-status: Published
+status: Hidden
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 

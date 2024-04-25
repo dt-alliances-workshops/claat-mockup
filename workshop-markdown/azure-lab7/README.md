@@ -2,7 +2,7 @@ summary: Lab 7 Dynatrace Workshop on Azure
 id: azure-lab7
 categories: modernization,all
 tags: azure
-status: Published
+status: Hidden
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 
