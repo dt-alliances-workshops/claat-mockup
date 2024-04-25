@@ -49,6 +49,32 @@ This free Azure subscription will be available to you for the next 5 days or unt
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 -->
 
+## Create Azure Native Dynatrace Service from Marketplace  
+Duration: 3
+
+For this workshop, we have set-up a free Dynatrace Azure SaaS tenant with an temporary license full of the complete feature set of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.
+
+### Tasks to complete this step
+
+1) Open up browser and go to Azure Portal
+    - Search for Marketplace from the top search bar     
+        ![image](img/az-marketplace.png)
+    - Once in the Azure Marketplace, search for `Azure Native Dynatrace Service` click on tile when the search displays the results.
+        ![image](img/ands.png)
+    - From the drop-down under plan, select `Dynatrace for Azure Trial` and click on subscribe
+        ![image](img/ands-subscribe.png)
+    - Click on "Create" a new Dynatrace environment
+        ![image](img/ands-create.png)
+    - On the create Dynatrace environment screen (Basic's)
+        - Select the `Azure Pass - Sponsorship` subscription
+        - create a new resource group called `azure-native-dynatrace`
+        - fill in the resource name as `dt-trial`
+        - The rest of the settings can take the defaults
+        - Click on "Review + Create" button
+            ![image](img/ands-create-basics-1.png)
+        - It will take 3-5 minutes for the deployment to complete.  Once the deployment comples successfully, your screen should reflect as below.  Click on `Go to resource` button
+            ![image](img/ands-create-complete.png)
+
 ## Azure Portal Prep
 Duration: 4
 
@@ -149,34 +175,13 @@ Duration: 4
 <aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 -->
 
-## Create Azure Native Dynatrace Service from Marketplace  
-Duration: 3
-
-For this workshop, we have set-up a free Dynatrace Azure SaaS tenant with an temporary license full of the complete feature set of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.
-
-### Tasks to complete this step
-
-1) Open up browser and go to Azure Portal
-    - Search for Marketplace from the top search bar     
-        ![image](img/az-marketplace.png)
-    - Once in the Azure Marketplace, search for `Azure Native Dynatrace Service` click on tile when the search displays the results.
-        ![image](img/ands.png)
-    - From the drop-down under plan, select `Dynatrace for Azure Trial` and click on subscribe
-        ![image](img/ands-subscribe.png)
-    - Click on "Create" a new Dynatrace environment
-        ![image](img/ands-create.png)
-    - On the create Dynatrace environment screen (Basic's)
-        - Select the `Azure Pass - Sponsorship` subscription
-        - create a new resource group called `azure-native-dynatrace`
-        - fill in the resource name as `dt-trial`
-        - The rest of the settings can take the defaults
-        - Click on "Review + Create" button
-            ![image](img/ands-create-basics-1.png)
-        - It will take 3-5 minutes for the deployment to complete.  Once the deployment comples successfully, your screen should reflect as below.  Click on `Go to resource` button
-            ![image](img/ands-create-complete.png)
 
 ## Setup your Dynatrace Environment
-In this section, we'll setup a few things within your Dynatrace envrionment 
+
+In this section, we'll Access the new UI for Grail
+
+Also, we'll setup a access token within your Dynatrace envrionment that will be used by the provisioning script to configure Dynatrace automatically via the API.
+
 
 ### Access the new UI with Grail
 
@@ -190,6 +195,7 @@ In this section, we'll setup a few things within your Dynatrace envrionment
   - Click on `Get started`
 1.  You are now accessing the new UI with Grail.
     ![image](img/lab0-newUI-main.png)
+
 
 ### Create Dynatrace Access Token
 
@@ -360,7 +366,7 @@ In this step we will verify if all of the Azure resources were provisioned for t
 2. Search for `Resource Groups` from the search bar at the top
 ![image](img/pre-requisites-azure-portal-resources.png)
 3. Click on `Resource Groups`.  From the list of resource group select `dynatrace-azure-grail-modernize`.
-4. Once you within the resource group, you will see all of the different types of resources we've automatically provisionined for this workshop
+4. Once you're within the resource group, you will see all of the different types of resources we've automatically provisioned for this workshop
 ![image](img/pre-requisites-azure-portal-resources-resourcelist.png)
 
 ### Verify AKS Cluster is provisioned
@@ -377,8 +383,8 @@ In this step we will verify if all of the Azure resources were provisioned for t
 1. Configure kubectl to connect to the new cluster by downloading the cluster credentials. 
 
     ```
-    az aks get-credentials --resource-group dynatrace-azure-grail-modernize --name dynatrace-azure-grail-cluster
-        ```
+    az aks get-credentials --resource-group dynatrace-azure-grail-modernize --name dynatrace-azure-grail-cluster    
+    ```
 1. Verify you are connected.  You should see `dynatrace-azure-grail-cluster` as the output.
 
     ```

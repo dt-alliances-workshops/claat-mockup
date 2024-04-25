@@ -128,7 +128,7 @@ In this section, you will review what the OneAgent automatically discovered for 
 1. Click hosts view and select the `dt-orders-monolith` VM
         ![image](img/lab1-infraops-hosts.png)
 
-1.  On the Overview tab, you will notice high level cpu, memory, disk usage, etc metrics for the host.  At the bottom you'll see proprtiers, tags and ownership data related to this host.
+1.  On the Overview tab, you will notice high level cpu, memory, disk usage, etc metrics for the host.  At the bottom you'll see properties, tags and ownership data related to this host.
     <aside class="positive"> 
     👍 `How this helps` 
         As you click to the Technologies, processes, problems, vulnerabilities, slo, logs, events, metrics tabs you'll notice this new app offers a consolidated view of your monitored host. The app helps you to quickly identify areas that require attention and drill down to the host level, where all necessary information is provided to quickly address any issue

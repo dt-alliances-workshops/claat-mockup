@@ -63,7 +63,7 @@ In each notebook, you can add sections of Query, Code, and Markdown. On this pag
     - Select + to open the sections menu.        
     - Select Query Grail.
         ![image](img/lab4-notebooks1.png)
-    - Type logs for this example.
+    - Type `fetch logs` for this example.
     - Adjust the timeframe, if you want. The default is the last 2 hours.
     - Then, select Run query.
     ![image](img/lab4-notebooks2.gif)
