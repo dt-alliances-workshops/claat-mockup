@@ -1,5 +1,5 @@
 summary: Dynatrace Workshop on Azure Grail Lab1
-id: azure-azure-lab1
+id: azure-grail-lab1
 categories: grail,all
 tags: azure, grail
 status: Published

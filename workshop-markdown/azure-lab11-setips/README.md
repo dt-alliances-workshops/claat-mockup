@@ -55,7 +55,9 @@ Feedback Link: mailto:jay.gurbani@dynatrace.com
 ## Guidance and Recommendations
 
 * During day of the workshop we will use Azure Pass subscription codes so that each customer has their own Azure Tenant with all the privileges
-    * 💡 **We will have some extra subscription pass codes to give to the SE's to try out the workshop.**
+    <aside class="positive">
+        💡 We will have some extra subscription pass codes to give to the SE's to try out the workshop.
+    </aside>
 * Each Azure Paas subscription will expire after 5 days or until the $100 credit is utilized by Azure Resources **(whichever comes first)**
 * Prior to the workshop delivery date.  Walk through each exercise in the labs 0-4.  If you find any caveats, have questions or parts do not work please provide feedback.
 * During the day of the workshop
@@ -70,8 +72,13 @@ Feedback Link: mailto:jay.gurbani@dynatrace.com
 ### Pre-Requisites
 
 * Use an Azure Pass Subscription Code if one available. If unavailable, use the SE Subscription while the Alliances Team procures the Azure Pass Subscription codes. 
-    * 💡 All the labs still function in regular Dynatrace SE Subscription except for the Azure Monitor integration functionality which requires the access privileges to create Azure Service Principals. 
+    </aside class="positive">
+        💡 All the labs still function in regular Dynatrace SE Subscription except for the Azure Monitor integration functionality which requires the access privileges to create Azure Service Principals. 
+    </aside>
 * Access to the [Alliances DT Managed Cluster](https://syh360.dynatrace-managed.com/)
+    </aside class="negative">
+    💡 This won't be be used for the new Grail labs.  
+    </aside>
 * Each environment on the Managed Cluster has a unique dashboard created in the environment. for the attendees.  This dashboard kicks off the provisioning script with certain parameters.
 
 ### Labs and Details
@@ -88,9 +95,12 @@ Feedback Link: mailto:jay.gurbani@dynatrace.com
         ![image](img/akserror.png)
     * Have the customer update their aks-preview extension for azure cli by executing the following:
         ```  
-        az extension update --name aks-preview 
-        ```
-    * 💡  This is a known issue with aks-preview extension in azure cli version <= 0.5.82.  Latest version as of Aug 2022 is 0.5.94.  To check which version is installed, type az –version.
+        az extension update --name aks-preview         ```
+    <aside class="positive">
+        💡  This is a known issue with aks-preview extension in azure cli version <= 0.5.82.  Latest version as of Aug 2022 is 0.5.94.  
+
+        To check which version is installed, type ``az –version``.
+    </aside>
 
 #### Lab 1 - 
 

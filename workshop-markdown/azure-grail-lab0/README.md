@@ -52,11 +52,11 @@ This free Azure subscription will be available to you for the next 5 days or unt
 ## Create Azure Native Dynatrace Service from Marketplace  
 Duration: 3
 
-For this workshop, we have set-up a free Dynatrace Azure SaaS tenant with an temporary license full of the complete feature set of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.
+For this workshop, we will set-up a free Dynatrace Azure SaaS tenant with an temporary license complete with all the features of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.
 
 ### Tasks to complete this step
 
-1) Open up browser and go to Azure Portal
+1) Open up browser and go to Azure Portal - <a href="https://portal.azure.com/" target="_blank">https://portal.azure.com/ </a>
     - Search for Marketplace from the top search bar     
         ![image](img/az-marketplace.png)
     - Once in the Azure Marketplace, search for `Azure Native Dynatrace Service` click on tile when the search displays the results.
@@ -72,6 +72,8 @@ For this workshop, we have set-up a free Dynatrace Azure SaaS tenant with an tem
         - The rest of the settings can take the defaults
         - Click on "Review + Create" button
             ![image](img/ands-create-basics-1.png)
+        - On the next screen click on "Create" button
+            ![image](img/Lab0-Step4-ands-validate.png)
         - It will take 3-5 minutes for the deployment to complete.  Once the deployment comples successfully, your screen should reflect as below.  Click on `Go to resource` button
             ![image](img/ands-create-complete.png)
 
@@ -185,7 +187,16 @@ Also, we'll setup a access token within your Dynatrace envrionment that will be 
 
 ### Access the new UI with Grail
 
+1. Open up browser and go to Azure Portal - <a href="https://portal.azure.com/" target="_blank">https://portal.azure.com/ </a>
+    - Search for Dynatrace azure resource `dt-trial` from the top search bar     
+        ![image](img/Lab0-Step4-ands-search.png)
+    - Click on Go to Dynatrace Link 
+        ![image](img/Lab0-Step5-ands-gotodt.png)
+
 1. Login to Dynatrace
+    <aside class="positive"> 
+    💡To login to Dynatrace you will need your Dynatrace account password.
+    </aside>
 
 1. On the Left menu, you'll notice a banner to access the new UI that was introduced with Grail.  
   - Click on `Take a look` button to access the new UI.

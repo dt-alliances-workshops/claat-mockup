@@ -1,0 +1,17 @@
+{
+  "title": "Azure workshops - Gen2",
+  "dropdownName": "Azure Gen2",
+  "description": "These workshops provide a guided, tutorial-based hands-on learning experience.",
+  "contact": "Email alliances@dynatrace.com for more questions and feedback.",
+  "tags": ["azure-gen2"],
+  "categories": ["gen2, all"],
+  "exclude": [
+    "^lang-.*"
+  ],
+  "logoUrl": "/images/icons/azure.png",
+  "logoSizePct":"10%",
+  "toolbarBgColor": "#1e6022",
+  "sort": "mainCategory",
+  "pins": [],
+  "hidden": false
+}
