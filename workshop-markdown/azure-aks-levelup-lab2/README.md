@@ -1,7 +1,7 @@
 summary: Dynatrace Workshop on Azure AKS Levelup - Lab2
 id: azure-aks-levelup-lab2
-categories: kubernetes, aks, all
-tags: azure, aks
+categories: aks, all
+tags: aks
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
@@ -12,11 +12,19 @@ Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 Duration: 3
 
 ### Overview
-Often the monitoring tools organizations use simply don’t work in the complex ecosystem of microservices and for technologies like Kubernetes.
+Often the monitoring tools in an organization simply don’t work in the complex ecosystem of microservices and for technologies like Kubernetes.
 
 Finding the root cause of problems is harder than ever before and the effort required goes beyond what is humanly possible when the application spans to the cloud providers and data centers and the explosion of interconnected services. There are more possibilities for failures and more hiding spots for problems to sneak into the environment when software driving more than just the application.
 
+Dynatrace's Hypermodal AI, which combines predictive AI, causal AI, and generative AI, boosts productivity across operations, security, development, and business teams.
+
+![image](img/lab2-davis-chart.png)
+
+
+
 In this lab, we will trigger a few problem and see how troubleshooting time is Significantly reduced by letting AI automatically detect problems and pinpoints the root cause, explaining business impact with no manual configurations.
+
+
 
 ### Objectives of this Lab
 
@@ -24,8 +32,8 @@ In this lab, we will trigger a few problem and see how troubleshooting time is S
 
 🔷 Review how Dynatrace process events and Tags to provide additional context in root cause analysis
 
-<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
 
+<!--
 ## Review Events & Tags in Dynatrace
 
 Before we get to the problems, let's review <a href="https://docs.dynatrace.com/docs/dynatrace-api/environment-api/events-v2/post-event" target="_blank"> Dynatrace Information Events</a>.
@@ -99,6 +107,8 @@ curl -X POST \
   "annotationDescription": "coffee machine is defective"
 }'
 ```
+
+
 ## Enable Backend service problem on Monolith
 Duration: 15
 
@@ -210,9 +220,11 @@ In this step we are going to "simulate" a deployment of new version of the `back
   * To learn more about how Davis AI problems are detected and analyze, click the <a href="https://www.dynatrace.com/support/help/how-to-use-dynatrace/problem-detection-and-analysis/problem-detection/automated-multi-dimensional-baselining/" target="_blank"> Dynatrace docs </a> to learn more
 
 </aside>
+-->
+
 
 ## Enable Order Service problem on AKS
-Duration: 10
+Duration: 15
 
 In this step we are going to "simulate" another deployment of new version of the `order` service running on Kubernetes.  After the "deployment" the service will exhibit a failures for all requests.
 
@@ -289,10 +301,6 @@ In this step we are going to "simulate" another deployment of new version of the
 
     * Dynatrace will automatically close the problem once it detects things are back to normal.
 
-
-<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
-
-
 ## Summary
 
 In this section, you should have completed the following:
@@ -303,4 +311,3 @@ In this section, you should have completed the following:
     
   ✅ Learn how Dynatrace use Events and Tags to provide additional context.
 
-<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>

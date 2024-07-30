@@ -1,7 +1,7 @@
 summary: Dynatrace Workshop on Azure AKS Levelup Introduction - Lab0
 id: azure-aks-levelup-lab0
-categories: kubernetes, aks, all
-tags: azure, aks
+categories: aks, all
+tags: aks
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
@@ -13,9 +13,9 @@ Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 We will now setup Dynatrace, Azure, and the workshop environment. You need all of these in place before you are presented with the lab excercises.
 
 ### What you'll learn in this section
-Duration: 2
+Duration: 1
 
-🔷 Setup your temporary Azure subscription from the Azure Pass promo code you received from workshop staff.
+🔷 Setup your Azure Native Dynatrace Service environment via Marketplace.
 
 🔷 Automatically provision workshop environment and sample application
 
@@ -52,23 +52,26 @@ This free Azure subscription will be available to you for the next 5 days or unt
 -->
 
 ## Create Azure Native Dynatrace Service from Marketplace  
-Duration: 3
+Duration: 5
 
 For this workshop, we will set-up a free Dynatrace Azure SaaS tenant with an temporary license complete with all the features of our all-in-one performance monitoring platform to monitor Azure resources and complete the workshop exercises.
 
 ### Tasks to complete this step
 
 1) Open up browser and go to Azure Portal - <a href="https://portal.azure.com/" target="_blank">https://portal.azure.com/ </a>
-    - Search for Marketplace from the top search bar     
+    - Search for Marketplace from the top search bar
         ![image](img/az-marketplace.png)
+
     - Once in the Azure Marketplace, search for `Azure Native Dynatrace Service` click on tile when the search displays the results.
         ![image](img/ands.png)
     - From the drop-down under plan, select `Dynatrace for Azure Trial` and click on subscribe
-        ![image](img/ands-subscribe.png)
+        ![image](img/ands-subscribe.png)        
+
     - Click on "Create" a new Dynatrace environment
         ![image](img/ands-create.png)
+
     - On the create Dynatrace environment screen (Basic's)
-        - Select the `Azure Pass - Sponsorship` subscription
+        - Select the appropriate subscription that you have `Owner` access to.
         - create a new resource group called `azure-native-dynatrace`
         - fill in the resource name as `dt-trial`
         - The rest of the settings can take the defaults
@@ -76,7 +79,7 @@ For this workshop, we will set-up a free Dynatrace Azure SaaS tenant with an tem
             ![image](img/ands-create-basics-1.png)
         - On the next screen click on "Create" button
             ![image](img/Lab0-Step4-ands-validate.png)
-        - It will take 3-5 minutes for the deployment to complete.  Once the deployment comples successfully, your screen should reflect as below.  Click on `Go to resource` button
+        - It will take 3-5 minutes for the deployment to complete.  Once the deployment completes successfully, your screen should reflect as below.  Click on `Go to resource` button
             ![image](img/ands-create-complete.png)
 
 ## Azure Portal Prep
@@ -183,10 +186,9 @@ Duration: 2
 
 
 ## Setup your Dynatrace Environment
+Duration: 3
 
-In this section, we'll Access the new UI for Grail
-
-Also, we'll setup a access token within your Dynatrace envrionment that will be used by the provisioning script to configure Dynatrace automatically via the API.
+In this section we'll quickly login to Dynatrace and setup a access token within your Dynatrace envrionment that will be used by the provisioning script to configure Dynatrace automatically via the API.
 
 
 ### Access the new UI with Grail
@@ -199,7 +201,12 @@ Also, we'll setup a access token within your Dynatrace envrionment that will be 
 
 1. Login to Dynatrace
     <aside class="positive"> 
-    💡To login to Dynatrace you will need your Dynatrace account password.
+    💡To login to Dynatrace you use "Sign in with Microsoft" option; 
+      ![image](img/lab0-loginwithMS.png)
+
+      Input your email address you're currently logged in with.
+
+      ![image](img/lab0-loginwithMS-1.png)
     </aside>
 
 1. On the Left menu, you'll notice a banner to access the new UI that was introduced with Grail.  
@@ -208,13 +215,14 @@ Also, we'll setup a access token within your Dynatrace envrionment that will be 
   - Click on `Tru the latest Dynatrace`
     ![image](img/lab0-newUI-try-latest-dt.png)
   - Click on `Get started`
-1.  You are now accessing the new UI with Grail.
+
+1.  You are now accessing the new UI for Grail.
     ![image](img/lab0-newUI-main.png)
 
 
 ### Create Dynatrace Access Token
 
-All we wanted to do here, is quickly get a Dynatrace token and save it for use in the Lab setup.  To capture the token, follow these steps:
+All we want to do here, is quickly get a Dynatrace token and save it for use in the Lab setup.  To create the token, follow these steps:
 
 1. Login into Dynatrace
 
@@ -230,18 +238,23 @@ All we wanted to do here, is quickly get a Dynatrace token and save it for use i
 
 1. Click on Generate token button on the bottom.
 
-1. Since this token is only shown once and you will need it in the next labs, copy this value to a local TEXT file before you leave this page. (For example Notepad, Notepad++, Notes.app)
+1. Since this token is only shown once please save it somewhere so that you can use it future lab
+   ![image](img/dt-tokens-page-save.png)
 
-    ![image](img/dt-tokens-page-save.png)
+    <aside class="positive"> 
+    Please copy this value to a local TEXT file before you leave this page. (For example Notepad, Notepad++, Notes.app)
+    </aside>
 
-1. You will use this token in the next step as you setup the lab resources.
+    
+
 
 ## Collect Inputs for Provision Script
+Duration: 2
 
-The next steps of this guide will have you gather various information from your Dynatrace environment needed to configure your environment and for the lab exercises.
+The next step will have you gather various information from your Dynatrace environment thats needed to configure your environment and for the lab exercises.
 
 <aside class="positive"> 
-  📓 The next set of steps assume that your Dynatrace tenant is fully provisioned and you are logged into it.
+  📓 The next set of steps assume that your Dynatrace tenant is fully provisioned from previous step and you are logged into it.
 </aside>
 
 From your Dynatrace environment, you will capture:
@@ -261,9 +274,6 @@ From your Dynatrace environment, you will capture:
 
 In the code repo you cloned, there is a simple UNIX shell script that prompts for values and writes them to a file called `gen/workshop-credentials.json`. Later in the labs, there are a few other simple UNIX shell scripts that will automate the step that reads this file so that you don’t need to type or copy-paste these values over and over again during the workshop.
 
-  <aside class="positive"> 
-  📓 If you mess up, just click [enter] through the rest of the values and save it at the ending prompt.  You can then just re-run the script and the script will prompt you again to re-enter each value showing you each current value that it saved.
-  </aside>
 
 ### Lets begin..
 
@@ -284,8 +294,15 @@ In the code repo you cloned, there is a simple UNIX shell script that prompts fo
       Azure Subscription ID           (current: ) : 
       ===================================================================
     ```
+
+    <aside class="positive"> 
+    📓 If you mess up, just click [enter] to run through the rest of the values and save it at the ending prompt.  You can then just re-run the script and the script will prompt to re-enter each value showing you each current value that it saved.  Just update the value that needs to be changed.
+    </aside>
+
 1. Confirm all of the inputs are correct 
-    - 📓 There are some derived values the script generated based on your input.  
+    <aside class="positive"> 
+     📓 There are some derived values the script generated based on your input.  
+    </aside>
 1. Once you confirm, the data is saved off `../gen/workshop-credentials.json` and will be used by the provision script in the next step.
 1. Towards the end of the script it will output two things you'll want to save in a notepad session to use in Lab2 later.
     ```
@@ -451,9 +468,8 @@ Duration: 2
 
 In this section, you should have completed the following:
 
-✅ Setup your Azure subscription utlizing the Azure Pass Token
 
-✅ Provisioned a trail Dynatrace Grail tenant through the Azure Marketplace
+✅ Provisioned a trial Dynatrace Grail tenant through the Azure Marketplace
 
 ✅ Setup the Azure Cloud Shell to run various UNIX commands
 

@@ -1,7 +1,7 @@
 summary: Dynatrace Workshop on Azure AKS Levelup - Lab3
 id: azure-aks-levelup-lab3
-categories: kubernetes, aks, all
-tags: azure, aks
+categories: aks, all
+tags: aks
 status: Published
 authors: Jay Gurbani
 Feedback Link: mailto:jay.gurbani@dynatrace.com
@@ -12,19 +12,11 @@ Feedback Link: mailto:jay.gurbani@dynatrace.com
 
 If you plan to keep the workshop resources running in Azure for a few more days to come back and review the labs, please keep in mind the following things:
 
-* Your free Azure Subscription credits will expire after 5 days or until the $100 credit is utilized by Azure Resources **(whichever comes first)**
-
-    <aside class="positive"> 
-
-     💡 To check how many credits are still left over on your Azure subscription, please go to site [Azure Sponsorship Balance Site](https://www.microsoftazuresponsorships.com/Balance).
-     
-    </aside>
-
-* Your Dynatrace Environment will disabled after 7 calendar days of your workshop.
+* Your Dynatrace Environment will disabled after 30 calendar days of your workshop.
 
 ## Workshop Cleanup
 
-When you are ready to cleanup the workshop resource, run this command to remove the Azure resources and Dynatrace configuration:
+When you are ready to cleanup the workshop Azure resource, run this command to remove the Azure resources and Dynatrace configuration:
 
 ```
 cd ~/azure-modernization-dt-orders-setup/provision-scripts
@@ -58,16 +50,16 @@ End: Fri 07 May 2021 04:40:40 AM UTC
 
 ## Other Resources
 
-### Free Dynatrace SaaS tenant 
-To signup for a free fully featured enabled Azure Native Dynatrace Service based SaaS Tenant for 30 days [click here](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/dynatrace.dynatrace_portal_integration?tab=Overview) 
-
-### Resources
 Addition Azure & Dynatrace related resources to get your started with:
 
 * [Partner Cafe Quick Azure Overview](https://www.youtube.com/watch?v=VCdEHAoEePw)
 * [Dynatrace YouTube Videos](https://www.youtube.com/channel/UCcYJ-5q_AfmjQ4XTjTS0o3g)
-* [More Support resources](https://www.dynatrace.com/services-support/#support-resources-section)
+* [Dynatrace Platform docs](https://docs.dynatrace.com/docs/platform)
+* [Dynatrace Azure Integrations Docs](https://docs.dynatrace.com/docs/setup-and-configuration/setup-on-cloud-platforms/microsoft-azure-services/azure-integrations)
+* [Azure Native Dynatrace Service Docs](https://docs.dynatrace.com/docs/setup-and-configuration/setup-on-cloud-platforms/microsoft-azure-services/azure-platform/azure-native-integration)
+* [Azure Monitor Metrics](https://docs.dynatrace.com/docs/setup-and-configuration/setup-on-cloud-platforms/microsoft-azure-services/azure-integrations/azure-cloud-services-metrics)
 * Customer Stories:​
-    - [Barbari](https://www.dynatrace.com/news/customer-stories/barbri/)
+    - [OneStream](https://www.dynatrace.com/customers/onestream/)
     - [Kroger](https://www.dynatrace.com/news/customer-stories/kroger/)
-    - [Mitchells & Butlers](https://www.dynatrace.com/news/customer-stories/mitchells-and-butlers/)
+    - [TD Bank](https://www.dynatrace.com/customers/td-bank/)
+    - [Park 'N Fly](https://www.dynatrace.com/customers/park-n-fly/)

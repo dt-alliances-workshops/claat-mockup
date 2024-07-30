@@ -1,7 +1,7 @@
 summary: Dynatrace Workshop on Azure AKS Levelup - Lab1
 id: azure-aks-levelup-lab1
-categories: kubernetes, aks, all
-tags: azure, aks
+categories: aks, all
+tags: aks
 status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
@@ -10,12 +10,6 @@ Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 
 ## Objectives 
 Duration: 2
-
-Re-hosting (also referred to as lift and shift) is a common migration use case. Re-architecture and Re-platform are steps that break the traditional architectures and replace individual components with cloud services and microservices.
-
-We just learned how we can get great information on services, processes and user requests using Dynatrace and OneAgent. This helps us now decide what individual features or complete applications based on business benefits we need to migrate and modernize. The idea here is to focus on feature-based business benefit with functional migration. 
-
-### Objectives of this Lab 
 
 🔷 Install the Dynatrace Operator and sample application
 
@@ -29,6 +23,7 @@ We just learned how we can get great information on services, processes and user
 
 ## Review - Modernize the Sample App 
 Duration: 3
+
 As we saw earlier, the sample application is a three-tiered application --> frontend, backend, database.
 
 For our lab, another version of the application exists that breaks out each of these backend services into separate services. By putting these services into Docker images, we gain the ability to deploy the service into modern platforms like Azure Kubernetes and Cloud managed services such as the ones from Azure shown below.
@@ -74,9 +69,9 @@ In <b>Step 6</b> of <b>Lab 0</b>, you should have also save off <a href="/codela
 
 One key Dynatrace advantage is ease of activation via Azure Portal. OneAgent technology simplifies deployment across large enterprises and relieves engineers of the burden of instrumenting their applications by hand. As Kubernetes adoption continues to grow, it becomes more important than ever to simplify the activation of observability across workloads without sacrificing the deployment automation that Kubernetes provides. Observability should be as cloud-native as Kubernetes itself.
 
-In our workshop, we will install the Dynatrace Operator that streamlines lifecycle management.  You can read more about it here in this <a href="https://www.dynatrace.com/news/blog/new-dynatrace-operator-elevates-cloud-native-observability-for-kubernetes/" target="_blank"> Dynatrace Blog </a>
+In our workshop, we will install the Dynatrace Operator that streamlines lifecycle management.  You can read more about it here in this <a href="https://www.dynatrace.com/news/blog/flexible-scalable-self-service-kubernetes-native-observability/" target="_blank"> Dynatrace Blog </a>
 
-Organizations will often customize the Dynatrace Operator installation and you can read more about the options in the <a href="https://docs.dynatrace.com/docs/setup-and-configuration/setup-on-k8s/installation" target="_blank"> Dynatrace Doc</a> but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
+Organizations will often want to customize the Dynatrace Operator installation and you can read more about the options in the <a href="https://docs.dynatrace.com/docs/setup-and-configuration/setup-on-k8s/installation" target="_blank"> Dynatrace Doc</a> but, we are going to use a single command that we can get from the Dynatrace interface to show how easy it is to get started.
 
 
 ### Tasks to complete this step
@@ -114,7 +109,7 @@ Organizations will often customize the Dynatrace Operator installation and you c
    
 1. Click on `Review + Create` and click `Create` on the next screen.
 1. After the deployment is complete, go into Dynatrace -> From the left menu select `Apps` and bring up `Kubernetes Classic` app.
-   - Within a couple of minutes, you will cluster and some of the metrics start to show up.
+   - Within a couple of minutes, you will see the cluster and some of the metrics start to show up.
       ![image](img/lab2-aks-dt-extension-install5.png)
 
 
@@ -218,63 +213,6 @@ This script automates a number of `kubectl` commands for the following:
 </aside>
 
 
-<aside class="positive"> 
-
-**📓 `Sample App YAML file for deploymenent`**
-<br>To review what is configured for the sample application, go ahead and click on the link for YAML file: <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/tree/master/app-scripts/manifests/frontend.yml" target="_blank">frontend.yml</a> 
-
-`Notice the labels and annotations:`
-
-```
-metadata:
-      labels:
-        app.kubernetes.io/name: frontend
-        app.kubernetes.io/version: "1"
-        app.kubernetes.io/component: frontend
-        app.kubernetes.io/part-of: dt-orders
-        app.kubernetes.io/managed-by: helm
-        app.kubernetes.io/created-by: dynatrace-demos
-      annotations:
-        owner: Team Frontend
-        chat-channel: dev-team-frontend 
-```
-
-Notice the defined container and version.  These containers are stored in <a href="https://hub.docker.com/u/dtdemos" target="_blank"> DockerHub </a>.
-
-```
-spec:
-    containers:
-    - name: frontend
-    image: dtdemos/dt-orders-frontend:1
-```
-
-Notice the `DT_CUSTOM_PROPS` environment variable:
-
-```
-env:
-    - name: DT_CUSTOM_PROP
-        value: "project=dt-orders service=frontend"
-```
-
-The `DT_CUSTOM_PROPS` is a special Dynatrace feature, that the OneAgent will automatically recognize and make Dynatrace tags for the process. You can read more details in the <a href="https://www.dynatrace.com/support/help/shortlink/process-group-properties#anchor_variables" target="_blank"> Dynatrace Documentation </a>
-
-</aside>
-
-<aside class="positive"> 
-
-**📓 `Kubernetes Role Binding`**
-
-In Kubernetes, every pod is associated with a service account which is used to authenticate the pod's requests to the Kubernetes API. If not otherwise specified the pod uses the default service account of its namespace.
-
-* Every namespace has its own set of service accounts and thus also its own namespace-scoped default service account. The labels of each pod for which the service account has view permissions will be imported into Dynatrace automatically.
-
-* In order for Dynatrace to read the Kubernetes properties and annotations, you need to grant the Kubernetes default service account a viewer role into the `staging` namespace to enable this. We only have one namespace, but you will need to repeat these steps for all service accounts and namespaces you want to enable for Dynatrace within your environments.
-
-For the workshop, we already updated the required file with the `staging` namespace. Next you will run the setup script that will apply it to your cluster. Go ahead and open this folder and look at the <a href="https://github.com/dt-alliances-workshops/azure-modernization-dt-orders-setup/blob/master/app-scripts/manifests/dynatrace-oneagent-metadata-viewer.yaml" target="_blank"> dynatrace-oneagent-metadata-viewer.yaml </a> file.  
-
-</aside>
-
-
 ### Tasks to complete this step
 - Deploy the Sample App to Kubernetes
    1. In the Azure Cloud Shell, run these commands:
@@ -300,7 +238,7 @@ For the workshop, we already updated the required file with the `staging` namesp
       ```
 
 ## Review Sample application on Kubernetes
-Duration: 7
+Duration: 5
 
 In this step we will review the Sample app that we modernized and deployed to Kubernetes.  Refer to this picture for a more detailed description of our setup. 
 
@@ -328,7 +266,7 @@ This <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/
 
 **6 - Sample application**
 
-The frontend service is exposed as a public IP and is accessible in a browser.
+The frontend service is exposed via a public IP and is accessible in a browser.
 
 ### Tasks to complete this step
 1. Validate Sample App is accessible via browser
@@ -358,9 +296,6 @@ The frontend service is exposed as a public IP and is accessible in a browser.
          
          </aside>
 
-<!--
-<aside class="positive"> 🏫 - Please update the Tracking Spreadsheet upon completing this task. </aside>
--->
 
 ## Enable Kubernetes Log & Events for Dynatrace
 Duration: 2

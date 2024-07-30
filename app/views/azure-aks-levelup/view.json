@@ -1,10 +1,10 @@
 {
-  "title": "Azure AKS Levelup Workshop",
-  "dropdownName": "Azure AKS Levelup",
+  "title": "AKS LevelUp Workshop",
+  "dropdownName": "AKS Levelup",
   "description": "These workshops provide a guided, tutorial-based hands-on learning experience.",
   "contact": "Email alliances@dynatrace.com for more questions and feedback.",
   "tags": ["aks"],
-  "categories": ["kubernetes, aks, all"],
+  "categories": ["aks, all"],
   "exclude": [
     "^lang-.*"
   ],
