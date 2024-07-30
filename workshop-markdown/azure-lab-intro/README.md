@@ -2,7 +2,7 @@ summary: Dynatrace Workshop on Azure  Introduction
 id: azure-intro
 categories: modernization, kubernetes
 tags: azure
-status: Published
+status: Hidden
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 # Azure Workshop Introduction

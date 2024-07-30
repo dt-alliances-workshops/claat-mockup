@@ -1,8 +1,8 @@
 summary: Lab 6 Dynatrace Workshop on Azure
 id: azure-lab6
-categories: appsec,all
-tags: azure
-status: Hidden
+categories: gen2,appsec,all
+tags: azure-gen2
+status: Published
 authors: Jay Gurbani
 Feedback Link: mailto:jay.gurbani@dynatrace.com
 

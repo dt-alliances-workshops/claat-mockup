@@ -1,8 +1,8 @@
 summary: Lab 2 Dynatrace Workshop on Azure
 id: azure-lab2
-categories: kubernetes,all
-tags: azure
-status: Hidden
+categories: gen2,all
+tags: azure-gen2
+status: Published
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/learn-site-content
 

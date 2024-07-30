@@ -118,6 +118,8 @@ Organizations will often customize the Dynatrace Operator installation and you c
       ![image](img/lab2-aks-dt-extension-install5.png)
 
 
+<!--
+
 ## Deploy Dynatrace Kubernetes Operator via Dynatrace + Kubectl (donotuse)
 
 <aside class="positive">
@@ -190,7 +192,7 @@ Organizations will often customize the Dynatrace Operator installation and you c
       dynatrace-workshop-cluster-oneagent-86gh7        1/1     Running   0          3m59s
       ```
 
-
+-->
 
 ## Deploy sample application
 Duration: 5
