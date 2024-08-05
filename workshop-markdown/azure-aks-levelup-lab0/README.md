@@ -2,7 +2,7 @@ summary: Dynatrace Workshop on Azure AKS Levelup Introduction - Lab0
 id: azure-aks-levelup-lab0
 categories: aks, all
 tags: aks
-status: Published
+status: Hidden
 authors: Jay Gurbani
 Feedback Link: https://github.com/dt-alliances-workshops/workshops-content
 
@@ -447,7 +447,7 @@ In this step we will verify if all of the Azure resources were provisioned for t
 
     📓 Ensure you're able to sucessfully run all of the `kubectl` commands above.  This ensures you can sucessfully connectivity to the AKS cluster, which is key in Lab2 when we deploy the sample application to the AKS cluster in Lab2, Step 5
 
-    </aisde>
+    </aside>
 
 ### Optional Verification of AKS Cluster via Azure Portal
 

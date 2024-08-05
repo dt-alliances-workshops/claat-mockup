@@ -6,49 +6,24 @@ status: Published
 authors: Jay Gurbani
 Feedback Link: mailto:jay.gurbani@dynatrace.com
 
-# Azure Workshop Lab 3 - Reminder & Cleanup
+# Azure Workshop Lab 3 - Reminder 
 
 ## Workshop Environment Reminder
+Duration: 4
 
 If you plan to keep the workshop resources running in Azure for a few more days to come back and review the labs, please keep in mind the following things:
 
-* Your Dynatrace Environment will disabled after 30 calendar days of your workshop.
+* Your access to this Sandbox Dynatrace Environment will disabled after 7 calendar days of your workshop.
+* If you want to standup your own trial Dynatrace environment via Azure Marketplace.  Here are quick instructions on how to do that
+    - Sign-up for free trail of [Azure Native Dynatrace Service via Marketplace](https://azuremarketplace.microsoft.com/en-US/marketplace/apps/dynatrace.dynatrace_portal_integration?tab=Overview) with full feature set of our all-in-one performance monitoring platform to monitor Azure.
+   - Create the Free Trial using the `Dynatrace for Azure Trial` plan
+        ![image](img/dynatrace-plans-free-trial.png)
+   -  Refer to the guide on [to create new Dynatrace Azure resource](https://learn.microsoft.com/en-us/azure/partner-solutions/dynatrace/dynatrace-create#create-a-dynatrace-resource-in-azure) once you choose the free trial public plan.
+* 🎉`COMING SOON`🎉 We will also soon have a Dynatrace WhatTheHack available in [Microsoft Repo](https://microsoft.github.io/WhatTheHack/) so you can run your own hacks with your customers.
 
-## Workshop Cleanup
-
-When you are ready to cleanup the workshop Azure resource, run this command to remove the Azure resources and Dynatrace configuration:
-
-```
-cd ~/azure-modernization-dt-orders-setup/provision-scripts
-./cleanup-workshop.sh
-```
-
-The start of the script output will look like this:
-
-```
-===================================================================
-About to Delete Workshop resources
-===================================================================
-Proceed? (y/n) : y
-
-==========================================
-Deleting workshop resources
-Starting: Fri 07 May 2021 04:35:46 AM UTC
-==========================================
-...
-...
-```
-
-Eventually when it completes - plan for 5-10 minutes - it will look like this:
-
-```
-=============================================
-Deleting workshop resources COMPLETE
-End: Fri 07 May 2021 04:40:40 AM UTC
-=============================================
-```
-
+ 
 ## Other Resources
+Duration: 1
 
 Addition Azure & Dynatrace related resources to get your started with:
 
