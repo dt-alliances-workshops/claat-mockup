@@ -22,7 +22,7 @@ Duration: 3
 ## Review the Sample App 
 Duration: 3
 
-As we saw earlier, the sample application is a three-tiered application --> frontend, backend, database.
+The sample application is a three-tiered application --> frontend, backend, database.
 
 For our lab, another version of the application exists that breaks out each of these backend services into separate services. By putting these services into Docker images, we gain the ability to deploy the service into modern platforms like Azure Kubernetes and Cloud managed services such as the ones from Azure shown below.
 
@@ -57,7 +57,12 @@ Over time, you can imagine that this sample application will be further changed 
 Duration: 3
 
 <aside class="positive">
-This step is only visible from demonstration.  The Dynatrace Operator is already deployed to an AKS cluster and that is visibile in your Dynatrace Sandbox environment that you have access to.
+This step is only visible for demonstration.  
+
+The Dynatrace Operator is already deployed to an AKS cluster and that is visibile in your Dynatrace Sandbox environment that you have access to.
+
+You do not need to perform any of the steps below, just follow along the demonstration to see how the Operator is installed.
+
 </aside>
 
 ### Overview
