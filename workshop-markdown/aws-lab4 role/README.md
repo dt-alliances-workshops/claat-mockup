@@ -333,10 +333,15 @@ kill 5802
 kill 5805
 kill 5806
 ```
-Or use the below command to kill all the PID's at once
+Or better to use the below command to kill all the PID's at once
 ```
 kill $(ps -ef | grep yes | awk '{print $2}' | sed '$d')
 ```
+Or even more effective is:
+```
+pkill yes
+```
+**Always more than 1 way to skin a cat**
 
 3 . Verify they are gone by running this again `ps -ef | grep yes`
 

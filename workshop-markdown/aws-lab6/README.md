@@ -1,6 +1,6 @@
 id: aws-lab6
-categories: kubernetes,SAAS,serverless
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+categories: kubernetes,saas,serverless
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-saas
 status: Published
 
 # AWS Lab 6 - Dynatrace Operator for Kubernetes
@@ -196,7 +196,7 @@ Organizations will often customize the Dynatrace Operator installation and you c
     1. Click the `Create tokens` button
     1. Select the `Skip SSL Certificate Check` to be ON
     
-    ![image](img/lab4-operator-new.png)
+    ![image](img/newkubdep.png)
 
 ## Install Dynatrace Operator For Workshop
 
@@ -213,12 +213,14 @@ Organizations will often customize the Dynatrace Operator installation and you c
 1. Next, copy the commands from the `Monitor Kubernetes / Openshift`  configuration page of Dynatrace UI or from below to continue with the Kuberentes Operator Install steps.
 
          ```
-         kubectl create namespace dynatrace
-         kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/v0.14.1/kubernetes.yaml
-         kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s
-         kubectl apply -f dynakube.yaml
-         ```
+         helm install dynatrace-operator oci://public.ecr.aws/dynatrace/dynatrace-operator \
+         --create-namespace \
+         --namespace dynatrace \
+         --atomic
 
+         kubectl apply -f dynakube.yaml
+
+         ```
     <aside class="negative">
         If you receive any errors running the commands above, please ensure you're in the `/aws-modernization-dt-orders-setup/gen` folder as highlighted in the step above.
     </aside>

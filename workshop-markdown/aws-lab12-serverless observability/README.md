@@ -1,6 +1,6 @@
-id: aws-lab12-serverless observability
-categories: kubernetes,SAAS,serverless
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+id: aws-lab12-serverless-observability
+categories: kubernetes,serverless,saas,all
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-saas,aws-immersion-day-serverless
 status: Published
 
 # AWS Lab 12 - Serverless Observability with Dynatrace
@@ -55,7 +55,7 @@ What you will see is the flow of requests flowing from the `frontend` service. E
 Take a look at the service flow once again to see some interresting information.  Remember that of the 2 Lambda functions we deployed we only added the DT auth token to 1 of them, the `serverlessDBActions` is fully instrumented and in this service flow we can see the following information from the catalog service flow:
 1.  Requests to public networks coincides with the unistrumented findByNameContains lambda
 1.  ServerlessDBActions with the Lambda icon is fully instrumented
-1.  Although we updated 2 workflows with our Lambdas seems the catalog still has other requests that could posibly be candidates for a `modernization` treatement as the catalog is still calling its `imbedded database`
+1.  Although we updated 2 workflows with our Lambdas seems the catalog still has other requests that could posibly be candidates for a `modernization` treatement as the catalog is still calling its `embedded database`
 
 ![image](img/catalogdServiceFlow.png)
 

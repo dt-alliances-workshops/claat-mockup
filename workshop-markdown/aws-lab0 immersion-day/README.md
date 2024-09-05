@@ -1,6 +1,6 @@
 id: aws-lab0 immersion-day
 categories: modernization,kubernetes,serverless
-tags: aws-immersion-day
+tags: aws-immersion-day,aws-immersion-day-saas,aws-immersion-day-serverless
 status: Published
 
 # AWS Lab 0 - Introduction and Setup
@@ -45,44 +45,41 @@ If you are unable to login, please let the instructor know.
 
 ## AWS Account
 
-To complete this workshop, you will be provided with an AWS account via the AWS Event Engine service. A team hash will be provided to you by event staff.
+To complete this workshop, you will be provided with an AWS account via a AWS Workshop Blueprint Code that will look something like:
+`https://catalog.us-east-1.prod.workshops.aws/join?access-code=xxxxxxxxx` this code will be provide to you by event staff.
 
-1 . If you are currently logged in to an AWS Account, you can log out using this <a href="https://console.aws.amazon.com/console/logout!doLogout" target="_blank">link</a>
+If you are currently logged in to an AWS Account, you can log out using this <a href="https://console.aws.amazon.com/console/logout!doLogout" target="_blank">link</a> or you can use an incognito window in your browser.
 
-2 . Connect to the portal by clicking the button or browsing to <a href="https://dashboard.eventengine.run" target="_blank">https://dashboard.eventengine.run</a>. The following screen shows up. Enter the provided hash in the text box. The button in the bottom right corner changes to **Accept Terms & Login**. Click on that button to continue.
+1 . Use the AWS Workshop Blueprint Code provided and pasting it into a browser of your choice preferably an incognito window.  If you are presented the below window select `Get started`
 
-![image](img/event-engine-initial-screen.png)
+![image](img/joinEvent.png)
 
-3 . Click on `Email One Time Password (OTP)`
+2 . Click on `Email One Time Password (OTP)`
 
-![image](img/one-time-password.png)
+3 . Enter your email address
 
-4 . Enter your email address
+![image](img/logintemplate.png)
 
-![image](img/send-passcode.png)
+4 . You will receive an email similar to this:  `NOTE please ensure your organization will allow this email address domain @auth.aws.training`
 
-5 . Enter the Passcode from you received in your email.
+![image](img/email.png)
+
+5 . Enter the Passcode from you received in your email and select `sign in`.
 
 ![image](img/enter-passcode.png)
 
-6 . Once on the `Team dashboard` page, click the `AWS console` button that opens a popup.  
+6 . Review and Join by selecting the `I agree with the Terms and Conditions` and clicking the `Join Event` button
 
-![image](img/aws-event-engine.png)
+![image](img/ReviewandJoin.png)
 
-7 . On the popup, click on `Open AWS console` button which opens the AWS portal.
+7 . Once on the `Team dashboard` page, click the `Open AWS console`.  
 
-![image](img//aws-event-engine-popup.png)
+![image](img/openConsole.png)
 
-8 . One the new browser tab, you should see the AWS portal. 
-
-![image](img/setup-aws-portal.png)
-
-9 . Once you are in the AWS portal, you can now move to the next section.
 
 ### 💥 **TECHNICAL NOTE**
 
 *Once the free credits for this account expire, all the resources created will be automatically de-provisioned and you will not be able to access the account.*
-
 
 ## AWS Prep
 
@@ -100,7 +97,7 @@ In this lab, we will be using AWS Cloudshell. Cloudshell is a browser-based shel
 
 To open the Cloudshell, click on the Cloudshell icon at the top of the AWS console.  This make take a minute to complete.
 
-![image](img/setup-cloud-shell-icon.png)
+![image](img/AWSCLI.png)
 
 This may open up a slash page. 
 
@@ -181,10 +178,7 @@ Create AWS resource: monolith-vm
 {
     "StackId": "arn:aws:cloudformation:us-west-2:838488672964:stack/monolith-vm-1635990306/d82cd2b0-3d10-11ec-a495-023df82ab493"
 }
-Create AWS resource: services-vm
-{
-    "StackId": "arn:aws:cloudformation:us-west-2:838488672964:stack/services-vm-1635990309/d8a6e4b0-3d10-11ec-a495-023df82ab493"
-}
+
 ```
 
 ### 3. Verify CLoudFormation Stacks

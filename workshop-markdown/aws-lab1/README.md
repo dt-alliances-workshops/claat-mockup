@@ -97,7 +97,7 @@ The host running the sample application were all created using scripts that inst
 
 From the left-side menu in Dynatrace choose `Hosts` then click on the host with the name `dt-orders-monolith`.
 
-![image](img/lab1-host-view.png)
+![image](img/newHost.png)
 
 On host page, you will see basic infrastructure information for the host.
 
@@ -332,7 +332,7 @@ Pick the `backend` service.
 
 On the `backend` service, click on the `Analyze Backtrace` button.
 
-![image](img/lab1-service-backtrace-arrow.png)
+![image](img/newBacktrace.png)
 
 You should be on the service backtrace page where you will see information for this specific service.
 

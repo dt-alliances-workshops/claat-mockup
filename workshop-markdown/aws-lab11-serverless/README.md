@@ -1,6 +1,6 @@
 id: aws-lab11-serverless-setup
-categories: kubernetes,SAAS,serverless,all
-tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-SAAS
+categories: kubernetes,serverless,saas,all
+tags: aws-immersion-day,aws-selfpaced,aws-immersion-day-saas,aws-immersion-day-serverless
 status: Published
 
 # AWS Lab 11 - Modernization with AWS Serverless Lambda
@@ -119,9 +119,15 @@ ensure that you have all of the files highlighted by red outlines as they do the
 
 ## Deploying the LambdaProvisionScript.sh
 
+We First have to give the proper executable permissions to the script and only then we will be able to run the deployment.  We can combine the two commands as such.  Copy and paste the below command in the AWS CLI and ensure you are in the 
+/provision-scripts directory.
+
 ```
-./LambdaProvisionScript.sh
+chmod u+x LambdaProvisionScript.sh && ./LambdaProvisionScript.sh
 ```
+
+**This will take about 3 to 5 mins to complete allong the way you will get an output message that it needs 10 more seconds.**
+
 ![image](img/lambdaDeploy.png)
 
 ## What is our script doing? 
@@ -164,7 +170,7 @@ Click on the `Lambda functions` box and you will notice that Dynatrace already k
 
 Ensure you are still in the same directory 
 ```
-~/aws-modernization-dt-orders-setup/app-scripts/
+~/aws-modernization-dt-orders-setup/provision-scripts/
 ```
 Lets double check that the `catalog-service-serverless.yml` has all the necessary updates from the LambdaProvisionScript.sh
 
